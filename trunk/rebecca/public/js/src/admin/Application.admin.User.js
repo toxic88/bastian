@@ -14,6 +14,12 @@ Application.modules.UserManager = {
     loadMask : true,
     layout   : 'fit', // for the afterlayout listener
     listeners : {
+        validateedit : function() {
+            console.log('validateedit', arguments);
+        },
+        afteredit : function() {
+            console.log('afteredit', arguments);
+        },
         afterlayout : {
             fn : function() {
                 this.store.load();
@@ -60,7 +66,15 @@ Application.modules.UserManager = {
         }
     },
     onAdd : function() {
+        var rec = new this.store.recordType({
+            username : '',
+            password : '',
+            rights   : 2
+        });
 
+        this.stopEditing();
+        this.store.insert(0, rec);
+        this.startEditing(0, 1);
     },
     tbar : {
         listeners : {
@@ -97,10 +111,13 @@ Application.modules.UserManager = {
         ]
     },
     store : {
-        xtype      : 'jsonstore',
-        autoSave   : true,
-        root       : 'data',
-        remoteSort : true,
+        xtype           : 'jsonstore',
+        autoSave        : true,
+        totalProperty   : 'total',
+        successProperty : 'success',
+        idProperty      : 'id',
+        root            : 'data',
+        remoteSort      : true,
         proxy : new Ext.data.HttpProxy({
             api : {
                 read    : Application.urls.user.read,

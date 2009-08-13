@@ -786,8 +786,8 @@ Application = Ext.apply(new Ext.util.Observable, (function(){
         pageNotFoundModule : 'PageNotFound',
 
         urls    : {
-            login  : './auth/login/format/json',
-            logout : './auth/logout/format/json'
+            logout : './auth/logout/format/json',
+            login  : './auth/login/format/json'
         }
     };
 }()));

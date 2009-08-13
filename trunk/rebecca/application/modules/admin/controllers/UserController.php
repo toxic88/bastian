@@ -53,7 +53,7 @@ class Admin_UserController extends Zend_Controller_Action
         $numrows = Application_Db_Table::getDefaultAdapter()->fetchOne(
             $this->_table->select()->from($this->_table, 'count(*)')
         );
-var_dump($rowset);
+
         $this->view->data = $rowset->toArray();
         $this->view->total = $numrows;
         $this->view->success = true;
@@ -62,12 +62,16 @@ var_dump($rowset);
     public function destroyAction()
     {
         $this->view->data = new stdClass();
-        $id = $_POST['data'] + 0; // typecast :)
         
         try {
-            $rowset = $this->_table->find($id);
+            $rowset = $this->_table->find($_POST['data']);
         } catch (Exception $e) {
             $this->view->message = $e->getMessage();
+            return;
+        }
+
+        if (count($rowset) <= 0) {
+            $this->view->message = 'Der Benutzer mit der id "' . $_POST['data'] . '" existiert nicht!';
             return;
         }
 
@@ -106,7 +110,7 @@ var_dump($rowset);
         }
 
         if (count($rowset) > 0) {
-            $this->view->message = 'Der Benutzer ' . $data['username'] . ' existiert bereits!';
+            $this->view->message = 'Der Benutzer "' . $data['username'] . '" existiert bereits!';
             return;
         }
         
@@ -137,6 +141,11 @@ var_dump($rowset);
             $rowset = $this->_table->find($_POST['id']);
         } catch (Exception $e) {
             $this->view->message = $e->getMessage();
+            return;
+        }
+
+        if (count($rowset) <= 0) {
+            $this->view->message = 'Der Benutzer mit der id "' . $_POST['id'] . '" existiert nicht!';
             return;
         }
 
