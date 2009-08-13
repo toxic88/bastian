@@ -58,7 +58,12 @@ class Admin_UserController extends Zend_Controller_Action
         $this->view->total = $numrows;
         $this->view->success = true;
     }
-    
+
+    /**
+     * 1. set default return data
+     * 2. check if the row exists
+     * 3. delete the row
+     */
     public function destroyAction()
     {
         $this->view->data = new stdClass();
@@ -86,7 +91,15 @@ class Admin_UserController extends Zend_Controller_Action
 
         $this->view->success = true;
     }
-    
+
+    /**
+     * 1. validate userinput
+     * 2. set default return data
+     * 3. checking required fields
+     * 4. prevent the same username
+     * 5. create password hash
+     * 6. create and save the row
+     */
     public function createAction()
     {
         $data = array_filter( // filter '', null, false values
@@ -128,14 +141,35 @@ class Admin_UserController extends Zend_Controller_Action
         $this->view->data = $row->toArray();
         $this->view->success = true;
     }
-    
+
+    /**
+     * 1. valdate userinput
+     * 2. set the defaut return data
+     * 3. prevent the same username
+     * 4. check if the row exists
+     * 5. create password hash
+     * 6. setting the modified data and update the row
+     */
     public function updateAction()
     {
         $data = array_filter( // filter '', null, false values
-            array('id' => $_POST['id']) +
             Zend_Json::decode($_POST['data'], Zend_Json::TYPE_ARRAY)
         );
         $this->view->data = $data; // default data
+
+        if ($data['username']) { // prevent the same usernames
+            try {
+                $rowset = $this->_table->fetchAll($this->_table->select()->where('username = ?', $data['username']));
+            } catch(Exception $e) {
+                $this->view->message = $e->getMessage();
+                return;
+            }
+
+            if (count($rowset) > 0) {
+                $this->view->message = 'Der Benutzer "' . $data['username'] . '" existiert bereits!';
+                return;
+            }
+        }
 
         try {
             $rowset = $this->_table->find($_POST['id']);
@@ -151,7 +185,7 @@ class Admin_UserController extends Zend_Controller_Action
 
         $row = $rowset->current();
         if (isset($data['password'])) {
-            $data['password'] = md5($data['password']);
+            $data['password'] = md5($data['password']); // hash the password
         }
         $row->setFromArray($data);
 

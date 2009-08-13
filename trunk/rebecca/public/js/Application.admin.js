@@ -67,12 +67,6 @@ Application.modules.UserManager = {
     loadMask : true,
     layout   : 'fit', // for the afterlayout listener
     listeners : {
-        validateedit : function() {
-            console.log('validateedit', arguments);
-        },
-        afteredit : function() {
-            console.log('afteredit', arguments);
-        },
         afterlayout : {
             fn : function() {
                 this.store.load();
@@ -106,6 +100,30 @@ Application.modules.UserManager = {
             me.menu.showAt(e.getXY());
         }
     },
+    keys : [
+        {
+            key : Ext.EventObject.ENTER,
+            fn : function() {
+                var me = Application.modules.UserManager;
+                if (me.activeEditor === null) {
+                    var r = me.getSelectionModel().getSelected();
+                    me.startEditing(me.store.indexOf(r), 1);
+                }
+            }
+        },
+        {
+            key : Ext.EventObject.DELETE,
+            fn : function() {
+                Application.modules.UserManager.onRemove();
+            }
+        }
+    ],
+    getKeyMap : function(){
+        if(!this.keyMap){
+            this.keyMap = new Ext.KeyMap(this.body, this.keys);
+        }
+        return this.keyMap;
+    },
     viewConfig : {
         forceFit : true
     },
@@ -119,14 +137,9 @@ Application.modules.UserManager = {
         }
     },
     onAdd : function() {
-        var rec = new this.store.recordType({
-            username : '',
-            password : '',
-            rights   : 2
-        });
-
+        var r = new this.store.recordType({});
         this.stopEditing();
-        this.store.insert(0, rec);
+        this.store.insert(0, r);
         this.startEditing(0, 1);
     },
     tbar : {
