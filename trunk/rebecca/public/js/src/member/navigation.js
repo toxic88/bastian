@@ -16,6 +16,11 @@ Application.addLinks([
                 iconCls : 'icon-table',
                 html    : 'Stundenplan',
                 href    : '#Stundenplan'
+            },
+            {
+                iconCls : 'icon-table',
+                html    : 'Vokabeln',
+                href    : '#Vokabeln'
             }
         ]
     },

@@ -1,14 +1,14 @@
 Ext.apply(Application.urls, {
-    user : {
-        read    : './admin/user/select/format/json',
-        create  : './admin/user/create/format/json',
-        update  : './admin/user/update/format/json',
-        destroy : './admin/user/destroy/format/json'
+    vokabeln : {
+        read    : './vokabeln/select/format/json',
+        create  : './vokabeln/create/format/json',
+        update  : './vokabeln/update/format/json',
+        destroy : './vokabeln/destroy/format/json'
     }
 });
 
-Application.modules.UserManager = {
-    title    : 'Benutzer Manager',
+Application.modules.Vokabeln = {
+    title    : 'Vokabeln',
     iconCls  : 'icon-table',
     xtype    : 'editorgrid',
     loadMask : true,
@@ -27,15 +27,15 @@ Application.modules.UserManager = {
                 me.menu = new Ext.menu.Menu({
                     items : [
                         {
-                            text    : 'Benutzer entfernen',
-                            iconCls : 'icon-user-delete',
+                            text    : 'Vokablen entfernen',
+                            iconCls : 'icon-delete',
                             handler : function() {
                                 me.onRemove();
                             }
                         },
                         {
-                            text    : 'Benutzer hinzuf&uuml;gen',
-                            iconCls : 'icon-user-add',
+                            text    : 'Vokabeln hinzuf&uuml;gen',
+                            iconCls : 'icon-add',
                             handler : function() {
                                 me.onAdd();
                             }
@@ -51,7 +51,7 @@ Application.modules.UserManager = {
         {
             key : Ext.EventObject.ENTER,
             fn : function() {
-                var me = Application.modules.UserManager;
+                var me = Application.modules.Vokablen;
                 if (me.activeEditor === null) {
                     var r = me.getSelectionModel().getSelected();
                     me.startEditing(me.store.indexOf(r), 1);
@@ -61,7 +61,7 @@ Application.modules.UserManager = {
         {
             key : Ext.EventObject.DELETE,
             fn : function() {
-                Application.modules.UserManager.onRemove();
+                Application.modules.Vokabeln.onRemove();
             }
         }
     ],
@@ -100,16 +100,16 @@ Application.modules.UserManager = {
         },
         items : [
             {
-                text    : 'Benutzer hinzuf&uuml;gen',
-                iconCls : 'icon-user-add',
+                text    : 'Vokabeln hinzuf&uuml;gen',
+                iconCls : 'icon-add',
                 handler : function() {
                     this.ownerCt.ownerCt.onAdd();
                 }
             },
             {
                 ref      : '../removeBtn', // reference to the grid
-                text     : 'Benutzer entfernen',
-                iconCls  : 'icon-user-delete',
+                text     : 'Vokabeln entfernen',
+                iconCls  : 'icon-delete',
                 disabled : true,
                 handler  : function() {
                     this.ownerCt.ownerCt.onRemove();
@@ -130,10 +130,10 @@ Application.modules.UserManager = {
         remoteSort      : true,
         proxy : new Ext.data.HttpProxy({
             api : {
-                read    : Application.urls.user.read,
-                create  : Application.urls.user.create,
-                update  : Application.urls.user.update,
-                destroy : Application.urls.user.destroy
+                read    : Application.urls.vokablen.read,
+                create  : Application.urls.vokablen.create,
+                update  : Application.urls.vokablen.update,
+                destroy : Application.urls.vokablen.destroy
             }
         }),
         fields : [
@@ -142,16 +142,15 @@ Application.modules.UserManager = {
                 type : 'int'
             },
             {
-                name : 'username',
+                name : 'deutsch',
                 allowBlank : false
             },
             {
-                name : 'password',
+                name : 'englisch',
                 allowBlank : false
             },
             {
-                name : 'rights',
-                type : 'int',
+                name : 'spanisch',
                 allowBlank : false
             }
         ],
@@ -165,7 +164,7 @@ Application.modules.UserManager = {
                     } else if (action == Ext.data.Api.actions.create) {
                         this.remove(arg);
                     }
-                    Ext.Msg.error('Fehler!', '"' + arg.data.username + '" konnte nicht ver&auml;ndert werden.<br />' + res.message);
+                    Ext.Msg.error('Fehler!', '"' + arg.data.deutsch + '" konnte nicht ver&auml;ndert werden.<br />' + res.message);
                 }
             }
         }
@@ -183,55 +182,27 @@ Application.modules.UserManager = {
         },
         columns : [
             {
-                header    : 'id',
-                dataIndex : 'id',
-                width     : 20
-            },
-            {
-                header    : 'Benutzername',
-                dataIndex : 'username',
+                header    : 'Deutsch',
+                dataIndex : 'deutsch',
                 editor    : {
                     xtype      : 'textfield',
                     allowBlank : false
                 }
             },
             {
-                header    : 'Passwort',
-                dataIndex : 'password',
+                header    : 'Englisch',
+                dataIndex : 'englisch',
                 editor    : {
                     xtype         : 'textfield',
-                    allowBlank    : false,
-                    selectOnFocus : true
+                    allowBlank    : false
                 }
             },
             {
-                header    : 'Rechte',
-                dataIndex : 'rights',
-                renderer  : function(v) {
-                    switch(v) {
-                        case 1:
-                            return 'Admin';
-                            break;
-                        case 2:
-                            return 'Benutzer';
-                            break;
-                        default:
-                            return v;
-                            break;
-                    }
-                },
-                editor : {
-                    xtype        : 'selectbox',
-                    displayField : 'text',
-                    valueField   : 'value',
-                    store  : {
-                        xtype : 'arraystore',
-                        data  : [
-                            [ 1, 'Admin' ],
-                            [ 2, 'Benutzer' ]
-                        ],
-                        fields : [ 'value', 'text' ]
-                    }
+                header    : 'Spanisch',
+                dataIndex : 'spanisch',
+                editor    : {
+                    xtype         : 'textfield',
+                    allowBlank    : false
                 }
             }
         ]
