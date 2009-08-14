@@ -24,7 +24,7 @@
 .icon-add {
     background-image:url('/static/Icons/add.png') !important;
 }
-.icon-remove, .icons-delete {
+.icon-remove, .icon-delete {
     background-image:url('/static/Icons/delete.png') !important;
 }
 .icon-edit, .icon-pencil {

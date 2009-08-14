@@ -87,7 +87,7 @@ Application.modules.Vokabeln = {
         var r = new this.store.recordType({});
         this.stopEditing();
         this.store.insert(0, r);
-        this.startEditing(0, 1);
+        this.startEditing(0, 0);
     },
     tbar : {
         listeners : {
@@ -130,10 +130,10 @@ Application.modules.Vokabeln = {
         remoteSort      : true,
         proxy : new Ext.data.HttpProxy({
             api : {
-                read    : Application.urls.vokablen.read,
-                create  : Application.urls.vokablen.create,
-                update  : Application.urls.vokablen.update,
-                destroy : Application.urls.vokablen.destroy
+                read    : Application.urls.vokabeln.read,
+                create  : Application.urls.vokabeln.create,
+                update  : Application.urls.vokabeln.update,
+                destroy : Application.urls.vokabeln.destroy
             }
         }),
         fields : [

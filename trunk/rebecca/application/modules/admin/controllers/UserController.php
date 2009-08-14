@@ -172,14 +172,14 @@ class Admin_UserController extends Zend_Controller_Action
         }
 
         try {
-            $rowset = $this->_table->find($data['id']);
+            $rowset = $this->_table->find($_POST['id']);
         } catch (Exception $e) {
             $this->view->message = $e->getMessage();
             return;
         }
 
         if (count($rowset) <= 0) {
-            $this->view->message = 'Der Benutzer mit der id "' . $data['id'] . '" existiert nicht!';
+            $this->view->message = 'Der Benutzer mit der id "' . $_POST['id'] . '" existiert nicht!';
             return;
         }
 

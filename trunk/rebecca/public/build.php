@@ -61,6 +61,7 @@ $jsMemberDir = $jsBaseDir . 'member/';
 $jsMemberFileName = './js/Application.member.js';
 $jsMemberFiles = array_merge($jsGuestFiles, array(
     $jsMemberDir . 'Application.member.Stundenplan.js',
+    $jsMemberDir . 'Application.member.Vokabeln.js',
 
     $jsMemberDir . 'navigation.js'
 ));

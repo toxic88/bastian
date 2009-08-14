@@ -48,13 +48,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->addResource('error')
             ->addResource('auth')
             ->addResource('admin:user')
+            ->addResource('vokabeln')
 
             //->addResource('test')
 
             ->allow('guest', 'index')
             ->allow('guest', 'error')
             ->allow('guest', 'auth')
-            
+
+            ->allow('member', 'vokabeln')
+
             ->allow('admin'); // allow all
         
         $front = Zend_Controller_Front::getInstance();

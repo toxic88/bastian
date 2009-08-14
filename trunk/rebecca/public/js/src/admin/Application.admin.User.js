@@ -126,6 +126,9 @@ Application.modules.UserManager = {
     store : {
         xtype           : 'jsonstore',
         autoSave        : true,
+        totalProperty   : 'total',
+        successProperty : 'success',
+        idProperty      : 'id',
         root            : 'data',
         remoteSort      : true,
         proxy : new Ext.data.HttpProxy({
