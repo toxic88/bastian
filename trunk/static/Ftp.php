@@ -387,7 +387,7 @@ class Ftp
             throw new Exception('Wrong option. Please use ' . __CLASS__ . '::TIMEOUT_SEC and ' . __CLASS__ . '::AUTOSEEK only!');
         }
 
-        return ftp_set_option($this->_connection, $option);
+        return ftp_get_option($this->_connection, $option);
     }
 
     public function ls($directory, $recrusiv = false)
