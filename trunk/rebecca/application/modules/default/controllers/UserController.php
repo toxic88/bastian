@@ -184,7 +184,7 @@ class UserController extends Zend_Controller_Action
         }
 
         $row = $rowset->current();
-        if (isset($data['password'])) {
+        if ($data['password']) {
             $data['password'] = md5($data['password']); // hash the password
         }
         $row->setFromArray($data);

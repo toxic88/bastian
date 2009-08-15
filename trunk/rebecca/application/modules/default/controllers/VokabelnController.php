@@ -123,7 +123,15 @@ class VokabelnController extends Zend_Controller_Action
             $this->view->message = 'Die Vokabel "' . $data['deutsch'] . '" existiert bereits!';
             return;
         }
-        
+
+        $data['deutsch'] = Zend_Filter::filterStatic($data['deutsch'], 'EncodeTags'); // is required
+        if ($data['englisch']) {
+            $data['englisch'] = Zend_Filter::filterStatic($data['englisch'], 'EncodeTags');
+        }
+        if ($data['spanisch']) {
+            $data['spanisch'] = Zend_Filter::filterStatic($data['spanisch'], 'EncodeTags');
+        }
+
         $row = $this->_table->createRow($data);
 
         try {
@@ -176,6 +184,16 @@ class VokabelnController extends Zend_Controller_Action
         if (count($rowset) <= 0) {
             $this->view->message = 'Der Vokabel mit der id "' . $data['id'] . '" existiert nicht!';
             return;
+        }
+
+        if ($data['deutsch']) {
+            $data['deutsch'] = Zend_Filter::filterStatic($data['deutsch'], 'EncodeTags');
+        }
+        if ($data['englisch']) {
+            $data['englisch'] = Zend_Filter::filterStatic($data['englisch'], 'EncodeTags');
+        }
+        if ($data['spanisch']) {
+            $data['spanisch'] = Zend_Filter::filterStatic($data['spanisch'], 'EncodeTags');
         }
 
         $row = $rowset->current();

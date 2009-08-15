@@ -66,6 +66,7 @@ Application.modules.Vokabeln = {
     xtype    : 'editorgrid',
     loadMask : true,
     layout   : 'fit', // for the afterlayout listener
+    autoEncode : true,
     listeners : {
         afterlayout : {
             fn : function() {

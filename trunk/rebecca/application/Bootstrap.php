@@ -27,6 +27,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session());
     }
 
+    protected function _initFilter()
+    {
+        Zend_Filter::addDefaultNamespaces('Application_Filter');
+    }
+
     protected function _initAcl()
     {
         $this->bootstrap(array('config', 'auth')); // this has to be init first
