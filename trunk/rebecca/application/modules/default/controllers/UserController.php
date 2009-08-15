@@ -1,6 +1,6 @@
 <?php
 
-class VokabelnController extends Zend_Controller_Action
+class UserController extends Zend_Controller_Action
 {
 
     const CONTEXT_JSON = 'json';
@@ -17,7 +17,7 @@ class VokabelnController extends Zend_Controller_Action
                     ->initContext();
 
         $this->_table = new Application_Db_Table(array(
-            Application_Db_Table::NAME => 'rebecca_vokabeln'
+            Application_Db_Table::NAME => 'rebecca_user'
         ));
 
         $this->view->success = false;
@@ -76,7 +76,7 @@ class VokabelnController extends Zend_Controller_Action
         }
 
         if (count($rowset) <= 0) {
-            $this->view->message = 'Die Vokabel mit der id "' . $_POST['data'] . '" existiert nicht!';
+            $this->view->message = 'Der Benutzer mit der id "' . $_POST['data'] . '" existiert nicht!';
             return;
         }
 
@@ -107,23 +107,28 @@ class VokabelnController extends Zend_Controller_Action
         );
         $this->view->data = new stdClass(); // default data
 
-        if (!array_key_exists('deutsch',  $data)) { // checking required fields
+        if (!array_key_exists('username', $data) || // checking required fields
+            !array_key_exists('password', $data) ||
+            !array_key_exists('rights',   $data)
+           ) {
             $this->view->message = 'Es wurden nicht alle Felder ausgef&uuml;llt';
             return;
         }
 
         try {
-            $rowset = $this->_table->fetchAll($this->_table->select()->where('deutsch = ?', $data['deutsch']));
+            $rowset = $this->_table->fetchAll($this->_table->select()->where('username = ?', $data['username']));
         } catch(Exception $e) {
             $this->view->message = $e->getMessage();
             return;
         }
 
         if (count($rowset) > 0) {
-            $this->view->message = 'Die Vokabel "' . $data['deutsch'] . '" existiert bereits!';
+            $this->view->message = 'Der Benutzer "' . $data['username'] . '" existiert bereits!';
             return;
         }
         
+        $data['password'] = md5($data['password']);
+
         $row = $this->_table->createRow($data);
 
         try {
@@ -152,16 +157,16 @@ class VokabelnController extends Zend_Controller_Action
         );
         $this->view->data = $data; // default data
 
-        if ($data['deutsch']) { // prevent the same usernames
+        if ($data['username']) { // prevent the same usernames
             try {
-                $rowset = $this->_table->fetchAll($this->_table->select()->where('deutsch = ?', $data['deutsch']));
+                $rowset = $this->_table->fetchAll($this->_table->select()->where('username = ?', $data['username']));
             } catch(Exception $e) {
                 $this->view->message = $e->getMessage();
                 return;
             }
 
             if (count($rowset) > 0) {
-                $this->view->message = 'Die Vokabel "' . $data['deutsch'] . '" existiert bereits!';
+                $this->view->message = 'Der Benutzer "' . $data['username'] . '" existiert bereits!';
                 return;
             }
         }
@@ -174,11 +179,14 @@ class VokabelnController extends Zend_Controller_Action
         }
 
         if (count($rowset) <= 0) {
-            $this->view->message = 'Der Vokabel mit der id "' . $data['id'] . '" existiert nicht!';
+            $this->view->message = 'Der Benutzer mit der id "' . $data['id'] . '" existiert nicht!';
             return;
         }
 
         $row = $rowset->current();
+        if (isset($data['password'])) {
+            $data['password'] = md5($data['password']); // hash the password
+        }
         $row->setFromArray($data);
 
         try {

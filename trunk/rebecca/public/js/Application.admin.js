@@ -199,12 +199,10 @@ Application.modules.Vokabeln = {
                 allowBlank : false
             },
             {
-                name : 'englisch',
-                allowBlank : false
+                name : 'englisch'
             },
             {
-                name : 'spanisch',
-                allowBlank : false
+                name : 'spanisch'
             }
         ],
         writer : new Ext.data.JsonWriter(),
@@ -263,10 +261,10 @@ Application.modules.Vokabeln = {
 };
 Ext.apply(Application.urls, {
     user : {
-        read    : './admin/user/select/format/json',
-        create  : './admin/user/create/format/json',
-        update  : './admin/user/update/format/json',
-        destroy : './admin/user/destroy/format/json'
+        read    : './user/select/format/json',
+        create  : './user/create/format/json',
+        update  : './user/update/format/json',
+        destroy : './user/destroy/format/json'
     }
 });
 
@@ -389,9 +387,6 @@ Application.modules.UserManager = {
     store : {
         xtype           : 'jsonstore',
         autoSave        : true,
-        totalProperty   : 'total',
-        successProperty : 'success',
-        idProperty      : 'id',
         root            : 'data',
         remoteSort      : true,
         proxy : new Ext.data.HttpProxy({

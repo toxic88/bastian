@@ -47,7 +47,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->addResource('index')
             ->addResource('error')
             ->addResource('auth')
-            ->addResource('admin:user')
+            ->addResource('user')
             ->addResource('vokabeln')
 
             //->addResource('test')

@@ -1,9 +1,9 @@
 Ext.apply(Application.urls, {
     user : {
-        read    : './admin/user/select/format/json',
-        create  : './admin/user/create/format/json',
-        update  : './admin/user/update/format/json',
-        destroy : './admin/user/destroy/format/json'
+        read    : './user/select/format/json',
+        create  : './user/create/format/json',
+        update  : './user/update/format/json',
+        destroy : './user/destroy/format/json'
     }
 });
 

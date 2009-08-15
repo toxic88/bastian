@@ -199,12 +199,10 @@ Application.modules.Vokabeln = {
                 allowBlank : false
             },
             {
-                name : 'englisch',
-                allowBlank : false
+                name : 'englisch'
             },
             {
-                name : 'spanisch',
-                allowBlank : false
+                name : 'spanisch'
             }
         ],
         writer : new Ext.data.JsonWriter(),
