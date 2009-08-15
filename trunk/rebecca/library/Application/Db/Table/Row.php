@@ -8,12 +8,25 @@ class Application_Db_Table_Row extends Zend_Db_Table_Row_Abstract
      */
     public function __set($columnName, $value)
     {
-        $tColumnName = $this->_transformColumn($columnName);
-        if (in_array($tColumnName, $this->_primary)) { // don't set primary columns
+        $columnName = $this->_transformColumn($columnName);
+        if (!array_key_exists($columnName, $this->_data)) {
+            require_once 'Zend/Db/Table/Row/Exception.php';
+            throw new Zend_Db_Table_Row_Exception("Specified column \"$columnName\" is not in the row");
+        }
+        
+        if (in_array($columnName, $this->_primary)) { // don't set primary columns
             return $this;
         }
 
-        return parent::__set($columnName, $value);
+        $this->_data[$columnName] = $value;
+
+        if ($value === $this->_cleanData[$columnName]) {
+            if (isset($this->_modifiedFields[$columnName])) {
+                unset($this->_modifiedFields[$columnName]);
+            }
+        } else {
+            $this->_modifiedFields[$columnName] = true;
+        }
     }
 
     /**
