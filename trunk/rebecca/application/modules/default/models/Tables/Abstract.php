@@ -3,16 +3,128 @@
 abstract class Application_Model_Tables_Abstract
 {
 
+    const MESSAGE_ROW_NOT_EXISTS = 'row_not_exists';
+
+    protected $_messages = array(
+        self::MESSAGE_ROW_NOT_EXISTS => 'Die Reihe mit der id %d existiert nicht.'
+    );
+
     protected $_table;
 
-    public function select(array $data);
+    public function select(array $data)
+    {
+        $data = $this->_filter($data);
+        $cols = $this->_getSearchColumns($data);
+        $select = $this->_table->select();
 
-    public function destroy(array $data);
+        if (in_array($data['sort'], $cols)) {
+            $select->order($data['sort'], $data['dir']);
+        }
 
-    public function update(array $data);
+        if ($data['start'] || $data['limit']) {
+            $select->limit($data['start'], $data['limit']);
+        }
 
-    public function create(array $data);
+        if ($data['query']) {
+            foreach($cols as $col) {
+                $select->orWhere($col . ' LIKE ?', '%' . $data['query'] . '%');
+            }
+        }
 
-    protected function _filter(array $data);
+        $rowset = $this->_table->fetchAll($select);
+
+        $numrows = Application_Db_Table::getDefaultAdapter()->fetchOne(
+            $this->_table->select()->from($this->_table, 'count(*)')
+        );
+
+        return $rowset->toArray();
+    }
+
+    public function destroy(array $data)
+    {
+        $data = $this->_filter($data);
+
+        $rowset = $this->_table->find($data['id']);
+
+        if (count($rowset) <= 0) {
+            throw new Application_Model_Tables_Exception(sprintf(self::MESSAGE_ROW_NOT_EXISTS, $data['id']));
+        }
+
+        $row = $rowset->current();
+        $row->delete();
+
+        return new stdClass();
+    }
+
+    public function update(array $data)
+    {
+        $data = $this->_filter($data);
+
+        $this->_checkDublicateRows($data);
+
+        $rowset = $this->_table->find($data['id']);
+
+        if (count($rowset) <= 0) {
+            throw new Application_Model_Tables_Exception(sprintf(self::MESSAGE_ROW_NOT_EXISTS, $data['id']));
+        }
+
+        $row = $rowset->current();
+        $row->setFromArray($data);
+        $row->save();
+
+        return $row->toArray();
+    }
+
+    public function create(array $data)
+    {
+        $data = $this->_filter($data);
+
+        $this->_checkRequiredColumns($data);
+
+        $this->_checkDublicateRows($data);
+
+        $row = $this->_table->createRow($data);
+        $row->save();
+
+        return $row->toArray();
+    }
+
+    /**
+     * Check if a row allready exists on insert
+     * @param array $data 
+     */
+    protected function _checkDublicateRows(array $data)
+    {
+
+    }
+
+    /**
+     * Check the columns wich can not be null.
+     * Throw an exception if a column does not exists
+     * @param array $data
+     */
+    protected function _checkRequiredColumns(array $data)
+    {
+        
+    }
+
+    /**
+     * Validate userinput.
+     * @param array $data from client as reference
+     */
+    protected function _filter(array $data)
+    {
+        return array_filter($data);
+    }
+
+    /**
+     * 
+     * @param array $data
+     * @return array of columns
+     */
+    protected function _getSearchColumns(array $data)
+    {
+        return $this->_table->info(Application_Db_Table::COLS);
+    }
 
 }
