@@ -4,12 +4,18 @@ abstract class Application_Model_Tables_Abstract
 {
 
     const MESSAGE_ROW_NOT_EXISTS = 'row_not_exists';
-
-    protected $_messages = array(
-        self::MESSAGE_ROW_NOT_EXISTS => 'Die Reihe mit der id %d existiert nicht.'
-    );
+    const MESSAGE_MISSING_FIELDS = 'missing_fields';
+    const MESSAGE_FIELD_EXISTS   = 'field_exists';
 
     protected $_table;
+
+    protected $_messages = array(
+        self::MESSAGE_ROW_NOT_EXISTS => 'Die Reihe mit der id "%d" existiert nicht.',
+        self::MESSAGE_MISSING_FIELDS => 'Es wurden nicht alle Felder ausgef&uuml;lt!',
+        self::MESSAGE_FIELD_EXISTS   => 'Das Feld "%s" existiert bereits.'
+    );
+
+    abstract public function __construct();
 
     public function select(array $data)
     {
@@ -47,7 +53,7 @@ abstract class Application_Model_Tables_Abstract
         $rowset = $this->_table->find($data['id']);
 
         if (count($rowset) <= 0) {
-            throw new Application_Model_Tables_Exception(sprintf(self::MESSAGE_ROW_NOT_EXISTS, $data['id']));
+            throw new Application_Model_Tables_Exception(sprintf($this->_messages[self::MESSAGE_ROW_NOT_EXISTS], $data['id']));
         }
 
         $row = $rowset->current();
@@ -65,7 +71,7 @@ abstract class Application_Model_Tables_Abstract
         $rowset = $this->_table->find($data['id']);
 
         if (count($rowset) <= 0) {
-            throw new Application_Model_Tables_Exception(sprintf(self::MESSAGE_ROW_NOT_EXISTS, $data['id']));
+            throw new Application_Model_Tables_Exception(sprintf($this->_messages[self::MESSAGE_ROW_NOT_EXISTS], $data['id']));
         }
 
         $row = $rowset->current();
