@@ -22,6 +22,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('session', new Zend_Session_Namespace());
     }
 
+    protected function _initAutoload()
+    {
+        $autoloader = new Zend_Application_Module_Autoloader(array(
+            'namespace' => 'Application',
+            'basePath'  => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'default',
+        ));
+        return $autoloader;
+    }
+
     protected function _initAuth()
     {
         Zend_Auth::getInstance()->setStorage(new Zend_Auth_Storage_Session());
