@@ -178,10 +178,14 @@ Application.modules.Vokabeln = {
         ]
     },
     store : {
-        xtype           : 'jsonstore',
-        autoSave        : true,
-        root            : 'data',
-        remoteSort      : true,
+        xtype      : 'jsonstore',
+        autoSave   : true,
+        root       : 'data',
+        remoteSort : true,
+        sortInfo   : {
+            field     : 'deutsch',
+            direction : 'ASC'
+        },
         proxy : new Ext.data.HttpProxy({
             api : {
                 read    : Application.urls.vokabeln.read,
