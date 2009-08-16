@@ -1,0 +1,136 @@
+<?php
+
+abstract class Application_Model_DbTable_Abstract
+{
+
+    const MESSAGE_ROW_NOT_EXISTS = 'row_not_exists';
+    const MESSAGE_MISSING_FIELDS = 'missing_fields';
+    const MESSAGE_FIELD_EXISTS   = 'field_exists';
+
+    protected $_table;
+
+    protected $_messages = array(
+        self::MESSAGE_ROW_NOT_EXISTS => 'Die Reihe mit der id "%d" existiert nicht.',
+        self::MESSAGE_MISSING_FIELDS => 'Es wurden nicht alle Felder ausgef&uuml;lt!',
+        self::MESSAGE_FIELD_EXISTS   => 'Das Feld "%s" existiert bereits.'
+    );
+
+    abstract public function __construct();
+
+    public function select(array $data)
+    {
+        $data = $this->_filter($data);
+        $cols = $this->_getSearchColumns($data);
+        $select = $this->_table->select();
+
+        if (in_array($data['sort'], $cols)) {
+            $select->order($data['sort'], $data['dir']);
+        }
+
+        if ($data['start'] || $data['limit']) {
+            $select->limit($data['start'], $data['limit']);
+        }
+
+        if ($data['query']) {
+            foreach($cols as $col) {
+                $select->orWhere($col . ' LIKE ?', '%' . $data['query'] . '%');
+            }
+        }
+
+        $rowset = $this->_table->fetchAll($select);
+
+        $numrows = Application_Db_Table::getDefaultAdapter()->fetchOne(
+            $this->_table->select()->from($this->_table, 'count(*)')
+        );
+
+        return $rowset->toArray();
+    }
+
+    public function destroy(array $data)
+    {
+        $data = $this->_filter($data);
+
+        $rowset = $this->_table->find($data['id']);
+
+        if (count($rowset) <= 0) {
+            throw new Application_Model_DbTable_Exception(sprintf($this->_messages[self::MESSAGE_ROW_NOT_EXISTS], $data['id']));
+        }
+
+        $row = $rowset->current();
+        $row->delete();
+
+        return new stdClass();
+    }
+
+    public function update(array $data)
+    {
+        $data = $this->_filter($data);
+
+        $this->_checkDublicateRows($data);
+
+        $rowset = $this->_table->find($data['id']);
+
+        if (count($rowset) <= 0) {
+            throw new Application_Model_DbTable_Exception(sprintf($this->_messages[self::MESSAGE_ROW_NOT_EXISTS], $data['id']));
+        }
+
+        $row = $rowset->current();
+        $row->setFromArray($data);
+        $row->save();
+
+        return $row->toArray();
+    }
+
+    public function create(array $data)
+    {
+        $data = $this->_filter($data);
+
+        $this->_checkRequiredColumns($data);
+
+        $this->_checkDublicateRows($data);
+
+        $row = $this->_table->createRow($data);
+        $row->save();
+
+        return $row->toArray();
+    }
+
+    /**
+     * Check if a row allready exists on insert
+     * @param array $data 
+     */
+    protected function _checkDublicateRows(array $data)
+    {
+
+    }
+
+    /**
+     * Check the columns wich can not be null.
+     * Throw an exception if a column does not exists
+     * @param array $data
+     */
+    protected function _checkRequiredColumns(array $data)
+    {
+        
+    }
+
+    /**
+     * Validate userinput.
+     * @param array $data from client as reference
+     */
+    protected function _filter(array $data)
+    {
+        return array_filter($data);
+    }
+
+    /**
+     * 
+     * @param array $data
+     * @return array of columns
+     */
+    protected function _getSearchColumns(array $data)
+    {
+        return $this->_table->info(Application_Db_Table::COLS);
+    }
+
+}
