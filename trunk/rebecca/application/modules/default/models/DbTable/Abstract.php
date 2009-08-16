@@ -45,8 +45,7 @@ abstract class Application_Model_DbTable_Abstract
 
         return array(
             'data'  => $rowset->toArray(),
-            'total' => (int) $numrows,
-            'sql'   => $select->__toString()
+            'total' => (int) $numrows
         );
     }
 

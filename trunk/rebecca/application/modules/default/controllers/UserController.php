@@ -25,7 +25,7 @@ class UserController extends Zend_Controller_Action
     {
         try {
             $data = $this->_model->select($_POST);
-        } catch (Exception $e) {
+        } catch(Exception $e) {
             $this->view->message = $e->getMessage();
             return;
         }
@@ -70,7 +70,7 @@ class UserController extends Zend_Controller_Action
 
         try {
             $data = $this->_model->create($data);
-        } catch (Exception $e) {
+        } catch(Exception $e) {
             $this->view->message = $e->getMessage();
             return;
         }
@@ -94,7 +94,7 @@ class UserController extends Zend_Controller_Action
 
         try {
             $data = $this->_model->update($data);
-        } catch (Exception $e) {
+        } catch(Exception $e) {
             $this->view->message = $e->getMessage();
             return;
         }
