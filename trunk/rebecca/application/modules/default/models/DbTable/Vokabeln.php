@@ -33,7 +33,7 @@ class Application_Model_DbTable_Vokabeln extends Application_Model_DbTable_Abstr
 
     protected function _filter(array $data)
     {
-        $data = parent::_filter($array);
+        $data = parent::_filter($data);
 
         if ($data['deutsch']) {
             $data['deutsch'] = Zend_Filter::filterStatic($data['deutsch'], 'EncodeTags');

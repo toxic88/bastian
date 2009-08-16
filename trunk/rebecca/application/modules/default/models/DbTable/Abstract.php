@@ -24,7 +24,7 @@ abstract class Application_Model_DbTable_Abstract
         $select = $this->_table->select();
 
         if (in_array($data['sort'], $cols)) {
-            $select->order($data['sort'], $data['dir']);
+            $select->order($data['sort'] . ' ' . $data['dir']);
         }
 
         if ($data['start'] || $data['limit']) {
@@ -43,7 +43,11 @@ abstract class Application_Model_DbTable_Abstract
             $this->_table->select()->from($this->_table, 'count(*)')
         );
 
-        return $rowset->toArray();
+        return array(
+            'data'  => $rowset->toArray(),
+            'total' => (int) $numrows,
+            'sql'   => $select->__toString()
+        );
     }
 
     public function destroy(array $data)
@@ -132,5 +136,23 @@ abstract class Application_Model_DbTable_Abstract
     {
         return $this->_table->info(Application_Db_Table::COLS);
     }
+
+/**
+ * For bachted requests
+    public function __call($name, $arguments)
+    {
+        if (in_array($name, array('destroy', 'update', 'create'))) {
+            if (is_array($arguments)) {
+                foreach ($arguments as $arg) {
+                    $data[] = call_user_func(array($this, '_' . $name), $arg);
+                }
+            } else {
+                $data = call_user_func(array($this, '_' . $name), $arguments);
+            }
+            
+            return $data;
+        }
+    }
+*/
 
 }

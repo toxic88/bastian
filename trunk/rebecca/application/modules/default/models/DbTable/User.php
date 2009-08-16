@@ -36,7 +36,7 @@ class Application_Model_DbTable_User extends Application_Model_DbTable_Abstract
 
     protected function _filter(array $data)
     {
-        $data = parent::_filter($array);
+        $data = parent::_filter($data);
 
         if ($data['password']) {
             $data['password'] = md5($data['password']);
