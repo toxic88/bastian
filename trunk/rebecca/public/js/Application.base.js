@@ -25,17 +25,17 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
 
     /* private */
     readOnly : true,
-    
+
     /**
-     * @hide 
+     * @hide
      * @method autoSize
      */
     autoSize : Ext.emptyFn,
-    
+
     /* private */
     initComponent: function() {
         this.supr().initComponent.call(this);
-        
+
         this.addEvents(
             /**
              * @event fileselected
@@ -47,21 +47,21 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             'fileselected'
         );
     },
-    
+
     /* private */
     onRender : function(ct, position) {
         this.supr().onRender.call(this, ct, position);
-        
+
         this.wrap = this.el.wrap({cls:'x-form-field-wrap x-form-file-wrap'});
         this.el.addClass('x-form-file-text');
         this.el.dom.removeAttribute('name');
-        
+
         this.createFileInput();
-        
+
         if( this.disabled ) {
             this.fileInput.dom.disabled = true;
         }
-        
+
         var btnCfg = Ext.applyIf(this.buttonCfg || {}, {
             text: this.buttonText
         });
@@ -69,15 +69,15 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             renderTo : this.wrap,
             cls      : 'x-form-file-btn' + (btnCfg.iconCls ? ' x-btn-icon' : '')
         }));
-        
+
         this.addFileListeners();
-        
+
         if ( this.buttonOnly ){
             this.el.hide();
             this.wrap.setWidth(this.button.getEl().getWidth());
         }
     },
-    
+
     /* private */
     addFileListeners : function() {
         this.fileInput.on({
@@ -101,19 +101,19 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             scope       : this
         });
     },
-    
+
     /* private */
     createFileInput : function() {
         this.fileInput = this.wrap.createChild({
             id   : this.getFileInputId(),
             name : this.name || this.getId(),
             cls  : 'x-form-file',
-            tag  : 'input', 
+            tag  : 'input',
             type : 'file',
             size : 1
         });
     },
-    
+
     reset : function() {
         this.fileInput.removeAllListeners();
         this.fileInput.remove();
@@ -121,7 +121,7 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
         this.addFileListeners();
         this.supr().reset.call(this);
     },
-    
+
     /* private */
     onDestroy : function() {
         if ( this.fileInput ) {
@@ -136,7 +136,7 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
 
         this.supr().onDestroy.call(this);
     },
-    
+
     /* private */
     onEnable : function() {
         this.supr().onEnable.call(this);
@@ -150,27 +150,27 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
         this.fileInput.dom.disabled = true;
         this.button.disable();
     },
-    
+
     /* private */
     getFileInputId : function() {
         return this.id+'-file';
     },
-    
+
     /* private */
     onResize : function(w, h) {
         this.supr().onResize.call(this, w, h);
-        
+
         this.wrap.setWidth(w);
-        
+
         if ( !this.buttonOnly ){
             var w = this.wrap.getWidth() - this.button.getEl().getWidth() - this.buttonOffset;
             this.el.setWidth(w);
         }
     },
-    
+
     /* private */
     preFocus : Ext.emptyFn,
-    
+
     /* private */
     getResizeEl : function(){
         return this.wrap;
@@ -185,7 +185,7 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
     alignErrorIcon : function(){
         this.errorIcon.alignTo(this.wrap, 'tl-tr', [2, 0]);
     }
-    
+
 });
 Ext.reg('fileuploadfield', Ext.ux.FileUploadField);
 Ext.form.FileUploadField = Ext.ux.FileUploadField;
@@ -245,12 +245,12 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     triggerAction    : 'all',
     mode             : 'local',
     lazyInit         : false,
-    
+
     constructor : function(config) {
         this.supr().constructor.call(this, config);
         this.lastSelectedIndex = this.selectedIndex || 0;
     },
-	
+
     initComponent : function(){
         if (! this.store && this.data ){
             this.store = new Ext.data.ArrayStore({
@@ -262,7 +262,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
         }
         this.supr().initComponent.apply(this, arguments);
     },
-    
+
     initEvents : function(){
         this.supr().initEvents.apply(this, arguments);
         /* you need to use keypress to capture upper/lower case and shift+key, but it doesn't work in IE */
@@ -647,7 +647,7 @@ Ext.DomHelper.createDomX = function(o, parentNode) {
         attr,
         val,
         cn;
-        
+
     if (Ext.isArray(o)) {                   /* Allow Arrays of siblings to be inserted */
         el = doc.createDocumentFragment();  /* in one shot using a DocumentFragment */
         Ext.each(o, function(v) {    
@@ -759,7 +759,7 @@ Application = Ext.apply(new Ext.util.Observable, (function(){
         init : function() {
             var me = this;
             me.addEvents('shutdown', 'start');
-            
+
             Ext.EventManager.on(window, 'beforeunload', function(e){
                 if(me.fireEvent('shutdown') === false) {
                     /* e.browserEvent.returnValue = 'geh nicht weg!'; */
@@ -767,13 +767,13 @@ Application = Ext.apply(new Ext.util.Observable, (function(){
                     return false;
                 }
             });
-            
+
             me.fireEvent('start');
-            
+
             Ext.History.init(_initHistory, Ext.History);
             delete me.init;
         },
-        
+
         cookie  : Ext.copyTo({}, Ext.state.Manager, 'get,set,clear'),
         history : Ext.copyTo({
             get : function() {
@@ -813,9 +813,9 @@ Ext.onReady(function() {
     Ext.apply(Ext.QuickTips.getQuickTip(), {
         maxWidth : 500
     });
-    
+
     Application.init();
-    
+
     Ext.fly('loading-mask').fadeOut({
          useDisplay : true
     });
@@ -874,9 +874,8 @@ Application.addLinks = function() {
             }
             return;
         }
-        
+
         var panel = o, links = [].concat(panel.items);
-        
         panel = {
             title     : panel.title || '(no text)',
             iconCls   : panel.iconCls || panel.cls || null,
@@ -885,7 +884,7 @@ Application.addLinks = function() {
                 cn  : createLinks(links)
             })
         };
-        
+
         nav.add(panel);
         if (Ext.isReady) {
             nav.doLayout();

@@ -13,7 +13,7 @@ class Application_Db_Table_Row extends Zend_Db_Table_Row_Abstract
             require_once 'Zend/Db/Table/Row/Exception.php';
             throw new Zend_Db_Table_Row_Exception("Specified column \"$columnName\" is not in the row");
         }
-        
+
         if (in_array($columnName, $this->_primary)) { // don't set primary columns
             return;
         }
@@ -55,5 +55,5 @@ class Application_Db_Table_Row extends Zend_Db_Table_Row_Abstract
 
     	return $ret;
     }
-    
+
 }

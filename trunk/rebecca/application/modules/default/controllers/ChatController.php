@@ -19,7 +19,7 @@ abstract class ChatController extends Zend_Controller_Action implements Applicat
     {
         /**
          * to (0 = all)
-         * from
+         * from (Zend_Auth::getInstance()->getIdentity();)
          * message
          * send_date (set by the server)
          */

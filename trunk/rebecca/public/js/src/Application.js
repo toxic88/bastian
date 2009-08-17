@@ -30,7 +30,7 @@ Application = Ext.apply(new Ext.util.Observable, (function(){
         init : function() {
             var me = this;
             me.addEvents('shutdown', 'start');
-            
+
             Ext.EventManager.on(window, 'beforeunload', function(e){
                 if(me.fireEvent('shutdown') === false) {
                     /* e.browserEvent.returnValue = 'geh nicht weg!'; */
@@ -38,13 +38,13 @@ Application = Ext.apply(new Ext.util.Observable, (function(){
                     return false;
                 }
             });
-            
+
             me.fireEvent('start');
-            
+
             Ext.History.init(_initHistory, Ext.History);
             delete me.init;
         },
-        
+
         cookie  : Ext.copyTo({}, Ext.state.Manager, 'get,set,clear'),
         history : Ext.copyTo({
             get : function() {
@@ -84,9 +84,9 @@ Ext.onReady(function() {
     Ext.apply(Ext.QuickTips.getQuickTip(), {
         maxWidth : 500
     });
-    
+
     Application.init();
-    
+
     Ext.fly('loading-mask').fadeOut({
          useDisplay : true
     });

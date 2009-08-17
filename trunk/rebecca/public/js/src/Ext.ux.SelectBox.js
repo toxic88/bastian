@@ -7,12 +7,12 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     triggerAction    : 'all',
     mode             : 'local',
     lazyInit         : false,
-    
+
     constructor : function(config) {
         this.supr().constructor.call(this, config);
         this.lastSelectedIndex = this.selectedIndex || 0;
     },
-	
+
     initComponent : function(){
         if (! this.store && this.data ){
             this.store = new Ext.data.ArrayStore({
@@ -24,7 +24,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
         }
         this.supr().initComponent.apply(this, arguments);
     },
-    
+
     initEvents : function(){
         this.supr().initEvents.apply(this, arguments);
         /* you need to use keypress to capture upper/lower case and shift+key, but it doesn't work in IE */

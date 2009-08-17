@@ -9,7 +9,7 @@ class AuthController extends Zend_Controller_Action implements Application_Contr
         $ajaxContext->addActionContext('login',  self::CONTEXT_JSON)
                     ->addActionContext('logout', self::CONTEXT_JSON)
                     ->initContext();
-        
+
         $this->view->success = false;
     }
 

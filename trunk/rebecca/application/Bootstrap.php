@@ -7,7 +7,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $this->bootstrap('view');
         $view = $this->getResource('view');
-        
+
         $view->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT);
         $view->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8');
     }
@@ -63,8 +63,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->addResource('user')
             ->addResource('vokabeln')
 
-            //->addResource('test')
-
             ->allow('guest', 'index')
             ->allow('guest', 'error')
             ->allow('guest', 'auth')
@@ -72,7 +70,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->allow('member', 'vokabeln')
 
             ->allow('admin'); // allow all
-        
+
         $front = Zend_Controller_Front::getInstance();
         $front->registerPlugin(new Zion_Controller_Plugin_Acl($acl, $role));
     }

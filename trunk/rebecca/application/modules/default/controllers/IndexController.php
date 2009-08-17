@@ -11,7 +11,7 @@ class IndexController extends Zend_Controller_Action implements Application_Cont
     public function indexAction()
     {
         $this->view->headTitle('Rebecca\'s Homepage');
-        
+
         $this->view->headLink()->appendStylesheet('css/ext.css')
                                ->appendStylesheet('css/Application.css');
         $this->view->headScript()->appendFile('js/ext.js')

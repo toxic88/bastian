@@ -8,7 +8,7 @@ Ext.DomHelper.createDomX = function(o, parentNode) {
         attr,
         val,
         cn;
-        
+
     if (Ext.isArray(o)) {                   /* Allow Arrays of siblings to be inserted */
         el = doc.createDocumentFragment();  /* in one shot using a DocumentFragment */
         Ext.each(o, function(v) {    

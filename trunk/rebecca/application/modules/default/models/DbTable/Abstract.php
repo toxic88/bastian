@@ -100,7 +100,7 @@ abstract class Application_Model_DbTable_Abstract
 
     /**
      * Check if a row allready exists on insert
-     * @param array $data 
+     * @param array $data
      */
     protected function _checkDublicateRows(array $data)
     {
@@ -114,7 +114,7 @@ abstract class Application_Model_DbTable_Abstract
      */
     protected function _checkRequiredColumns(array $data)
     {
-        
+
     }
 
     /**
@@ -127,7 +127,7 @@ abstract class Application_Model_DbTable_Abstract
     }
 
     /**
-     * 
+     *
      * @param array $data
      * @return array of columns
      */
@@ -148,7 +148,7 @@ abstract class Application_Model_DbTable_Abstract
             } else {
                 $data = call_user_func(array($this, '_' . $name), $arguments);
             }
-            
+
             return $data;
         }
     }

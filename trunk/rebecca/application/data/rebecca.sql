@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `rebecca_user` (
   `password` varchar(32) COLLATE utf8_general_ci NOT NULL,
   `rights` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `rebecca_user`
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `rebecca_vokabeln` (
   `englisch` varchar(300) COLLATE utf8_general_ci DEFAULT NULL,
   `spanisch` varchar(300) COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=257 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=257 ;
 
 --
 -- Daten für Tabelle `rebecca_vokabeln`
