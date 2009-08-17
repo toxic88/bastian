@@ -1,9 +1,12 @@
 <?php
+define(DEBUG, true);
+require_once 'jsmin.php';
+
 /**
  * Css Files
  */
-$cssDir = './css/src/';
-$cssFileName = './css/Application.css';
+$cssDir = '../public/css/src/';
+$cssFileName = '../public/css/Application.css';
 $cssFiles = array(
     $cssDir . 'Ext.ux.FormUploadField.css',
     $cssDir . 'Application.css',
@@ -20,8 +23,8 @@ foreach ($cssFiles as $file) {
  * Javascript Files
  */
 // Application.base.js
-$jsBaseDir = './js/src/';
-$jsBaseFileName = './js/Application.base.js';
+$jsBaseDir = '../public/js/src/';
+$jsBaseFileName = '../public/js/Application.base.js';
 $jsBaseFiles = array(
     $jsBaseDir . 'Ext.ux.FileUploadField.js',
     $jsBaseDir . 'Ext.ux.SearchField.js',
@@ -39,11 +42,14 @@ $jsBaseFiles = array(
 foreach ($jsBaseFiles as $file) {
     file_put_contents($jsBaseFileName, file_get_contents($file), FILE_APPEND);
 }
+if (!DEBUG) {
+    file_put_contents($jsBaseFileName, JSmin::minify(file_get_contents($jsBaseFileName)));
+}
 
 
 // Application.guest.js
 $jsGuestDir = $jsBaseDir . 'guest/';
-$jsGuestFileName = './js/Application.guest.js';
+$jsGuestFileName = '../public/js/Application.guest.js';
 $jsGuestFiles = array(
     $jsGuestDir . 'Application.guest.Login.js',
 
@@ -53,12 +59,15 @@ $jsGuestFiles = array(
 foreach ($jsGuestFiles as $file) {
     file_put_contents($jsGuestFileName, file_get_contents($file), FILE_APPEND);
 }
+if (!DEBUG) {
+    file_put_contents($jsGuestFileName, JSmin::minify(file_get_contents($jsGuestFileName)));
+}
 $jsGuestFiles = array();
 
 
 // Application.member.js
 $jsMemberDir = $jsBaseDir . 'member/';
-$jsMemberFileName = './js/Application.member.js';
+$jsMemberFileName = '../public/js/Application.member.js';
 $jsMemberFiles = array_merge($jsGuestFiles, array(
     $jsMemberDir . 'Application.member.Stundenplan.js',
     $jsMemberDir . 'Application.member.Vokabeln.js',
@@ -69,12 +78,15 @@ $jsMemberFiles = array_merge($jsGuestFiles, array(
 foreach ($jsMemberFiles as $file) {
     file_put_contents($jsMemberFileName, file_get_contents($file), FILE_APPEND);
 }
+if (!DEBUG) {
+    file_put_contents($jsMemberFileName, JSmin::minify(file_get_contents($jsMemberFileName)));
+}
 array_pop($jsMemberFiles);
 
 
 // Application.admin.js
 $jsAdminDir = $jsBaseDir . 'admin/';
-$jsAdminFileName = './js/Application.admin.js';
+$jsAdminFileName = '../public/js/Application.admin.js';
 $jsAdminFiles = array_merge($jsMemberFiles, array(
     $jsAdminDir . 'Application.admin.User.js',
 
@@ -83,4 +95,7 @@ $jsAdminFiles = array_merge($jsMemberFiles, array(
 @unlink($jsAdminFileName);
 foreach ($jsAdminFiles as $file) {
     file_put_contents($jsAdminFileName, file_get_contents($file), FILE_APPEND);
+}
+if (!DEBUG) {
+    file_put_contents($jsAdminFileName, JSmin::minify(file_get_contents($jsAdminFileName)));
 }
