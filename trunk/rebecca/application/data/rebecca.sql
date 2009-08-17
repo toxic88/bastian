@@ -13,11 +13,11 @@ USE `usr_web580_1`;
 --
 CREATE TABLE IF NOT EXISTS `rebecca_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(32) COLLATE utf8_general_ci NOT NULL,
   `rights` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `rebecca_user`
@@ -33,11 +33,11 @@ INSERT INTO `rebecca_user` (`id`, `username`, `password`, `rights`) VALUES
 --
 CREATE TABLE IF NOT EXISTS `rebecca_vokabeln` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `deutsch` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
-  `englisch` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `spanisch` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `deutsch` varchar(300) COLLATE utf8_general_ci NOT NULL,
+  `englisch` varchar(300) COLLATE utf8_general_ci DEFAULT NULL,
+  `spanisch` varchar(300) COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=257 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=257 ;
 
 --
 -- Daten für Tabelle `rebecca_vokabeln`
@@ -272,3 +272,16 @@ INSERT INTO `rebecca_vokabeln` (`id`, `deutsch`, `englisch`, `spanisch`) VALUES
 (253, 'verhöhnen', 'to taunt', ''),
 (254, 'einschüchtern', 'to intimidate', ''),
 (255, 'Teufelskreis', 'vicious circle', '');
+
+--
+-- Tabellenstruktur für Tabelle `rebecca_chat`
+--
+CREATE TABLE IF NOT EXISTS `rebecca_chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` int(11) NOT NULL,
+  `to` int(11) NOT NULL,
+  `message` varchar(1000) NOT NULL,
+  `send_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `receive_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;

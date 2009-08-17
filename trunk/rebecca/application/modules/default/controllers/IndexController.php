@@ -1,9 +1,7 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class IndexController extends Zend_Controller_Action implements Application_Controller_AjaxInterface
 {
-
-    const CONTEXT_JSON = 'json';
 
     public function init()
     {
