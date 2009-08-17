@@ -15,7 +15,7 @@ class Application_Db_Table_Row extends Zend_Db_Table_Row_Abstract
         }
         
         if (in_array($columnName, $this->_primary)) { // don't set primary columns
-            return $this;
+            return;
         }
 
         $this->_data[$columnName] = $value;

@@ -273,6 +273,8 @@ INSERT INTO `rebecca_vokabeln` (`id`, `deutsch`, `englisch`, `spanisch`) VALUES
 (254, 'einschüchtern', 'to intimidate', ''),
 (255, 'Teufelskreis', 'vicious circle', '');
 
+-- --------------------------------------------------------
+
 --
 -- Tabellenstruktur für Tabelle `rebecca_chat`
 --
@@ -282,6 +284,21 @@ CREATE TABLE IF NOT EXISTS `rebecca_chat` (
   `to` int(11) NOT NULL,
   `message` varchar(1000) NOT NULL,
   `send_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `receive_date` datetime DEFAULT NULL,
+  `read` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `rebecca_chat_user`
+--
+CREATE TABLE IF NOT EXISTS `rebecca_chat_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `status_change_date` date DEFAULT NULL,
+  `status_text` varchar(1000) DEFAULT NULL,
+  `status_text_change_date` date DEFAULT NULL,
+  `fk_rebecca_user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
