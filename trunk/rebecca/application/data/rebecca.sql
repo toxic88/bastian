@@ -278,7 +278,7 @@ INSERT INTO `rebecca_vokabeln` (`id`, `deutsch`, `englisch`, `spanisch`) VALUES
 --
 -- Tabellenstruktur für Tabelle `rebecca_chat`
 --
-CREATE TABLE IF NOT EXISTS `rebecca_chat` (
+CREATE TABLE IF NOT EXISTS `rebecca_chat_message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `from` int(11) NOT NULL,
   `to` int(11) NOT NULL,
