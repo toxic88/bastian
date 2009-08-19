@@ -8,9 +8,7 @@ class Application_Model_DbTable_User extends Application_Model_DbTable_Abstract
         $this->_messages[self::MESSAGE_ROW_NOT_EXISTS] = 'Der Benutzer mit der id "%d" existiert nicht.';
         $this->_messages[self::MESSAGE_FIELD_EXISTS]   = 'Der Benutzer "%s" existiert bereits.';
 
-        $this->_table = new Application_Db_Table(array(
-            Application_Db_Table::NAME => 'rebecca_user'
-        ));
+        $this->_table = new Application_Db_Table('rebecca_user', Zend_Registry::get('dbdefinition'));
     }
 
     protected function _checkRequiredColumns(array $data)

@@ -8,9 +8,7 @@ class Application_Model_DbTable_Vokabeln extends Application_Model_DbTable_Abstr
         $this->_messages[self::MESSAGE_ROW_NOT_EXISTS] = 'Die Vokabel mit der id "%d" existiert nicht.';
         $this->_messages[self::MESSAGE_FIELD_EXISTS]   = 'Die Vokabel "%s" existiert bereits.';
 
-        $this->_table = new Application_Db_Table(array(
-            Application_Db_Table::NAME => 'rebecca_vokabeln'
-        ));
+        $this->_table = new Application_Db_Table('rebecca_vokabeln', Zend_Registry::get('dbdefinition'));
     }
 
     protected function _checkRequiredColumns(array $data)

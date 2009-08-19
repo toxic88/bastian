@@ -1,6 +1,6 @@
 <?php
 
-abstract class ChatController extends Zend_Controller_Action implements Application_Controller_AjaxInterface
+class ChatController extends Zend_Controller_Action implements Application_Controller_AjaxInterface
 {
 
     protected $_message;
@@ -21,6 +21,22 @@ abstract class ChatController extends Zend_Controller_Action implements Applicat
         $this->_user = new Application_Model_DbTable_ChatUser();
         // check if user allready exist in the database (maybe this can be done in the change status, because you first have to go online to chat)
     }
+
+    /**
+     * just for testing
+     *
+    public function indexAction()
+    {
+        // $rowset = $this->_user->getTable()->find(1);
+        // $row = $rowset->current();
+        // var_dump($row->findDependentRowset('rebecca_user'));
+
+        $rowset = $this->_message->getTable()->find(1);
+        $row = $rowset->current();
+        var_dump($row->findDependentRowset('rebecca_chat_user', 'from'));
+        var_dump($row->findDependentRowset('rebecca_chat_user', 'to'));
+    }
+     */
 
     public function sendMessageAction()
     {

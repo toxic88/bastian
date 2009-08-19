@@ -17,28 +17,37 @@ abstract class Application_Model_DbTable_Abstract
 
     abstract public function __construct();
 
+    public function getTable()
+    {
+        return $this->_table;
+    }
+
     public function select(array $data)
     {
-        $data = $this->_filter($data);
-        $cols = $this->_getSearchColumns($data);
-        $select = $this->_table->select();
+        if ($data['id']) {
+            $rowset = $this->_table->find($data['id']);
+        } else {
+            $data = $this->_filter($data);
+            $cols = $this->_getSearchColumns($data);
+            $select = $this->_table->select();
 
-        if (in_array($data['sort'], $cols)) {
-            $select->order($data['sort'] . ' ' . $data['dir']);
-        }
-
-        if ($data['start'] || $data['limit']) {
-            $select->limit($data['start'], $data['limit']);
-        }
-
-        if ($data['query']) {
-            foreach($cols as $col) {
-                $select->orWhere($col . ' LIKE ?', '%' . $data['query'] . '%');
+            if (in_array($data['sort'], $cols)) {
+                $select->order($data['sort'] . ' ' . $data['dir']);
             }
+
+            if ($data['start'] || $data['limit']) {
+                $select->limit($data['start'], $data['limit']);
+            }
+
+            if ($data['query']) {
+                foreach($cols as $col) {
+                    $select->orWhere($col . ' LIKE ?', '%' . $data['query'] . '%');
+                }
+            }
+
+            $rowset = $this->_table->fetchAll($select);
         }
-
-        $rowset = $this->_table->fetchAll($select);
-
+        
         $numrows = Application_Db_Table::getDefaultAdapter()->fetchOne(
             $this->_table->select()->from($this->_table, 'count(*)')
         );
