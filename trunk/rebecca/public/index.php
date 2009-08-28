@@ -1,6 +1,6 @@
 <?php
 set_include_path(implode(PATH_SEPARATOR, array(
-    realpath(dirname(__FILE__) . '/../../static/Zend-1.9.1'),
+    realpath(dirname(__FILE__) . '/../../static/Zend-1.9.2'),
     get_include_path()
 )));
 
