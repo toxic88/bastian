@@ -1,0 +1,13 @@
+<?php echo
+$this->doctype() .
+'<html>' .
+    '<head>' .
+        $this->headMeta() .
+        $this->headTitle() .
+        $this->headLink() .
+    '</head>' .
+    '<body>' .
+        $this->layout()->content .
+        $this->headScript() .
+    '</body>' .
+'</html>';
