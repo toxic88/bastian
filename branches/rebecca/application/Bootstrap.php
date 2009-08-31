@@ -59,34 +59,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initDbDefinition()
     {
         Zend_Registry::set('dbdefinition', new Zend_Db_Table_Definition(array(
-            'rebecca_user' => array(
-                'referenceMap' => array(
-                    'rebecca_chat_user' => array(
-                        'columns'       => 'id',
-                        'refTableClass' => 'rebecca_chat_user',
-                        'refColumns'    => 'fk_rebecca_user_id'
-                    )
-                )
-            ),
-            'rebecca_vokabeln' => array(),
-            'rebecca_chat_user' => array(
-                'dependentTables' => array('rebecca_user'),
-                'referenceMap' => array(
-                    'to' => array(
-                        'columns'       => 'fk_rebecca_user_id',
-                        'refTableClass' => 'rebecca_chat_message',
-                        'refColumns'    => 'to'
-                    ),
-                    'from' => array(
-                        'columns'       => 'fk_rebecca_user_id',
-                        'refTableClass' => 'rebecca_chat_message',
-                        'refColumns'    => 'from'
-                    )
-                )
-            ),
-            'rebecca_chat_message' => array(
-                'dependentTables' => array('rebecca_chat_user')
-            )
+            'rebecca_user' => array(),
+            'rebecca_vokabeln' => array()
         )));
     }
 
