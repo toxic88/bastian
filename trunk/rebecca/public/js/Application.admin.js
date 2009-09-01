@@ -51,7 +51,8 @@ Application.modules.Stundenplan = {
         ]
     })
 };
-})();Ext.apply(Application.urls, {
+})();
+Ext.apply(Application.urls, {
     vokabeln : {
         read    : './vokabeln/select/format/json',
         create  : './vokabeln/create/format/json',

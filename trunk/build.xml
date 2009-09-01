@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="code.google.com" default="init" basedir=".">
+    <property name="rebecca" location="${basedir}/rebecca/" />
+
+    <target name="init">
+        
+    </target>
+
+    <target name="rebecca" depends="init">
+        <echo level="info" message="Building [rebecca]" />
+        <!-- css files -->
+        <concat destfile="${rebecca}/public/css/Application.css" eol="lf" fixlastline="yes">
+           <filelist dir="${rebecca}/public/css/src/" files="Application.css,
+                                                             Ext.ux.FormUploadField.css,
+                                                             Icons.css" />
+        </concat>
+
+        <!-- js base files -->
+        <concat destfile="${rebecca}/public/js/Application.base.js" eol="lf" fixlastline="yes">
+            <filelist dir="${rebecca}/public/js/src/" files="Ext.ux.FileUploadField.js,
+                                                             Ext.ux.SearchField.js,
+                                                             Ext.ux.SelectBox.js,
+                                                             Ext.ux.grid.BufferView.js,
+                                                             Application.util.js,
+                                                             Application.js,
+                                                             Application.Navigation.js,
+                                                             Application.Panel.js,
+                                                             Application.Viewport.js" />
+        </concat>
+
+        <!-- js guest files -->
+        <concat destfile="${rebecca}/public/js/Application.guest.js" eol="lf" fixlastline="yes">
+            <filelist dir="${rebecca}/public/js/src/guest/" files="Application.guest.Login.js,
+                                                                   navigation.js" />
+        </concat>
+
+        <!-- js member files -->
+        <concat destfile="${rebecca}/public/js/Application.member.js" eol="lf" fixlastline="yes">
+            <filelist dir="${rebecca}/public/js/src/member/" files="Application.member.Stundenplan.js,
+                                                                    Application.member.Vokabeln.js,
+                                                                    navigation.js" />
+        </concat>
+
+        <!-- js admin files -->
+        <concat destfile="${rebecca}/public/js/Application.admin.js" eol="lf" fixlastline="yes">
+            <filelist dir="${rebecca}/public/js/src/member/" files="Application.member.Stundenplan.js,
+                                                                    Application.member.Vokabeln.js" />
+            <filelist dir="${rebecca}/public/js/src/admin/" files="Application.admin.User.js,
+                                                                   navigation.js" />
+        </concat>
+        <echo level="info" message="Finished Building [rebecca]" />
+    </target>
+
+</project>

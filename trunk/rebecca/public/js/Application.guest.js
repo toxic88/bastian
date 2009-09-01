@@ -91,7 +91,8 @@ Application.Login = new Ext.Window({
             });
         }
     }
-});Application.addLinks([
+});
+Application.addLinks([
     {
         title : 'Rebecca',
         items : [
