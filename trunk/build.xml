@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="code.google.com" default="init" basedir=".">
+<project name="code.google.com" default="all" basedir=".">
     <property name="rebecca" location="${basedir}/rebecca/" />
 
-    <target name="init">
-        
+    <target name="all">
+        <antcall target="rebecca" />
     </target>
 
-    <target name="rebecca" depends="init">
-        <echo level="info" message="Building [rebecca]" />
+    <target name="rebecca">
+        <echo>Building [rebecca]</echo>
         <!-- css files -->
         <concat destfile="${rebecca}/public/css/Application.css" eol="lf" fixlastline="yes">
            <filelist dir="${rebecca}/public/css/src/" files="Application.css,
@@ -48,7 +48,7 @@
             <filelist dir="${rebecca}/public/js/src/admin/" files="Application.admin.User.js,
                                                                    navigation.js" />
         </concat>
-        <echo level="info" message="Finished Building [rebecca]" />
+        <echo>Finished Building [rebecca]</echo>
     </target>
 
 </project>
