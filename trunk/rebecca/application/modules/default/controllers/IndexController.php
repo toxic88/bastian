@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Zend_Controller_Action implements Application_Controller_AjaxInterface
+class IndexController extends Zend_Controller_Action
 {
 
     public function init()

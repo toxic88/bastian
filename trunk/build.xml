@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="code.google.com" default="all" basedir=".">
     <property name="rebecca" location="${basedir}/rebecca/" />
+    <property name="antibodydb" location="${basedir}/antibodydb/" />
 
     <target name="all">
         <antcall target="rebecca" />
+        <antcall target="antibodydb" />
     </target>
 
     <target name="rebecca">
@@ -49,6 +51,50 @@
                                                                    navigation.js" />
         </concat>
         <echo>Finished Building [rebecca]</echo>
+    </target>
+
+    <target name="antibodydb">
+        <echo>Building [antibodydb]</echo>
+        <!-- css files -->
+        <concat destfile="${antibodydb}/public/css/Antibodydb.css" eol="lf" fixlastline="yes">
+           <filelist dir="${antibodydb}/public/css/src/" files="Antibodydb.css" />
+        </concat>
+
+        <!-- js files -->
+        <concat destfile="${antibodydb}/public/js/Antibodydb.js" eol="lf" fixlastline="yes">
+            <filelist dir="${antibodydb}/public/js/src/" files="Antibodydb.js,
+
+                                                                util/Antibodydb.util.js,
+                                                                util/Ext.ux.SelectBox.js,
+                                                                util/Ext.ux.FileUploadField.js,
+                                                                util/Ext.ux.SearchField.js,
+                                                                util/Antibodydb.FormPanel.js,
+                                                                util/Antibodydb.EditorGridPanel.js,
+
+                                                                forms/Antibodydb.forms.Antibody.js,
+                                                                forms/Antibodydb.forms.Targetprotein.js,
+                                                                forms/Antibodydb.forms.Incubationprotocol.js,
+
+                                                                tables/Antibodydb.tables.Targetprotein.js,
+                                                                tables/Antibodydb.tables.Incubationprotocol.js,
+                                                                tables/Antibodydb.tables.Antibody.js,
+
+                                                                user/Antibodydb.user.Password.js,
+
+                                                                Antibodydb.Navigation.js,
+                                                                Antibodydb.Panel.js,
+                                                                Antibodydb.Viewport.js,
+
+                                                                Antibodydb.init.js,
+                                                                Antibodydb.History.js" />
+        </concat>
+
+        <!-- js login files -->
+        <concat destfile="${antibodydb}/public/js/Antibodydb.login.js" eol="lf" fixlastline="yes">
+            <filelist dir="${antibodydb}/public/js/src/" files="login/Antibodydb.login.js" />
+        </concat>
+
+        <echo>Finished Building [antibodydb]</echo>
     </target>
 
 </project>
