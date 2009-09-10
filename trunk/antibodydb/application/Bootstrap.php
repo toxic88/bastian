@@ -13,6 +13,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             $config->acl->roles->{$data->Rights} :
             $config->acl->roles->{0};
 
+        $config->user->role = $role;
+
         $acl = new Zend_Acl();
         $acl->addRole('guest')
             ->addRole('member', 'guest')
