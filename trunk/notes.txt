@@ -1,0 +1,7 @@
+== Extjs ==
+* Maybe Ext.form.FormPanel.submitOnEnter will be added (http://www.extjs.com/forum/showthread.php?t=75999)
+* Ext.data.Store.remove will except an array of records (http://www.extjs.com/forum/showthread.php?t=75640)
+
+== Zend Framework ==
+* as long as http://framework.zend.com/issues/browse/ZF-6719 has not been fixed only use one big config...
+* Zend_Entity http://framework.zend.com/wiki/pages/viewpage.action?pageId=9437243
