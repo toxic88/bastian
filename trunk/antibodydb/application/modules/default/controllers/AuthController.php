@@ -1,24 +1,17 @@
 <?php
-// TODO: use ajaxContext instead of contextSwitch
+
 class AuthController extends Zend_Controller_Action
 {
 
     const CONTEXT_JSON = 'json';
 
-    protected $adapter;
-
     public function init()
     {
-        $contextSwitch = $this->_helper->contextSwitch();
-        $contextSwitch->addActionContext('login', self::CONTEXT_JSON)
-                      ->initContext();
+        $ajaxContext = $this->_helper->ajaxContext();
+        $ajaxContext->addActionContext('login', self::CONTEXT_JSON)
+                    ->initContext();
 
-        $this->adapter = new Zend_Auth_Adapter_DbTable(
-            Zend_Db_Table::getDefaultAdapter(),
-            Zend_Registry::get('config')->db->tables->User, // the user database
-            'Username', // column names
-            'Password'
-        );
+        $this->view->success = false;
     }
 
     public function indexAction()
@@ -38,17 +31,15 @@ class AuthController extends Zend_Controller_Action
         }
         
     }
-    
-    public function logoutAction()
-    {
-        Zend_Auth::getInstance()->clearIdentity(); // delete session
 
-        $this->_redirect('/auth'); // don't know why _forward('index') or render('index') not working...
-    }
-    
     public function loginAction()
     {
-        $this->view->success = false;
+        $adapter = new Zend_Auth_Adapter_DbTable(
+            Zend_Db_Table::getDefaultAdapter(),
+            Zend_Registry::get('config')->db->tables->User, // the user database
+            'Username', // column names
+            'Password'
+        );
 
         $identity   = $this->getRequest()->getPost('Username'); // return null if not defined
         $credential = $this->getRequest()->getPost('Password');
@@ -58,14 +49,14 @@ class AuthController extends Zend_Controller_Action
             return;
         }
 
-        $this->adapter->setIdentity($identity)
-                      ->setCredential(md5($credential)); // mssql server has no md5 method...
+        $adapter->setIdentity($identity)
+                ->setCredential(md5($credential)); // mssql server has no md5 method...
         
         $auth = Zend_Auth::getInstance();
-        $result = $auth->authenticate($this->adapter); // get the result object
+        $result = $auth->authenticate($adapter); // get the result object
         
         if ($result->isValid()) {
-            $auth->getStorage()->write($this->adapter->getResultRowObject(null, 'Password'));
+            $auth->getStorage()->write($adapter->getResultRowObject(null, 'Password'));
 
             Zend_Registry::get('session')->username = $identity; // store it in the main session, wich normaly never gets destroyed
 
@@ -75,5 +66,11 @@ class AuthController extends Zend_Controller_Action
         }
         
     }
-    
+
+    public function logoutAction()
+    {
+        Zend_Auth::getInstance()->clearIdentity(); // delete session
+        $this->_redirect('/auth'); // don't know why _forward('index') or render('index') not working...
+    }
+
 }

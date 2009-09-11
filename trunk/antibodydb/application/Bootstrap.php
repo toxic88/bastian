@@ -21,18 +21,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             ->addRole('admin')
 
             ->addResource('index')
+            ->addResource('error')
             ->addResource('auth')
             ->addResource('user')
-            ->addResource('error')
             ->addResource('targetprotein')
             ->addResource('incubationprotocol')
             ->addResource('antibody')
             ->addResource('admin')
 
+            ->allow('guest', 'error')
+            ->allow('guest', 'auth')
             ->deny('guest', 'index')
             ->deny('guest', 'user')
             ->deny('guest', 'admin')
-            ->allow('guest', 'auth')
 
             ->allow('member', 'index')
             ->allow('member', 'user')
