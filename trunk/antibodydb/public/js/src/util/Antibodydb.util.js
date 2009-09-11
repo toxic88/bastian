@@ -8,17 +8,17 @@ Ext.DomHelper.createDomX = function(o, parentNode) {
         attr,
         val,
         cn;
-        
-    if (Ext.isArray(o)) {                       // Allow Arrays of siblings to be inserted
-        el = doc.createDocumentFragment(); // in one shot using a DocumentFragment
-        Ext.each(o, function(v) {    
+
+    if (Ext.isArray(o)) {                   /* Allow Arrays of siblings to be inserted */
+        el = doc.createDocumentFragment();  /* in one shot using a DocumentFragment */
+        Ext.each(o, function(v) {
             Ext.DomHelper.createDomX(v, el);
         });
-    } else if (typeof o == "string") {         // Allow a string as a child spec.
+    } else if (typeof o == "string") {      /* Allow a string as a child spec. */
         el = doc.createTextNode(o);
     } else {
         el = doc.createElement( o.tag || 'div' );
-        useSet = !!el.setAttribute; // In IE some elements don't have setAttribute
+        useSet = !!el.setAttribute;         /* In IE some elements don't have setAttribute */
         for(attr in o){
             val = o[attr];
             if(["tag", "children", "cn", "html", "style", "listeners"].indexOf(attr) == -1 && !Ext.isFunction(val)) {
@@ -36,7 +36,7 @@ Ext.DomHelper.createDomX = function(o, parentNode) {
         } else if (o.html) {
             el.innerHTML = o.html;
         }
-        if (o.listeners) { // added support for eventlisteners
+        if (o.listeners) {                  /* added support for eventlisteners */
             Ext.EventManager.on(el, o.listeners);
         }
     }
@@ -60,3 +60,31 @@ Ext.MessageBox.error = Ext.Msg.error = function(title, msg, fn, scope) {
     });
     return this;
 }.createDelegate(Ext.Msg);
+
+/**
+ * Ext.History addition
+ */
+Ext.History.init = Ext.History.init.createInterceptor(function() {
+    var html = '';
+    if (!Ext.getDom(this.fieldId)) {
+        html += '<input type="hidden" id="' + this.fieldId + '" />';
+    }
+    if (!Ext.getDom(this.iframeId)) {
+        html += '<iframe id="' + this.iframeId + '"></iframe>';
+    }
+    if (html !== '') {
+        Ext.DomHelper.insertHtml('afterEnd', document.body, '<form class="x-hidden">' + html + '</form>');
+    }
+}, Ext.History);
+
+/**
+ * Every GridPanel / EditorGridPanel should use the Ext.ux.grid.BufferView by default
+ */
+Ext.grid.GridPanel.override({
+    getView : function(){
+        if (!this.view){
+            this.view = new Ext.ux.grid.BufferView(this.viewConfig);
+        }
+        return this.view;
+    }
+});

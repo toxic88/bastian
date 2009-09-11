@@ -23,8 +23,8 @@ Antibodydb = {
         }
     }(),
     urls : {
-        Login : './auth/login/format/json',
-        Index : './'
+        login : './auth/login/format/json',
+        index : './'
     }
 };
 
@@ -41,7 +41,7 @@ Antibodydb.LoginWindow = new Ext.Window({
     items     : {
         xtype        : 'form',
         ref          : 'form',
-        url          : Antibodydb.urls.Login,
+        url          : Antibodydb.urls.login,
         frame        : true,
         border       : false,
         monitorValid : true,
@@ -111,7 +111,7 @@ Antibodydb.LoginWindow = new Ext.Window({
         handleSuccess : function(bform, action) {
             Ext.fly('loading-mask').fadeIn({
                 callback : function() {
-                    window.location = Antibodydb.urls.Index;
+                    window.location = Antibodydb.urls.index;
                 }
             });
         }

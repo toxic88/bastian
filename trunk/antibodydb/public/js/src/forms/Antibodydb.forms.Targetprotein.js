@@ -1,4 +1,5 @@
-Antibodydb.forms.Targetprotein = new Antibodydb.FormPanel({
+Antibodydb.modules.forms.Targetprotein = {
+    xtype        : 'antibodydb.form',
     title        : 'Target Protein',
     iconCls      : Antibodydb.getIconCls('form'),
     url          : Antibodydb.urls.TargetproteinSave,
@@ -56,9 +57,9 @@ Antibodydb.forms.Targetprotein = new Antibodydb.FormPanel({
             }
         }
     ]
-});
+};
 
-Antibodydb.forms.TargetproteinWindow = new Ext.Window({
+Antibodydb.modules.forms.TargetproteinWindow = new Ext.Window({
     title       : 'Target Protein',
     layout      : 'fit',
     iconCls     : Antibodydb.getIconCls('form'),
@@ -135,9 +136,9 @@ Antibodydb.forms.TargetproteinWindow = new Ext.Window({
                     var id = action.result.data.id;
                     var t  = action.result.data.Targetprotein;
                     
-                    Antibodydb.forms.Antibody.Targetprotein.setValue(t);
-                    Antibodydb.forms.Antibody.Targetprotein.hiddenField.value = id;
-                    Antibodydb.tables.Targetprotein.getStore().reload();
+                    Antibodydb.modules.forms.Antibody.Targetprotein.setValue(t);
+                    Antibodydb.modules.forms.Antibody.Targetprotein.hiddenField.value = id;
+                    Antibodydb.modules.tables.Targetprotein.getStore().reload();
                 } catch(e) {}
                 bform.reset();
                 this.ownerCt.hide();

@@ -1,4 +1,5 @@
 /**
+ * NOTE: The changes will be in Ext 3.1
  * with changes from http://extjs.com/forum/showthread.php?p=356809#post356809, http://extjs.com/forum/showthread.php?p=262550#post262550
  */
 Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
@@ -22,19 +23,19 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
      * @cfg {Object} buttonCfg A standard {@link Ext.Button} config object.
      */
 
-    // private
+    /* private */
     readOnly : true,
-    
+
     /**
-     * @hide 
+     * @hide
      * @method autoSize
      */
     autoSize : Ext.emptyFn,
-    
-    // private
+
+    /* private */
     initComponent: function() {
-        Ext.ux.FileUploadField.superclass.initComponent.call(this);
-        
+        this.supr().initComponent.call(this);
+
         this.addEvents(
             /**
              * @event fileselected
@@ -46,21 +47,21 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             'fileselected'
         );
     },
-    
-    // private
+
+    /* private */
     onRender : function(ct, position) {
-        Ext.ux.FileUploadField.superclass.onRender.call(this, ct, position);
-        
+        this.supr().onRender.call(this, ct, position);
+
         this.wrap = this.el.wrap({cls:'x-form-field-wrap x-form-file-wrap'});
         this.el.addClass('x-form-file-text');
         this.el.dom.removeAttribute('name');
-        
+
         this.createFileInput();
-        
+
         if( this.disabled ) {
             this.fileInput.dom.disabled = true;
         }
-        
+
         var btnCfg = Ext.applyIf(this.buttonCfg || {}, {
             text: this.buttonText
         });
@@ -68,15 +69,16 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             renderTo : this.wrap,
             cls      : 'x-form-file-btn' + (btnCfg.iconCls ? ' x-btn-icon' : '')
         }));
-        
+
         this.addFileListeners();
-        
+
         if ( this.buttonOnly ){
             this.el.hide();
             this.wrap.setWidth(this.button.getEl().getWidth());
         }
     },
-    
+
+    /* private */
     addFileListeners : function() {
         this.fileInput.on({
             'change'    : function() {
@@ -99,26 +101,28 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             scope       : this
         });
     },
-    
+
+    /* private */
     createFileInput : function() {
         this.fileInput = this.wrap.createChild({
             id   : this.getFileInputId(),
             name : this.name || this.getId(),
             cls  : 'x-form-file',
-            tag  : 'input', 
+            tag  : 'input',
             type : 'file',
             size : 1
         });
     },
-    
+
     reset : function() {
         this.fileInput.removeAllListeners();
         this.fileInput.remove();
         this.createFileInput();
         this.addFileListeners();
-        Ext.ux.FileUploadField.superclass.reset.call(this);
+        this.supr().reset.call(this);
     },
-    
+
+    /* private */
     onDestroy : function() {
         if ( this.fileInput ) {
             Ext.destroy(this.fileInput);
@@ -130,56 +134,58 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             this.button = null;
         }
 
-        Ext.ux.FileUploadField.superclass.onDestroy.call(this);
+        this.supr().onDestroy.call(this);
     },
-    
+
+    /* private */
     onEnable : function() {
-        Ext.ux.FileUploadField.superclass.onEnable.call(this);
+        this.supr().onEnable.call(this);
         this.fileInput.dom.disabled = false;
         this.button.enable();
     },
 
+    /* private */
     onDisable : function() {
-        Ext.ux.FileUploadField.superclass.onDisable.call(this);
+        this.supr().onDisable.call(this);
         this.fileInput.dom.disabled = true;
         this.button.disable();
     },
-    
-    // private
+
+    /* private */
     getFileInputId : function() {
         return this.id+'-file';
     },
-    
-    // private
+
+    /* private */
     onResize : function(w, h) {
-        Ext.ux.FileUploadField.superclass.onResize.call(this, w, h);
-        
+        this.supr().onResize.call(this, w, h);
+
         this.wrap.setWidth(w);
-        
+
         if ( !this.buttonOnly ){
             var w = this.wrap.getWidth() - this.button.getEl().getWidth() - this.buttonOffset;
             this.el.setWidth(w);
         }
     },
-    
-    // private
+
+    /* private */
     preFocus : Ext.emptyFn,
-    
-    // private
+
+    /* private */
     getResizeEl : function(){
         return this.wrap;
     },
 
-    // private
+    /* private */
     getPositionEl : function(){
         return this.wrap;
     },
 
-    // private
+    /* private */
     alignErrorIcon : function(){
         this.errorIcon.alignTo(this.wrap, 'tl-tr', [2, 0]);
     }
-    
+
 });
 Ext.reg('fileuploadfield', Ext.ux.FileUploadField);
 Ext.form.FileUploadField = Ext.ux.FileUploadField;

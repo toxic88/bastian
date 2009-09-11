@@ -1,5 +1,6 @@
-Antibodydb.tables.Targetprotein = new Antibodydb.EditorGridPanel({
-    title    : 'Targetprotein',
+Antibodydb.modules.tables.Targetprotein = {
+    xtype : 'antibodydb.editorgridpanel',
+    title : 'Targetprotein',
     store : new Ext.data.JsonStore({
         root       : 'data',
         remoteSort : true,
@@ -82,14 +83,14 @@ Antibodydb.tables.Targetprotein = new Antibodydb.EditorGridPanel({
             return;
         }
         try {
-            Ext.History.add('Antibodydb.forms.Targetprotein');
-			var tf = Antibodydb.forms.Targetprotein;
+            Ext.History.add('forms.Targetprotein');
+			var tf = Antibodydb.modules.forms.Targetprotein;
             Antibodydb.changePage(tf); // force render!
             tf.form.reset();
             tf.form.loadRecord(rec);
         } catch(e) {};
     },
     onAdd : function() {
-        Antibodydb.forms.TargetproteinWindow.show();
+        Antibodydb.modules.forms.TargetproteinWindow.show();
     }
-});
+};

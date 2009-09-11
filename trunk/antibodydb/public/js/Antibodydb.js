@@ -1,7 +1,27 @@
 (Ext.isIE6 || Ext.isIE7) && (Ext.BLANK_IMAGE_URL = 'images/default/s.gif');
 
+Ext.History.on({
+    'change' : function(token) {
+        var modules = 'Antibodydb.modules.',
+            str = modules + (new Function(['return ', modules, token, ';'].join(''))() ? token : Antibodydb.pageNotFoundModule);
+        /*
+        if ( !str.render ) {
+            str = Antibodydb.addModule( str );
+        }
+        Antibodydb.changePage( str );
+        */
+        new Function(['if(!', str, '.render){', str, '=Antibodydb.addModule(', str, ');}Antibodydb.changePage(', str, ');'].join(''))();
+    }
+});
+
 Antibodydb = Ext.apply(new Ext.util.Observable, (function(){
     var preIconCls = 'icon-';
+
+    var _initHistory = function() {
+        var token = this.getToken() || Antibodydb.defaultModule;
+        this.add(token);
+        this.fireEvent('change', token);
+    }
 
     return {
         
@@ -19,8 +39,20 @@ Antibodydb = Ext.apply(new Ext.util.Observable, (function(){
             });
             
             me.fireEvent('start');
+            Ext.History.init(_initHistory, Ext.History);
+            delete me.init;
         },
-        
+
+        history : Ext.copyTo({
+            get : function() {
+                return this.getToken();
+            }
+        }, Ext.History, 'getToken,add,back,forward'),
+
+        modules : {},
+        defaultModule : 'Welcome',
+        pageNotFoundModule : 'PageNotFound',
+
         getIconCls :function(cls) {
             if(typeof cls == 'object') {
                 cls = cls.iconCls ? cls.iconCls : false;
@@ -52,7 +84,21 @@ Antibodydb = Ext.apply(new Ext.util.Observable, (function(){
     };
 }()));
 
-Ext.ns('Antibodydb.forms', 'Antibodydb.tables', 'Antibodydb.user');
+/**
+ * Base Modules
+ */
+Antibodydb.modules.Welcome = {
+    title   : 'Willkommen',
+    iconCls : 'icon-home',
+    html    : '<p>Ich habe die komplette Seite neu gemacht! Falls Fehler auftreten oder etwas nicht geht bitte mir eine E-Mail schreiben!</p><p>Danke <a href="mailto:b.buchholz@dkfz-heidelberg.de">Bastian Buchholz</a></p>'
+};
+Antibodydb.modules.PageNotFound = {
+    title   : '404 - Seite nicht gefunden',
+    iconCls : 'icon-error',
+    html    : '<h2>Die Seite konnte nicht gefunden werden...</h2>'
+};
+
+Ext.ns('Antibodydb.modules.forms', 'Antibodydb.modules.tables', 'Antibodydb.user');
 
 Ext.onReady(function() {
     Ext.QuickTips.init();
@@ -76,17 +122,17 @@ Ext.DomHelper.createDomX = function(o, parentNode) {
         attr,
         val,
         cn;
-        
-    if (Ext.isArray(o)) {                       // Allow Arrays of siblings to be inserted
-        el = doc.createDocumentFragment(); // in one shot using a DocumentFragment
-        Ext.each(o, function(v) {    
+
+    if (Ext.isArray(o)) {                   /* Allow Arrays of siblings to be inserted */
+        el = doc.createDocumentFragment();  /* in one shot using a DocumentFragment */
+        Ext.each(o, function(v) {
             Ext.DomHelper.createDomX(v, el);
         });
-    } else if (typeof o == "string") {         // Allow a string as a child spec.
+    } else if (typeof o == "string") {      /* Allow a string as a child spec. */
         el = doc.createTextNode(o);
     } else {
         el = doc.createElement( o.tag || 'div' );
-        useSet = !!el.setAttribute; // In IE some elements don't have setAttribute
+        useSet = !!el.setAttribute;         /* In IE some elements don't have setAttribute */
         for(attr in o){
             val = o[attr];
             if(["tag", "children", "cn", "html", "style", "listeners"].indexOf(attr) == -1 && !Ext.isFunction(val)) {
@@ -104,7 +150,7 @@ Ext.DomHelper.createDomX = function(o, parentNode) {
         } else if (o.html) {
             el.innerHTML = o.html;
         }
-        if (o.listeners) { // added support for eventlisteners
+        if (o.listeners) {                  /* added support for eventlisteners */
             Ext.EventManager.on(el, o.listeners);
         }
     }
@@ -128,6 +174,34 @@ Ext.MessageBox.error = Ext.Msg.error = function(title, msg, fn, scope) {
     });
     return this;
 }.createDelegate(Ext.Msg);
+
+/**
+ * Ext.History addition
+ */
+Ext.History.init = Ext.History.init.createInterceptor(function() {
+    var html = '';
+    if (!Ext.getDom(this.fieldId)) {
+        html += '<input type="hidden" id="' + this.fieldId + '" />';
+    }
+    if (!Ext.getDom(this.iframeId)) {
+        html += '<iframe id="' + this.iframeId + '"></iframe>';
+    }
+    if (html !== '') {
+        Ext.DomHelper.insertHtml('afterEnd', document.body, '<form class="x-hidden">' + html + '</form>');
+    }
+}, Ext.History);
+
+/**
+ * Every GridPanel / EditorGridPanel should use the Ext.ux.grid.BufferView by default
+ */
+Ext.grid.GridPanel.override({
+    getView : function(){
+        if (!this.view){
+            this.view = new Ext.ux.grid.BufferView(this.viewConfig);
+        }
+        return this.view;
+    }
+});
 Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     searchResetDelay : 100,
     editable         : false,
@@ -137,12 +211,12 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     triggerAction    : 'all',
     mode             : 'local',
     lazyInit         : false,
-    
-	constructor : function(config) {
-	    Ext.ux.SelectBox.superclass.constructor.call(this, config);
-	    this.lastSelectedIndex = this.selectedIndex || 0;
-	},
-	
+
+    constructor : function(config) {
+        this.supr().constructor.call(this, config);
+        this.lastSelectedIndex = this.selectedIndex || 0;
+    },
+
     initComponent : function(){
         if (! this.store && this.data ){
             this.store = new Ext.data.ArrayStore({
@@ -152,12 +226,12 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
             });
             this.displayField = 'text';
         }
-        Ext.ux.SelectBox.superclass.initComponent.apply(this, arguments);
+        this.supr().initComponent.apply(this, arguments);
     },
-    
+
     initEvents : function(){
-        Ext.ux.SelectBox.superclass.initEvents.apply(this, arguments);
-        // you need to use keypress to capture upper/lower case and shift+key, but it doesn't work in IE
+        this.supr().initEvents.apply(this, arguments);
+        /* you need to use keypress to capture upper/lower case and shift+key, but it doesn't work in IE */
         this.el.on('keydown', this.keySearch, this, true);
         this.cshTask = new Ext.util.DelayedTask(this.clearSearchHistory, this);
     },
@@ -193,7 +267,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
                 return;
         }
 
-        // skip special keys other than the shift key
+        /* skip special keys other than the shift key */
         if ( (e.hasModifier() && !e.shiftKey) || e.isNavKeyPress() || e.isSpecialKey() ) {
             return;
         }
@@ -206,7 +280,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
 
     onRender : function(ct, position) {
         this.store.on('load', this.calcRowsPerPage, this);
-        Ext.ux.SelectBox.superclass.onRender.apply(this, arguments);
+        this.supr().onRender.apply(this, arguments);
         if ( this.mode == 'local' ) {
             this.calcRowsPerPage();
         }
@@ -224,7 +298,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     },
 
     render : function(ct) {
-        Ext.ux.SelectBox.superclass.render.apply(this, arguments);
+        this.supr().render.apply(this, arguments);
         if ( Ext.isSafari ) {
             this.el.swallowEvent('mousedown', true);
         }
@@ -318,6 +392,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
 Ext.reg('selectbox', Ext.ux.SelectBox);
 Ext.form.SelectBox = Ext.ux.SelectBox;
 /**
+ * NOTE: The changes will be in Ext 3.1
  * with changes from http://extjs.com/forum/showthread.php?p=356809#post356809, http://extjs.com/forum/showthread.php?p=262550#post262550
  */
 Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
@@ -341,19 +416,19 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
      * @cfg {Object} buttonCfg A standard {@link Ext.Button} config object.
      */
 
-    // private
+    /* private */
     readOnly : true,
-    
+
     /**
-     * @hide 
+     * @hide
      * @method autoSize
      */
     autoSize : Ext.emptyFn,
-    
-    // private
+
+    /* private */
     initComponent: function() {
-        Ext.ux.FileUploadField.superclass.initComponent.call(this);
-        
+        this.supr().initComponent.call(this);
+
         this.addEvents(
             /**
              * @event fileselected
@@ -365,21 +440,21 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             'fileselected'
         );
     },
-    
-    // private
+
+    /* private */
     onRender : function(ct, position) {
-        Ext.ux.FileUploadField.superclass.onRender.call(this, ct, position);
-        
+        this.supr().onRender.call(this, ct, position);
+
         this.wrap = this.el.wrap({cls:'x-form-field-wrap x-form-file-wrap'});
         this.el.addClass('x-form-file-text');
         this.el.dom.removeAttribute('name');
-        
+
         this.createFileInput();
-        
+
         if( this.disabled ) {
             this.fileInput.dom.disabled = true;
         }
-        
+
         var btnCfg = Ext.applyIf(this.buttonCfg || {}, {
             text: this.buttonText
         });
@@ -387,15 +462,16 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             renderTo : this.wrap,
             cls      : 'x-form-file-btn' + (btnCfg.iconCls ? ' x-btn-icon' : '')
         }));
-        
+
         this.addFileListeners();
-        
+
         if ( this.buttonOnly ){
             this.el.hide();
             this.wrap.setWidth(this.button.getEl().getWidth());
         }
     },
-    
+
+    /* private */
     addFileListeners : function() {
         this.fileInput.on({
             'change'    : function() {
@@ -418,26 +494,28 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             scope       : this
         });
     },
-    
+
+    /* private */
     createFileInput : function() {
         this.fileInput = this.wrap.createChild({
             id   : this.getFileInputId(),
             name : this.name || this.getId(),
             cls  : 'x-form-file',
-            tag  : 'input', 
+            tag  : 'input',
             type : 'file',
             size : 1
         });
     },
-    
+
     reset : function() {
         this.fileInput.removeAllListeners();
         this.fileInput.remove();
         this.createFileInput();
         this.addFileListeners();
-        Ext.ux.FileUploadField.superclass.reset.call(this);
+        this.supr().reset.call(this);
     },
-    
+
+    /* private */
     onDestroy : function() {
         if ( this.fileInput ) {
             Ext.destroy(this.fileInput);
@@ -449,62 +527,64 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
             this.button = null;
         }
 
-        Ext.ux.FileUploadField.superclass.onDestroy.call(this);
+        this.supr().onDestroy.call(this);
     },
-    
+
+    /* private */
     onEnable : function() {
-        Ext.ux.FileUploadField.superclass.onEnable.call(this);
+        this.supr().onEnable.call(this);
         this.fileInput.dom.disabled = false;
         this.button.enable();
     },
 
+    /* private */
     onDisable : function() {
-        Ext.ux.FileUploadField.superclass.onDisable.call(this);
+        this.supr().onDisable.call(this);
         this.fileInput.dom.disabled = true;
         this.button.disable();
     },
-    
-    // private
+
+    /* private */
     getFileInputId : function() {
         return this.id+'-file';
     },
-    
-    // private
+
+    /* private */
     onResize : function(w, h) {
-        Ext.ux.FileUploadField.superclass.onResize.call(this, w, h);
-        
+        this.supr().onResize.call(this, w, h);
+
         this.wrap.setWidth(w);
-        
+
         if ( !this.buttonOnly ){
             var w = this.wrap.getWidth() - this.button.getEl().getWidth() - this.buttonOffset;
             this.el.setWidth(w);
         }
     },
-    
-    // private
+
+    /* private */
     preFocus : Ext.emptyFn,
-    
-    // private
+
+    /* private */
     getResizeEl : function(){
         return this.wrap;
     },
 
-    // private
+    /* private */
     getPositionEl : function(){
         return this.wrap;
     },
 
-    // private
+    /* private */
     alignErrorIcon : function(){
         this.errorIcon.alignTo(this.wrap, 'tl-tr', [2, 0]);
     }
-    
+
 });
 Ext.reg('fileuploadfield', Ext.ux.FileUploadField);
 Ext.form.FileUploadField = Ext.ux.FileUploadField;
 Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
     initComponent : function(){
-        Ext.ux.SearchField.superclass.initComponent.call(this);
+        this.supr().initComponent.call(this);
         this.on('specialkey', function(f, e){
             if(e.getKey() == e.ENTER){
                 this.onTrigger2Click();
@@ -549,6 +629,218 @@ Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
 });
 Ext.reg('searchfield', Ext.ux.SearchField);
 Ext.form.SearchField = Ext.ux.SearchField;
+/*!
+ * Ext JS Library 3.0.0
+ * Copyright(c) 2006-2009 Ext JS, LLC
+ * licensing@extjs.com
+ * http://www.extjs.com/license
+ */
+Ext.ns('Ext.ux.grid');
+
+/**
+ * @class Ext.ux.grid.BufferView
+ * @extends Ext.grid.GridView
+ * A custom GridView which renders rows on an as-needed basis.
+ */
+Ext.ux.grid.BufferView = Ext.extend(Ext.grid.GridView, {
+    /**
+     * @cfg {Number} rowHeight
+     * The height of a row in the grid.
+     */
+    rowHeight: 19,
+
+    /**
+     * @cfg {Number} borderHeight
+     * The combined height of border-top and border-bottom of a row.
+     */
+    borderHeight: 2,
+
+    /**
+     * @cfg {Boolean/Number} scrollDelay
+     * The number of milliseconds before rendering rows out of the visible
+     * viewing area. Defaults to 100. Rows will render immediately with a config
+     * of false.
+     */
+    scrollDelay: 100,
+
+    /**
+     * @cfg {Number} cacheSize
+     * The number of rows to look forward and backwards from the currently viewable
+     * area.  The cache applies only to rows that have been rendered already.
+     */
+    cacheSize: 20,
+
+    /**
+     * @cfg {Number} cleanDelay
+     * The number of milliseconds to buffer cleaning of extra rows not in the
+     * cache.
+     */
+    cleanDelay: 500,
+
+    initTemplates : function(){
+        this.supr().initTemplates.call(this);
+        var ts = this.templates;
+        // empty div to act as a place holder for a row
+        ts.rowHolder = new Ext.Template(
+            '<div class="x-grid3-row {alt}" style="{tstyle}"></div>'
+        );
+        ts.rowHolder.disableFormats = true;
+        ts.rowHolder.compile();
+
+        ts.rowBody = new Ext.Template(
+            '<table class="x-grid3-row-table" border="0" cellspacing="0" cellpadding="0" style="{tstyle}">',
+            '<tbody><tr>{cells}</tr>',
+            (this.enableRowBody ? '<tr class="x-grid3-row-body-tr" style="{bodyStyle}"><td colspan="{cols}" class="x-grid3-body-cell" tabIndex="0" hidefocus="on"><div class="x-grid3-row-body">{body}</div></td></tr>' : ''),
+            '</tbody></table>'
+        );
+        ts.rowBody.disableFormats = true;
+        ts.rowBody.compile();
+    },
+
+    getStyleRowHeight : function(){
+        return Ext.isBorderBox ? (this.rowHeight + this.borderHeight) : this.rowHeight;
+    },
+
+    getCalculatedRowHeight : function(){
+        return this.rowHeight + this.borderHeight;
+    },
+
+    getVisibleRowCount : function(){
+        var rh = this.getCalculatedRowHeight();
+        var visibleHeight = this.scroller.dom.clientHeight;
+        return (visibleHeight < 1) ? 0 : Math.ceil(visibleHeight / rh);
+    },
+
+    getVisibleRows: function(){
+        var count = this.getVisibleRowCount();
+        var sc = this.scroller.dom.scrollTop;
+        var start = (sc == 0 ? 0 : Math.floor(sc/this.getCalculatedRowHeight())-1);
+        return {
+            first: Math.max(start, 0),
+            last: Math.min(start + count + 2, this.ds.getCount()-1)
+        };
+    },
+
+    doRender : function(cs, rs, ds, startRow, colCount, stripe, onlyBody){
+        var ts = this.templates, ct = ts.cell, rt = ts.row, rb = ts.rowBody, last = colCount-1;
+        var rh = this.getStyleRowHeight();
+        var vr = this.getVisibleRows();
+        var tstyle = 'width:'+this.getTotalWidth()+';height:'+rh+'px;';
+        // buffers
+        var buf = [], cb, c, p = {}, rp = {tstyle: tstyle}, r;
+        for (var j = 0, len = rs.length; j < len; j++) {
+            r = rs[j]; cb = [];
+            var rowIndex = (j+startRow);
+            var visible = rowIndex >= vr.first && rowIndex <= vr.last;
+            if (visible) {
+                for (var i = 0; i < colCount; i++) {
+                    c = cs[i];
+                    p.id = c.id;
+                    p.css = i == 0 ? 'x-grid3-cell-first ' : (i == last ? 'x-grid3-cell-last ' : '');
+                    p.attr = p.cellAttr = "";
+                    p.value = c.renderer(r.data[c.name], p, r, rowIndex, i, ds);
+                    p.style = c.style;
+                    if (p.value == undefined || p.value === "") {
+                        p.value = "&#160;";
+                    }
+                    if (r.dirty && typeof r.modified[c.name] !== 'undefined') {
+                        p.css += ' x-grid3-dirty-cell';
+                    }
+                    cb[cb.length] = ct.apply(p);
+                }
+            }
+            var alt = [];
+            if(stripe && ((rowIndex+1) % 2 == 0)){
+                alt[0] = "x-grid3-row-alt";
+            }
+            if(r.dirty){
+                alt[1] = " x-grid3-dirty-row";
+            }
+            rp.cols = colCount;
+            if(this.getRowClass){
+                alt[2] = this.getRowClass(r, rowIndex, rp, ds);
+            }
+            rp.alt = alt.join(" ");
+            rp.cells = cb.join("");
+            buf[buf.length] =  !visible ? ts.rowHolder.apply(rp) : (onlyBody ? rb.apply(rp) : rt.apply(rp));
+        }
+        return buf.join("");
+    },
+
+    isRowRendered: function(index){
+        var row = this.getRow(index);
+        return row && row.childNodes.length > 0;
+    },
+
+    syncScroll: function(){
+        this.supr().syncScroll.apply(this, arguments);
+        this.update();
+    },
+
+    // a (optionally) buffered method to update contents of gridview
+    update: function(){
+        if (this.scrollDelay) {
+            if (!this.renderTask) {
+                this.renderTask = new Ext.util.DelayedTask(this.doUpdate, this);
+            }
+            this.renderTask.delay(this.scrollDelay);
+        }else{
+            this.doUpdate();
+        }
+    },
+
+    doUpdate: function(){
+        if (this.getVisibleRowCount() > 0) {
+            var g = this.grid, cm = g.colModel, ds = g.store;
+            var cs = this.getColumnData();
+
+            var vr = this.getVisibleRows();
+            for (var i = vr.first; i <= vr.last; i++) {
+                // if row is NOT rendered and is visible, render it
+                if(!this.isRowRendered(i)){
+                    var html = this.doRender(cs, [ds.getAt(i)], ds, i, cm.getColumnCount(), g.stripeRows, true);
+                    this.getRow(i).innerHTML = html;
+                }
+            }
+            this.clean();
+        }
+    },
+
+    // a buffered method to clean rows
+    clean : function(){
+        if(!this.cleanTask){
+            this.cleanTask = new Ext.util.DelayedTask(this.doClean, this);
+        }
+        this.cleanTask.delay(this.cleanDelay);
+    },
+
+    doClean: function(){
+        if (this.getVisibleRowCount() > 0) {
+            var vr = this.getVisibleRows();
+            vr.first -= this.cacheSize;
+            vr.last += this.cacheSize;
+
+            var i = 0, rows = this.getRows();
+            // if first is less than 0, all rows have been rendered
+            // so lets clean the end...
+            if(vr.first <= 0){
+                i = vr.last + 1;
+            }
+            for(var len = this.ds.getCount(); i < len; i++){
+                // if current row is outside of first and last and
+                // has content, update the innerHTML to nothing
+                if ((i < vr.first || i > vr.last) && rows[i].innerHTML) {
+                        rows[i].innerHTML = '';
+                }
+            }
+        }
+    },
+
+    layout: function(){
+        this.supr().layout.call(this);
+        this.update();
+    }
+});
 /*Ext.override(Ext.form.FormPanel, {
     createForm : function() {
         var config = Ext.copyTo({}, this.initialConfig, 'api,baseParams,errorReader,fileUpload,method,paramOrder,paramsAsHash,reader,standardSubmit,timeout,trackResetOnLoad,url');
@@ -685,7 +977,6 @@ Antibodydb.EditorGridPanel = Ext.extend(Ext.grid.EditorGridPanel, {
     
     initComponent : function() {
         this.tbar = this.buildTopToolbar();
-        this.bbar = this.buildBottomToolbar();
         this.keys = this.buildKeys();
         
         this.supr().initComponent.call(this);
@@ -717,15 +1008,6 @@ Antibodydb.EditorGridPanel = Ext.extend(Ext.grid.EditorGridPanel, {
                 store : this.store
             }
         ];
-    },
-    
-    buildBottomToolbar : function() {
-        return {
-            xtype       : 'paging',
-            store       : this.store,
-            pageSize    : 25,
-            displayInfo : true
-        };
     },
     
     buildKeys : function() {
@@ -775,7 +1057,8 @@ var assertStore = new Ext.data.ArrayStore({
     ]
 });
 
-Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
+Antibodydb.modules.forms.Antibody = {
+    xtype        : 'antibodydb.form',
     title        : 'Antibody',
     iconCls      : Antibodydb.getIconCls('form'),
     fileUpload   : true,
@@ -832,7 +1115,7 @@ Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
                         xtype   : 'button',
                         text    : 'Create New',
                         handler : function() {
-                            Antibodydb.forms.TargetproteinWindow.show();
+                            Antibodydb.modules.forms.TargetproteinWindow.show();
                         }
                     }
                 }
@@ -880,7 +1163,7 @@ Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
                         xtype   : 'button',
                         text    : 'Create New',
                         handler : function() {
-                            Antibodydb.forms.IncubationprotocolWindow.show();
+                            Antibodydb.modules.forms.IncubationprotocolWindow.show();
                         }
                     }
                 }
@@ -1027,9 +1310,10 @@ Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
             }
         }
     ]
-});
+};
 })();
-Antibodydb.forms.Targetprotein = new Antibodydb.FormPanel({
+Antibodydb.modules.forms.Targetprotein = {
+    xtype        : 'antibodydb.form',
     title        : 'Target Protein',
     iconCls      : Antibodydb.getIconCls('form'),
     url          : Antibodydb.urls.TargetproteinSave,
@@ -1087,9 +1371,9 @@ Antibodydb.forms.Targetprotein = new Antibodydb.FormPanel({
             }
         }
     ]
-});
+};
 
-Antibodydb.forms.TargetproteinWindow = new Ext.Window({
+Antibodydb.modules.forms.TargetproteinWindow = new Ext.Window({
     title       : 'Target Protein',
     layout      : 'fit',
     iconCls     : Antibodydb.getIconCls('form'),
@@ -1166,9 +1450,9 @@ Antibodydb.forms.TargetproteinWindow = new Ext.Window({
                     var id = action.result.data.id;
                     var t  = action.result.data.Targetprotein;
                     
-                    Antibodydb.forms.Antibody.Targetprotein.setValue(t);
-                    Antibodydb.forms.Antibody.Targetprotein.hiddenField.value = id;
-                    Antibodydb.tables.Targetprotein.getStore().reload();
+                    Antibodydb.modules.forms.Antibody.Targetprotein.setValue(t);
+                    Antibodydb.modules.forms.Antibody.Targetprotein.hiddenField.value = id;
+                    Antibodydb.modules.tables.Targetprotein.getStore().reload();
                 } catch(e) {}
                 bform.reset();
                 this.ownerCt.hide();
@@ -1176,7 +1460,8 @@ Antibodydb.forms.TargetproteinWindow = new Ext.Window({
         }
     ]
 });
-Antibodydb.forms.Incubationprotocol = new Antibodydb.FormPanel({
+Antibodydb.modules.forms.Incubationprotocol = {
+    xtype        : 'antibodydb.form',
     title        : 'Incubationprotocol',
     iconCls      : Antibodydb.getIconCls('form'),
     defaultType  : 'textfield',
@@ -1264,9 +1549,9 @@ Antibodydb.forms.Incubationprotocol = new Antibodydb.FormPanel({
             }
         }
     ]
-});
+};
 
-Antibodydb.forms.IncubationprotocolWindow = new Ext.Window({
+Antibodydb.modules.forms.IncubationprotocolWindow = new Ext.Window({
     title       : 'Incubationprotocol',
     layout      : 'fit',
     iconCls     : Antibodydb.getIconCls('form'),
@@ -1376,8 +1661,8 @@ Antibodydb.forms.IncubationprotocolWindow = new Ext.Window({
                     var id = action.result.data.id;
                     var i  = action.result.data.Incubationprotocol;
 
-                    Antibodydb.forms.Antibody.Incubationprotocol.setValue(i);
-                    Antibodydb.forms.Antibody.Incubationprotocol.hiddenField.value = id;
+                    Antibodydb.modules.forms.Antibody.Incubationprotocol.setValue(i);
+                    Antibodydb.modules.forms.Antibody.Incubationprotocol.hiddenField.value = id;
                 } catch(e) {}
                 bform.reset();
                 this.ownerCt.hide();
@@ -1385,8 +1670,9 @@ Antibodydb.forms.IncubationprotocolWindow = new Ext.Window({
         }
     ]
 });
-Antibodydb.tables.Targetprotein = new Antibodydb.EditorGridPanel({
-    title    : 'Targetprotein',
+Antibodydb.modules.tables.Targetprotein = {
+    xtype : 'antibodydb.editorgridpanel',
+    title : 'Targetprotein',
     store : new Ext.data.JsonStore({
         root       : 'data',
         remoteSort : true,
@@ -1469,17 +1755,17 @@ Antibodydb.tables.Targetprotein = new Antibodydb.EditorGridPanel({
             return;
         }
         try {
-            Ext.History.add('Antibodydb.forms.Targetprotein');
-			var tf = Antibodydb.forms.Targetprotein;
+            Ext.History.add('forms.Targetprotein');
+			var tf = Antibodydb.modules.forms.Targetprotein;
             Antibodydb.changePage(tf); // force render!
             tf.form.reset();
             tf.form.loadRecord(rec);
         } catch(e) {};
     },
     onAdd : function() {
-        Antibodydb.forms.TargetproteinWindow.show();
+        Antibodydb.modules.forms.TargetproteinWindow.show();
     }
-});
+};
 
 
 Antibodydb.user.Password = new Ext.Window({
@@ -1551,8 +1837,9 @@ Antibodydb.user.Password = new Ext.Window({
         }
     ]
 });
-Antibodydb.Navigation = new Ext.Panel({
-	id           : 'navigation', // for stylesheets
+;(function() { /* See Antibodydb.Viewport.js */
+var nav = new Ext.Panel({
+    id           : 'navigation', /* for stylesheets */
     region       : 'west',
     width        : 200,
     minWidth     : 200,
@@ -1563,10 +1850,6 @@ Antibodydb.Navigation = new Ext.Panel({
     animCollapse : false,
     paddings     : '0 5 5 5',
     margins      : '2 0 5 5',
-    layoutConfig : {
-        align : 'stretch',
-        pack  : 'start'
-    },
     defaults     : {
         frame       : true,
         collapsible : true,
@@ -1577,71 +1860,83 @@ Antibodydb.Navigation = new Ext.Panel({
 /**
  * Have to do this like this because Ext.XTemplate can't create Ext.Components
  */
-Antibodydb.addLinks = function(o) {
-    if(Ext.isArray(o)) {
-        for(var i=0;i<o.length;i++) {
-            Antibodydb.addLinks(o[i]);
+Antibodydb.addLinks = function() {
+    var createLinks = function(links) {
+        for(var i=0;i<links.length;i++) {
+            var o = links[i];
+            links[i] = {
+                tag : 'li',
+                cn  : [
+                    {
+                        tag : 'img',
+                        src : Ext.BLANK_IMAGE_URL,
+                        cls : Antibodydb.getIconCls(o)
+                    },
+                    {
+                        tag       : 'a',
+                        href      : o.href || 'javascript:;',
+                        html      : o.html || o.text || '(no text)',
+                        listeners : o.handler ? { click : o.handler } : (o.listeners ? o.listeners : null)
+                    }
+                ]
+            };
         }
-        return;
-    }
-    
-    var panel = o, links = [].concat(panel.items);
-    for(var i=0;i<links.length;i++) {
-        o = links[i];
-        links[i] = {
-            tag : 'li',
-            cn  : [
-                {
-                    tag : 'img',
-                    src : Ext.BLANK_IMAGE_URL,
-                    cls : Antibodydb.getIconCls(o.iconCls || o.cls)
-                },
-                {
-                    tag       : 'a',
-                    href      : o.href || 'javascript:;',
-                    html      : o.html || o.text || '(no text)',
-                    listeners : o.handler ? { click : o.handler } : (o.listeners ? o.listeners : null)
-                }
-            ]
-        };
-    }
-    
-    panel = {
-        title     : panel.title || '(no text)',
-        iconCls   : Antibodydb.getIconCls(panel.iconCls || panel.cls),
-        contentEl : Ext.DomHelper.createDomX({
-            tag : 'ul',
-            cn  : links
-        })
+        return links;
     };
-    
-    Antibodydb.Navigation.add(panel);
-    if(Ext.isReady) {
-        Antibodydb.Navigation.doLayout();
-    }
-};
-Antibodydb.Panel = new Ext.Panel({
+
+    return function(o) {
+        if (Ext.isArray(o)) {
+            for(var i=0;i<o.length;i++) {
+                Antibodydb.addLinks(o[i]);
+            }
+            return;
+        }
+
+        var panel = o, links = [].concat(panel.items);
+        panel = {
+            title     : panel.title || '(no text)',
+            iconCls   : Antibodydb.getIconCls(panel),
+            contentEl : Ext.DomHelper.createDomX({
+                tag : 'ul',
+                cn  : createLinks(links)
+            })
+        };
+
+        nav.add(panel);
+        if (Ext.isReady) {
+            nav.doLayout();
+        }
+    };
+}();
+
+
+Antibodydb.on('start', function() {
+    nav.doLayout();
+    Ext.fly('navigation').on('click', function() {
+        this.blur(); // blur the focus
+    }, null, { delegate : 'a' });
+});
+var panel = new Ext.Panel({
+    id           : 'content',
     region       : 'center',
     margins      : '2 5 5 0',
     unstyled     : true,
-    layout       : 'card',
     activeItem   : 0,
-    layoutConfig : {
+    layout : {
+        type           : 'card',
         deferredRender : true
     },
     defaults     : {
         autoScroll : true,
         frame      : true
-    },
-    items : 
-        (Antibodydb.Welcome = new Ext.Panel({
-            xtype  : 'panel',
-            title  : 'Welcome',
-            layout : 'fit',
-            html   : '<p>Ich habe die komplette Seite neu gemacht! Falls Fehler auftreten oder etwas nicht geht bitte mir eine E-Mail schreiben!</p><p>Danke <a href="mailto:b.buchholz@dkfz-heidelberg.de">Bastian Buchholz</a></p>'
-        }))
+    }
 });
-Antibodydb.Viewport = new Ext.Viewport({
+/* Only used internal */
+Antibodydb.addModule = panel.add.createDelegate(panel);
+Antibodydb.on('start', function() {
+    Antibodydb.changePage = panel.layout.setActiveItem.createDelegate(panel.layout);
+});
+new Ext.Viewport({
     layout : 'border',
     items  : [
         {
@@ -1652,20 +1947,12 @@ Antibodydb.Viewport = new Ext.Viewport({
             height    : 63,
             bodyStyle : 'background-color:#DFE8F6;'
         },
-        Antibodydb.Navigation,
-        Antibodydb.Panel
+        nav,
+        panel
     ]
 });
-// Tthis script is the last included script! Good for creating the navigation
 
-/* Add elements to the panel */
-Antibodydb.Panel.add(Antibodydb.forms.Antibody);
-Antibodydb.Panel.add(Antibodydb.forms.Targetprotein);
-Antibodydb.Panel.add(Antibodydb.forms.Incubationprotocol);
-Antibodydb.Panel.add(Antibodydb.tables.Targetprotein);
-
-/* creating the navigation */
-
+})(); /* See Application.Navigation.js */
 Antibodydb.addLinks([
     {
         title : 'Other',
@@ -1673,7 +1960,7 @@ Antibodydb.addLinks([
             {
                 iconCls : 'home',
                 html    : 'Welcome',
-                href    : '#Antibodydb.Welcome'
+                href    : '#Welcome'
             }
         ]
     },
@@ -1683,17 +1970,17 @@ Antibodydb.addLinks([
             {
                 iconCls : 'table',
                 html    : 'Antibody',
-                href    : '#Antibodydb.tables.Antibody'
+                href    : '#tables.Antibody'
             },
             {
                 iconCls : 'table',
                 html    : 'Target Protein',
-                href    : '#Antibodydb.tables.Targetprotein'
+                href    : '#tables.Targetprotein'
             },
             {
                 iconCls : 'table',
                 html    : 'Incubationprotocol / Bufferset',
-                href    : '#Antibodydb.tables.Targetprotein'
+                href    : '#tables.Targetprotein'
             },
             {
                 iconCls : 'table',
@@ -1707,17 +1994,17 @@ Antibodydb.addLinks([
             {
                 iconCls  : 'form',
                 html     : 'Antibody',
-                href     : '#Antibodydb.forms.Antibody'
+                href     : '#forms.Antibody'
             },
             {
                 iconCls : 'form',
                 html    : 'Target Protein',
-                href    : '#Antibodydb.forms.Targetprotein'
+                href    : '#forms.Targetprotein'
             },
             {
                 iconCls : 'form',
                 html    : 'Incubationprotocol / Bufferset',
-                href    : '#Antibodydb.forms.Incubationprotocol'
+                href    : '#forms.Incubationprotocol'
             }
         ]
     },
@@ -1747,33 +2034,7 @@ Antibodydb.addLinks([
     }
 ]);
 
-Antibodydb.on('start', function() {
+/*Antibodydb.on('start', function() {
     Antibodydb.changePage = Antibodydb.Panel.layout.setActiveItem.createDelegate(Antibodydb.Panel.layout);
     Antibodydb.Navigation.doLayout(); // render all links
-});
-Ext.History.on({
-    'change' : function(token) {
-        if (token) {
-            var parts = token.split('.');
-            var part = window;
-            
-            for(var i=0;i<parts.length;i++) {
-                if (part[ parts[i] ]) {
-                    part = part[ parts[i] ];
-                } else {
-                    return;
-                }
-            }
-            Antibodydb.changePage(part);
-        }
-    }
-});
-
-Ext.History.init(function() {
-    var token = Ext.History.getToken();
-    if (token === null) {
-        token = 'Antibodydb.Welcome';
-    }
-    Ext.History.add(token);
-    Ext.History.fireEvent('change', token);
-});
+});*/

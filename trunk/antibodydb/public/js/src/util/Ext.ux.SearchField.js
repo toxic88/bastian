@@ -1,6 +1,6 @@
 Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
     initComponent : function(){
-        Ext.ux.SearchField.superclass.initComponent.call(this);
+        this.supr().initComponent.call(this);
         this.on('specialkey', function(f, e){
             if(e.getKey() == e.ENTER){
                 this.onTrigger2Click();

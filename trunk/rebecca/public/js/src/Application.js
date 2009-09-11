@@ -8,14 +8,15 @@ Ext.state.Manager.setProvider(
 
 Ext.History.on({
     'change' : function(token) {
-        var str = 'Application.modules.' + (Application.modules[token] ? token : Application.pageNotFoundModule);
+        var modules = 'Application.modules.',
+            str = modules + (new Function(['return ', modules, token, ';'].join(''))() ? token : Application.pageNotFoundModule);
         /*
         if ( !str.render ) {
             str = Application.addModule( str );
         }
         Application.changePage( str );
         */
-        new Function('if(!' + str + '.render){' + str + '=Application.addModule(' + str + ');}Application.changePage(' + str + ');')();
+        new Function(['if(!', str, '.render){', str, '=Application.addModule(', str, ');}Application.changePage(', str, ');'].join(''))();
     }
 });
 

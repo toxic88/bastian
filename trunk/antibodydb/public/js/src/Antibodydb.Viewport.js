@@ -1,4 +1,4 @@
-Antibodydb.Viewport = new Ext.Viewport({
+new Ext.Viewport({
     layout : 'border',
     items  : [
         {
@@ -9,7 +9,9 @@ Antibodydb.Viewport = new Ext.Viewport({
             height    : 63,
             bodyStyle : 'background-color:#DFE8F6;'
         },
-        Antibodydb.Navigation,
-        Antibodydb.Panel
+        nav,
+        panel
     ]
 });
+
+})(); /* See Application.Navigation.js */

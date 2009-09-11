@@ -7,12 +7,12 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     triggerAction    : 'all',
     mode             : 'local',
     lazyInit         : false,
-    
-	constructor : function(config) {
-	    Ext.ux.SelectBox.superclass.constructor.call(this, config);
-	    this.lastSelectedIndex = this.selectedIndex || 0;
-	},
-	
+
+    constructor : function(config) {
+        this.supr().constructor.call(this, config);
+        this.lastSelectedIndex = this.selectedIndex || 0;
+    },
+
     initComponent : function(){
         if (! this.store && this.data ){
             this.store = new Ext.data.ArrayStore({
@@ -22,12 +22,12 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
             });
             this.displayField = 'text';
         }
-        Ext.ux.SelectBox.superclass.initComponent.apply(this, arguments);
+        this.supr().initComponent.apply(this, arguments);
     },
-    
+
     initEvents : function(){
-        Ext.ux.SelectBox.superclass.initEvents.apply(this, arguments);
-        // you need to use keypress to capture upper/lower case and shift+key, but it doesn't work in IE
+        this.supr().initEvents.apply(this, arguments);
+        /* you need to use keypress to capture upper/lower case and shift+key, but it doesn't work in IE */
         this.el.on('keydown', this.keySearch, this, true);
         this.cshTask = new Ext.util.DelayedTask(this.clearSearchHistory, this);
     },
@@ -63,7 +63,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
                 return;
         }
 
-        // skip special keys other than the shift key
+        /* skip special keys other than the shift key */
         if ( (e.hasModifier() && !e.shiftKey) || e.isNavKeyPress() || e.isSpecialKey() ) {
             return;
         }
@@ -76,7 +76,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
 
     onRender : function(ct, position) {
         this.store.on('load', this.calcRowsPerPage, this);
-        Ext.ux.SelectBox.superclass.onRender.apply(this, arguments);
+        this.supr().onRender.apply(this, arguments);
         if ( this.mode == 'local' ) {
             this.calcRowsPerPage();
         }
@@ -94,7 +94,7 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     },
 
     render : function(ct) {
-        Ext.ux.SelectBox.superclass.render.apply(this, arguments);
+        this.supr().render.apply(this, arguments);
         if ( Ext.isSafari ) {
             this.el.swallowEvent('mousedown', true);
         }

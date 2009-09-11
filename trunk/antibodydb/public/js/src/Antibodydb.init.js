@@ -1,13 +1,3 @@
-// Tthis script is the last included script! Good for creating the navigation
-
-/* Add elements to the panel */
-Antibodydb.Panel.add(Antibodydb.forms.Antibody);
-Antibodydb.Panel.add(Antibodydb.forms.Targetprotein);
-Antibodydb.Panel.add(Antibodydb.forms.Incubationprotocol);
-Antibodydb.Panel.add(Antibodydb.tables.Targetprotein);
-
-/* creating the navigation */
-
 Antibodydb.addLinks([
     {
         title : 'Other',
@@ -15,7 +5,7 @@ Antibodydb.addLinks([
             {
                 iconCls : 'home',
                 html    : 'Welcome',
-                href    : '#Antibodydb.Welcome'
+                href    : '#Welcome'
             }
         ]
     },
@@ -25,17 +15,17 @@ Antibodydb.addLinks([
             {
                 iconCls : 'table',
                 html    : 'Antibody',
-                href    : '#Antibodydb.tables.Antibody'
+                href    : '#tables.Antibody'
             },
             {
                 iconCls : 'table',
                 html    : 'Target Protein',
-                href    : '#Antibodydb.tables.Targetprotein'
+                href    : '#tables.Targetprotein'
             },
             {
                 iconCls : 'table',
                 html    : 'Incubationprotocol / Bufferset',
-                href    : '#Antibodydb.tables.Targetprotein'
+                href    : '#tables.Targetprotein'
             },
             {
                 iconCls : 'table',
@@ -49,17 +39,17 @@ Antibodydb.addLinks([
             {
                 iconCls  : 'form',
                 html     : 'Antibody',
-                href     : '#Antibodydb.forms.Antibody'
+                href     : '#forms.Antibody'
             },
             {
                 iconCls : 'form',
                 html    : 'Target Protein',
-                href    : '#Antibodydb.forms.Targetprotein'
+                href    : '#forms.Targetprotein'
             },
             {
                 iconCls : 'form',
                 html    : 'Incubationprotocol / Bufferset',
-                href    : '#Antibodydb.forms.Incubationprotocol'
+                href    : '#forms.Incubationprotocol'
             }
         ]
     },
@@ -89,7 +79,7 @@ Antibodydb.addLinks([
     }
 ]);
 
-Antibodydb.on('start', function() {
+/*Antibodydb.on('start', function() {
     Antibodydb.changePage = Antibodydb.Panel.layout.setActiveItem.createDelegate(Antibodydb.Panel.layout);
     Antibodydb.Navigation.doLayout(); // render all links
-});
+});*/

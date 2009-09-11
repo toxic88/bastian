@@ -10,7 +10,8 @@ var assertStore = new Ext.data.ArrayStore({
     ]
 });
 
-Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
+Antibodydb.modules.forms.Antibody = {
+    xtype        : 'antibodydb.form',
     title        : 'Antibody',
     iconCls      : Antibodydb.getIconCls('form'),
     fileUpload   : true,
@@ -67,7 +68,7 @@ Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
                         xtype   : 'button',
                         text    : 'Create New',
                         handler : function() {
-                            Antibodydb.forms.TargetproteinWindow.show();
+                            Antibodydb.modules.forms.TargetproteinWindow.show();
                         }
                     }
                 }
@@ -115,7 +116,7 @@ Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
                         xtype   : 'button',
                         text    : 'Create New',
                         handler : function() {
-                            Antibodydb.forms.IncubationprotocolWindow.show();
+                            Antibodydb.modules.forms.IncubationprotocolWindow.show();
                         }
                     }
                 }
@@ -262,5 +263,5 @@ Antibodydb.forms.Antibody = new Antibodydb.FormPanel({
             }
         }
     ]
-});
+};
 })();

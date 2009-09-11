@@ -1,4 +1,5 @@
-Antibodydb.forms.Incubationprotocol = new Antibodydb.FormPanel({
+Antibodydb.modules.forms.Incubationprotocol = {
+    xtype        : 'antibodydb.form',
     title        : 'Incubationprotocol',
     iconCls      : Antibodydb.getIconCls('form'),
     defaultType  : 'textfield',
@@ -86,9 +87,9 @@ Antibodydb.forms.Incubationprotocol = new Antibodydb.FormPanel({
             }
         }
     ]
-});
+};
 
-Antibodydb.forms.IncubationprotocolWindow = new Ext.Window({
+Antibodydb.modules.forms.IncubationprotocolWindow = new Ext.Window({
     title       : 'Incubationprotocol',
     layout      : 'fit',
     iconCls     : Antibodydb.getIconCls('form'),
@@ -198,8 +199,8 @@ Antibodydb.forms.IncubationprotocolWindow = new Ext.Window({
                     var id = action.result.data.id;
                     var i  = action.result.data.Incubationprotocol;
 
-                    Antibodydb.forms.Antibody.Incubationprotocol.setValue(i);
-                    Antibodydb.forms.Antibody.Incubationprotocol.hiddenField.value = id;
+                    Antibodydb.modules.forms.Antibody.Incubationprotocol.setValue(i);
+                    Antibodydb.modules.forms.Antibody.Incubationprotocol.hiddenField.value = id;
                 } catch(e) {}
                 bform.reset();
                 this.ownerCt.hide();

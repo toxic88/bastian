@@ -68,6 +68,7 @@
                                                                 util/Ext.ux.SelectBox.js,
                                                                 util/Ext.ux.FileUploadField.js,
                                                                 util/Ext.ux.SearchField.js,
+                                                                util/Ext.ux.grid.BufferView.js,
                                                                 util/Antibodydb.FormPanel.js,
                                                                 util/Antibodydb.EditorGridPanel.js,
 
@@ -85,8 +86,7 @@
                                                                 Antibodydb.Panel.js,
                                                                 Antibodydb.Viewport.js,
 
-                                                                Antibodydb.init.js,
-                                                                Antibodydb.History.js" />
+                                                                Antibodydb.init.js" />
         </concat>
 
         <!-- js login files -->

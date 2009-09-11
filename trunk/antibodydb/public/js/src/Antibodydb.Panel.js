@@ -1,21 +1,20 @@
-Antibodydb.Panel = new Ext.Panel({
+var panel = new Ext.Panel({
+    id           : 'content',
     region       : 'center',
     margins      : '2 5 5 0',
     unstyled     : true,
-    layout       : 'card',
     activeItem   : 0,
-    layoutConfig : {
+    layout : {
+        type           : 'card',
         deferredRender : true
     },
     defaults     : {
         autoScroll : true,
         frame      : true
-    },
-    items : 
-        (Antibodydb.Welcome = new Ext.Panel({
-            xtype  : 'panel',
-            title  : 'Welcome',
-            layout : 'fit',
-            html   : '<p>Ich habe die komplette Seite neu gemacht! Falls Fehler auftreten oder etwas nicht geht bitte mir eine E-Mail schreiben!</p><p>Danke <a href="mailto:b.buchholz@dkfz-heidelberg.de">Bastian Buchholz</a></p>'
-        }))
+    }
+});
+/* Only used internal */
+Antibodydb.addModule = panel.add.createDelegate(panel);
+Antibodydb.on('start', function() {
+    Antibodydb.changePage = panel.layout.setActiveItem.createDelegate(panel.layout);
 });

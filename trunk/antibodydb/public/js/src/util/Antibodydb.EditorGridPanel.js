@@ -63,7 +63,6 @@ Antibodydb.EditorGridPanel = Ext.extend(Ext.grid.EditorGridPanel, {
     
     initComponent : function() {
         this.tbar = this.buildTopToolbar();
-        this.bbar = this.buildBottomToolbar();
         this.keys = this.buildKeys();
         
         this.supr().initComponent.call(this);
@@ -95,15 +94,6 @@ Antibodydb.EditorGridPanel = Ext.extend(Ext.grid.EditorGridPanel, {
                 store : this.store
             }
         ];
-    },
-    
-    buildBottomToolbar : function() {
-        return {
-            xtype       : 'paging',
-            store       : this.store,
-            pageSize    : 25,
-            displayInfo : true
-        };
     },
     
     buildKeys : function() {

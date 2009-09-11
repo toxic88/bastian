@@ -31,7 +31,7 @@ Application.addLinks = function() {
                     {
                         tag : 'img',
                         src : Ext.BLANK_IMAGE_URL,
-                        cls : o.iconCls || o.cls || null
+                        cls : o.iconCls || null
                     },
                     {
                         tag       : 'a',
@@ -56,7 +56,7 @@ Application.addLinks = function() {
         var panel = o, links = [].concat(panel.items);
         panel = {
             title     : panel.title || '(no text)',
-            iconCls   : panel.iconCls || panel.cls || null,
+            iconCls   : panel.iconCls || null,
             contentEl : Ext.DomHelper.createDomX({
                 tag : 'ul',
                 cn  : createLinks(links)
