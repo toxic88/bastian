@@ -61,6 +61,102 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         return $autoloader;
     }
 
+    protected function _initDbDefinition()
+    {
+        $this->bootstrap('config');
+        $config = Zend_Registry::get('config');
+
+        Zend_Registry::set('dbdefinition', new Zend_Db_Table_Definition(array(
+            'Antibody' => array(
+                'name'            => $config->db->tables->Antibody,
+                'dependentTables' => array('Images'),
+                'referenceMap'    => array(
+                    'Targetprotein' => array(
+                        'columns'       => 'fs_T_Targetprotein_id',
+                        'refTableClass' => 'Targetprotein',
+                        'refColumns'    => 'id'
+                    ),
+                    'Incubationprotocol' => array(
+                        'columns'       => 'fs_T_Incubationprotocol_id',
+                        'refTableClass' => 'Incubationprotocol',
+                        'refColumns'    => 'id'
+                    ),
+                    'Comments' => array(
+                        'columns'       => 'fs_T_Comments_id',
+                        'refTableClass' => 'Comments',
+                        'refColumns'    => 'id'
+                    )
+                )
+            ),
+            'Incubationprotocol' => array(
+                'name'            => $config->db->tables->Incubationprotocol,
+                'dependentTables' => array('Antibody'),
+                'referenceMap'    => array(
+                    'Bufferset' => array(
+                        'columns'       => 'fs_T_Bufferset_id',
+                        'refTableClass' => 'Bufferset',
+                        'refColumns'    => 'id'
+                    )
+                )
+            ),
+            'Images' => array(
+                'name'         => $config->db->tables->Images,
+                'referenceMap' => array(
+                    'Antibody' => array(
+                        'columns'       => 'fs_T_Antibody_id',
+                        'refTableClass' => 'Antibody',
+                        'refColumns'    => 'id'
+                    ),
+                    'Lane' => array(
+                        'columns'       => 'fs_T_Lane_id',
+                        'refTableClass' => 'Lane',
+                        'refColumns'    => 'id'
+                    ),
+                    'Scannersettings' => array(
+                        'columns'       => 'fs_T_Scannersettings_id',
+                        'refTableClass' => 'Scannersettings',
+                        'refColumns'    => 'id'
+                    ),
+                    'SDS' => array(
+                        'columns'       => 'fs_T_SDS_id',
+                        'refTableClass' => 'SDS',
+                        'refColumns'    => 'id'
+                    )
+                )
+            ),
+            'Lane' => array(
+                'name' => $config->db->tables->Lane,
+                'dependentTables' => array('Images')
+            ),
+            'SDS' => array(
+                'name' => $config->db->tables->SDS,
+                'dependentTables' => array('Images')
+            ),
+            'Scannersettings' => array(
+                'name' => $config->db->tables->Scannersettings,
+                'dependentTables' => array('Images')
+            ),
+            'Targetprotein' => array(
+                'name' => $config->db->tables->Targetprotein,
+                'dependentTables' => array('Antibody')
+            ),
+            'Comments' => array(
+                'name'            => $config->db->tables->Comments,
+                'dependentTables' => array('Antibody')
+            ),
+            'Bufferset' => array(
+                'name'            => $config->db->tables->Bufferset,
+                'dependentTables' => array('Incubationprotocol')
+            ),
+            'User' => array(
+                'name' => $config->db->tables->User
+            ),
+            'Assessment' => array(
+                'name' => $config->db->tables->Assessment
+            )
+        )));
+    }
+
     protected function _initConfig()
     {
         Zend_Registry::set('config', new Zend_Config($this->getOptions(), true));

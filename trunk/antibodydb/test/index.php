@@ -125,7 +125,7 @@ class Lane extends Zend_Db_Table_Abstract
 	
 }
 
-class Scannersetting extends Zend_Db_Table_Abstract
+class Scannersettings extends Zend_Db_Table_Abstract
 {
 	
 	protected $_name = 'DEV_T_Scannersettings';
