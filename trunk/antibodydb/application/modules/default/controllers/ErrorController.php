@@ -1,9 +1,7 @@
 <?php
 
-class ErrorController extends Zend_Controller_Action
+class ErrorController extends Zend_Controller_Action implements Antibodydb_Controller_AjaxInterface
 {
-
-    const CONTEXT_JSON = 'json';
 
     public function init()
     {
@@ -17,28 +15,29 @@ class ErrorController extends Zend_Controller_Action
 
     public function errorAction()
     {
-        $errors = $this->_getParam('error_handler');
-        
-        $this->getResponse()->setHttpResponseCode(503);
+    	$this->view->headTitle('Error');
 
-        switch ($errors->type) { 
+        $errors = $this->_getParam('error_handler');
+
+        switch ($errors->type) {
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
             case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
-        
                 // 404 error -- controller or action not found
                 $this->getResponse()->setHttpResponseCode(404);
                 $this->view->message = 'Page not found';
                 break;
             default:
-                // application error 
+                // application error
                 $this->getResponse()->setHttpResponseCode(500);
                 $this->view->message = 'Application error';
                 break;
         }
-        $this->getResponse()->clearBody();
-        $this->view->params    = $errors->request->getParams();
-        $this->view->error     = $errors->exception->getMessage();
-        $this->view->errors    = $errors->exception->getTraceAsString();
+
+        $this->view->type    = $errors->type;
+        $this->view->request = $errors->request;
+
+        $this->view->error   = $errors->exception->getMessage();
+        $this->view->trace   = $errors->exception->getTraceAsString();
     }
 
     public function deniedAction()
@@ -46,9 +45,11 @@ class ErrorController extends Zend_Controller_Action
         if(!Zend_Auth::getInstance()->hasIdentity() && !$this->getRequest()->isXmlHttpRequest()) {
             $this->_redirect('/auth');
         }
-    
+        
+    	$this->view->headTitle('Access denied!');
+
         $this->getResponse()->setHttpResponseCode(403);
-        $this->view->error   = 'Access denied';
+        $this->view->message = 'Access denied!';
     }
 
 }

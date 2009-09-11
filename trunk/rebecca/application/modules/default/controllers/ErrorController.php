@@ -33,11 +33,11 @@ class ErrorController extends Zend_Controller_Action implements Application_Cont
                 break;
         }
 
-        $this->view->type      = $errors->type;
-        $this->view->request   = $errors->request;
+        $this->view->type    = $errors->type;
+        $this->view->request = $errors->request;
 
-        $this->view->error     = $errors->exception->getMessage();
-        $this->view->trace     = $errors->exception->getTraceAsString();
+        $this->view->error   = $errors->exception->getMessage();
+        $this->view->trace   = $errors->exception->getTraceAsString();
     }
 
     public function deniedAction()
@@ -45,7 +45,7 @@ class ErrorController extends Zend_Controller_Action implements Application_Cont
     	$this->view->headTitle('Access denied!');
 
         $this->getResponse()->setHttpResponseCode(403);
-        $this->view->message   = 'Access denied!';
+        $this->view->message = 'Access denied!';
     }
 
 }

@@ -1,9 +1,7 @@
 <?php
 
-class UserController extends Zend_Controller_Action
+class UserController extends Zend_Controller_Action implements Antibodydb_Controller_AjaxInterface
 {
-    const CONTEXT_JSON = 'json';
-
     protected $table;
 
     public function init()

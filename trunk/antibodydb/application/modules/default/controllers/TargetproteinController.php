@@ -1,9 +1,7 @@
 <?php
 
-class TargetproteinController extends Zend_Controller_Action
+class TargetproteinController extends Zend_Controller_Action implements Antibodydb_Controller_AjaxInterface
 {
-
-    const CONTEXT_JSON = 'json';
 
     protected $targetprotein;
     protected $antibody;

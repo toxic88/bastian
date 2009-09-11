@@ -125,19 +125,19 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 )
             ),
             'Lane' => array(
-                'name' => $config->db->tables->Lane,
+                'name'            => $config->db->tables->Lane,
                 'dependentTables' => array('Images')
             ),
             'SDS' => array(
-                'name' => $config->db->tables->SDS,
+                'name'            => $config->db->tables->SDS,
                 'dependentTables' => array('Images')
             ),
             'Scannersettings' => array(
-                'name' => $config->db->tables->Scannersettings,
+                'name'            => $config->db->tables->Scannersettings,
                 'dependentTables' => array('Images')
             ),
             'Targetprotein' => array(
-                'name' => $config->db->tables->Targetprotein,
+                'name'            => $config->db->tables->Targetprotein,
                 'dependentTables' => array('Antibody')
             ),
             'Comments' => array(

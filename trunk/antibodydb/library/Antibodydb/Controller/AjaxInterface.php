@@ -1,6 +1,6 @@
 <?php
 
-interface Application_Controller_AjaxInterface
+interface Antibodydb_Controller_AjaxInterface
 {
 
     const CONTEXT_JSON = 'json';

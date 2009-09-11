@@ -1,14 +1,12 @@
 <?php
 
-class IncubationController extends Zend_Controller_Action
+class IncubationController extends Zend_Controller_Action implements Antibodydb_Controller_AjaxInterface
 {
-
-    const CONTEXT_JSON = 'json';
 
 	protected $anitbody;
 	protected $incubationprotocol;
 	protected $bufferset;
-    
+
     public function init()
     {
     	$this->view->success = false;
@@ -24,5 +22,5 @@ class IncubationController extends Zend_Controller_Action
 		$this->incubationprotocol = Antibodydb_TableManager::get('Incubationprotocol');
 		$this->bufferset          = Antibodydb_TableManager::get('Bufferset');
     }
-    
+
 }
