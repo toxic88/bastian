@@ -1952,7 +1952,7 @@ new Ext.Viewport({
     ]
 });
 
-})(); /* See Application.Navigation.js */
+})(); /* See Antibodydb.Navigation.js */
 Antibodydb.addLinks([
     {
         title : 'Other',
@@ -1992,9 +1992,9 @@ Antibodydb.addLinks([
         title : 'Forms',
         items : [
             {
-                iconCls  : 'form',
-                html     : 'Antibody',
-                href     : '#forms.Antibody'
+                iconCls : 'form',
+                html    : 'Antibody',
+                href    : '#forms.Antibody'
             },
             {
                 iconCls : 'form',
@@ -2013,15 +2013,15 @@ Antibodydb.addLinks([
         iconCls : 'user',
         items : [
             {
-                iconCls  : 'keygo',
-                html     : 'Change Password',
+                iconCls : 'keygo',
+                html    : 'Change Password',
                 handler : function() {
                     Antibodydb.user.Password.show();
                 }
             },
             {
-                iconCls  : 'userkey',
-                html     : 'Logout',
+                iconCls : 'userkey',
+                html    : 'Logout',
                 handler : function() {
                     Ext.fly('loading-mask').fadeIn({
                         callback : function() {
@@ -2033,8 +2033,3 @@ Antibodydb.addLinks([
         ]
     }
 ]);
-
-/*Antibodydb.on('start', function() {
-    Antibodydb.changePage = Antibodydb.Panel.layout.setActiveItem.createDelegate(Antibodydb.Panel.layout);
-    Antibodydb.Navigation.doLayout(); // render all links
-});*/

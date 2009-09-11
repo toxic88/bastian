@@ -57,7 +57,8 @@
         <echo>Building [antibodydb]</echo>
         <!-- css files -->
         <concat destfile="${antibodydb}/public/css/Antibodydb.css" eol="lf" fixlastline="yes">
-           <filelist dir="${antibodydb}/public/css/src/" files="Antibodydb.css" />
+           <filelist dir="${antibodydb}/public/css/src/" files="Antibodydb.css,
+                                                                Icons.css" />
         </concat>
 
         <!-- js files -->

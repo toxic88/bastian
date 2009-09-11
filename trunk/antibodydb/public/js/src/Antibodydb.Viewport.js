@@ -14,4 +14,4 @@ new Ext.Viewport({
     ]
 });
 
-})(); /* See Application.Navigation.js */
+})(); /* See Antibodydb.Navigation.js */
