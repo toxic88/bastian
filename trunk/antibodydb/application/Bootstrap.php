@@ -54,11 +54,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initAutoload()
     {
-        $autoloader = new Zend_Application_Module_Autoloader(array(
+        new Zend_Application_Module_Autoloader(array(
             'namespace' => 'Antibodydb',
-            'basePath'  => dirname(__FILE__)
+            'basePath'  => dirname(__FILE__) . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'default'
         ));
-        return $autoloader;
     }
 
     protected function _initDbDefinition()
