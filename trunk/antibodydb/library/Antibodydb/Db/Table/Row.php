@@ -3,31 +3,49 @@
 class Antibodydb_Db_Table_Row extends Zend_Db_Table_Row_Abstract
 {
 
-    public function setFromArray(array $data)
-    {
-        foreach ($data as $key => $value) {
-            $data[ str_replace($this->_table->getPrefix(), $key) ] = $value;
-        }
-    
-        return parent::setFromArray($data);
-    }
-
     public function toArray()
     {
         foreach ($this->_primary as $primary) {
             $this->_data[ $primary ] = (int) $this->_data[ $primary ];
         }
-        return parent::toArray();
+
+        $ret = array();
+        $database = $this->_table->getAdapter()->getConfig(); $database = $database['dbname'];
+        $table = $this->_table->info(Zend_Db_Table::NAME);
+        foreach ($this->_data as $field => $value) {
+            $ret[ $database . ':' . $table . '.' . $field ] = $value;
+        }
+
+        return $ret;
     }
 
-    public function toClient()
+    public function setFromArray(array $data)
     {
-        $data = $this->toArray();
-        $ret = array();
-        foreach ($data as $key => $value) {
-            $ret[ $this->_table->getPrefix() . $key ] = $value;
+        foreach ($data as $column => $value) {
+            $data[ $this->_transformColumn($column) ] = $value;
         }
-        return $ret;
+
+        $data = array_intersect_key($data, $this->_data);
+
+        foreach ($data as $columnName => $value) {
+            $this->__set($columnName, $value);
+        }
+
+        return $this;
+    }
+
+    protected function _transformColumn($columnName)
+    {
+        $columnName = parent::_transformColumn($columnName);
+        $database = $this->_table->getAdapter()->getConfig(); $database = $database['dbname'];
+        $table = $this->_table->info(Zend_Db_Table::NAME);
+        // $columnName = 'phpwebdb:DEV_T_Targetprotein.id';
+        if (stristr($database . ':' . $columnName, $table) !== false) {
+            $tmp = explode('.', $columnName);
+            $columnName = $tmp[1];
+        }
+
+        return $columnName;
     }
 
     /**

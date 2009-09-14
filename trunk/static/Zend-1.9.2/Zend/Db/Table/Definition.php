@@ -91,7 +91,7 @@ class Zend_Db_Table_Definition
         if (!isset($tableConfig[Zend_Db_Table::NAME])) {
             $tableConfig[Zend_Db_Table::NAME] = $tableName;
         }
-        
+
         $this->_tableConfigs[$tableName] = $tableConfig;
         return $this;
     }

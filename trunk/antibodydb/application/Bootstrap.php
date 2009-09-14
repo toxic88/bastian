@@ -135,7 +135,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'name'            => $config->db->tables->Scannersettings,
                 'dependentTables' => array('Images')
             ),
-            'Targetprotein' => array(
+            $config->db->tables->Targetprotein => array(
                 'name'            => $config->db->tables->Targetprotein,
                 'dependentTables' => array('Antibody')
             ),
