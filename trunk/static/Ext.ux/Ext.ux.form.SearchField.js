@@ -1,4 +1,5 @@
-Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
+Ext.ns('Ext.ux.form');
+Ext.ux.form.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
     initComponent : function(){
         this.supr().initComponent.call(this);
         this.on('specialkey', function(f, e){
@@ -43,5 +44,5 @@ Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
         this.triggers[0].show();
     }
 });
-Ext.reg('searchfield', Ext.ux.SearchField);
-Ext.form.SearchField = Ext.ux.SearchField;
+Ext.reg('searchfield', Ext.ux.form.SearchField);
+Ext.form.SearchField = Ext.ux.form.SearchField;

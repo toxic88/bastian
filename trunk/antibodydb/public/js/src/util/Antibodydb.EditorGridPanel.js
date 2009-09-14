@@ -1,4 +1,4 @@
-Antibodydb.EditorGridPanel = Ext.extend(Ext.grid.EditorGridPanel, {
+Antibodydb.EditorGridPanel = Ext.extend(Ext.ux.grid.MetaGrid, {
     layout   : 'fit',
     iconCls  : Antibodydb.getIconCls('table'),
     loadMask : true,

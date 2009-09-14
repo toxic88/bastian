@@ -1,4 +1,5 @@
-Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
+Ext.ns('Ext.ux.form');
+Ext.ux.form.SelectBox = Ext.extend(Ext.form.ComboBox, {
     searchResetDelay : 100,
     editable         : false,
     forceSelection   : true,
@@ -185,5 +186,5 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     }
 
 });
-Ext.reg('selectbox', Ext.ux.SelectBox);
-Ext.form.SelectBox = Ext.ux.SelectBox;
+Ext.reg('selectbox', Ext.ux.form.SelectBox);
+Ext.form.SelectBox = Ext.ux.form.SelectBox;

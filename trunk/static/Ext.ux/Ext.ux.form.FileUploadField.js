@@ -1,8 +1,9 @@
+Ext.ns('Ext.ux.form');
 /**
  * NOTE: The changes will be in Ext 3.1
  * with changes from http://extjs.com/forum/showthread.php?p=356809#post356809, http://extjs.com/forum/showthread.php?p=262550#post262550
  */
-Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
+Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
     /**
      * @cfg {String} buttonText The button text to display on the upload button (defaults to
      * 'Browse...').  Note that if you supply a value for {@link #buttonCfg}, the buttonCfg.text
@@ -187,5 +188,5 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
     }
 
 });
-Ext.reg('fileuploadfield', Ext.ux.FileUploadField);
-Ext.form.FileUploadField = Ext.ux.FileUploadField;
+Ext.reg('fileuploadfield', Ext.ux.form.FileUploadField);
+Ext.form.FileUploadField = Ext.ux.form.FileUploadField;

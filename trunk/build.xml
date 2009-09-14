@@ -19,9 +19,9 @@
 
         <!-- js base files -->
         <concat destfile="${rebecca}/public/js/Application.base.js" eol="lf" fixlastline="yes">
-            <filelist dir="${rebecca}/public/js/src/" files="Ext.ux.FileUploadField.js,
-                                                             Ext.ux.SearchField.js,
-                                                             Ext.ux.SelectBox.js,
+            <filelist dir="${rebecca}/public/js/src/" files="Ext.ux.form.FileUploadField.js,
+                                                             Ext.ux.form.SearchField.js,
+                                                             Ext.ux.form.SelectBox.js,
                                                              Ext.ux.grid.BufferView.js,
                                                              Application.util.js,
                                                              Application.js,
@@ -66,9 +66,9 @@
             <filelist dir="${antibodydb}/public/js/src/" files="Antibodydb.js,
 
                                                                 util/Antibodydb.util.js,
-                                                                util/Ext.ux.SelectBox.js,
-                                                                util/Ext.ux.FileUploadField.js,
-                                                                util/Ext.ux.SearchField.js,
+                                                                util/Ext.ux.form.SelectBox.js,
+                                                                util/Ext.ux.form.FileUploadField.js,
+                                                                util/Ext.ux.form.SearchField.js,
                                                                 util/Ext.ux.grid.BufferView.js,
                                                                 util/Antibodydb.FormPanel.js,
                                                                 util/Antibodydb.EditorGridPanel.js,

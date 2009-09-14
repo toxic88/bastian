@@ -1,8 +1,9 @@
+Ext.ns('Ext.ux.form');
 /**
  * NOTE: The changes will be in Ext 3.1
  * with changes from http://extjs.com/forum/showthread.php?p=356809#post356809, http://extjs.com/forum/showthread.php?p=262550#post262550
  */
-Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
+Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
     /**
      * @cfg {String} buttonText The button text to display on the upload button (defaults to
      * 'Browse...').  Note that if you supply a value for {@link #buttonCfg}, the buttonCfg.text
@@ -187,9 +188,10 @@ Ext.ux.FileUploadField = Ext.extend(Ext.form.TextField,  {
     }
 
 });
-Ext.reg('fileuploadfield', Ext.ux.FileUploadField);
-Ext.form.FileUploadField = Ext.ux.FileUploadField;
-Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
+Ext.reg('fileuploadfield', Ext.ux.form.FileUploadField);
+Ext.form.FileUploadField = Ext.ux.form.FileUploadField;
+Ext.ns('Ext.ux.form');
+Ext.ux.form.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
     initComponent : function(){
         this.supr().initComponent.call(this);
         this.on('specialkey', function(f, e){
@@ -234,9 +236,10 @@ Ext.ux.SearchField = Ext.extend(Ext.form.TwinTriggerField, {
         this.triggers[0].show();
     }
 });
-Ext.reg('searchfield', Ext.ux.SearchField);
-Ext.form.SearchField = Ext.ux.SearchField;
-Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
+Ext.reg('searchfield', Ext.ux.form.SearchField);
+Ext.form.SearchField = Ext.ux.form.SearchField;
+Ext.ns('Ext.ux.form');
+Ext.ux.form.SelectBox = Ext.extend(Ext.form.ComboBox, {
     searchResetDelay : 100,
     editable         : false,
     forceSelection   : true,
@@ -423,8 +426,8 @@ Ext.ux.SelectBox = Ext.extend(Ext.form.ComboBox, {
     }
 
 });
-Ext.reg('selectbox', Ext.ux.SelectBox);
-Ext.form.SelectBox = Ext.ux.SelectBox;
+Ext.reg('selectbox', Ext.ux.form.SelectBox);
+Ext.form.SelectBox = Ext.ux.form.SelectBox;
 /*!
  * Ext JS Library 3.0.0
  * Copyright(c) 2006-2009 Ext JS, LLC
