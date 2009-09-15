@@ -32,7 +32,7 @@ include "include/settings.php";
 		<div id="dkfz_header_right" class="dkfz header right"></div>
 		<div id="dkfz_header_content" class="dkfz header content">
 			<a href="http://www.dkfz.de/" title="DKFZ Homepage">
-				<img style="float:right;" src="http://www.dkfz.de/global/images/dkfz_logo.gif" />
+				<img style="float:right;" src="../images/dkfz_logo.gif" />
 			</a>
 			<h1 style="font-size:180%;margin-left:10px;"><a href="Default.php">Antibody Database</a></h1>
 		</div>

@@ -26,11 +26,11 @@ $all = count($antibodies);
 			</div>
 			<br />
 			<div>
-				<img src="http://tablesorter.com/addons/pager/icons/first.png" class="first">
-				<img src="http://tablesorter.com/addons/pager/icons/prev.png" class="prev">
+				<img src="../images/first.png" class="first">
+				<img src="../images/prev.png" class="prev">
 				<span class="pagedisplay"></span>
-				<img src="http://tablesorter.com/addons/pager/icons/next.png" class="next">
-				<img src="http://tablesorter.com/addons/pager/icons/last.png" class="last">
+				<img src="../images/next.png" class="next">
+				<img src="../images/last.png" class="last">
 				<select class="pagesize">
 					<option selected="selected" value="10">10</option>
 					<option value="20">20</option>

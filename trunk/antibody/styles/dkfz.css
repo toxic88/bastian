@@ -1,15 +1,3 @@
-* {
-	cursor:url(../cursor/Normal_Select.cur), auto;
-}
-
-input {
-	cursor:url(../cursor/Link_Select.cur), auto;
-}
-
-input[type=text], input[type=password], textarea {
-	cursor:url(../cursor/Text_Select.cur), auto;
-}
-
 /* Positionierung */
 html, body {
 	margin:0;
@@ -286,15 +274,6 @@ div#dkfz div#dkfz_bottom_navi .login, body .login {
 
 img {
     border:0;
-}
-
-a, a * {
-	cursor:url(../cursor/Link_Select.cur), pointer;
-	outline:0;
-}
-
-.cursor {
-	cursor:url(../cursor/Link_Select.cur), pointer;
 }
 
 blockquote {
