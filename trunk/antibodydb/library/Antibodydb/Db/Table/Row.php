@@ -21,8 +21,8 @@ class Antibodydb_Db_Table_Row extends Zend_Db_Table_Row_Abstract
 
     public function setFromArray(array $data)
     {
-        foreach ($data as $column => $value) {
-            $data[ $this->_transformColumn($column) ] = $value;
+        foreach ($data as $columnName => $value) {
+            $data[ $this->_transformColumn($columnName) ] = $value;
         }
 
         $data = array_intersect_key($data, $this->_data);
