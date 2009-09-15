@@ -183,7 +183,7 @@ body h3 {
 
 body ul {
 	list-style-type:none;
-	list-style-image:url(http://www.dkfz.de/global/images/job_arrow.gif);
+	list-style-image:url(../images/job_arrow.gif);
 	margin:10px 0;
 	padding-left:20px;
 }
