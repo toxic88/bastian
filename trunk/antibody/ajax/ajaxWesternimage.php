@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/html; charset="utf-8"');
 include "../include/settings.php";
 
 $wi = $antibody->mssql->fetch("SELECT * FROM T_Westernimage WHERE Gid = '" . mysql_real_escape_string($_GET["Antibody"]) . "' ORDER BY Westernimage_ID ASC", "assoc", true);

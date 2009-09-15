@@ -114,4 +114,3 @@ class File {
 		return false;
 	}
 }
-?>

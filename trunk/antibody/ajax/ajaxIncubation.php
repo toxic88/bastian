@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/html; charset="utf-8"');
 include "../include/settings.php";
 
 $i = $antibody->mssql->fetch("SELECT * FROM T_Incubationprotokoll WHERE Gid = '" . mysql_real_escape_string($_GET["Antibody"]) . "'", "assoc", false);

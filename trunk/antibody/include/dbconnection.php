@@ -13,4 +13,3 @@
  */
 require_once "mssql.class.php";
 $antibody->mssql = new MSSQL("newage", "phpdeveloper", "midrange", "phpwebdb");
-?>

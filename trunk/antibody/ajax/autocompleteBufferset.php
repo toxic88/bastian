@@ -1,5 +1,5 @@
 <?php
-
+header('Content-type: text/html; charset="utf-8"');
 require "../include/settings.php";
 
 $bu = $antibody->mssql->fetch("SELECT * FROM T_Bufferset WHERE Bufferset LIKE '" . mysql_real_escape_string($_GET["q"]) . "%'");
@@ -20,4 +20,4 @@ if(count($bu)>0) {
 
 	}
 
-}?>
+}

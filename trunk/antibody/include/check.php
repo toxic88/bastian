@@ -20,4 +20,3 @@ if($_POST[$antibody->postName[0]] == $antibody->postName[1] && isset($_COOKIE["L
 	header("LOCATION: " . $antibody->mainPage);
 	exit;
 }
-?>

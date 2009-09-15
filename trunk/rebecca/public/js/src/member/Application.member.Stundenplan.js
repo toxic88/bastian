@@ -1,14 +1,14 @@
 ;(function() {
 var data = [
-    [ '7:50 - 8:35',    ' - ',      'Physik',   'Englisch', 'G/GK',     'Sport',    1 ],
-    [ '8:35 - 9:20',    ' - ',      'Physik',   'Englisch', 'G/GK',     'Sport',    2 ],
-    [ '9:25 - 10:10',   'Mathe',    'Religion', 'Chemie',   'Biologie', 'VBRW',     3 ],
-    [ '10:30 - 11:15',  'Deutsch',  'Religion', 'Chemie',   'Deutsch',  'VBRW',     4 ],
-    [ '11:20 - 12:05',  'Spanisch', 'VBRW',     'Mathe',    'Mathe',    'Spanisch', 5 ],
-    [ '12:10 - 12:55',  'Spanisch', 'VBRW',     'Mathe',    'Englisch', 'Spanisch', 6 ],
-    [ '13:00 - 13:45',  ' - ',      'Deutsch',  ' - ',      'Biologie', '',         7 ],
-    [ '13:45 - 14:30',  'Info',     '',         'VBRW',     '',         '',         8 ],
-    [ '14:35 - 15:20',  'Info',     '',         'VBRW',     '',         '',         9 ]
+    [ '7:50 - 8:35',   'Mathe', 'Spanisch', 'BWL',    'Deutsch',  'Deutsch',  1 ],
+    [ '8:35 - 9:20',   'Mathe', 'Spanisch', 'BWL',    'Deutsch',  'Deutsch',  2 ],
+    [ '9:25 - 10:10',  'Info',  'Religion', 'Chemie', 'VWL',      'BWL',      3 ],
+    [ '10:30 - 11:15', 'Info',  'Religion', 'Chemie', 'VWL',      'BWL',      4 ],
+    [ '11:20 - 12:05', 'GGK',   'Englisch', 'Mathe',  'Spanisch', 'Englisch', 5 ],
+    [ '12:10 - 12:55', ' - ',   'Englisch', 'Mathe',  'Spanisch', 'Englisch', 6 ],
+    [ '13:00 - 13:45', 'Sport', 'Deutsch',  ' - ',    '',         'GGK',      7 ],
+    [ '13:45 - 14:30', 'Sport', '',         'WGEO',   '',         '',         8 ],
+    [ '14:35 - 15:20', '',      '',         'WGEO',   '',         '',         9 ]
 ];
 
 Application.modules.Stundenplan = {

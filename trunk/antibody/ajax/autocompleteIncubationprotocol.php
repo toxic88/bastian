@@ -1,5 +1,5 @@
 <?php
-
+header('Content-type: text/html; charset="utf-8"');
 require "../include/settings.php";
 
 $in = $antibody->mssql->fetch("SELECT * FROM T_Incubationprotokoll WHERE Incubationprotocol_id LIKE '" . mysql_real_escape_string($_GET["q"]) . "%'");
@@ -20,5 +20,3 @@ if(count($in)>0) {
 
 	}
 }
-
-?>
