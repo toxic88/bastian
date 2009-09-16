@@ -1,13 +1,14 @@
-* suche mit zahlen und Buchstaben klappt nicht
+* navigieren mit der Tastatur (vor, zurück)
+* Supplier => [unknown]
+* exportieren der Daten (T_Antibody oberste Zeile + Kommentare)
+* ausblenden von Formular teilen
+
+* DONE suche mit zahlen und Buchstaben klappt nicht
 * DONE mw Feld wird nicht in die Datenbank gespeichert
 * DONE Suche nur beim Enter drücken + Such-Button
-* ausblenden von Formular teilen
 * DONE hochgeladene Bilder im Formular anzeigen
-* exportieren der Daten (T_Antibody oberste Zeile + Kommentare)
 * DONE SwissProt => GeneID
-* Supplier => [unknown]
 * DONE Stock => Synonym
 * DONE Passwort ändern funktioniert nicht
 * DONE links im neuen Tab/Fenster öffnen
-* navigieren mit der Tastatur (vor, zurück)
 * DONE Cancel-Button beim bearbeiten von Datensätzen

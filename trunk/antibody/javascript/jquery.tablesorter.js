@@ -714,7 +714,7 @@
         },
         type: "text"
     });
-
+/*
     ts.addParser({
         id: "digit",
         is: function(s,table) {
@@ -847,7 +847,7 @@
         },
       type: "numeric"
     });
-
+*/
     // add default widgets
     ts.addWidget({
         id: "zebra",
@@ -1159,6 +1159,7 @@
                             n[rows][ n[rows].length-1 ] = c.normalized.length;
                             c.normalized.push(n[rows]);
                             c.row.push(cache.row[rows]);
+                            continue;
                         }
                     }
                     cache = c;
