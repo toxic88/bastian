@@ -1,0 +1,10 @@
+* suche mit zahlen und buchstaben klappt nicht
+* mw feld wird nicht in die db gespeichert
+* suche nur beim enter drücken + such button
+* ausblenden von formular teilen
+* hochgeladene bilder im formular anzeigen
+* exportieren der daten (T_Antibody oberste zeile + kommentare)
+* SwissProt => GeneID
+* Supplier => [unknown]
+* Stock => Synonym
+* passwort ändern prüfen
