@@ -36,8 +36,8 @@ switch($_POST["action"]) {
             if(md5($_POST["oldPassword"]) ==  $user["Password"]) {
                 // Alles Okay also das neue Passwort in die Session und in die
                 // Datenbank speichern
-                $tmp["Password"] = $_SESSION[$antibody->sessionName] = md5($_POST["newPassword"]);
-                $antibody->mssql->update($tmp, "id = '" . $checkPW["id"] . "'", "T_User");
+                $tmp["Password"] = $_SESSION[$antibody->sessionName] = md5(stripslashes($_POST["newPassword"]));
+                $antibody->mssql->update($tmp, "id = '" . mysql_real_escape_string($user["id"]) . "'", "T_User");
                 // noch ausgeben was gemacht wurde
                 echo "Password changed!";
             } else {

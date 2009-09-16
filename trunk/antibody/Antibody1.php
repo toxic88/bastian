@@ -18,27 +18,28 @@ $all = count($antibodies);
 <div style="float:right;">Antibodies: <?=$all?></div>
 <h2>Antibodies</h2>
 <div id="pager" class="pager" style="text-align:center;">
-    <form>
-            <div>
-                Search: <input type="text" id="search" />
-                in: <select id="colum" size="1">
-                </select>
-            </div>
-            <br />
-            <div>
-                <img src="../images/first.png" class="first">
-                <img src="../images/prev.png" class="prev">
-                <span class="pagedisplay"></span>
-                <img src="../images/next.png" class="next">
-                <img src="../images/last.png" class="last">
-                <select class="pagesize">
-                    <option selected="selected" value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                </select>
-            </div>
-        </form>
+    <form onsubmit="return false;">
+        <div>
+            Search: <input type="text" id="search" />
+            in: <select id="colum" size="1">
+            </select>
+            <input type="submit" id="searchBtn" value="Search" />
+        </div>
+        <br />
+        <div>
+            <img src="images/first.png" class="first">
+            <img src="images/prev.png" class="prev">
+            <span class="pagedisplay"></span>
+            <img src="images/next.png" class="next">
+            <img src="images/last.png" class="last">
+            <select class="pagesize">
+                <option selected="selected" value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+            </select>
+        </div>
+    </form>
 </div>
 <br />
 <table class="table_view" id="Antibody1" style="margin:5px auto;">
@@ -53,7 +54,7 @@ $all = count($antibodies);
             <th>Incubation Protocol</th>
             <th>Stock</th>
             <th>Evaluation Western</th>
-            <th><img src="http://stoneage/bestelldatenbank/images/icon_edit.gif" /></th>
+            <th><img src="images/icon_edit.gif" /></th>
         </tr>
     </thead>
 <?php
@@ -71,7 +72,7 @@ for($i=0;$i<$all;$i++) {
         <?php
             } else {
         ?>
-        <td><a href="<?=$a["Data_Sheet_Path"]?>"><?=$a["Antibody_ID"]?></a></td>
+        <td><a href="<?=$a["Data_Sheet_Path"]?>" target="_blank"><?=$a["Antibody_ID"]?></a></td>
         <?php
             }
         ?>
@@ -111,5 +112,5 @@ for($i=0;$i<$all;$i++) {
 login.check();
 // Das ist ein Client-Side-Tablesorter man kann dann auf die header klicken und dann wird automatisch sortiert
 // Siehe: http://tablesorter.com/docs/
-$("#Antibody1").tablesorter({ widthFixed: true }).tablesorterPager({ container: $("#pager"), positionFixed: false }).tablesorterSearch({ colums:"#colum", searchInput:$("#search") });
+$("#Antibody1").tablesorter({ widthFixed: true }).tablesorterPager({ container: $("#pager"), positionFixed: false }).tablesorterSearch({ colums:"#colum", searchInput:$("#search"), searchBtn:$("#searchBtn") });
 </script>

@@ -10,9 +10,9 @@ if(isset($tp["id"])) {
     <tr>
         <th>Target Protein</th>
         <th>MW [kD]</th>
-        <th>SwissProt Accsession#</th>
+        <th>GeneID</th>
         <th>Supplier</th>
-        <th>Stock</th>
+        <th>Synonym</th>
         <th>References</th>
     </tr>
     <tr class="alt">

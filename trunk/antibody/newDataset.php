@@ -77,9 +77,9 @@ $rating = $antibody->mssql->fetch("SELECT * FROM T_Assessment", "assoc", true);
  <tr class="table_header">
   <th>Target Protein</th>
   <th>MW [kD]</th>
-  <th>SwissProt Accsession#</th>
+  <th>GeneID</th>
   <th>Supplier</th>
-  <th>Stock</th>
+  <th>Synonym</th>
   <th>References</th>
  </tr>
  <tr class="table_header alt">
@@ -241,6 +241,7 @@ $rating = $antibody->mssql->fetch("SELECT * FROM T_Assessment", "assoc", true);
 <br />
 
 <input type="submit" value="Save" />
+<input type="button" value="Cancel" onclick="load('Antibody1.php');" />
 
 </form>
 <br />

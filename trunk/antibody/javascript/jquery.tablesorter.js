@@ -1101,10 +1101,11 @@
 			
 			this.defaults = {
 				searchInput:null,
+                searchBtn:null,
 				colums:null,
 				noMatch:null,
 				Match:null,
-				searchDelay:800
+				searchDelay:0
 			};
 
 			function Match(searchString,cols,number,table) {
@@ -1188,8 +1189,8 @@
 						if($.trim($(v).text()) != "")
 							$(config.colums).append("<option value=" + i + ">" + $(v).text() + "</option>");
 					});
-					$(config.searchInput).keyup(function() {
-						var string = $.trim($(this).val().toString());
+					$(config.searchBtn).click(function() {
+						var string = $.trim($(config.searchInput).val().toString());
 						if(lastString==string.toLowerCase()) return; else lastString = string;
 						var cols = [NaN];
 						if(!isNaN(config.colums) && typeof config.colums == "number")

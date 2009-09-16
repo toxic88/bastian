@@ -9,7 +9,7 @@ $anti = $antibody->mssql->fetch("SELECT * FROM T_Antibodydb WHERE Antibody_ID = 
 // Bufferset aus der Datenbank holen
 $buffer = $antibody->mssql->fetch("SELECT * FROM T_Bufferset WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "'", "assoc", false);
 // Targetprotein aus der Datenbank holen
-$target = $antibody->mssql->fetch("SELECT * FROM T_Targetprotein WHERE Target_Protein_ID = '" . mysql_real_escape_string($anti["fs_Targetprotein"]) . "'", "assoc", false);
+$target = $antibody->mssql->fetch("SELECT * FROM T_Targetprotein WHERE Target_Protein_ID = '" . mysql_real_escape_string($anti["fs_Target_Protein"]) . "'", "assoc", false);
 // Incubationprotokoll aus der Datenbank holen
 $inc = $antibody->mssql->fetch("SELECT * FROM T_Incubationprotokoll WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "'", "assoc", false);
 // Images aus der Datenbank holen
@@ -97,9 +97,9 @@ else
  <tr class="table_header">
   <th>Target Protein</th>
   <th>MW [kD]</th>
-  <th>SwissProt Accsession#</th>
+  <th>GeneID</th>
   <th>Supplier</th>
-  <th>Stock</th>
+  <th>Synonym</th>
   <th>References</th>
  </tr>
  <tr class="table_header alt">
@@ -191,6 +191,9 @@ foreach($western as $id => $val) {
   </table>
 
   <table class="table_view">
+   <tr>
+     <td colspan="3"><img id="Imagepath_<?=$id?>" src="" height="450" width="355" /></td>
+   </tr>
    <tr class="table_header alt">
     <th>Image:</th>
     <td><input type="file" name="Westernimage[]" /></td>
@@ -268,6 +271,7 @@ foreach($western as $id => $val) {
 <br />
 
 <input type="submit" value="Save" />
+<input type="button" value="Cancel" onclick="load('Antibody1.php');" />
 
 </form>
 <br />
@@ -355,8 +359,15 @@ foreach($western as $id => $val) {
                     // Das hier ist der wichtigste Teil:
                     // Setzt den Wert von einem Feld mit der entsprechenden id
                     // und fired die keyup() Funktion wegen sync
-                    if($.trim(String(v)) != "")
-                        $("#" + i + ((index!=undefined) ? "_" + index : "")).val(v).keyup();
+                    if($.trim(String(v)) != "") {
+                        var $ele = $("#" + i + ((index!=undefined) ? "_" + index : "")), ele = $ele[0];
+                        console.log(i, index, v);
+                        if(String(ele) == "[object HTMLImageElement]") {
+                            $ele.attr("src", v);
+                        } else {
+                            $ele.val(v).keyup();
+                        }
+                    }
                 }
             });
         }

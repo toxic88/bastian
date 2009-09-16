@@ -16,19 +16,20 @@ $all = count($antibodies);
 <h2>Antibodies</h2>
 
 <div id="pager" class="pager" style="text-align:center;">
-    <form>
+    <form onsubmit="return false;">
             <div>
                 Search: <input type="text" id="search" />
                 in: <select id="colum" size="1">
                 </select>
+                <input type="submit" id="searchBtn" value="Search" />
             </div>
             <br />
             <div>
-                <img src="../images/first.png" class="first">
-                <img src="../images/prev.png" class="prev">
+                <img src="images/first.png" class="first">
+                <img src="images/prev.png" class="prev">
                 <span class="pagedisplay"></span>
-                <img src="../images/next.png" class="next">
-                <img src="../images/last.png" class="last">
+                <img src="images/next.png" class="next">
+                <img src="images/last.png" class="last">
                 <select class="pagesize">
                     <option selected="selected" value="10">10</option>
                     <option value="20">20</option>
@@ -50,7 +51,7 @@ $all = count($antibodies);
             <th>FACS</th>
             <th>Capture Array</th>
             <th>RPPA</th>
-            <th><img src="http://stoneage/bestelldatenbank/images/icon_edit.gif" /></th>
+            <th><img src="images/icon_edit.gif" /></th>
         </tr>
     </thead>
 <?php
@@ -65,7 +66,7 @@ for($i=0;$i<$all;$i++) {
         <?php
             } else {
         ?>
-        <td><a href="<?=$a["Data_Sheet_Path"]?>"><?=$a["Antibody_ID"]?></a></td>
+        <td><a href="<?=$a["Data_Sheet_Path"]?>" target="_blank"><?=$a["Antibody_ID"]?></a></td>
         <?php
             }
         ?>
@@ -134,5 +135,5 @@ for($i=0;$i<$all;$i++) {
 <br />
 <script type="text/javascript">
 login.check();
-$("#Antibody2").tablesorter({ widthFixed: true }).tablesorterPager({ container: $("#pager"), positionFixed: false }).tablesorterSearch({ colums:"#colum", searchInput:$("#search") });
+$("#Antibody2").tablesorter({ widthFixed: true }).tablesorterPager({ container: $("#pager"), positionFixed: false }).tablesorterSearch({ colums:"#colum", searchInput:$("#search"), searchBtn:$("#searchBtn") });
 </script>

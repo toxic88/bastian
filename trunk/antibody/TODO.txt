@@ -1,10 +1,13 @@
-* suche mit zahlen und buchstaben klappt nicht
-* mw feld wird nicht in die db gespeichert
-* suche nur beim enter drücken + such button
-* ausblenden von formular teilen
-* hochgeladene bilder im formular anzeigen
-* exportieren der daten (T_Antibody oberste zeile + kommentare)
-* SwissProt => GeneID
+* suche mit zahlen und Buchstaben klappt nicht
+* DONE mw Feld wird nicht in die Datenbank gespeichert
+* DONE Suche nur beim Enter drücken + Such-Button
+* ausblenden von Formular teilen
+* DONE hochgeladene Bilder im Formular anzeigen
+* exportieren der Daten (T_Antibody oberste Zeile + Kommentare)
+* DONE SwissProt => GeneID
 * Supplier => [unknown]
-* Stock => Synonym
-* passwort ändern prüfen
+* DONE Stock => Synonym
+* DONE Passwort ändern funktioniert nicht
+* DONE links im neuen Tab/Fenster öffnen
+* navigieren mit der Tastatur (vor, zurück)
+* DONE Cancel-Button beim bearbeiten von Datensätzen
