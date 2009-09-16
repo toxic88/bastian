@@ -16,13 +16,13 @@ $inc = $antibody->mssql->fetch("SELECT * FROM T_Incubationprotokoll WHERE Gid = 
 $western = $antibody->mssql->fetch("SELECT * FROM T_Westernimage WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "'", "assoc", true);
 
 if(is_array($western))
-	foreach($western as $w) {
-		$sds[] = $antibody->mssql->fetch("SELECT * FROM T_SDS WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "' AND Westernimage_ID = '" . mysql_real_escape_string($w["Westernimage_ID"]) . "'", "assoc", false);
-		$lane[] = $antibody->mssql->fetch("SELECT * FROM T_Lane WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "' AND Westernimage_ID = '" . mysql_real_escape_string($w["Westernimage_ID"]) . "'", "assoc", false);
-		$scan[] = $antibody->mssql->fetch("SELECT * FROM T_Scannersettings WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "' AND Westernimage_ID = '" . mysql_real_escape_string($w["Westernimage_ID"]) . "'", "assoc", false);
-	}
+    foreach($western as $w) {
+        $sds[] = $antibody->mssql->fetch("SELECT * FROM T_SDS WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "' AND Westernimage_ID = '" . mysql_real_escape_string($w["Westernimage_ID"]) . "'", "assoc", false);
+        $lane[] = $antibody->mssql->fetch("SELECT * FROM T_Lane WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "' AND Westernimage_ID = '" . mysql_real_escape_string($w["Westernimage_ID"]) . "'", "assoc", false);
+        $scan[] = $antibody->mssql->fetch("SELECT * FROM T_Scannersettings WHERE Gid = '" . mysql_real_escape_string($anti["Antibody_ID"]) . "' AND Westernimage_ID = '" . mysql_real_escape_string($w["Westernimage_ID"]) . "'", "assoc", false);
+    }
 else
-	$western = $sds = $lane = $scan = array( null );
+    $western = $sds = $lane = $scan = array( null );
 
 ?>
 <form action="update.php" method="post" enctype="multipart/form-data" id="newDataset">
@@ -155,16 +155,16 @@ else
 <h3>Images <img class="cursor" onclick="addImage();" src="images/add.png" /> <img class="cursor" onclick="removeImage();" src="images/delete.png" /></h3>
 
 <div id="Images">
-	<ul>
+    <ul>
 <?php
 for($i=1;$i<=count($western);$i++)
-	echo "<li><a href=\"#image-fragment-" . $i . "\"><span>" . $numbers[$i] . "</span></a></li>";
+    echo "<li><a href=\"#image-fragment-" . $i . "\"><span>" . $numbers[$i] . "</span></a></li>";
 ?>
-	</ul>
+    </ul>
 <?php
 foreach($western as $id => $val) {
 ?>
-	<div id="image-fragment-<?=$id+1?>">
+    <div id="image-fragment-<?=$id+1?>">
 
   <table class="table_view" style="float:right;">
    <tr class="table_header">
@@ -173,17 +173,17 @@ foreach($western as $id => $val) {
     <th>Total Protein</th>
    </tr>
     <?php
-    	for($i=1;$i<=15;$i++) {
-    		?>
-		<tr class='table_header <?=($i % 2 == 1) ? "alt" : ""?>'>
-		<?php
-	    		echo "<th>" . $i . "</th>";
-			echo "<td><input id='Lysate_Protein_" . $i . "_" . $id . "' type='text' size='13' name='Lysate_Protein_" . $i . "[]' /></td>";
-			echo "<td><input id='Total_Protein_" . $i . "_" . $id . "' type='text' size='8' name='Total_Protein_" . $i . "[]' /> &micro;g</td>";
-		?>
-    		</tr>
-		<?php
-    	}
+        for($i=1;$i<=15;$i++) {
+            ?>
+        <tr class='table_header <?=($i % 2 == 1) ? "alt" : ""?>'>
+        <?php
+                echo "<th>" . $i . "</th>";
+            echo "<td><input id='Lysate_Protein_" . $i . "_" . $id . "' type='text' size='13' name='Lysate_Protein_" . $i . "[]' /></td>";
+            echo "<td><input id='Total_Protein_" . $i . "_" . $id . "' type='text' size='8' name='Total_Protein_" . $i . "[]' /> &micro;g</td>";
+        ?>
+            </tr>
+        <?php
+        }
     ?>
    <tr>
     <td colspan="3"><img class="cursor" src="images/delete.png" onclick="$(this).parents('table').find(':input').clear();" /></td>
@@ -228,18 +228,18 @@ foreach($western as $id => $val) {
     <td rowspan="2"><img class="cursor" src="images/delete.png" onclick="$(this).parents('table').find(':input').clear();" /></td>
    </tr>
    <tr class="table_header alt">
-   	<td><input type="text" size="10" id="SDS_<?=$id?>" name="SDS[]" /></td>
-   	<td><input type="text" size="10" id="Acrylamid_<?=$id?>" name="Acrylamid[]" /></td>
-   	<td><input type="text" size="10" id="Sep_<?=$id?>" name="Sep[]" /></td>
-   	<td><input type="text" size="10" id="Voltage_<?=$id?>" name="Voltage[]" /></td>
-   	<td><input type="text" size="10" id="SDS_Size_<?=$id?>" name="SDS_Size[]" /></td>
+       <td><input type="text" size="10" id="SDS_<?=$id?>" name="SDS[]" /></td>
+       <td><input type="text" size="10" id="Acrylamid_<?=$id?>" name="Acrylamid[]" /></td>
+       <td><input type="text" size="10" id="Sep_<?=$id?>" name="Sep[]" /></td>
+       <td><input type="text" size="10" id="Voltage_<?=$id?>" name="Voltage[]" /></td>
+       <td><input type="text" size="10" id="SDS_Size_<?=$id?>" name="SDS_Size[]" /></td>
    </tr>
   </table>
 
   <br style="clear:both;" />
 
 
-	</div>
+    </div>
 <?php
 }
 ?>
@@ -274,124 +274,124 @@ foreach($western as $id => $val) {
 <br />
 <script type="text/javascript">
 
-	// Das erste image-fragment clonen samt events
-	var clone = $("#image-fragment-1").clone(true);
-	var fragment = "image-fragment-";
-	var counter = <?=count($western)?>;
+    // Das erste image-fragment clonen samt events
+    var clone = $("#image-fragment-1").clone(true);
+    var fragment = "image-fragment-";
+    var counter = <?=count($western)?>;
 
-	// generiert einen neuen Tab
-	function addImage() {
-		counter++;
-		// der Clone wir geklont | bekommt eine neue id | wird unsichbar gemacht | und nach dem Element mit der id Images angefügt
-		$(clone).clone(true).attr("id", fragment + counter).css("display", "none").appendTo("#Images");
-		// Dann dem jQuery-Tab-Plugin sagen das ein neuer Tab erzeugt wurde und dem Tab einen Namen oder eine Zahl geben
-		$("#Images > ul").tabs("add", "#" + fragment + counter, (numbers[counter]) ? numbers[counter] : counter);
-	}
-	// zerstört den letzten Tab aber nicht den ersten
-	function removeImage() {
-		if(counter>1) {
-			$("#Images > ul").tabs("remove", counter-1);
-			counter--;
-		}
-	}
-	// generiert die Tabs
-	$("#Images > ul").tabs();
+    // generiert einen neuen Tab
+    function addImage() {
+        counter++;
+        // der Clone wir geklont | bekommt eine neue id | wird unsichbar gemacht | und nach dem Element mit der id Images angefügt
+        $(clone).clone(true).attr("id", fragment + counter).css("display", "none").appendTo("#Images");
+        // Dann dem jQuery-Tab-Plugin sagen das ein neuer Tab erzeugt wurde und dem Tab einen Namen oder eine Zahl geben
+        $("#Images > ul").tabs("add", "#" + fragment + counter, (numbers[counter]) ? numbers[counter] : counter);
+    }
+    // zerstört den letzten Tab aber nicht den ersten
+    function removeImage() {
+        if(counter>1) {
+            $("#Images > ul").tabs("remove", counter-1);
+            counter--;
+        }
+    }
+    // generiert die Tabs
+    $("#Images > ul").tabs();
 
-	// Zwei kleine jQuery helfer Funktionnen
-	$.fn.extend({
-		// hält beliebig viele Felder synchron (haben also immer den selben Inhalt)
-		sync:function() {
+    // Zwei kleine jQuery helfer Funktionnen
+    $.fn.extend({
+        // hält beliebig viele Felder synchron (haben also immer den selben Inhalt)
+        sync:function() {
 
-			var all = this;
-			return this.keyup(function() {
-				$(all).val( $(this).val() );
-			});
+            var all = this;
+            return this.keyup(function() {
+                $(all).val( $(this).val() );
+            });
 
-		},
-		// Löscht den Inhalt aus den Feldern und fired die keyup() funktion wegen sync()
-		clear:function() {
+        },
+        // Löscht den Inhalt aus den Feldern und fired die keyup() funktion wegen sync()
+        clear:function() {
 
-			return this.each(function() {
-				this.value = "";
-				$(this).keyup();
-				this.selectedIndex = 0;
-			});
+            return this.each(function() {
+                this.value = "";
+                $(this).keyup();
+                this.selectedIndex = 0;
+            });
 
-		}
-	});
-	// Helper Funktion für Autocomplete
-	function autocompleteFields(d, ids) {
-		// Alle ids bekommen ihr value von dem Autocomplete
-		$.each( ids, function(i, val) {
-			$("#" + this).val( d[i] );
-		});
-	}
+        }
+    });
+    // Helper Funktion für Autocomplete
+    function autocompleteFields(d, ids) {
+        // Alle ids bekommen ihr value von dem Autocomplete
+        $.each( ids, function(i, val) {
+            $("#" + this).val( d[i] );
+        });
+    }
 
-	// Setz die Verschiedenen autocompletes und syncs
-	$("#fs_Target_Protein, #Target_Protein_ID").sync().autocomplete("ajax/autocompleteTargetprotein.php").result(function(e, d, f) {
-		autocompleteFields(d, [ "fs_Target_Protein", "Target_Protein_ID", "MW_kD", "SwissProt_Accsession", "Supplier", "Target_Protein_Stock", "Target_Protein_References" ]);
-	});
+    // Setz die Verschiedenen autocompletes und syncs
+    $("#fs_Target_Protein, #Target_Protein_ID").sync().autocomplete("ajax/autocompleteTargetprotein.php").result(function(e, d, f) {
+        autocompleteFields(d, [ "fs_Target_Protein", "Target_Protein_ID", "MW_kD", "SwissProt_Accsession", "Supplier", "Target_Protein_Stock", "Target_Protein_References" ]);
+    });
 
-	$("#Incubationprotocol_id, #Incubation_Protokoll").sync().autocomplete("ajax/autocompleteIncubationprotocol.php").result(function(e, d, f) {
-		autocompleteFields(d, [ "Incubation_Protokoll", "Incubationprotocol_id", "Blocking", "AB_Incubation_1", "Washing_1", "AB_Incubation_2", "Washing_2", "fs_Bufferset", "Bufferset", "Washbuffer", "Incubation_1_AB", "Incubation_2_AB", "Bufferset_Blocking" ]);
-	});
+    $("#Incubationprotocol_id, #Incubation_Protokoll").sync().autocomplete("ajax/autocompleteIncubationprotocol.php").result(function(e, d, f) {
+        autocompleteFields(d, [ "Incubation_Protokoll", "Incubationprotocol_id", "Blocking", "AB_Incubation_1", "Washing_1", "AB_Incubation_2", "Washing_2", "fs_Bufferset", "Bufferset", "Washbuffer", "Incubation_1_AB", "Incubation_2_AB", "Bufferset_Blocking" ]);
+    });
 
-	$("#Bufferset, #fs_Bufferset").sync().autocomplete("ajax/autocompleteBufferset.php").result(function(e, d, f) {
-		autocompleteFields(d, [ "Bufferset", "fs_Bufferset", "Washbuffer", "Incubation_1_AB", "Incubation_2_AB", "Bufferset_Blocking" ]);
-	});
+    $("#Bufferset, #fs_Bufferset").sync().autocomplete("ajax/autocompleteBufferset.php").result(function(e, d, f) {
+        autocompleteFields(d, [ "Bufferset", "fs_Bufferset", "Washbuffer", "Incubation_1_AB", "Incubation_2_AB", "Bufferset_Blocking" ]);
+    });
 
-	// Helper Funktion
-	// Da ich das image-fragment-1 clone kann ich die Daten nicht mit PHP in die Felder schreiben
-	// also habe ich mir eine Javascript-Funktion geschrieben
-	function insertObj(obj, index) {
-		if(!obj || obj == null || typeof obj != "object") return;
-		else {
-			$.each(obj, function(i, v) {
-				if(typeof v == "object") {
-					// Hier wird es Rekrusiv!
-					// Übergeben wird i als index das ist bei den Images wichtig! siehe ids von Images
-					insertObj(v, i);
-				} else if(typeof v == "string" || typeof v == "number") {
-					// Das hier ist der wichtigste Teil:
-					// Setzt den Wert von einem Feld mit der entsprechenden id
-					// und fired die keyup() Funktion wegen sync
-					if($.trim(String(v)) != "")
-						$("#" + i + ((index!=undefined) ? "_" + index : "")).val(v).keyup();
-				}
-			});
-		}
-	}
-	// setz den Wert für jedes Feld mit der entsprechenden ID
-	// z.B.:
-	/*
-	{
-		"Bufferset":"Hallo",
-		"Antibody_ID":"1237998",
-		"0":{
-			"Total_Protein1":"abc"
-		}
-	}
-	=> $("#Bufferset").val("Hallo").keyup();
-	=> $("#Antibody_ID").val("1237998").keyup();
-	=> $("#Total_Protein1_0").val("abc").keyup();
-	*/
-	insertObj( <?=json_encode( $anti )?> );
-	insertObj( <?=json_encode( $buffer )?> );
-	insertObj( <?=json_encode( $target )?> );
-	insertObj( <?=json_encode( $inc )?> );
-	insertObj( <?=json_encode( $western )?> );
-	insertObj( <?=json_encode( $sds )?> );
-	insertObj( <?=json_encode( $lane )?> );
-	insertObj( <?=json_encode( $scan )?> );
+    // Helper Funktion
+    // Da ich das image-fragment-1 clone kann ich die Daten nicht mit PHP in die Felder schreiben
+    // also habe ich mir eine Javascript-Funktion geschrieben
+    function insertObj(obj, index) {
+        if(!obj || obj == null || typeof obj != "object") return;
+        else {
+            $.each(obj, function(i, v) {
+                if(typeof v == "object") {
+                    // Hier wird es Rekrusiv!
+                    // Übergeben wird i als index das ist bei den Images wichtig! siehe ids von Images
+                    insertObj(v, i);
+                } else if(typeof v == "string" || typeof v == "number") {
+                    // Das hier ist der wichtigste Teil:
+                    // Setzt den Wert von einem Feld mit der entsprechenden id
+                    // und fired die keyup() Funktion wegen sync
+                    if($.trim(String(v)) != "")
+                        $("#" + i + ((index!=undefined) ? "_" + index : "")).val(v).keyup();
+                }
+            });
+        }
+    }
+    // setz den Wert für jedes Feld mit der entsprechenden ID
+    // z.B.:
+    /*
+    {
+        "Bufferset":"Hallo",
+        "Antibody_ID":"1237998",
+        "0":{
+            "Total_Protein1":"abc"
+        }
+    }
+    => $("#Bufferset").val("Hallo").keyup();
+    => $("#Antibody_ID").val("1237998").keyup();
+    => $("#Total_Protein1_0").val("abc").keyup();
+    */
+    insertObj( <?=json_encode( $anti )?> );
+    insertObj( <?=json_encode( $buffer )?> );
+    insertObj( <?=json_encode( $target )?> );
+    insertObj( <?=json_encode( $inc )?> );
+    insertObj( <?=json_encode( $western )?> );
+    insertObj( <?=json_encode( $sds )?> );
+    insertObj( <?=json_encode( $lane )?> );
+    insertObj( <?=json_encode( $scan )?> );
 
-	$("#newDataset").ajaxForm({
-		// siehe include/settings.php
-		data:{ "<?=$antibody->postName[0]?>":"<?=$antibody->postName[1]?>" },
-		success:function() {
-			load("Antibody1.php");
-		}
-	});
-	
-	// Checkt die Links: siehe javascript/main.php
-	login.check();
+    $("#newDataset").ajaxForm({
+        // siehe include/settings.php
+        data:{ "<?=$antibody->postName[0]?>":"<?=$antibody->postName[1]?>" },
+        success:function() {
+            load("Antibody1.php");
+        }
+    });
+
+    // Checkt die Links: siehe javascript/main.php
+    login.check();
 </script>

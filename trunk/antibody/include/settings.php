@@ -1,15 +1,15 @@
 <?php
 /*
-	Diese Datei wird von ALLEN anderen aufgerufen
+    Diese Datei wird von ALLEN anderen aufgerufen
 
-	Es werden verschiedene Variablen gesetzt:
-		- $antibody->time -> timestamp
-		- $antibody->sessionName -> Name von der verwendeten SESSION (login)
-		- $antibody->cookieName -> Name von dem verwendeten COOKIE (für autologin)
-		- $antibody->postName -> Array mit Name und Value von dem POST-Parameter der immer an die AJAX Seiten gesendet wird
-		- $antibody->mainPage -> Name der Hauptseite
+    Es werden verschiedene Variablen gesetzt:
+        - $antibody->time -> timestamp
+        - $antibody->sessionName -> Name von der verwendeten SESSION (login)
+        - $antibody->cookieName -> Name von dem verwendeten COOKIE (für autologin)
+        - $antibody->postName -> Array mit Name und Value von dem POST-Parameter der immer an die AJAX Seiten gesendet wird
+        - $antibody->mainPage -> Name der Hauptseite
 
-	Zusätzlich wird noch die include/dbconnection.php required!
+    Zusätzlich wird noch die include/dbconnection.php required!
  */
 header("Content-Type: text/html; charset=utf-8");
 session_start();
@@ -35,27 +35,27 @@ $antibody->uploadDir = "uploads/";
 // Falls das Array nicht ausreicht wird anstatt des Zahlnamens die Zahl hineingeschrieben.
 // siehe javascript/main.php oder changeDataset.php und newDataset.php (weit unten im Javascript-Teil)
 $numbers = array(
-	  "Zero"
-	, "One"
-	, "Two"
-	, "Three"
-	, "Four"
-	, "Five"
-	, "Six"
-	, "Seven"
-	, "Eight"
-	, "Nine"
-	, "Ten"
-	, "Eleven"
-	, "Twelve"
-	, "Thirdteen"
-	, "Fourteen"
-	, "Fifteen"
-	, "Sixteen"
-	, "Seventeen"
-	, "Eighteen"
-	, "Nineteen"
-	, "Twenty"
+      "Zero"
+    , "One"
+    , "Two"
+    , "Three"
+    , "Four"
+    , "Five"
+    , "Six"
+    , "Seven"
+    , "Eight"
+    , "Nine"
+    , "Ten"
+    , "Eleven"
+    , "Twelve"
+    , "Thirdteen"
+    , "Fourteen"
+    , "Fifteen"
+    , "Sixteen"
+    , "Seventeen"
+    , "Eighteen"
+    , "Nineteen"
+    , "Twenty"
 );
 
 // Helper Function
@@ -112,5 +112,3 @@ if (!function_exists('json_encode'))
     }
   }
 }
-
-?>

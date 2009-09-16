@@ -6,10 +6,10 @@ $tp = $antibody->mssql->fetch("SELECT * FROM T_Targetprotein WHERE Target_Protei
 
 if(count($tp)>0){
 
-	foreach($tp as $t) {
+    foreach($tp as $t) {
 
-		echo $t["Target_Protein_ID"] . "|" . $t["Target_Protein_ID"] . "|" . $t["MW_kD"] . "|" . $t["SwissProt_Accsession"] . "|" . $t["Supplier"] . "|" . $t["Target_Protein_Stock"] . "|" . $t["Target_Protein_References"] . "\n";
+        echo $t["Target_Protein_ID"] . "|" . $t["Target_Protein_ID"] . "|" . $t["MW_kD"] . "|" . $t["SwissProt_Accsession"] . "|" . $t["Supplier"] . "|" . $t["Target_Protein_Stock"] . "|" . $t["Target_Protein_References"] . "\n";
 
-	}
+    }
 
 }
