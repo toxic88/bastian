@@ -6,7 +6,7 @@ var data = [
     [ '10:30 - 11:15', 'Info',  'Religion', 'Chemie', 'VWL',      'BWL',      4 ],
     [ '11:20 - 12:05', 'GGK',   'Englisch', 'Mathe',  'Spanisch', 'Englisch', 5 ],
     [ '12:10 - 12:55', ' - ',   'Englisch', 'Mathe',  'Spanisch', 'Englisch', 6 ],
-    [ '13:00 - 13:45', 'Sport', 'Deutsch',  ' - ',    '',         'GGK',      7 ],
+    [ '13:00 - 13:45', 'Sport', '',         ' - ',    '',         'GGK',      7 ],
     [ '13:45 - 14:30', 'Sport', '',         'WGEO',   '',         '',         8 ],
     [ '14:35 - 15:20', '',      '',         'WGEO',   '',         '',         9 ]
 ];
