@@ -8,6 +8,8 @@ include "include/settings.php";
 
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 
+    <link rel="shortcut icon" href="favicon.ico" /> 
+
 	<link rel="stylesheet" href="styles/dkfz.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="styles/jquery.ui.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="styles/jquery.autocomplete.css" type="text/css" media="screen" />
@@ -78,18 +80,29 @@ include "include/settings.php";
 <h2>Willkommen</h2>
 
 <p>
-Ich habe die komplette Seite neu gemacht! Falls Fehler auftreten oder etwas nicht geht bitte mir eine E-Mail schreiben!
+Falls Fehler auftreten oder etwas nicht geht bitte mir eine E-Mail schreiben!
 </p>
-
-
-
 Danke <a href="mailto:b.buchholz@dkfz.de">Bastian Buchholz</a>
 
 <h3>History</h3>
 <ul>
+  <li>16.09.2009:
+    <ul>
+      <li>Suche mit Zahlen und Buchstaben klappt nicht</li>
+      <li>MW [kD] Feld wird nicht in die Datenbank gespeichert</li>
+      <li>Suche nur beim Enter dr&uuml;cken + Such-Button</li>
+      <li>hochgeladene Bilder im Formular anzeigen</li>
+      <li>Umbennant: SwissProt => GeneID</li>
+      <li>Umbennant: Stock => Synonym</li>
+      <li>Passwort &auml;ndern funktioniert nicht</li>
+      <li>Links im neuen Tab/Fenster &ouml;ffnen</li>
+      <li>Cancel-Button beim bearbeiten von Datens&auml;tzen</li>
+    </ul>
+  </li>
   <li>01.10.2008: Tabs-Style im Internet Explorer verbessert.</li>
   <li>30.09.2008: Suche eingebaut und ein paar Fehler beim &Auml;ndern von Datens&auml;tzen behoben.</li>
 </ul>
+
 </div>
 
 			</div>

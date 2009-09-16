@@ -78,9 +78,9 @@ if(isset($_FILES["Westernimage"])) {
             chgrp($antibody->uploadDir . "picture/" . $imagename, "nogroup");
             chmod($antibody->uploadDir . "picture/" . $imagename, 0777);
 
-            $westernimage["Gid"] = $AID;
+            $westernimage["Gid"]             = $AID;
             $westernimage["Westernimage_ID"] = $id;
-            $westernimage["Imagepath"] = "http://stoneage.inet.dkfz-heidelberg.de/php/antibody/uploads/picture/" . $imagename;
+            $westernimage["Imagepath"]       = "http://stoneage.inet.dkfz-heidelberg.de/php/antibody/uploads/picture/" . $imagename;
 
             $scannersettings["Gid"]             = $AID;
             $scannersettings["Westernimage_ID"] = $id;
@@ -97,13 +97,13 @@ if(isset($_FILES["Westernimage"])) {
                 $lane["Total_Protein_" . $i]  = $r["Total_Protein_" . $i][$id];
             }
 
-            $sds["Gid"] = $AID;
+            $sds["Gid"]             = $AID;
             $sds["Westernimage_ID"] = $id;
-            $sds["SDS"] = $r["SDS"][$id];
-            $sds["Acrylamid"] = $r["Acrylamid"][$id];
-            $sds["Sep"] = $r["Sep"][$id];
-            $sds["Voltage"] = $r["Voltage"][$id];
-            $sds["SDS_Size"] = $r["SDS_Size"][$id];
+            $sds["SDS"]             = $r["SDS"][$id];
+            $sds["Acrylamid"]       = $r["Acrylamid"][$id];
+            $sds["Sep"]             = $r["Sep"][$id];
+            $sds["Voltage"]         = $r["Voltage"][$id];
+            $sds["SDS_Size"]        = $r["SDS_Size"][$id];
 
             // insert the new datarows
             $antibody->mssql->insert($westernimage, "T_Westernimage");
@@ -195,5 +195,3 @@ if(is_array($tp)) {
 }
 
 echo "Success";
-
-?>

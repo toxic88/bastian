@@ -47,7 +47,7 @@ function reArrayFiles(&$file_post) {
 
 $r = validate($_POST);
 $OAID = $r["oldAntibody_ID"];
-$AID = $r["Antibody_ID"];
+$AID  = $r["Antibody_ID"];
 
 if($OAID == "") {
     echo "ERROR";
@@ -81,7 +81,7 @@ if(isset($_FILES["Westernimage"])) {
         $scannersettings["Brightness"]      = $r["Brightness"][$id];
         $scannersettings["Contrast"]        = $r["Contrast"][$id];
 
-        $lane["Gid"] = $AID;
+        $lane["Gid"]             = $AID;
         $lane["Westernimage_ID"] = $id;
 
         for($i = 1; $i <= 15; $i++) {
@@ -236,5 +236,3 @@ if(is_array($tp)) {
 }
 
 echo "Success";
-
-?>
