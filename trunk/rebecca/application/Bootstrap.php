@@ -61,33 +61,38 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initDbDefinition()
     {
         Zend_Registry::set('dbdefinition', new Zend_Db_Table_Definition(array(
-            'rebecca_user' => array(
+            'User' => array(
+                'name' => 'rebecca_user',
                 'referenceMap' => array(
-                    'rebecca_chat_user' => array(
+                    'ChatUser' => array(
                         'columns'       => 'id',
-                        'refTableClass' => 'rebecca_chat_user',
+                        'refTableClass' => 'ChatUser',
                         'refColumns'    => 'fk_rebecca_user_id'
                     )
                 )
             ),
-            'rebecca_vokabeln' => array(),
-            'rebecca_chat_user' => array(
-                'dependentTables' => array('rebecca_user'),
+            'Vokabeln' => array(
+                'name' => 'rebecca_vokabeln'
+            ),
+            'ChatUser' => array(
+                'name' => 'rebecca_chat_user',
+                'dependentTables' => array('User'),
                 'referenceMap' => array(
                     'to' => array(
                         'columns'       => 'fk_rebecca_user_id',
-                        'refTableClass' => 'rebecca_chat_message',
+                        'refTableClass' => 'ChatMessage',
                         'refColumns'    => 'to'
                     ),
                     'from' => array(
                         'columns'       => 'fk_rebecca_user_id',
-                        'refTableClass' => 'rebecca_chat_message',
+                        'refTableClass' => 'ChatMessage',
                         'refColumns'    => 'from'
                     )
                 )
             ),
-            'rebecca_chat_message' => array(
-                'dependentTables' => array('rebecca_chat_user')
+            'ChatMessage' => array(
+                'name' => 'rebecca_chat_message',
+                'dependentTables' => array('ChatUser')
             )
         )));
     }

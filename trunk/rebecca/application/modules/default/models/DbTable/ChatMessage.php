@@ -7,7 +7,7 @@ class Application_Model_DbTable_ChatMessage extends Application_Model_DbTable_Ab
     {
         $this->_messages[self::MESSAGE_ROW_NOT_EXISTS] = 'Die Nachricht mit der id "%d" existiert nicht.';
 
-        $this->_table = new Application_Db_Table('rebecca_chat_message', Zend_Registry::get('dbdefinition'));
+        $this->_table = new Application_Db_Table('ChatMessage', Zend_Registry::get('dbdefinition'));
     }
 
     public function _checkRequiredColumns(array $data)

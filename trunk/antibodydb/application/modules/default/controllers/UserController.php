@@ -52,7 +52,7 @@ class UserController extends Zend_Controller_Action implements Antibodydb_Contro
 
         $row->Password = md5($newpassword1);
         $row->save();
-		
+
         $this->view->success = true;
     }
 

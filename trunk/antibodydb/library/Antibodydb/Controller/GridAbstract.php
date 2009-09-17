@@ -8,10 +8,10 @@ abstract class Antibodydb_Controller_GridAbstract extends Zend_Controller_Action
     public function init()
     {
         $ajaxContext = $this->_helper->ajaxContext();
-        $ajaxContext->addActionContext('select',  self::CONTEXT_JSON)
-                    ->addActionContext('create',  self::CONTEXT_JSON)
-                    ->addActionContext('remove',  self::CONTEXT_JSON)
-                    ->addActionContext('destroy', self::CONTEXT_JSON)
+        $ajaxContext->addActionContext('select', self::CONTEXT_JSON)
+                    ->addActionContext('create', self::CONTEXT_JSON)
+                    ->addActionContext('update', self::CONTEXT_JSON)
+                    ->addActionContext('remove', self::CONTEXT_JSON)
                     ->initContext();
 
         $this->view->success = false;

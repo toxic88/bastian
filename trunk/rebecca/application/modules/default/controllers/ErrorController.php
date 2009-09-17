@@ -15,7 +15,7 @@ class ErrorController extends Zend_Controller_Action implements Application_Cont
 
     public function errorAction()
     {
-    	$this->view->headTitle('Error');
+        $this->view->headTitle('Error');
 
         $errors = $this->_getParam('error_handler');
 
@@ -42,7 +42,7 @@ class ErrorController extends Zend_Controller_Action implements Application_Cont
 
     public function deniedAction()
     {
-    	$this->view->headTitle('Access denied!');
+        $this->view->headTitle('Access denied!');
 
         $this->getResponse()->setHttpResponseCode(403);
         $this->view->message = 'Access denied!';

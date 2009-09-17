@@ -15,7 +15,7 @@ class ErrorController extends Zend_Controller_Action implements Antibodydb_Contr
 
     public function errorAction()
     {
-    	$this->view->headTitle('Error');
+        $this->view->headTitle('Error');
 
         $errors = $this->_getParam('error_handler');
 
@@ -46,7 +46,7 @@ class ErrorController extends Zend_Controller_Action implements Antibodydb_Contr
             $this->_redirect('/auth');
         }
         
-    	$this->view->headTitle('Access denied!');
+        $this->view->headTitle('Access denied!');
 
         $this->getResponse()->setHttpResponseCode(403);
         $this->view->message = 'Access denied!';

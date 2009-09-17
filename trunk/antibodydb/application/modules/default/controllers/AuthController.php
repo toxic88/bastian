@@ -25,7 +25,7 @@ class AuthController extends Zend_Controller_Action implements Antibodydb_Contro
                                  ->appendFile('js/Antibodydb.login.js');
         
 //        if ($username = Zend_Registry::get('session')->username) {
-//        	$this->view->headScript()->appendScript('Ext.onReady(function(){Antibodydb.LoginWindow.form.username.setValue("' . $username . '").ownerCt.password.focus(false, 400);});');
+//            $this->view->headScript()->appendScript('Ext.onReady(function(){Antibodydb.LoginWindow.form.username.setValue("' . $username . '").ownerCt.password.focus(false, 400);});');
 //        }
     }
 
