@@ -132,14 +132,21 @@ $antibodydb["capture_array_comment"]    = $r["capture_array_comment"];
 $antibodydb["rppa_comment"]             = $r["rppa_comment"];
 
 $data_sheet = null;
-if($_FILES['Data_Sheet']['tmp_name'] != "" && is_uploaded_file($_FILES['Data_Sheet'])) {
+if($_FILES['Data_Sheet']['tmp_name'] != "" && is_uploaded_file($_FILES['Data_Sheet']['tmp_name'])) {
     $ext = array_pop(explode(".", $_FILES['Data_Sheet']['name']));
 
     move_uploaded_file($_FILES['Data_Sheet']['tmp_name'], $antibody->uploadDir . "pdf/" . $AID . "." . $ext);
+
+    chown($antibody->uploadDir . "pdf/" . $AID . "." . $ext, "nobody");
+    chgrp($antibody->uploadDir . "pdf/" . $AID . "." . $ext, "nogroup");
+    chmod($antibody->uploadDir . "pdf/" . $AID . "." . $ext, 0777);
+
     $data_sheet = "http://stoneage.inet.dkfz-heidelberg.de/php/antibody/uploads/pdf/" . $AID . "." . $ext;
 }
 
-$antibodydb["Data_Sheet_Path"] = $data_sheet;
+if($data_sheet != null) {
+    $antibodydb["Data_Sheet_Path"] = $data_sheet;
+}
 $antibodydb["IP"]              = $r["IP"];
 $antibodydb["[IF]"]            = $r["IF"]; // Ausnahme!!! See HTML-Code of newDataset.php PHP don't like names surrounded by []
 $antibodydb["IHC"]             = $r["IHC"];

@@ -11,7 +11,7 @@ if(isset($tp["id"])) {
         <th>Target Protein</th>
         <th>MW [kD]</th>
         <th>GeneID</th>
-        <th>Supplier</th>
+        <th>Gene name</th>
         <th>Synonym</th>
         <th>References</th>
     </tr>

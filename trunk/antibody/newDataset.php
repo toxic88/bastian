@@ -78,7 +78,7 @@ $rating = $antibody->mssql->fetch("SELECT * FROM T_Assessment", "assoc", true);
   <th>Target Protein</th>
   <th>MW [kD]</th>
   <th>GeneID</th>
-  <th>Supplier</th>
+  <th>Gene name</th>
   <th>Synonym</th>
   <th>References</th>
  </tr>

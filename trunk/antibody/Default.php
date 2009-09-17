@@ -86,6 +86,12 @@ Danke <a href="mailto:b.buchholz@dkfz.de">Bastian Buchholz</a>
 
 <h3>History</h3>
 <ul>
+  <li>17.09.2009:
+    <ul>
+      <li>Umbennant: Supplier => Gene name</li>
+      <li>Das AB Datenblatt wird nicht beim ersten mal hochgeladen</li>
+    </ul>
+  </li>
   <li>16.09.2009:
     <ul>
       <li>Suche mit Zahlen und Buchstaben klappt nicht</li>
