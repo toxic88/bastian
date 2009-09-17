@@ -554,5 +554,4 @@ Ext.ux.form.MetaForm = Ext.extend(Ext.form.FormPanel, {
     }
 
 });
-
 Ext.reg('metaform', Ext.ux.form.MetaForm);
