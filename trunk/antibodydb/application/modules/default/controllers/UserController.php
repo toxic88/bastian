@@ -2,17 +2,17 @@
 
 class UserController extends Zend_Controller_Action implements Antibodydb_Controller_AjaxInterface
 {
-    protected $table;
+    protected $_table;
 
     public function init()
     {
         $this->view->success = false;
         
-        $contextSwitch = $this->_helper->contextSwitch();
-        $contextSwitch->addActionContext('change.password', self::CONTEXT_JSON)
-                      ->initContext();
+        $ajaxContext = $this->_helper->ajaxContext();
+        $ajaxContext->addActionContext('change.password', self::CONTEXT_JSON)
+                    ->initContext();
 
-        $this->table = Antibodydb_TableManager::get('User');
+        $this->_table = new Antibodydb_Db_Table('User', Zend_Registry::get('dbdefinition'));
     }
 
     public function changePasswordAction()
@@ -36,7 +36,7 @@ class UserController extends Zend_Controller_Action implements Antibodydb_Contro
             return;
         }
 
-        $rows = $this->table->find(Zend_Auth::getInstance()->getIdentity()->id);
+        $rows = $this->_table->find(Zend_Auth::getInstance()->getIdentity()->id);
 
         if($rows->count() <= 0) { // should never happend!
             $this->view->error = 'You are not logged in.';
