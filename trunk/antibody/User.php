@@ -14,7 +14,7 @@ switch($_POST["action"]) {
             setcookie($antibody->cookieName, "", time()-3600*24*365);
             // und auch aus der Datenbank
             $tmp["Cookie"] = "";
-            $antibody->mssql->update($tmp, "id = " . $user["id"], "T_User");
+            $antibody->mssql->update($tmp, "id = '" . mysql_real_escape_string($user["id"]) . "'", "T_User");
             // noch ausgeben was gemacht wurde
             echo "Remember me!";
         // Falls das Cookie nicht existiert -> setz es
@@ -23,7 +23,7 @@ switch($_POST["action"]) {
             setcookie($antibody->cookieName, base64_encode( $user["id"] . $antibody->time ), time()+3600*24*365);
             // und auch in die Datenbank speichern
             $tmp["Cookie"] = $user["id"] . $antibody->time;
-            $antibody->mssql->update($tmp, "id = " . $user["id"], "T_User");
+            $antibody->mssql->update($tmp, "id = '" . mysql_real_escape_string($user["id"]) . "'", "T_User");
             // noch ausgeben was gemacht wurde
             echo "Don't remember me!";
         }
