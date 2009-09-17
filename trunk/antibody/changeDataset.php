@@ -361,7 +361,6 @@ foreach($western as $id => $val) {
                     // und fired die keyup() Funktion wegen sync
                     if($.trim(String(v)) != "") {
                         var $ele = $("#" + i + ((index!=undefined) ? "_" + index : "")), ele = $ele[0];
-                        console.log(i, index, v);
                         if(String(ele) == "[object HTMLImageElement]") {
                             $ele.attr("src", v);
                         } else {
