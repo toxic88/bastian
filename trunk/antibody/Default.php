@@ -80,9 +80,16 @@ include "include/settings.php";
 <h2>Willkommen</h2>
 
 <p>
-Falls Fehler auftreten oder etwas nicht geht bitte mir eine E-Mail schreiben!
-</p>
+Falls Fehler auftreten oder etwas nicht geht bitte mir eine E-Mail schreiben!<br />
 Danke <a href="mailto:b.buchholz@dkfz.de">Bastian Buchholz</a>
+</p>
+
+<h3>Roadmap</h3>
+<ul>
+  <li>navigieren mit der Tastatur (vor, zurück)</li>
+  <li>exportieren der Daten (T_Antibody oberste Zeile + Kommentare)</li>
+  <li>ausblenden von Formular teilen</li>
+</ul>
 
 <h3>History</h3>
 <ul>
