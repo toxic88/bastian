@@ -10,7 +10,7 @@ abstract class Antibodydb_Controller_GridAbstract extends Zend_Controller_Action
         $ajaxContext = $this->_helper->ajaxContext();
         $ajaxContext->addActionContext('select',  self::CONTEXT_JSON)
                     ->addActionContext('create',  self::CONTEXT_JSON)
-                    ->addActionContext('update',  self::CONTEXT_JSON)
+                    ->addActionContext('remove',  self::CONTEXT_JSON)
                     ->addActionContext('destroy', self::CONTEXT_JSON)
                     ->initContext();
 
@@ -30,12 +30,12 @@ abstract class Antibodydb_Controller_GridAbstract extends Zend_Controller_Action
         $this->view->success = true;
     }
 
-    public function destroyAction()
+    public function removeAction()
     {
         $this->view->data = new stdClass();
 
         try {
-            $this->_model->destroy(array(
+            $this->_model->remove(array(
                 'id' => $_POST['data']
             ));
         } catch(Exception $e) {

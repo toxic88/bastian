@@ -61,26 +61,36 @@ Antibodydb = Ext.apply(new Ext.util.Observable, (function(){
         },
         
         urls : {
-            Logout                   : './auth/logout',
+            logout                   : './auth/logout',
 
-            ChangePassword           : './user/change.password/format/json',
+            user : {
+                changePassword       : './user/change.password/format/json',
+            },
 
-            TargetproteinSave        : './targetprotein/save/format/json',
-            TargetproteinDelete      : './targetprotein/delete/format/json',
-            TargetproteinLoad        : './targetprotein/load/format/json',
-            TargetproteinSelect      : './targetprotein/select/format/json',
+            antibody : {
+                save   : './antibody/save/format/json',
+                remove : './antibody/delete/format/json',
+                load   : './antibody/load/format/json',
+                select : './antibody/select/format/json'
+            },
 
-            IncubationprotocolSave   : './incbuationprotocol/save/format/json',
-            IncubationprotocolDelete : './incubationprotocol/delete/format/json',
-            IncubationprotocolLoad   : './incbuationprotocol/load/format/json',
-            IncubationprotocolSelect : './incubationprotocol/select/format/json',
+            targetprotein : {
+                save   : './targetprotein/save/format/json',
+                remove : './targetprotein/delete/format/json',
+                load   : './targetprotein/load/format/json',
+                select : './targetprotein/select/format/json'
+            },
 
-            AntibodySave             : './antibody/save/format/json',
-            AntibodyDelete           : './antibody/delete/format/json',
-            AntibodyLoad             : './antibody/load/format/json',
-            AntibodySelect           : './antibody/select/format/json'
-        }
-        
+            incubationprotocol : {
+                save   : './incbuationprotocol/save/format/json',
+                remove : './incubationprotocol/delete/format/json',
+                load   : './incubationprotocol/load/format/json',
+                select : './incubationprotocol/select/format/json'
+            }
+        },
+
+        config : config
+
     };
 }()));
 

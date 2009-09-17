@@ -61,26 +61,36 @@ Antibodydb = Ext.apply(new Ext.util.Observable, (function(){
         },
         
         urls : {
-            Logout                   : './auth/logout',
+            logout                   : './auth/logout',
 
-            ChangePassword           : './user/change.password/format/json',
+            user : {
+                changePassword       : './user/change.password/format/json',
+            },
 
-            TargetproteinSave        : './targetprotein/save/format/json',
-            TargetproteinDelete      : './targetprotein/delete/format/json',
-            TargetproteinLoad        : './targetprotein/load/format/json',
-            TargetproteinSelect      : './targetprotein/select/format/json',
+            antibody : {
+                save   : './antibody/save/format/json',
+                remove : './antibody/delete/format/json',
+                load   : './antibody/load/format/json',
+                select : './antibody/select/format/json'
+            },
 
-            IncubationprotocolSave   : './incbuationprotocol/save/format/json',
-            IncubationprotocolDelete : './incubationprotocol/delete/format/json',
-            IncubationprotocolLoad   : './incbuationprotocol/load/format/json',
-            IncubationprotocolSelect : './incubationprotocol/select/format/json',
+            targetprotein : {
+                save   : './targetprotein/save/format/json',
+                remove : './targetprotein/delete/format/json',
+                load   : './targetprotein/load/format/json',
+                select : './targetprotein/select/format/json'
+            },
 
-            AntibodySave             : './antibody/save/format/json',
-            AntibodyDelete           : './antibody/delete/format/json',
-            AntibodyLoad             : './antibody/load/format/json',
-            AntibodySelect           : './antibody/select/format/json'
-        }
-        
+            incubationprotocol : {
+                save   : './incbuationprotocol/save/format/json',
+                remove : './incubationprotocol/delete/format/json',
+                load   : './incubationprotocol/load/format/json',
+                select : './incubationprotocol/select/format/json'
+            }
+        },
+
+        config : config
+
     };
 }()));
 
@@ -844,11 +854,15 @@ Ext.ux.grid.BufferView = Ext.extend(Ext.grid.GridView, {
         this.update();
     }
 });
-/*Ext.override(Ext.form.FormPanel, {
+Antibodydb.FormPanel = Ext.extend(Ext.form.FormPanel, {
+    iconCls     : Antibodydb.getIconCls('form'),
+    defaultType : 'textfield',
+
     createForm : function() {
         var config = Ext.copyTo({}, this.initialConfig, 'api,baseParams,errorReader,fileUpload,method,paramOrder,paramsAsHash,reader,standardSubmit,timeout,trackResetOnLoad,url');
         return new Ext.form.BasicForm(null, config);
     },
+
     send : function() {
         return this.getForm().submit({ // submit the form
             waitMsg   : 'Sending data...',
@@ -864,58 +878,11 @@ Ext.ux.grid.BufferView = Ext.extend(Ext.grid.GridView, {
     },
     handleSuccess : function(bform, action) { // default handler
         bform.reset();
-    },
-    load : function(id) {
-        this.getForm().load({
-            url     : this.loadUrl,
-            params : {
-                id : id
-            },
-            waitMsg   : 'Sending data...',
-            success   : this.handleLoadSuccess,
-            failure   : this.handleLoadFailure,
-            scope     : this // scope of the handler functions
-        });
-    },
-    handleLoadSuccess : function(bform, action) {
-
-    },
-    handleLoadFailure : function(bform, action) {
-        Ext.Msg.error('Action Failed!', action.result ? action.result.error : 'Server Error', function() {
-            bform.items.first().focus();
-        });
     }
-});*/
 
-Antibodydb.FormPanel = Ext.extend(Ext.form.FormPanel, {
-	iconCls : Antibodydb.getIconCls('form'),
-	defaultType : 'textfield',
-	
-    createForm : function() {
-        var config = Ext.copyTo({}, this.initialConfig, 'api,baseParams,errorReader,fileUpload,method,paramOrder,paramsAsHash,reader,standardSubmit,timeout,trackResetOnLoad,url');
-        return new Ext.form.BasicForm(null, config);
-    },
-	
-	send : function() {
-        return this.getForm().submit({ // submit the form
-            waitMsg   : 'Sending data...',
-            success   : this.handleSuccess,
-            failure   : this.handleFailure,
-            scope     : this // scope of the handler functions
-        });
-	},
-    handleFailure : function(bform, action) { // default handler
-        Ext.Msg.error('Action Failed!', action.result ? action.result.error : 'Server Error', function() {
-            bform.items.first().focus();
-        });
-    },
-    handleSuccess : function(bform, action) { // default handler
-        bform.reset();
-    }
-	
 });
 Ext.reg('antibodydb.form', Antibodydb.FormPanel);
-Antibodydb.EditorGridPanel = Ext.extend(Ext.ux.grid.MetaGrid, {
+Antibodydb.EditorGridPanel = Ext.extend(Ext.grid.EditorGridPanel, {
     layout   : 'fit',
     iconCls  : Antibodydb.getIconCls('table'),
     loadMask : true,
@@ -1068,8 +1035,8 @@ Antibodydb.modules.forms.Antibody = {
     defaultType  : 'textfield',
     labelWidth   : 120,
     monitorValid : true,
-    url          : Antibodydb.urls.AntibodySave,
-    loadUrl      : Antibodydb.urls.AntibodyLoad,
+    url          : Antibodydb.urls.antibody.save,
+    loadUrl      : Antibodydb.urls.antibody.load,
     defaults     : {
         anchor : '-20'
     },
@@ -1105,7 +1072,7 @@ Antibodydb.modules.forms.Antibody = {
                         triggerAction  : 'all',
                         store : {
                             xtype      : 'jsonstore',
-                            url        : Antibodydb.urls.TargetproteinSelect,
+                            url        : Antibodydb.urls.targetprotein.select,
                             root       : 'data',
                             idProperty : 'Targetprotein:id',
                             fields     : [ 'Targetprotein:id', 'Targetprotein:Targetprotein' ]
@@ -1153,7 +1120,7 @@ Antibodydb.modules.forms.Antibody = {
                         valueField     : 'id',
                         store : {
                             xtype      : 'jsonstore',
-                            url        : Antibodydb.urls.TargetproteinSelect,
+                            url        : Antibodydb.urls.targetprotein.select,
                             root       : 'data',
                             idProperty : 'id',
                             fields     : [ 'id', 'Incubationprotocol' ]
@@ -1319,8 +1286,8 @@ Antibodydb.modules.forms.Targetprotein = {
     xtype        : 'antibodydb.form',
     title        : 'Target Protein',
     iconCls      : Antibodydb.getIconCls('form'),
-    url          : Antibodydb.urls.TargetproteinSave,
-    loadUrl      : Antibodydb.urls.TargetproteinLoad,
+    url          : Antibodydb.urls.targetprotein.save,
+    loadUrl      : Antibodydb.urls.targetprotein.load,
     defaultType  : 'textfield',
     monitorValid : true,
     labelWidth   : 130,
@@ -1398,7 +1365,7 @@ Antibodydb.modules.forms.TargetproteinWindow = new Ext.Window({
         {
             xtype        : 'antibodydb.form',
             ref          : 'form',
-            url          : Antibodydb.urls.TargetproteinSave,
+            url          : Antibodydb.urls.targetprotein.save,
             frame        : true,
             monitorValid : true,
             labelWidth   : 130,
@@ -1470,8 +1437,8 @@ Antibodydb.modules.forms.Incubationprotocol = {
     defaultType  : 'textfield',
     monitorValid : true,
     labelWidth   : 110,
-    url          : Antibodydb.urls.IncubationprotocolSave,
-    loadUrl      : Antibodydb.urls.IncubationprotocolLoad,
+    url          : Antibodydb.urls.incubationprotocol.save,
+    loadUrl      : Antibodydb.urls.incubationprotocol.load,
     defaults     : {
         anchor : '-20'
     },
@@ -1576,7 +1543,7 @@ Antibodydb.modules.forms.IncubationprotocolWindow = new Ext.Window({
         {
             xtype        : 'antibodydb.form',
             ref          : 'form',
-            url          : Antibodydb.urls.IncubationprotocolSave,
+            url          : Antibodydb.urls.incubationprotocol.save,
             frame        : true,
             monitorValid : true,
             labelWidth   : 110,
@@ -1682,10 +1649,10 @@ Antibodydb.modules.tables.Targetprotein = {
         idProperty : 'Targetprotein:id',
         proxy : new Ext.data.HttpProxy({
             api : {
-                read    : Antibodydb.urls.TargetproteinSelect,
-                create  : Antibodydb.urls.TargetproteinSave,
-                update  : Antibodydb.urls.TargetproteinSave,
-                destroy : Antibodydb.urls.TargetproteinDelete
+                read    : Antibodydb.urls.targetprotein.select,
+                create  : Antibodydb.urls.targetprotein.save,
+                update  : Antibodydb.urls.targetprotein.save,
+                destroy : Antibodydb.urls.targetprotein.remove
             }
         }),
         fields : [
@@ -1791,9 +1758,9 @@ Antibodydb.user.Password = new Ext.Window({
     },
     items : [
         {
-            xtype        : 'form',
+            xtype        : 'antibodydb.form',
             ref          : 'form',
-            url          : Antibodydb.urls.ChangePassword,
+            url          : Antibodydb.urls.user.changePassword,
             frame        : true,
             monitorValid : true,
             labelWidth   : 135,
@@ -1929,7 +1896,7 @@ var panel = new Ext.Panel({
         type           : 'card',
         deferredRender : true
     },
-    defaults     : {
+    defaults : {
         autoScroll : true,
         frame      : true
     }
@@ -2028,7 +1995,7 @@ Antibodydb.addLinks([
                 handler : function() {
                     Ext.fly('loading-mask').fadeIn({
                         callback : function() {
-                            window.location.href = Antibodydb.urls.Logout;
+                            window.location.href = Antibodydb.urls.logout;
                         }
                     });
                 }

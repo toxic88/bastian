@@ -7,8 +7,10 @@ class TargetproteinController extends Antibodydb_Controller_GridAbstract
     {
         parent::init();
         $this->_model = new Antibodydb_Model_DbTable_Targetprotein();
-        $row = $this->_model->getTable()->createRow();
-        var_dump($row->toArray());
+//        Just for testing. (and to remember it :))
+//        $row = $this->_model->getTable()->find(1)->current();
+//        var_dump($row->toArray());
+//        var_dump($row->findDependentRowset('Antibody')->current());
     }
 
 }

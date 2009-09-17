@@ -7,7 +7,7 @@ class Antibodydb_Model_DbTable_Targetprotein extends Antibodydb_Model_DbTable_Ab
     {
         $this->_messages[self::MESSAGE_FIELD_EXISTS] = 'Targetprotein "%s" allready exists.';
 
-        $this->_table = new Antibodydb_Db_Table('DEV_T_Targetprotein', Zend_Registry::get('dbdefinition'));
+        $this->_table = new Antibodydb_Db_Table('Targetprotein', Zend_Registry::get('dbdefinition'));
     }
 
 //    protected function _checkRequiredColumns(array $data)

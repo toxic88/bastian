@@ -7,10 +7,10 @@ Antibodydb.modules.tables.Targetprotein = {
         idProperty : 'Targetprotein:id',
         proxy : new Ext.data.HttpProxy({
             api : {
-                read    : Antibodydb.urls.TargetproteinSelect,
-                create  : Antibodydb.urls.TargetproteinSave,
-                update  : Antibodydb.urls.TargetproteinSave,
-                destroy : Antibodydb.urls.TargetproteinDelete
+                read    : Antibodydb.urls.targetprotein.select,
+                create  : Antibodydb.urls.targetprotein.save,
+                update  : Antibodydb.urls.targetprotein.save,
+                destroy : Antibodydb.urls.targetprotein.remove
             }
         }),
         fields : [

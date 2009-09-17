@@ -18,8 +18,8 @@ Antibodydb.modules.forms.Antibody = {
     defaultType  : 'textfield',
     labelWidth   : 120,
     monitorValid : true,
-    url          : Antibodydb.urls.AntibodySave,
-    loadUrl      : Antibodydb.urls.AntibodyLoad,
+    url          : Antibodydb.urls.antibody.save,
+    loadUrl      : Antibodydb.urls.antibody.load,
     defaults     : {
         anchor : '-20'
     },
@@ -55,7 +55,7 @@ Antibodydb.modules.forms.Antibody = {
                         triggerAction  : 'all',
                         store : {
                             xtype      : 'jsonstore',
-                            url        : Antibodydb.urls.TargetproteinSelect,
+                            url        : Antibodydb.urls.targetprotein.select,
                             root       : 'data',
                             idProperty : 'Targetprotein:id',
                             fields     : [ 'Targetprotein:id', 'Targetprotein:Targetprotein' ]
@@ -103,7 +103,7 @@ Antibodydb.modules.forms.Antibody = {
                         valueField     : 'id',
                         store : {
                             xtype      : 'jsonstore',
-                            url        : Antibodydb.urls.TargetproteinSelect,
+                            url        : Antibodydb.urls.targetprotein.select,
                             root       : 'data',
                             idProperty : 'id',
                             fields     : [ 'id', 'Incubationprotocol' ]

@@ -64,10 +64,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $this->bootstrap('config');
         $config = Zend_Registry::get('config');
+        $tables = $config->db->tables;
 
         Zend_Registry::set('dbdefinition', new Zend_Db_Table_Definition(array(
             'Antibody' => array(
-                'name'            => $config->db->tables->Antibody,
+                'name'            => $tables->Antibody,
                 'dependentTables' => array('Images'),
                 'referenceMap'    => array(
                     'Targetprotein' => array(
@@ -88,7 +89,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 )
             ),
             'Incubationprotocol' => array(
-                'name'            => $config->db->tables->Incubationprotocol,
+                'name'            => $tables->Incubationprotocol,
                 'dependentTables' => array('Antibody'),
                 'referenceMap'    => array(
                     'Bufferset' => array(
@@ -99,7 +100,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 )
             ),
             'Images' => array(
-                'name'         => $config->db->tables->Images,
+                'name'         => $tables->Images,
                 'referenceMap' => array(
                     'Antibody' => array(
                         'columns'       => 'fs_T_Antibody_id',
@@ -124,34 +125,34 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 )
             ),
             'Lane' => array(
-                'name'            => $config->db->tables->Lane,
+                'name'            => $tables->Lane,
                 'dependentTables' => array('Images')
             ),
             'SDS' => array(
-                'name'            => $config->db->tables->SDS,
+                'name'            => $tables->SDS,
                 'dependentTables' => array('Images')
             ),
             'Scannersettings' => array(
-                'name'            => $config->db->tables->Scannersettings,
+                'name'            => $tables->Scannersettings,
                 'dependentTables' => array('Images')
             ),
-            $config->db->tables->Targetprotein => array(
-                'name'            => $config->db->tables->Targetprotein,
+            'Targetprotein' => array(
+                'name'            => $tables->Targetprotein,
                 'dependentTables' => array('Antibody')
             ),
             'Comments' => array(
-                'name'            => $config->db->tables->Comments,
+                'name'            => $tables->Comments,
                 'dependentTables' => array('Antibody')
             ),
             'Bufferset' => array(
-                'name'            => $config->db->tables->Bufferset,
+                'name'            => $tables->Bufferset,
                 'dependentTables' => array('Incubationprotocol')
             ),
             'User' => array(
-                'name' => $config->db->tables->User
+                'name' => $tables->User
             ),
             'Assessment' => array(
-                'name' => $config->db->tables->Assessment
+                'name' => $tables->Assessment
             )
         )));
     }

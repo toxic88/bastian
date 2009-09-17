@@ -21,7 +21,7 @@ class AuthController extends Zend_Controller_Action implements Antibodydb_Contro
         $this->view->headTitle('Antibodydb - Login');
         $this->view->headLink()->appendStylesheet('css/ext.css')
                                ->appendStylesheet('css/Antibodydb.css');
-        $this->view->headScript()->appendFile('js/ext.js')
+        $this->view->headScript()->appendFile('js/ext-debug.js')
                                  ->appendFile('js/Antibodydb.login.js');
         
 //        if ($username = Zend_Registry::get('session')->username) {

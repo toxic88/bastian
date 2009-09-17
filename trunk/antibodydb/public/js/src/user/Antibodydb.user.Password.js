@@ -18,9 +18,9 @@ Antibodydb.user.Password = new Ext.Window({
     },
     items : [
         {
-            xtype        : 'form',
+            xtype        : 'antibodydb.form',
             ref          : 'form',
-            url          : Antibodydb.urls.ChangePassword,
+            url          : Antibodydb.urls.user.changePassword,
             frame        : true,
             monitorValid : true,
             labelWidth   : 135,

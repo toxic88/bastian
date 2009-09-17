@@ -58,7 +58,7 @@ abstract class Antibodydb_Model_DbTable_Abstract
         );
     }
 
-    public function destroy(array $data)
+    public function remove(array $data)
     {
         $data = $this->_filter($data);
 

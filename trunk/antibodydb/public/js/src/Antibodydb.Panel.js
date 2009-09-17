@@ -8,7 +8,7 @@ var panel = new Ext.Panel({
         type           : 'card',
         deferredRender : true
     },
-    defaults     : {
+    defaults : {
         autoScroll : true,
         frame      : true
     }

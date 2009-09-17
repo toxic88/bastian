@@ -70,7 +70,7 @@ Antibodydb.addLinks([
                 handler : function() {
                     Ext.fly('loading-mask').fadeIn({
                         callback : function() {
-                            window.location.href = Antibodydb.urls.Logout;
+                            window.location.href = Antibodydb.urls.logout;
                         }
                     });
                 }

@@ -5,8 +5,8 @@ Antibodydb.modules.forms.Incubationprotocol = {
     defaultType  : 'textfield',
     monitorValid : true,
     labelWidth   : 110,
-    url          : Antibodydb.urls.IncubationprotocolSave,
-    loadUrl      : Antibodydb.urls.IncubationprotocolLoad,
+    url          : Antibodydb.urls.incubationprotocol.save,
+    loadUrl      : Antibodydb.urls.incubationprotocol.load,
     defaults     : {
         anchor : '-20'
     },
@@ -111,7 +111,7 @@ Antibodydb.modules.forms.IncubationprotocolWindow = new Ext.Window({
         {
             xtype        : 'antibodydb.form',
             ref          : 'form',
-            url          : Antibodydb.urls.IncubationprotocolSave,
+            url          : Antibodydb.urls.incubationprotocol.save,
             frame        : true,
             monitorValid : true,
             labelWidth   : 110,
