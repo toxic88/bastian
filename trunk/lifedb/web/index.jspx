@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root version="2.1" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>
+    <f:view>
+            <html>
+                <head>
+                    <title>LifeDB</title>
+
+                    <link href="css/lifedb.css" rel="stylesheet" />
+                </head>
+                <body>
+
+                    <ice:panelBorder id="viewport">
+
+                        <f:facet name="west">
+                            <ice:panelGroup>
+                                <ice:graphicImage url="images/lifedb.jpg" width="200"/>
+                                <ice:panelGroup id="navigation">
+                                    <jsp:include page="navigation.jspx"/>
+                                </ice:panelGroup>
+                            </ice:panelGroup>
+                        </f:facet>
+
+                        <f:facet name="center">
+                            <ice:panelGroup></ice:panelGroup>
+                        </f:facet>
+
+                        <f:facet name="south">
+                            <ice:outputLink target="_blank" value="http://www.dkfz.de">
+                                <ice:graphicImage url="images/dkfz.gif" height="30"/>
+                            </ice:outputLink>
+                        </f:facet>
+                        
+                    </ice:panelBorder>
+
+                </body>
+            </html>
+    </f:view>
+</jsp:root>
