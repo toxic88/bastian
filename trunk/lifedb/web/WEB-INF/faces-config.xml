@@ -1,3 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <faces-config version="1.2"  xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"></faces-config>
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <managed-bean>
+        <description>Removes and add Tabs</description>
+        <managed-bean-name>TabManager</managed-bean-name>
+        <managed-bean-class>de.dkfz.mga.lifedb.TabManager</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <description>Abstract Tab class.</description>
+        <managed-bean-name>Tab</managed-bean-name>
+        <managed-bean-class>de.dkfz.mga.lifedb.Tab</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>CloneSearch</managed-bean-name>
+        <managed-bean-class>de.dkfz.mga.lifedb.CloneSearch</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+</faces-config>

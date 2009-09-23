@@ -14,22 +14,44 @@
                 <ice:panelBorder id="viewport">
 
                     <f:facet name="west">
-                        <ice:panelGroup>
-                            <ice:graphicImage url="images/lifedb.jpg" width="200"/>
+                        <ice:panelGroup id="west">
+                            <ice:graphicImage url="images/lifedb.jpg" width="170"/>
                             <ice:panelGroup id="navigation">
-                                <jsp:directive.include file="navigation.jspx" />
+                                <jsp:directive.include file="navigation.jspx"/>
                             </ice:panelGroup>
                         </ice:panelGroup>
                     </f:facet>
 
                     <f:facet name="center">
-                        <ice:panelGroup></ice:panelGroup>
+                        <ice:form id="tabsForm">
+                            <ice:panelTabSet value="#{TabManager.tabs}"
+                                             selectedIndex="#{TabManager.tabIndex}"
+                                             var="tab">
+                                <ice:panelTab label="#{tab.label}">
+                                    <f:facet name="label">
+                                        <ice:panelGrid columns="2">
+                                            <ice:outputText value="#{tab.label}"/>
+                                            <ice:commandButton disabled= "#{tab.removable == false}"
+                                                               image="images/rime/cal_off.gif"/>
+                                        </ice:panelGrid>
+                                    </f:facet>
+                                    <ice:panelGroup>
+                                        <ice:outputText value="#{tab.removable}"/>
+                                    </ice:panelGroup>
+                                </ice:panelTab>
+                            </ice:panelTabSet>
+                        </ice:form>
                     </f:facet>
 
                     <f:facet name="south">
-                        <ice:outputLink target="_blank" value="http://www.dkfz.de">
-                            <ice:graphicImage url="images/dkfz.gif" height="30"/>
-                        </ice:outputLink>
+                        <ice:panelGroup>
+                            <ice:outputLink target="_blank" value="http://www.ngfn.de/">
+                                <ice:graphicImage url="images/ngfn.jpg" height="30"/>
+                            </ice:outputLink>
+                            <ice:outputLink target="_blank" value="http://www.dkfz.de/">
+                                <ice:graphicImage url="images/dkfz.gif" height="30"/>
+                            </ice:outputLink>
+                        </ice:panelGroup>
                     </f:facet>
 
                 </ice:panelBorder>
