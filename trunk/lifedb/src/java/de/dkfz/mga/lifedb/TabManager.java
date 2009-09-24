@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 public class TabManager implements Serializable {
 
-    private int tabIndex = -1;
+    private int tabIndex = 0;
     private List tabs = new ArrayList();
 
     public TabManager() {
@@ -21,7 +21,6 @@ public class TabManager implements Serializable {
 
     public void add(Tab tab) {
         this.tabs.add(tab);
-        this.tabIndex++;
     }
 
     public void add(Tab[] tabs) {
@@ -32,12 +31,11 @@ public class TabManager implements Serializable {
 
     public void remove(Tab tab) {
         this.tabs.remove(tab);
-        this.tabIndex--;
     }
 
     public void removeAll() {
         this.tabs.clear();
-        this.tabIndex = -1;
+        this.tabIndex = 0;
     }
 
     public List getTabs() {
@@ -110,4 +108,5 @@ public class TabManager implements Serializable {
         }
 
     }
+
 }
