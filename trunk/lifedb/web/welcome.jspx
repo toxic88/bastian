@@ -1,0 +1,13 @@
+<div xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ice:panelTabSet rendered="#{TabManager.activeTabPanel == 0}">
+
+        <ice:panelTab label="Willkommen">
+            <ice:panelGroup>
+                Welcome to LifeDB!
+            </ice:panelGroup>
+        </ice:panelTab>
+
+    </ice:panelTabSet>
+
+</div>

@@ -15,7 +15,7 @@
 
                     <f:facet name="west">
                         <ice:panelGroup id="west">
-                            <ice:graphicImage url="images/lifedb.jpg" width="170"/>
+                            <ice:graphicImage url="images/LIFEdb_logo_noback.gif" width="170"/>
                             <ice:panelGroup id="navigation">
                                 <jsp:directive.include file="navigation.jspx"/>
                             </ice:panelGroup>
@@ -24,22 +24,15 @@
 
                     <f:facet name="center">
                         <ice:form id="tabsForm">
-                            <ice:panelTabSet value="#{TabManager.tabs}"
-                                             selectedIndex="#{TabManager.tabIndex}"
-                                             var="tab">
-                                <ice:panelTab label="#{tab.label}">
-                                    <f:facet name="label">
-                                        <ice:panelGrid columns="2">
-                                            <ice:outputText value="#{tab.label}"/>
-                                            <ice:commandButton disabled= "#{tab.removable == false}"
-                                                               image="images/rime/cal_off.gif"/>
-                                        </ice:panelGrid>
-                                    </f:facet>
-                                    <ice:panelGroup>
-                                        <ice:outputText value="#{tab.removable}"/>
-                                    </ice:panelGroup>
-                                </ice:panelTab>
-                            </ice:panelTabSet>
+
+                            <jsp:directive.include file="welcome.jspx"/>
+
+                            <jsp:directive.include file="SearchClones.jspx"/>
+
+                            <jsp:directive.include file="SearchPathways.jspx"/>
+
+                            <jsp:directive.include file="SearchSubcellularLocations.jspx"/>
+
                         </ice:form>
                     </f:facet>
 

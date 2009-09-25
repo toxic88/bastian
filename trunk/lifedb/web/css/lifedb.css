@@ -17,8 +17,18 @@ body, html {
     margin-bottom:0;
 }
 
+#tabsForm .icePnlTbSet > tbody > tr > td > table {
+    width:100%; /* fix for webkit (safari, chrome) */
+}
+
 #tabsForm .icePnlTbSetCnt {
     vertical-align:top;
+    height:0; /* fix to make overflow auto work in ff, opera (not working in ie...) */
+}
+
+#tabsForm .icePnlTbSetCnt > div {
+    overflow:auto;
+    height:100%;
 }
 
 .icePnlTbSetSpcr {
@@ -55,11 +65,11 @@ body, html {
     width:200px;
     background-color:#06418a; /* #285ea6, #DFE8F6, #C9D8F0 */
     vertical-align:top;
-    text-align:center;
 }
 
 #west {
     width:200px; /* IE bugfix */
+    text-align:center;
 }
 
 .icePnlBrdrCenter {

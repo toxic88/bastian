@@ -1,9 +1,9 @@
 <ice:form xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:ice="http://www.icesoft.com/icefaces/component">
 
     <ul>
-        <li><ice:commandLink>Search for Clones</ice:commandLink></li>
-        <li><ice:commandLink>Search for Pathways</ice:commandLink></li>
-        <li><ice:commandLink>Search for Subcellular Locations</ice:commandLink></li>
+        <li><ice:commandLink actionListener="#{TabManager.showSearchClones}">Search for Clones</ice:commandLink></li>
+        <li><ice:commandLink actionListener="#{TabManager.showSearchPathways}">Search for Pathways</ice:commandLink></li>
+        <li><ice:commandLink actionListener="#{TabManager.showSearchSubcellularLocations}">Search for Subcellular Locations</ice:commandLink></li>
     </ul>
 
 </ice:form>

@@ -7,15 +7,4 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http:
         <managed-bean-class>de.dkfz.mga.lifedb.TabManager</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
-    <managed-bean>
-        <description>Abstract Tab class.</description>
-        <managed-bean-name>Tab</managed-bean-name>
-        <managed-bean-class>de.dkfz.mga.lifedb.Tab</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>CloneSearch</managed-bean-name>
-        <managed-bean-class>de.dkfz.mga.lifedb.CloneSearch</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
 </faces-config>
