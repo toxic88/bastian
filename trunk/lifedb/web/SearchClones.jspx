@@ -4,7 +4,16 @@
 
         <ice:panelTab label="Search by Gene IDs">
             <ice:panelGroup>
-                <h1>just another tab..</h1>
+                <h1>Icefaces Playground :)</h1>
+                <ice:commandLink>Test</ice:commandLink>
+                <ice:commandButton value="Test"/>
+                <ice:inputText value="Test"/>
+                <ice:inputText value="Test" disabled="true"/>
+                <ice:inputSecret value="Test"/>
+                <ice:inputTextarea value="Test"/>
+                <ice:inputFile/> <!-- Renders upload button too -->
+                <ice:selectBooleanCheckbox/>
+                <ice:selectInputDate/>
             </ice:panelGroup>
         </ice:panelTab>
 

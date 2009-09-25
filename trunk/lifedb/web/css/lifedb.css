@@ -11,9 +11,8 @@ body, html {
 
 
 /* tabs */
-/* The Tabs content should be 100% height */
 #tabsForm, #tabsForm .icePnlTbSet {
-    height:100%;
+    height:100%; /* The Tabs content should be 100% height */
     margin-bottom:0;
 }
 
@@ -86,7 +85,7 @@ body, html {
 
 /* links */
 a, .iceCmdLnk { /* rime.css override */
-    color:#3764A0;
+    color:#285ea6; /* #3764A0 */
     text-decoration:none;
 }
 
