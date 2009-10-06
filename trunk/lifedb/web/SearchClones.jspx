@@ -4,16 +4,17 @@
 
         <ice:panelTab label="Search by Gene IDs">
             <ice:panelGroup>
-                <h1>Icefaces Playground :)</h1>
-                <ice:commandLink>Test</ice:commandLink>
-                <ice:commandButton value="Test"/>
-                <ice:inputText value="Test"/>
-                <ice:inputText value="Test" disabled="true"/>
-                <ice:inputSecret value="Test"/>
-                <ice:inputTextarea value="Test"/>
-                <ice:inputFile/> <!-- Renders upload button too -->
-                <ice:selectBooleanCheckbox/>
-                <ice:selectInputDate/>
+
+                <p>Please insert here your list of gene IDs<br />
+                (Just one gene name or ID in one line)</p>
+
+
+                <ice:inputTextarea cols="40" rows="20"/><br />
+
+                <ice:inputFile autoUpload="true"/>
+
+
+
             </ice:panelGroup>
         </ice:panelTab>
 

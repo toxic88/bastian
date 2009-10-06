@@ -25,7 +25,7 @@
                     <f:facet name="center">
                         <ice:form id="tabsForm">
 
-                            <jsp:directive.include file="welcome.jspx"/>
+                            <jsp:directive.include file="Welcome.jspx"/>
 
                             <jsp:directive.include file="SearchClones.jspx"/>
 
