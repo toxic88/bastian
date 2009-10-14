@@ -93,6 +93,12 @@ Danke <a href="mailto:b.buchholz@dkfz.de">Bastian Buchholz</a>
 
 <h3>History</h3>
 <ul>
+  <li>14.10.2009
+    <ul>
+      <li>Dateien k&ouml;nnen wieder hochgeladen werden</li>
+      <li>Wenn ein Datenblatt schon hochgeladen wurde, wird es im Edit-Formular angezeigt</li>
+    </ul>
+  </li>
   <li>17.09.2009:
     <ul>
       <li>Umbennant: Supplier => Gene name</li>

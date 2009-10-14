@@ -250,6 +250,16 @@ foreach($western as $id => $val) {
 
 <h3>Other <img class="cursor" src="images/delete.png" onclick="$(this).parent().next().find(':input').clear();" /></h3>
 <table class="table_view">
+<?php
+    if (trim($anti['Data_Sheet_Path']) !== '') {
+?>
+    <tr>
+        <th class="table_header">Current Datasheet:</th>
+        <td><a href="<?php echo $anti['Data_Sheet_Path']; ?>" target="_blank"><?php echo array_pop(explode('/', $anti['Data_Sheet_Path'])); ?></a></td>
+    </tr>
+<?php
+    }
+?>
  <tr class="table_header alt">
   <th>Datasheet:</th>
   <td><input type="file" name="Data_Sheet" id="Data_Sheet" /></td>
