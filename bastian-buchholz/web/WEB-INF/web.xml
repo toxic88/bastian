@@ -2,18 +2,13 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
     <servlet>
-        <servlet-name>Test</servlet-name>
-        <servlet-class>de.bastian.server.TestImpl</servlet-class>
+        <servlet-name>User</servlet-name>
+        <servlet-class>de.bastian.server.UserImpl</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <servlet-name>User</servlet-name>
+        <url-pattern>/de.bastian.Main/user</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/de.bastian.Main/test</url-pattern>
-    </servlet-mapping>
-
     <session-config>
         <session-timeout>
             30
