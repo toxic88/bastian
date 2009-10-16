@@ -7,7 +7,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable(identityType = IdentityType.APPLICATION)
+@PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "false")
 public class UserTable implements Serializable {
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -23,8 +23,6 @@ public class UserTable implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
-    // Accessors for the fields.  JDO doesn't use these, but your application does.
 
     public Long getId() {
         return id;
@@ -44,6 +42,10 @@ public class UserTable implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String[] toArray() {
+        return new String[]{ this.getId().toString(), this.getFirstName(), this.getLastName() };
     }
 
 }
