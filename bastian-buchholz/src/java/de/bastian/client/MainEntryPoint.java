@@ -12,19 +12,20 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.RootPanel;
+import de.bastian.client.rpc.ServiceManager;
 import java.util.List;
 
 public class MainEntryPoint implements EntryPoint {
 
     final FormPanel fp = new FormPanel();
     final FlexTable table = new FlexTable();
-    final TextField<String> firstName = new TextField<String>();
-    final TextField<String> lastName = new TextField<String>();
+    final TextField<String> username = new TextField<String>();
+    final TextField<String> password = new TextField<String>();
 
     public void reloadTable() {
         AsyncCallback<List<String[]>> callback = new AsyncCallback<List<String[]>>() {
             public void onFailure(Throwable caught) {
-                // TODO: Do something with errors.
+                Window.alert(caught.toString());
             }
 
             public void onSuccess(List<String[]> result) {
@@ -33,16 +34,17 @@ public class MainEntryPoint implements EntryPoint {
                 }
                 int i = 0;
                 for (String[] user : result) {
-                    table.setText(i, 0, user[0]);
-                    table.setText(i, 1, user[1]);
-                    table.setText(i, 2, user[2]);
-                    table.setText(i, 3, user[3]);
+                    int j = 0;
+                    for (String field : user) {
+                        table.setText(i, j, field);
+                        j++;
+                    }
                     i++;
                 }
             }
         };
 
-        getService().getList(callback);
+        ServiceManager.getUserService().getAll(callback);
     }
 
     public void onModuleLoad() {
@@ -50,24 +52,28 @@ public class MainEntryPoint implements EntryPoint {
         Button createUserBtn = new Button("Create new User!", new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent event) {
 
-                if (firstName.getValue() == null || lastName.getValue() == null) {
+                if (username.getValue() == null || password.getValue() == null) {
                     return;
                 }
 
-                AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
                     public void onFailure(Throwable caught) {
-                        // TODO: Do something with errors.
+                        Window.alert(caught.toString());
                     }
 
-                    public void onSuccess(Void result) {
-                        reloadTable();
+                    public void onSuccess(Boolean result) {
+                        if (!result) {
+                            Window.alert("User allready exists!");
+                        } else {
+                            reloadTable();
+                        }
                     }
                 };
 
-                getService().createUser(firstName.getValue(), lastName.getValue(), "test", callback);
+                ServiceManager.getUserService().createUser(username.getValue(), password.getValue(), callback);
 
-                firstName.setValue(null);
-                lastName.setValue(null);
+                username.setValue(null);
+                password.setValue(null);
             }
         });
 
@@ -77,42 +83,28 @@ public class MainEntryPoint implements EntryPoint {
             }
         });
 
-        Button checkPasswordBtn = new Button("Check password!", new SelectionListener<ButtonEvent>() {
+        Button loginButton = new Button("Login", new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
-                    public void onFailure(Throwable caught) {
-                        // TODO: Do something with errors.
-                    }
-
-                    public void onSuccess(Boolean result) {
-                        Window.alert(result.toString());
-                    }
-                };
-
-                getService().checkPassword("tes", callback);
+                LoginWindow.get().show();
             }
         });
 
-        firstName.setFieldLabel("First Name");
-        lastName.setFieldLabel("Last Name");
+        username.setFieldLabel("First Name");
+        password.setFieldLabel("Last Name");
 
         fp.setHeading("Create new user");
         fp.setWidth(300);
         fp.setFrame(true);
-        fp.add(firstName, new FormData("100%"));
-        fp.add(lastName, new FormData("100%"));
+        fp.add(username, new FormData("100%"));
+        fp.add(password, new FormData("100%"));
         fp.addButton(createUserBtn);
         fp.addButton(listUserBtn);
-        fp.addButton(checkPasswordBtn);
+        fp.addButton(loginButton);
 
         RootPanel.get().add(fp);
         RootPanel.get().add(table);
 
-    }
-
-    public static UserManagerAsync getService() {
-        return GWT.create(UserManager.class);
     }
 
 }

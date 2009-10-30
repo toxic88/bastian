@@ -3,6 +3,7 @@ package de.bastian.db;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import java.util.Date;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -18,19 +19,23 @@ public class User implements Serializable {
 
     @Persistent
     @Column(allowsNull = "false")
-    private String firstName;
-
-    @Persistent
-    @Column(allowsNull = "false")
-    private String lastName;
+    private String username;
 
     @Persistent
     @Column(allowsNull = "false")
     private byte[] password;
 
-    public User(String firstName, String lastName, String password) {
-        this.setFirstName(firstName);
-        this.setLastName(lastName);
+    @Persistent
+    @Column(allowsNull = "false")
+    private Date createDate;
+
+    public User() {
+        this.createDate = new Date();
+    }
+
+    public User(String firstName, String password) {
+        this();
+        this.setUsername(firstName);
         this.setPassword(password);
     }
 
@@ -38,20 +43,12 @@ public class User implements Serializable {
         return this.id;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    public String getUsername() {
+        return this.username;
     }
     
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public byte[] getPassword() {
@@ -59,14 +56,18 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = this.passwordToHash(password);
+        this.password = User.passwordToHash(password);
+    }
+
+    public Date getCreateDate() {
+        return this.createDate;
     }
 
     public String[] toArray() {
-        return new String[]{ this.getId().toString(), this.getFirstName(), this.getLastName(), this.getPassword().toString() };
+        return new String[]{ this.getId().toString(), this.getUsername(), this.getCreateDate().toString() };
     }
 
-    private byte[] passwordToHash(String password) {
+    public static byte[] passwordToHash(String password) {
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             return md5.digest(password.getBytes());
@@ -76,7 +77,7 @@ public class User implements Serializable {
     }
 
     public boolean checkPassword(String password) {
-        return Arrays.equals(this.password, this.passwordToHash(password));
+        return Arrays.equals(this.password, User.passwordToHash(password));
     }
 
 }

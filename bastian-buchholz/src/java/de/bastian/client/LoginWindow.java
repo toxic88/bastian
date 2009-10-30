@@ -8,8 +8,9 @@ import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import de.bastian.client.rpc.ServiceManager;
+import de.bastian.client.overrides.FormPanel;
 
 public class LoginWindow extends Window {
 
@@ -50,21 +51,26 @@ public class LoginWindow extends Window {
         this.loginBtn = new Button("Login", new SelectionListener<ButtonEvent>() {
             @Override
             public void componentSelected(ButtonEvent ce) {
-                final String username = LoginWindow.get().username.getValue();
-                final String password = LoginWindow.get().password.getValue();
                 
-                AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+                if (username.getValue() == null || password.getValue() == null) {
+                    return;
+                }
+
+                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
                     public void onFailure(Throwable caught) {
-                        com.google.gwt.user.client.Window.alert("Something went wrong!");
+                        com.google.gwt.user.client.Window.alert(caught.toString());
                     }
 
-                    public void onSuccess(Void result) {
-                        com.google.gwt.user.client.Window.alert(username + " was created!");
+                    public void onSuccess(Boolean result) {
+                        com.google.gwt.user.client.Window.alert(result.toString());
+                        LoginWindow.get().hide();
                     }
                 };
 
-                //ServiceManager.getUserService().createUser(username, password, callback);
-                
+                ServiceManager.getUserService().login(username.getValue(), password.getValue(), callback);
+
+                username.setValue(null);
+                password.setValue(null);
             }
         });
         
@@ -101,6 +107,14 @@ public class LoginWindow extends Window {
         }
 
         return LoginWindow.instance;
+    }
+
+    @Override
+    protected void onShow() {
+        super.onShow();
+        this.username.setValue(null);
+        this.password.setValue(null);
+        this.fp.clearInvalid();
     }
     
 }

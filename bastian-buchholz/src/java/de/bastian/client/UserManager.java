@@ -7,10 +7,10 @@ import java.util.List;
 @RemoteServiceRelativePath("user")
 public interface UserManager extends RemoteService {
 
-    public boolean checkPassword(String password);
+    public boolean login(String username, String password);
 
-    public void createUser(String firstname, String lastname, String password);
+    public boolean createUser(String firstname, String password);
 
-    public List<String[]> getList();
+    public List<String[]> getAll();
 
 }
