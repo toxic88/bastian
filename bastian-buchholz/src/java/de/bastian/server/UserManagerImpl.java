@@ -1,28 +1,33 @@
 package de.bastian.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import de.bastian.client.User;
-import de.bastian.db.UserTable;
+import de.bastian.client.UserManager;
+import de.bastian.db.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-/**
- *
- * @author bastian
- */
-public class UserImpl extends RemoteServiceServlet implements User {
+public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
 
     private PersistenceManager getPersistenceManager() {
         return PMF.get().getPersistenceManager();
     }
 
-    public void createUser(String firstname, String lastname) {
+    public boolean checkPassword(String password) {
 
         PersistenceManager pm = getPersistenceManager();
 
-        UserTable user = new UserTable(firstname, lastname);
+        User user = pm.getObjectById(User.class, 1);
+
+        return user.checkPassword(password);
+    }
+
+    public void createUser(String firstname, String lastname, String password) {
+
+        PersistenceManager pm = getPersistenceManager();
+
+        User user = new User(firstname, lastname, password);
 
         try {
             pm.makePersistent(user);
@@ -36,13 +41,13 @@ public class UserImpl extends RemoteServiceServlet implements User {
 
         PersistenceManager pm = getPersistenceManager();
 
-        Query query = pm.newQuery(UserTable.class);
+        Query query = pm.newQuery(User.class);
 
         List ret = new ArrayList();
         try {
-            List<UserTable> users = (List<UserTable>) query.execute();
+            List<User> users = (List<User>) query.execute();
 
-            for (UserTable user : users) {
+            for (User user : users) {
                 ret.add(user.toArray());
             }
         } finally {

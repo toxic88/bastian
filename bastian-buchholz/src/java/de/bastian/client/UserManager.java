@@ -4,14 +4,12 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import java.util.List;
 
-/**
- *
- * @author bastian
- */
 @RemoteServiceRelativePath("user")
-public interface User extends RemoteService {
+public interface UserManager extends RemoteService {
 
-    public void createUser(String firstname, String lastname);
+    public boolean checkPassword(String password);
+
+    public void createUser(String firstname, String lastname, String password);
 
     public List<String[]> getList();
 

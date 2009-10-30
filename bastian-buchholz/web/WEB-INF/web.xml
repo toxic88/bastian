@@ -3,17 +3,12 @@
 
     <servlet>
         <servlet-name>User</servlet-name>
-        <servlet-class>de.bastian.server.UserImpl</servlet-class>
+        <servlet-class>de.bastian.server.UserManagerImpl</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>User</servlet-name>
         <url-pattern>/de.bastian.Main/user</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
