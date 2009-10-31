@@ -1,54 +1,35 @@
 package de.bastian.client;
 
+import com.extjs.gxt.ui.client.Style.LayoutRegion;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.extjs.gxt.ui.client.widget.grid.Grid;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
+import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.RootPanel;
 import de.bastian.client.rpc.ServiceManager;
-import java.util.List;
+import de.bastian.client.model.User;
 
-public class MainEntryPoint implements EntryPoint {
+public class MainEntryPoint extends Viewport implements EntryPoint {
 
     final FormPanel fp = new FormPanel();
-    final FlexTable table = new FlexTable();
-    final TextField<String> username = new TextField<String>();
-    final TextField<String> password = new TextField<String>();
+    public Grid<User> table = UserGrid.get();
+    public TextField<String> username = new TextField<String>();
+    public TextField<String> password = new TextField<String>();
 
-    public void reloadTable() {
-        AsyncCallback<List<String[]>> callback = new AsyncCallback<List<String[]>>() {
-            public void onFailure(Throwable caught) {
-                Window.alert(caught.toString());
-            }
-
-            public void onSuccess(List<String[]> result) {
-                for (int i = 0;i < table.getRowCount();i++) {
-                    table.removeRow(i);
-                }
-                int i = 0;
-                for (String[] user : result) {
-                    int j = 0;
-                    for (String field : user) {
-                        table.setText(i, j, field);
-                        j++;
-                    }
-                    i++;
-                }
-            }
-        };
-
-        ServiceManager.getUserService().getAll(callback);
+    public MainEntryPoint() {
+        this.setLayout(new BorderLayout());
     }
 
     public void onModuleLoad() {
-
         Button createUserBtn = new Button("Create new User!", new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent event) {
 
@@ -65,7 +46,7 @@ public class MainEntryPoint implements EntryPoint {
                         if (!result) {
                             Window.alert("User allready exists!");
                         } else {
-                            reloadTable();
+                            table.getStore().getLoader().load();
                         }
                     }
                 };
@@ -79,7 +60,7 @@ public class MainEntryPoint implements EntryPoint {
 
         Button listUserBtn = new Button("Get all users!", new SelectionListener<ButtonEvent>() {
             public void componentSelected(ButtonEvent event) {
-                reloadTable();
+                table.getStore().getLoader().load();
             }
         });
 
@@ -91,7 +72,8 @@ public class MainEntryPoint implements EntryPoint {
         });
 
         username.setFieldLabel("First Name");
-        password.setFieldLabel("Last Name");
+        password.setFieldLabel("Password");
+        password.setPassword(true);
 
         fp.setHeading("Create new user");
         fp.setWidth(300);
@@ -102,9 +84,10 @@ public class MainEntryPoint implements EntryPoint {
         fp.addButton(listUserBtn);
         fp.addButton(loginButton);
 
-        RootPanel.get().add(fp);
-        RootPanel.get().add(table);
-
+        this.add(fp, new BorderLayoutData(LayoutRegion.CENTER));
+        this.add(table, new BorderLayoutData(LayoutRegion.SOUTH));
+        
+        RootPanel.get().add(this);
     }
 
 }

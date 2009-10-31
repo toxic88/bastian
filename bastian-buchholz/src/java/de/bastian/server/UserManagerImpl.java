@@ -1,6 +1,6 @@
 package de.bastian.server;
 
-import de.bastian.server.rpc.MyRemoteServiceServlet;
+import de.bastian.server.rpc.RemoteServiceServlet;
 import de.bastian.client.UserManager;
 import de.bastian.db.User;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-public class UserManagerImpl extends MyRemoteServiceServlet implements UserManager {
+public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
 
     public boolean login(String username, String password) {
         PersistenceManager pm = this.getPersistenceManager();
@@ -48,7 +48,7 @@ public class UserManagerImpl extends MyRemoteServiceServlet implements UserManag
         return true;
     }
 
-    public List<String[]> getAll() {
+    public List<de.bastian.client.model.User> getAll() {
         PersistenceManager pm = this.getPersistenceManager();
         Query query = pm.newQuery(User.class);
 
@@ -56,7 +56,7 @@ public class UserManagerImpl extends MyRemoteServiceServlet implements UserManag
         try {
             List<User> users = (List<User>) query.execute();
             for (User user : users) {
-                ret.add(user.toArray());
+                ret.add(new de.bastian.client.model.User(user.getUsername(), user.getCreateDate()));
             }
         } finally {
             pm.close();

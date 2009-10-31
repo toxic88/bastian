@@ -1,7 +1,10 @@
 package de.bastian.client;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.event.WindowEvent;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
@@ -12,109 +15,100 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.bastian.client.rpc.ServiceManager;
 import de.bastian.client.overrides.FormPanel;
 
-public class LoginWindow extends Window {
+public class LoginWindow {
 
-    private static LoginWindow instance = null;
+    private static Window win = null;
 
-    private FormPanel fp;
+    private static FormData formData = new FormData("100%");
 
-    private TextField<String> username;
-    private TextField<String> password;
+    public static Window get() {
+        if (LoginWindow.win == null) {
+            final FormPanel fp = new FormPanel();
+            fp.setHeaderVisible(false);
+            fp.setBorders(false);
+            fp.setBodyBorder(false);
+            fp.setPadding(5);
+            fp.setLabelWidth(60);
 
-    private Button loginBtn;
-    private Button cancelBtn;
+            final TextField<String> username = new TextField<String>();
+            username.setFieldLabel("Username");
+            username.setAllowBlank(false);
+            username.setMessageTarget("tooltip");
 
-    private FormData formData = new FormData("100%");
+            final TextField<String> password = new TextField<String>();
+            password.setFieldLabel("Password");
+            password.setAllowBlank(false);
+            password.setMessageTarget("tooltip");
+            password.setPassword(true);
 
-    public LoginWindow() {
-        this.setHeading("Login");
-        
-        this.fp = new FormPanel();
-        this.fp.setHeaderVisible(false);
-        this.fp.setBorders(false);
-        this.fp.setBodyBorder(false);
-        this.fp.setPadding(5);
-        this.fp.setLabelWidth(60);
+            fp.add(username, formData);
+            fp.add(password, formData);
 
-        this.username = new TextField<String>();
-        this.username.setFieldLabel("Username");
-        this.username.setAllowBlank(false);
-        this.username.setMessageTarget("tooltip");
+            Button loginBtn = new Button("Login", new SelectionListener<ButtonEvent>() {
+                @Override
+                public void componentSelected(ButtonEvent ce) {
 
-        this.password = new TextField<String>();
-        this.password.setFieldLabel("Password");
-        this.password.setAllowBlank(false);
-        this.password.setMessageTarget("tooltip");
-        this.password.setPassword(true);
-        
+                    if (username.getValue() == null || password.getValue() == null) {
+                        return;
+                    }
 
-        this.loginBtn = new Button("Login", new SelectionListener<ButtonEvent>() {
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                
-                if (username.getValue() == null || password.getValue() == null) {
-                    return;
+                    AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+                        public void onFailure(Throwable caught) {
+                            com.google.gwt.user.client.Window.alert(caught.toString());
+                        }
+
+                        public void onSuccess(Boolean result) {
+                            com.google.gwt.user.client.Window.alert(result.toString());
+                            LoginWindow.get().hide();
+                        }
+                    };
+
+                    ServiceManager.getUserService().login(username.getValue(), password.getValue(), callback);
+
+                    username.setValue(null);
+                    password.setValue(null);
                 }
+            });
 
-                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
-                    public void onFailure(Throwable caught) {
-                        com.google.gwt.user.client.Window.alert(caught.toString());
-                    }
+            new FormButtonBinding(fp).addButton(loginBtn);
 
-                    public void onSuccess(Boolean result) {
-                        com.google.gwt.user.client.Window.alert(result.toString());
-                        LoginWindow.get().hide();
-                    }
-                };
+            Button cancelBtn = new Button("Cancel", new SelectionListener<ButtonEvent>() {
+                @Override
+                public void componentSelected(ButtonEvent ce) {
+                    LoginWindow.get().hide();
+                }
+            });
 
-                ServiceManager.getUserService().login(username.getValue(), password.getValue(), callback);
+            win = new Window();
 
-                username.setValue(null);
-                password.setValue(null);
-            }
-        });
-        
-        this.cancelBtn = new Button("Cancel", new SelectionListener<ButtonEvent>() {
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                LoginWindow.get().hide();
-            }
-        });
+            win.setLayout(new FitLayout());
 
-        this.setLayout(new FitLayout());
+            win.addButton(loginBtn);
+            win.addButton(cancelBtn);
 
-        this.fp.add(this.username, this.formData);
-        this.fp.add(this.password, this.formData);
+            win.add(fp);
+            
+            win.setHeading("Login");
+            win.setModal(true);
+            win.setFocusWidget(username);
+            win.setDraggable(false);
+            win.setResizable(false);
+            win.setWidth(250);
+            win.setHeight(126);
 
-        this.addButton(this.loginBtn);
-        this.addButton(this.cancelBtn);
+            win.addListener(Events.BeforeShow, new Listener<WindowEvent>() {
+                @Override
+                public void handleEvent(WindowEvent be) {
+                    username.setValue(null);
+                    password.setValue(null);
+                    fp.clearInvalid();
+                }
+            });
 
-        this.add(this.fp);
-
-        this.setModal(true);
-        this.setFocusWidget(this.username);
-        this.setDraggable(false);
-        this.setResizable(false);
-        this.setWidth(250);
-        this.setHeight(126);
-
-        new FormButtonBinding(this.fp).addButton(this.loginBtn);
-    }
-
-    public static LoginWindow get() {
-        if (LoginWindow.instance == null) {
-            LoginWindow.instance = new LoginWindow();
+            LoginWindow.win = win;
         }
 
-        return LoginWindow.instance;
+        return LoginWindow.win;
     }
 
-    @Override
-    protected void onShow() {
-        super.onShow();
-        this.username.setValue(null);
-        this.password.setValue(null);
-        this.fp.clearInvalid();
-    }
-    
 }
