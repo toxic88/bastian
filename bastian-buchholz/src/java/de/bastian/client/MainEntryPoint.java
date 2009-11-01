@@ -7,7 +7,6 @@ import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
-import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
@@ -17,11 +16,12 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 import de.bastian.client.rpc.ServiceManager;
 import de.bastian.client.model.User;
+import de.bastian.client.overrides.EditorGrid;
 
 public class MainEntryPoint extends Viewport implements EntryPoint {
 
     final FormPanel fp = new FormPanel();
-    public Grid<User> table = UserGrid.get();
+    public EditorGrid<User> table = UserGrid.get();
     public TextField<String> username = new TextField<String>();
     public TextField<String> password = new TextField<String>();
 
