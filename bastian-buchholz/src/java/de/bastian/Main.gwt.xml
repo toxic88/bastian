@@ -2,6 +2,6 @@
 <module>
     <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.extjs.gxt.ui.GXT"/>
-    <entry-point class="de.bastian.client.MainEntryPoint"/> -->
+    <entry-point class="de.bastian.client.MainEntryPoint"/>
     <!-- <entry-point class="de.bastian.client.Application"/> -->
 </module>
