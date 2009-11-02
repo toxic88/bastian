@@ -1,5 +1,7 @@
 package de.bastian.client;
 
+import de.bastian.client.widget.UserGrid;
+import de.bastian.client.widget.LoginWindow;
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;

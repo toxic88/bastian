@@ -1,4 +1,4 @@
-package de.bastian.client;
+package de.bastian.client.widget;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
