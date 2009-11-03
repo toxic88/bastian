@@ -10,7 +10,11 @@ import de.bastian.server.rpc.RemoteServiceServlet;
 
 public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
 
-  public boolean createUser(String username, String password) {
+  private boolean checkUsername(String username) {
+    if (username == null || username.equals("")) {
+      return false;
+    }
+
     PersistenceManager pm = this.getPersistenceManager();
 
     Query query = pm.newQuery(User.class, "username == usernameParam");
@@ -21,6 +25,15 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     if (users.size() > 0) {
       return false;
     }
+    return true;
+  }
+
+  public boolean createUser(String username, String password) {
+    if (!this.checkUsername(username)) {
+      return false;
+    }
+
+    PersistenceManager pm = this.getPersistenceManager();
 
     try {
       pm.makePersistent(new User(username, password));
@@ -33,11 +46,15 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
   }
 
   public boolean updateUser(de.bastian.client.model.User updateUser) {
+    if (!this.checkUsername(updateUser.getUsername())) {
+      return false;
+    }
+
     PersistenceManager pm = this.getPersistenceManager();
 
-    User user = pm.getObjectById(User.class, updateUser.getId());
-
     try {
+      User user = pm.getObjectById(User.class, updateUser.getId());
+
       user.setUsername(updateUser.getUsername());
     } catch (Exception e) {
       return false;
@@ -50,9 +67,9 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
   public boolean removeUser(Long id) {
     PersistenceManager pm = this.getPersistenceManager();
 
-    User user = pm.getObjectById(User.class, id);
-
     try {
+      User user = pm.getObjectById(User.class, id);
+
       pm.deletePersistent(user);
     } catch (Exception e) {
       return false;
@@ -68,11 +85,13 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
 
   public List<de.bastian.client.model.User> getAll() {
     PersistenceManager pm = this.getPersistenceManager();
+
     Query query = pm.newQuery(User.class);
 
     List ret = new ArrayList();
     try {
       List<User> users = (List<User>) query.execute();
+
       for (User user : users) {
         ret.add(new de.bastian.client.model.User(user.getId(), user.getUsername(), user.getCreateDate()));
       }

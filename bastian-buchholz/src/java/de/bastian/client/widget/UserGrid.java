@@ -11,7 +11,6 @@ import com.extjs.gxt.ui.client.data.ListLoader;
 import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.data.ModelReader;
 import com.extjs.gxt.ui.client.data.RpcProxy;
-import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
@@ -25,7 +24,6 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
-import com.google.gwt.user.client.Window;
 import de.bastian.client.Application;
 import de.bastian.client.UserManagerAsync;
 import de.bastian.client.model.User;
@@ -79,17 +77,20 @@ public class UserGrid {
       g.addListener(Events.AfterEdit, new Listener<GridEvent<User>>() {
 
         public void handleEvent(GridEvent<User> be) {
-
           final Record rec = be.getRecord();
 
           AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
 
             public void onFailure(Throwable caught) {
-              rec.reject(false);
+              this.onSuccess(false);
             }
 
             public void onSuccess(Boolean result) {
-              rec.commit(false);
+              if (result) {
+                rec.commit(false);
+              } else {
+                rec.reject(false);
+              }
             }
 
           };
