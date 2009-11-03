@@ -537,7 +537,6 @@ exists or setup the property manually. For example like this:
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
     <target depends="init" if="dist.ear.dir" name="library-inclusion-in-manifest">
-        <copyfiles files="${file.reference.gwt-dev-linux.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.gwt-dev-linux.jar" todir="${dist.ear.dir}"/>
         <copyfiles files="${file.reference.gwt-user.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.gwt-user.jar" todir="${dist.ear.dir}"/>
         <copyfiles files="${file.reference.gwt-servlet.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.gwt-servlet.jar" todir="${dist.ear.dir}"/>
         <copyfiles files="${file.reference.gxt.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.gxt.jar" todir="${dist.ear.dir}"/>
@@ -547,11 +546,10 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.jdo2-api-2.3-eb.jar}" iftldtodir="${build.web.dir}/WEB-INF" manifestproperty="manifest.file.reference.jdo2-api-2.3-eb.jar" todir="${dist.ear.dir}"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.file.reference.gwt-dev-linux.jar} ${manifest.file.reference.gwt-user.jar} ${manifest.file.reference.gwt-servlet.jar} ${manifest.file.reference.gxt.jar} ${manifest.file.reference.appengine-api.jar} ${manifest.file.reference.geronimo-jpa_3.0_spec-1.1.1.jar} ${manifest.file.reference.geronimo-jta_1.1_spec-1.1.1.jar} ${manifest.file.reference.jdo2-api-2.3-eb.jar} "/>
+            <attribute name="Class-Path" value="${manifest.file.reference.gwt-user.jar} ${manifest.file.reference.gwt-servlet.jar} ${manifest.file.reference.gxt.jar} ${manifest.file.reference.appengine-api.jar} ${manifest.file.reference.geronimo-jpa_3.0_spec-1.1.1.jar} ${manifest.file.reference.geronimo-jta_1.1_spec-1.1.1.jar} ${manifest.file.reference.jdo2-api-2.3-eb.jar} "/>
         </manifest>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
-        <copyfiles files="${file.reference.gwt-dev-linux.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.gwt-user.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.gwt-servlet.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.gxt.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
