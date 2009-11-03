@@ -1,7 +1,7 @@
 package de.bastian.client;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import java.util.List;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.bastian.client.model.User;
 
 public interface UserManagerAsync {

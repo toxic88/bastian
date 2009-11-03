@@ -12,9 +12,9 @@ public class Grid<M extends ModelData> extends com.extjs.gxt.ui.client.widget.gr
         this.store = store;
         this.cm = cm;
         this.view = new BufferView();
-        focusable = true;
-        baseStyle = "x-grid-panel";
-        setSelectionModel(new GridSelectionModel<M>());
+        this.focusable = true;
+        this.baseStyle = "x-grid-panel";
+        this.setSelectionModel(new GridSelectionModel<M>());
     }
 
 }

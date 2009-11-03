@@ -63,10 +63,6 @@ public class User implements Serializable {
         return this.createDate;
     }
 
-    public String[] toArray() {
-        return new String[]{ this.getId().toString(), this.getUsername(), this.getCreateDate().toString() };
-    }
-
     public static byte[] passwordToHash(String password) {
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");

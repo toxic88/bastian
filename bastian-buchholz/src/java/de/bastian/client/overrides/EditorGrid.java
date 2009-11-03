@@ -10,11 +10,10 @@ public class EditorGrid<M extends ModelData> extends com.extjs.gxt.ui.client.wid
 
     public EditorGrid(ListStore store, ColumnModel cm) {
         super(store, cm);
-        setSelectionModel(new GridSelectionModel<M>());
-        setTrackMouseOver(false);
+        this.setSelectionModel(new GridSelectionModel<M>());
 
-        editSupport = getEditSupport();
-        editSupport.bind(this);
+        this.editSupport = getEditSupport();
+        this.editSupport.bind(this);
         this.view = new BufferView();
         this.setClicksToEdit(ClicksToEdit.TWO);
     }

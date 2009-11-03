@@ -1,12 +1,12 @@
 package de.bastian.server;
 
-import de.bastian.server.rpc.RemoteServiceServlet;
-import de.bastian.client.UserManager;
-import de.bastian.db.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import de.bastian.db.User;
+import de.bastian.client.UserManager;
+import de.bastian.server.rpc.RemoteServiceServlet;
 
 public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
 

@@ -1,6 +1,5 @@
 package de.bastian.client.controller;
 
-import com.extjs.gxt.ui.client.event.EventType;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import de.bastian.client.AppEvents;
@@ -11,19 +10,18 @@ public class LoginController extends Controller {
     private LoginView loginView;
     
     public LoginController() {
-        registerEventTypes(AppEvents.Login);
+        this.registerEventTypes(AppEvents.Login);
     }
 
     @Override
     protected void initialize() {
-        loginView = new LoginView(this);
+        this.loginView = new LoginView(this);
     }
 
     @Override
     public void handleEvent(AppEvent event) {
-        EventType type = event.getType();
-        if (type == AppEvents.Login) {
-            forwardToView(loginView, event);
+        if (event.getType() == AppEvents.Login) {
+            this.forwardToView(this.loginView, event);
         }
     }
 

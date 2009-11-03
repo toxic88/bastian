@@ -10,4 +10,10 @@ public class AppEvents {
 
     public static final EventType Error = new EventType();
 
+    public class Tokens {
+
+        public static final String Login = "Login";
+
+    }
+
 }

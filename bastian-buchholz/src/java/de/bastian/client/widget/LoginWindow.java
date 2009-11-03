@@ -79,24 +79,24 @@ public class LoginWindow {
                 }
             });
 
-            win = new Window();
+            Window w = new Window();
 
-            win.setLayout(new FitLayout());
+            w.setLayout(new FitLayout());
 
-            win.addButton(loginBtn);
-            win.addButton(cancelBtn);
+            w.addButton(loginBtn);
+            w.addButton(cancelBtn);
 
-            win.add(fp);
+            w.add(fp);
             
-            win.setHeading("Login");
-            win.setModal(true);
-            win.setFocusWidget(username);
-            win.setDraggable(false);
-            win.setResizable(false);
-            win.setWidth(250);
-            win.setHeight(126);
+            w.setHeading("Login");
+            w.setModal(true);
+            w.setFocusWidget(username);
+            w.setDraggable(false);
+            w.setResizable(false);
+            w.setWidth(250);
+            w.setHeight(126);
 
-            win.addListener(Events.BeforeShow, new Listener<WindowEvent>() {
+            w.addListener(Events.BeforeShow, new Listener<WindowEvent>() {
                 @Override
                 public void handleEvent(WindowEvent be) {
                     username.setValue(null);
@@ -105,7 +105,7 @@ public class LoginWindow {
                 }
             });
 
-            LoginWindow.win = win;
+            LoginWindow.win = w;
         }
 
         return LoginWindow.win;

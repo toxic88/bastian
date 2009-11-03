@@ -1,5 +1,9 @@
 package de.bastian.client.widget;
 
+import java.util.ArrayList;
+import java.util.List;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.extjs.gxt.ui.client.data.BaseListLoader;
 import com.extjs.gxt.ui.client.data.ListLoadResult;
 import com.extjs.gxt.ui.client.data.ListLoader;
@@ -14,13 +18,9 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
-import de.bastian.client.overrides.EditorGrid;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import de.bastian.client.rpc.ServiceManager;
 import de.bastian.client.model.User;
-import java.util.ArrayList;
-import java.util.List;
+import de.bastian.client.overrides.EditorGrid;
+import de.bastian.client.rpc.ServiceManager;
 
 public class UserGrid {
 
@@ -54,14 +54,15 @@ public class UserGrid {
 
             ColumnModel cm = new ColumnModel(columns);
 
-            UserGrid.grid = new EditorGrid<User>(store, cm);
-
-            UserGrid.grid.addListener(Events.Attach, new Listener<GridEvent<User>>() {
+            EditorGrid<User> g = new EditorGrid<User>(store, cm);
+            g.setBorders(true);
+            g.addListener(Events.Attach, new Listener<GridEvent<User>>() {
                 public void handleEvent(GridEvent<User> be) {
                     loader.load();
                 }
             });
 
+            UserGrid.grid = g;
         }
 
         return UserGrid.grid;
