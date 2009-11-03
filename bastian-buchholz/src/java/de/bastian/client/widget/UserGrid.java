@@ -1,5 +1,6 @@
 package de.bastian.client.widget;
 
+import com.extjs.gxt.ui.client.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -10,10 +11,12 @@ import com.extjs.gxt.ui.client.data.ListLoader;
 import com.extjs.gxt.ui.client.data.ModelData;
 import com.extjs.gxt.ui.client.data.ModelReader;
 import com.extjs.gxt.ui.client.data.RpcProxy;
+import com.extjs.gxt.ui.client.event.BaseEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.store.ListStore;
+import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Format;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
@@ -22,6 +25,9 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnData;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
+import com.google.gwt.user.client.Window;
+import de.bastian.client.Application;
+import de.bastian.client.UserManagerAsync;
 import de.bastian.client.model.User;
 import de.bastian.client.overrides.EditorGrid;
 import de.bastian.client.rpc.ServiceManager;
@@ -70,6 +76,29 @@ public class UserGrid {
 
       EditorGrid<User> g = new EditorGrid<User>(store, cm);
       g.setBorders(true);
+      g.addListener(Events.AfterEdit, new Listener<GridEvent<User>>() {
+
+        public void handleEvent(GridEvent<User> be) {
+
+          final Record rec = be.getRecord();
+
+          AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+
+            public void onFailure(Throwable caught) {
+              rec.reject(false);
+            }
+
+            public void onSuccess(Boolean result) {
+              rec.commit(false);
+            }
+
+          };
+
+          UserManagerAsync userService = (UserManagerAsync) Registry.get(Application.Services.User);
+          userService.updateUser((User) rec.getModel(), callback);
+        }
+
+      });
       g.addListener(Events.Attach, new Listener<GridEvent<User>>() {
 
         public void handleEvent(GridEvent<User> be) {

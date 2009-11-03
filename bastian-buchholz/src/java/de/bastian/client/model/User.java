@@ -8,25 +8,34 @@ public class User extends BaseModel {
   public User() {
   }
 
-  public User(String username, Date createDate) {
+  public User(Long id, String username, Date createDate) {
+    this.setId(id);
     this.setUsername(username);
     this.setCreateDate(createDate);
   }
 
-  public void setUsername(String username) {
-    this.set("username", username);
+  public Long getId() {
+    return (Long) this.get("id");
   }
 
-  public void setCreateDate(Date createDate) {
-    this.set("createDate", createDate);
+  public void setId(Long id) {
+    this.set("id", id);
   }
 
   public String getUsername() {
     return (String) this.get("username");
   }
 
+  public void setUsername(String username) {
+    this.set("username", username);
+  }
+
   public Date getCreateDate() {
     return (Date) this.get("createDate");
+  }
+
+  public void setCreateDate(Date createDate) {
+    this.set("createDate", createDate);
   }
 
 }
