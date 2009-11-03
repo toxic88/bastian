@@ -28,114 +28,121 @@ import de.bastian.client.UserManagerAsync;
 
 public class AppView extends View {
 
-    public static final String CENTER = "center";
-    public static final String WEST = "west";
+  public static final String CENTER = "center";
 
-    private Viewport viewport;
-    private LayoutContainer center;
-    private LayoutContainer west;
+  public static final String WEST = "west";
 
-    public AppView(Controller controller) {
-        super(controller);
-    }
+  private Viewport viewport;
 
-    private void initUI() {
-        this.viewport = new Viewport();
-        this.viewport.setLayout(new BorderLayout());
+  private LayoutContainer center;
 
-        this.createNorth();
-        this.createCenter();
-        this.createWest();
+  private LayoutContainer west;
 
-        Registry.register(AppView.CENTER, this.center);
-        Registry.register(AppView.WEST, this.west);
+  public AppView(Controller controller) {
+    super(controller);
+  }
 
-        RootPanel.get().add(this.viewport);
-    }
+  private void initUI() {
+    this.viewport = new Viewport();
+    this.viewport.setLayout(new BorderLayout());
 
-    private void createNorth() {
-        HtmlContainer northPanel = new HtmlContainer("<h1 class='header'>Bastian's Homepage</h1>");
+    this.createNorth();
+    this.createCenter();
+    this.createWest();
 
-        BorderLayoutData data = new BorderLayoutData(LayoutRegion.NORTH, 33);
-        data.setMargins(new Margins());
-        this.viewport.add(northPanel, data);
-    }
+    Registry.register(AppView.CENTER, this.center);
+    Registry.register(AppView.WEST, this.west);
 
-    private void createCenter() {
-        this.center = new LayoutContainer(new FitLayout());
+    RootPanel.get().add(this.viewport);
+  }
 
-        ContentPanel p = new ContentPanel(new FitLayout());
-        p.add(UserGrid.get());
-        p.setHeading("Users");
-        p.setFrame(true);
+  private void createNorth() {
+    HtmlContainer northPanel = new HtmlContainer("<h1 class='header'>Bastian's Homepage</h1>");
 
-        ToolBar toolBar = new ToolBar();
-        toolBar.setSpacing(2);
-        final TextField<String> username = new TextField<String>();
-        toolBar.add(username);
-        final TextField<String> password = new TextField<String>();
-        password.setPassword(true);
-        toolBar.add(password);
-        toolBar.add(new Button("Add", new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent event) {
+    BorderLayoutData data = new BorderLayoutData(LayoutRegion.NORTH, 33);
+    data.setMargins(new Margins());
+    this.viewport.add(northPanel, data);
+  }
 
-                if (username.getValue() == null || password.getValue() == null) {
-                    return;
-                }
+  private void createCenter() {
+    this.center = new LayoutContainer(new FitLayout());
 
-                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert(caught.toString());
-                    }
+    ContentPanel p = new ContentPanel(new FitLayout());
+    p.add(UserGrid.get());
+    p.setHeading("Users");
+    p.setFrame(true);
 
-                    public void onSuccess(Boolean result) {
-                        if (!result) {
-                            username.setValue(null);
-                            password.setValue(null);
-                            Window.alert("User allready exists!");
-                        } else {
-                            UserGrid.get().getStore().getLoader().load();
-                        }
-                    }
-                };
+    ToolBar toolBar = new ToolBar();
+    toolBar.setSpacing(2);
+    final TextField<String> username = new TextField<String>();
+    toolBar.add(username);
+    final TextField<String> password = new TextField<String>();
+    password.setPassword(true);
+    toolBar.add(password);
+    toolBar.add(new Button("Add", new SelectionListener<ButtonEvent>() {
 
-                UserManagerAsync userService = (UserManagerAsync) Registry.get(Application.Services.User);
-                userService.createUser(username.getValue(), password.getValue(), callback);
+      public void componentSelected(ButtonEvent event) {
 
-                username.setValue(null);
-                password.setValue(null);
-            }
-        }));
-        p.setTopComponent(toolBar);
-
-        this.center.add(p);
-
-        BorderLayoutData data = new BorderLayoutData(LayoutRegion.CENTER);
-        data.setMargins(new Margins(5, 5, 5, 5));
-
-        this.viewport.add(this.center, data);
-    }
-
-    private void createWest() {
-        this.west = new LayoutContainer(new FitLayout());
-
-        ContentPanel p = new ContentPanel();
-        p.addText("<h1 class='header'>Bastian's Homepage</h1>");
-        p.setHeading("Willkommen");
-        p.setFrame(true);
-        this.west.add(p);
-
-        BorderLayoutData data = new BorderLayoutData(LayoutRegion.WEST);
-        data.setMargins(new Margins(5, 0, 5, 5));
-
-        this.viewport.add(this.west, data);
-    }
-    
-    @Override
-    protected void handleEvent(AppEvent event) {
-        if (event.getType() == AppEvents.Init) {
-            this.initUI();
+        if (username.getValue() == null || password.getValue() == null) {
+          return;
         }
+
+        AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+
+          public void onFailure(Throwable caught) {
+            Window.alert(caught.toString());
+          }
+
+          public void onSuccess(Boolean result) {
+            if (!result) {
+              username.setValue(null);
+              password.setValue(null);
+              Window.alert("User allready exists!");
+            } else {
+              UserGrid.get().getStore().getLoader().load();
+            }
+          }
+
+        };
+
+        UserManagerAsync userService = (UserManagerAsync) Registry.get(Application.Services.User);
+        userService.createUser(username.getValue(), password.getValue(), callback);
+
+        username.setValue(null);
+        password.setValue(null);
+      }
+
+    }));
+    p.setTopComponent(toolBar);
+
+    this.center.add(p);
+
+    BorderLayoutData data = new BorderLayoutData(LayoutRegion.CENTER);
+    data.setMargins(new Margins(5, 5, 5, 5));
+
+    this.viewport.add(this.center, data);
+  }
+
+  private void createWest() {
+    this.west = new LayoutContainer(new FitLayout());
+
+    ContentPanel p = new ContentPanel();
+    p.addText("<h1 class='header'>Bastian's Homepage</h1>");
+    p.setHeading("Willkommen");
+    p.setFrame(true);
+    this.west.add(p);
+
+    BorderLayoutData data = new BorderLayoutData(LayoutRegion.WEST);
+    data.setMargins(new Margins(5, 0, 5, 5));
+
+    this.viewport.add(this.west, data);
+  }
+
+  @Override
+  protected void handleEvent(AppEvent event) {
+    if (event.getType() == AppEvents.Init) {
+      this.initUI();
     }
+  }
 
 }

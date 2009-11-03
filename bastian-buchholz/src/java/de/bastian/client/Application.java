@@ -15,50 +15,50 @@ import de.bastian.client.controller.LoginController;
 
 public class Application implements EntryPoint {
 
-    public class Services {
+  public class Services {
 
-        public static final String User = "user";
+    public static final String User = "user";
 
-    }
+  }
 
-    public void onModuleLoad() {
+  public void onModuleLoad() {
 
-        final Dispatcher dispatcher = Dispatcher.get();
+    final Dispatcher dispatcher = Dispatcher.get();
 
-        History.addValueChangeHandler(new ValueChangeHandler<String>() {
+    History.addValueChangeHandler(new ValueChangeHandler<String>() {
 
-            private String lastToken = null;
+      private String lastToken = null;
 
-            public void onValueChange(ValueChangeEvent<String> event) {
-                String token = event.getValue();
-                if (token.equals(this.lastToken)) {
-                    return;
-                }
-                this.lastToken = token;
+      public void onValueChange(ValueChangeEvent<String> event) {
+        String token = event.getValue();
+        if (token.equals(this.lastToken)) {
+          return;
+        }
+        this.lastToken = token;
 
-                if (token.equals(AppEvents.Tokens.Login)) {
-                    dispatcher.dispatch(AppEvents.Login);
-                }
+        if (token.equals(AppEvents.Tokens.Login)) {
+          dispatcher.dispatch(AppEvents.Login);
+        }
 
-            }
+      }
 
-        });
+    });
 
-        /**
-         * Services
-         */
-        Registry.register(Application.Services.User, (UserManagerAsync) GWT.create(UserManager.class));
+    /**
+     * Services
+     */
+    Registry.register(Application.Services.User, (UserManagerAsync) GWT.create(UserManager.class));
 
-        /**
-         * Controllers
-         */
-        dispatcher.addController(new AppController());
-        dispatcher.addController(new LoginController());
+    /**
+     * Controllers
+     */
+    dispatcher.addController(new AppController());
+    dispatcher.addController(new LoginController());
 
-        dispatcher.dispatch(AppEvents.Init);
+    dispatcher.dispatch(AppEvents.Init);
 
-        History.fireCurrentHistoryState();
-        new El(XDOM.getElementById("loading-mask")).fadeOut(FxConfig.NONE);
-    }
+    History.fireCurrentHistoryState();
+    new El(XDOM.getElementById("loading-mask")).fadeOut(FxConfig.NONE);
+  }
 
 }

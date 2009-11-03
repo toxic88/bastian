@@ -4,10 +4,10 @@ import com.extjs.gxt.ui.client.widget.form.Field;
 
 public class FormPanel extends com.extjs.gxt.ui.client.widget.form.FormPanel {
 
-    public void clearInvalid() {
-        for (Field<?> field : this.getFields()) {
-            field.clearInvalid();
-        }
+  public void clearInvalid() {
+    for (Field<?> field : this.getFields()) {
+      field.clearInvalid();
     }
+  }
 
 }

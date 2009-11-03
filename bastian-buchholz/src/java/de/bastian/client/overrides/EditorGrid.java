@@ -8,14 +8,14 @@ import com.extjs.gxt.ui.client.widget.grid.GridSelectionModel;
 
 public class EditorGrid<M extends ModelData> extends com.extjs.gxt.ui.client.widget.grid.EditorGrid<M> {
 
-    public EditorGrid(ListStore store, ColumnModel cm) {
-        super(store, cm);
-        this.setSelectionModel(new GridSelectionModel<M>());
+  public EditorGrid(ListStore store, ColumnModel cm) {
+    super(store, cm);
+    this.setSelectionModel(new GridSelectionModel<M>());
 
-        this.editSupport = getEditSupport();
-        this.editSupport.bind(this);
-        this.view = new BufferView();
-        this.setClicksToEdit(ClicksToEdit.TWO);
-    }
+    this.editSupport = getEditSupport();
+    this.editSupport.bind(this);
+    this.view = new BufferView();
+    this.setClicksToEdit(ClicksToEdit.TWO);
+  }
 
 }

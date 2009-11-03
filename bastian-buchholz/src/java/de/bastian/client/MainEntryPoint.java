@@ -22,74 +22,85 @@ import de.bastian.client.overrides.EditorGrid;
 
 public class MainEntryPoint extends Viewport implements EntryPoint {
 
-    final FormPanel fp = new FormPanel();
-    public EditorGrid<User> table = UserGrid.get();
-    public TextField<String> username = new TextField<String>();
-    public TextField<String> password = new TextField<String>();
+  final FormPanel fp = new FormPanel();
 
-    public MainEntryPoint() {
-        this.setLayout(new BorderLayout());
-    }
+  public EditorGrid<User> table = UserGrid.get();
 
-    public void onModuleLoad() {
-        Button createUserBtn = new Button("Create new User!", new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent event) {
+  public TextField<String> username = new TextField<String>();
 
-                if (username.getValue() == null || password.getValue() == null) {
-                    return;
-                }
+  public TextField<String> password = new TextField<String>();
 
-                AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert(caught.toString());
-                    }
+  public MainEntryPoint() {
+    this.setLayout(new BorderLayout());
+  }
 
-                    public void onSuccess(Boolean result) {
-                        if (!result) {
-                            Window.alert("User allready exists!");
-                        } else {
-                            table.getStore().getLoader().load();
-                        }
-                    }
-                };
+  public void onModuleLoad() {
+    Button createUserBtn = new Button("Create new User!", new SelectionListener<ButtonEvent>() {
 
-                ServiceManager.getUserService().createUser(username.getValue(), password.getValue(), callback);
+      public void componentSelected(ButtonEvent event) {
 
-                username.setValue(null);
-                password.setValue(null);
+        if (username.getValue() == null || password.getValue() == null) {
+          return;
+        }
+
+        AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+
+          public void onFailure(Throwable caught) {
+            Window.alert(caught.toString());
+          }
+
+          public void onSuccess(Boolean result) {
+            if (!result) {
+              Window.alert("User allready exists!");
+            } else {
+              table.getStore().getLoader().load();
             }
-        });
+          }
 
-        Button listUserBtn = new Button("Get all users!", new SelectionListener<ButtonEvent>() {
-            public void componentSelected(ButtonEvent event) {
-                table.getStore().getLoader().load();
-            }
-        });
+        };
 
-        Button loginButton = new Button("Login", new SelectionListener<ButtonEvent>() {
-            @Override
-            public void componentSelected(ButtonEvent ce) {
-                LoginWindow.get().show();
-            }
-        });
+        ServiceManager.getUserService().createUser(username.getValue(), password.getValue(), callback);
 
-        username.setFieldLabel("First Name");
-        password.setFieldLabel("Password");
-        password.setPassword(true);
+        username.setValue(null);
+        password.setValue(null);
+      }
 
-        fp.setHeading("Create new user");
-        fp.setWidth(300);
-        fp.setFrame(true);
-        fp.add(username, new FormData("100%"));
-        fp.add(password, new FormData("100%"));
-        fp.addButton(createUserBtn);
-        fp.addButton(listUserBtn);
-        fp.addButton(loginButton);
+    });
 
-        this.add(fp, new BorderLayoutData(LayoutRegion.CENTER));
-        this.add(table, new BorderLayoutData(LayoutRegion.SOUTH));
-        
-        RootPanel.get().add(this);
-    }
+    Button listUserBtn = new Button("Get all users!", new SelectionListener<ButtonEvent>() {
+
+      public void componentSelected(ButtonEvent event) {
+        table.getStore().getLoader().load();
+      }
+
+    });
+
+    Button loginButton = new Button("Login", new SelectionListener<ButtonEvent>() {
+
+      @Override
+      public void componentSelected(ButtonEvent ce) {
+        LoginWindow.get().show();
+      }
+
+    });
+
+    username.setFieldLabel("First Name");
+    password.setFieldLabel("Password");
+    password.setPassword(true);
+
+    fp.setHeading("Create new user");
+    fp.setWidth(300);
+    fp.setFrame(true);
+    fp.add(username, new FormData("100%"));
+    fp.add(password, new FormData("100%"));
+    fp.addButton(createUserBtn);
+    fp.addButton(listUserBtn);
+    fp.addButton(loginButton);
+
+    this.add(fp, new BorderLayoutData(LayoutRegion.CENTER));
+    this.add(table, new BorderLayoutData(LayoutRegion.SOUTH));
+
+    RootPanel.get().add(this);
+  }
 
 }

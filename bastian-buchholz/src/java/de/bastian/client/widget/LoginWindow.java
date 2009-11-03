@@ -17,98 +17,106 @@ import de.bastian.client.overrides.FormPanel;
 
 public class LoginWindow {
 
-    private static Window win = null;
+  private static Window win = null;
 
-    private static FormData formData = new FormData("100%");
+  private static FormData formData = new FormData("100%");
 
-    public static Window get() {
-        if (LoginWindow.win == null) {
-            final FormPanel fp = new FormPanel();
-            fp.setHeaderVisible(false);
-            fp.setBorders(false);
-            fp.setBodyBorder(false);
-            fp.setPadding(5);
-            fp.setLabelWidth(60);
+  public static Window get() {
+    if (LoginWindow.win == null) {
+      final FormPanel fp = new FormPanel();
+      fp.setHeaderVisible(false);
+      fp.setBorders(false);
+      fp.setBodyBorder(false);
+      fp.setPadding(5);
+      fp.setLabelWidth(60);
 
-            final TextField<String> username = new TextField<String>();
-            username.setFieldLabel("Username");
-            username.setAllowBlank(false);
-            username.setMessageTarget("tooltip");
+      final TextField<String> username = new TextField<String>();
+      username.setFieldLabel("Username");
+      username.setAllowBlank(false);
+      username.setMessageTarget("tooltip");
 
-            final TextField<String> password = new TextField<String>();
-            password.setFieldLabel("Password");
-            password.setAllowBlank(false);
-            password.setMessageTarget("tooltip");
-            password.setPassword(true);
+      final TextField<String> password = new TextField<String>();
+      password.setFieldLabel("Password");
+      password.setAllowBlank(false);
+      password.setMessageTarget("tooltip");
+      password.setPassword(true);
 
-            fp.add(username, formData);
-            fp.add(password, formData);
+      fp.add(username, formData);
+      fp.add(password, formData);
 
-            Button loginBtn = new Button("Login", new SelectionListener<ButtonEvent>() {
-                @Override
-                public void componentSelected(ButtonEvent ce) {
+      Button loginBtn = new Button("Login", new SelectionListener<ButtonEvent>() {
 
-                    if (username.getValue() == null || password.getValue() == null) {
-                        return;
-                    }
+        @Override
+        public void componentSelected(ButtonEvent ce) {
 
-                    AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
-                        public void onFailure(Throwable caught) {
-                            com.google.gwt.user.client.Window.alert(caught.toString());
-                        }
+          if (username.getValue() == null || password.getValue() == null) {
+            return;
+          }
 
-                        public void onSuccess(Boolean result) {
-                            com.google.gwt.user.client.Window.alert(result.toString());
-                            LoginWindow.get().hide();
-                        }
-                    };
+          AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
 
-                    ServiceManager.getUserService().login(username.getValue(), password.getValue(), callback);
+            public void onFailure(Throwable caught) {
+              com.google.gwt.user.client.Window.alert(caught.toString());
+            }
 
-                    username.setValue(null);
-                    password.setValue(null);
-                }
-            });
+            public void onSuccess(Boolean result) {
+              com.google.gwt.user.client.Window.alert(result.toString());
+              LoginWindow.get().hide();
+            }
 
-            new FormButtonBinding(fp).addButton(loginBtn);
+          };
 
-            Button cancelBtn = new Button("Cancel", new SelectionListener<ButtonEvent>() {
-                @Override
-                public void componentSelected(ButtonEvent ce) {
-                    LoginWindow.get().hide();
-                }
-            });
+          ServiceManager.getUserService().login(username.getValue(), password.getValue(), callback);
 
-            Window w = new Window();
-
-            w.setLayout(new FitLayout());
-
-            w.addButton(loginBtn);
-            w.addButton(cancelBtn);
-
-            w.add(fp);
-            
-            w.setHeading("Login");
-            w.setModal(true);
-            w.setFocusWidget(username);
-            w.setDraggable(false);
-            w.setResizable(false);
-            w.setWidth(250);
-            w.setHeight(126);
-
-            w.addListener(Events.BeforeShow, new Listener<WindowEvent>() {
-                @Override
-                public void handleEvent(WindowEvent be) {
-                    username.setValue(null);
-                    password.setValue(null);
-                    fp.clearInvalid();
-                }
-            });
-
-            LoginWindow.win = w;
+          username.setValue(null);
+          password.setValue(null);
         }
 
-        return LoginWindow.win;
+      });
+
+      new FormButtonBinding(fp).addButton(loginBtn);
+
+      Button cancelBtn = new Button("Cancel", new SelectionListener<ButtonEvent>() {
+
+        @Override
+        public void componentSelected(ButtonEvent ce) {
+          LoginWindow.get().hide();
+        }
+
+      });
+
+      Window w = new Window();
+
+      w.setLayout(new FitLayout());
+
+      w.addButton(loginBtn);
+      w.addButton(cancelBtn);
+
+      w.add(fp);
+
+      w.setHeading("Login");
+      w.setModal(true);
+      w.setFocusWidget(username);
+      w.setDraggable(false);
+      w.setResizable(false);
+      w.setWidth(250);
+      w.setHeight(126);
+
+      w.addListener(Events.BeforeShow, new Listener<WindowEvent>() {
+
+        @Override
+        public void handleEvent(WindowEvent be) {
+          username.setValue(null);
+          password.setValue(null);
+          fp.clearInvalid();
+        }
+
+      });
+
+      LoginWindow.win = w;
     }
+
+    return LoginWindow.win;
+  }
 
 }

@@ -6,10 +6,11 @@ import de.bastian.client.UserManagerAsync;
 
 final public class ServiceManager {
 
-    private ServiceManager() {};
+  private ServiceManager() {
+  }
 
-    public static UserManagerAsync getUserService() {
-        return GWT.create(UserManager.class);
-    }
+  public static UserManagerAsync getUserService() {
+    return GWT.create(UserManager.class);
+  }
 
 }

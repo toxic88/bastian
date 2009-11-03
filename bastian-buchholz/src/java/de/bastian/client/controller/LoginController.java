@@ -7,22 +7,22 @@ import de.bastian.client.view.LoginView;
 
 public class LoginController extends Controller {
 
-    private LoginView loginView;
-    
-    public LoginController() {
-        this.registerEventTypes(AppEvents.Login);
-    }
+  private LoginView loginView;
 
-    @Override
-    protected void initialize() {
-        this.loginView = new LoginView(this);
-    }
+  public LoginController() {
+    this.registerEventTypes(AppEvents.Login);
+  }
 
-    @Override
-    public void handleEvent(AppEvent event) {
-        if (event.getType() == AppEvents.Login) {
-            this.forwardToView(this.loginView, event);
-        }
+  @Override
+  protected void initialize() {
+    this.loginView = new LoginView(this);
+  }
+
+  @Override
+  public void handleEvent(AppEvent event) {
+    if (event.getType() == AppEvents.Login) {
+      this.forwardToView(this.loginView, event);
     }
+  }
 
 }

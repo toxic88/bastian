@@ -9,22 +9,22 @@ import de.bastian.client.AppEvents;
 
 public class LoginView extends View {
 
-    private Window loginWindow;
+  private Window loginWindow;
 
-    public LoginView(Controller controller) {
-        super(controller);
-    }
+  public LoginView(Controller controller) {
+    super(controller);
+  }
 
-    @Override
-    protected void handleEvent(AppEvent event) {
-        if (event.getType() == AppEvents.Login) {
-            this.loginWindow.show();
-        }
+  @Override
+  protected void handleEvent(AppEvent event) {
+    if (event.getType() == AppEvents.Login) {
+      this.loginWindow.show();
     }
+  }
 
-    @Override
-    protected void initialize() {
-        this.loginWindow = LoginWindow.get();
-    }
+  @Override
+  protected void initialize() {
+    this.loginWindow = LoginWindow.get();
+  }
 
 }
