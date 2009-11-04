@@ -2,6 +2,9 @@ package de.bastian.client.controller;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
+import com.extjs.gxt.ui.client.widget.MessageBox;
+
+import de.bastian.client.Application;
 import de.bastian.client.AppEvents;
 import de.bastian.client.view.AppView;
 
@@ -11,6 +14,7 @@ public class AppController extends Controller {
 
   public AppController() {
     this.registerEventTypes(AppEvents.Init);
+    this.registerEventTypes(AppEvents.Error);
   }
 
   @Override
@@ -22,6 +26,8 @@ public class AppController extends Controller {
   public void handleEvent(AppEvent event) {
     if (event.getType() == AppEvents.Init) {
       this.forwardToView(this.appView, event);
+    } else if (event.getType() == AppEvents.Error) {
+      MessageBox.alert(Application.MESSAGES.error(), event.<String>getData(), null);
     }
   }
 

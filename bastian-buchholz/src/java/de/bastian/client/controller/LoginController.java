@@ -2,6 +2,7 @@ package de.bastian.client.controller;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
+
 import de.bastian.client.AppEvents;
 import de.bastian.client.view.LoginView;
 

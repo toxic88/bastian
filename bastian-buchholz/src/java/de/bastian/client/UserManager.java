@@ -1,23 +1,26 @@
 package de.bastian.client;
 
 import java.util.List;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+
 import de.bastian.client.model.User;
+import de.bastian.client.rpc.RpcException;
 
 @RemoteServiceRelativePath("user")
 public interface UserManager extends RemoteService {
 
-  public boolean createUser(String firstname, String password);
+  public void createUser(String firstname, String password) throws RpcException;
 
-  public boolean updateUser(User updateUser);
+  public void updateUser(User updateUser) throws RpcException;
 
-  public boolean removeUser(Long id);
+  public void removeUser(Long id) throws RpcException;
   
-  public boolean removeUser(User user);
+  public void removeUser(User user) throws RpcException;
 
   public List<User> getAll();
 
-  public boolean login(String username, String password);
+  public void login(String username, String password) throws RpcException;
 
 }

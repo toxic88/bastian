@@ -1,6 +1,7 @@
 package de.bastian.client.model;
 
 import java.util.Date;
+
 import com.extjs.gxt.ui.client.data.BaseModel;
 
 public class User extends BaseModel {

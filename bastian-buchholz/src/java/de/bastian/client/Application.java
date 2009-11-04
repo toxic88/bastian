@@ -5,21 +5,19 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.History;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.core.El;
 import com.extjs.gxt.ui.client.core.XDOM;
 import com.extjs.gxt.ui.client.fx.FxConfig;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
+
 import de.bastian.client.controller.AppController;
 import de.bastian.client.controller.LoginController;
 
 public class Application implements EntryPoint {
 
-  public class Services {
-
-    public static final String User = "user";
-
-  }
+  public static AppMessages MESSAGES = (AppMessages) GWT.create(AppMessages.class);
 
   public void onModuleLoad() {
 
@@ -45,9 +43,9 @@ public class Application implements EntryPoint {
     });
 
     /**
-     * Services
+     * Registry
      */
-    Registry.register(Application.Services.User, (UserManagerAsync) GWT.create(UserManager.class));
+    Registry.register(AppRegistryKeys.SERVICES_USER, GWT.create(UserManager.class));
 
     /**
      * Controllers

@@ -4,15 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
 import de.bastian.db.User;
 import de.bastian.client.UserManager;
+import de.bastian.client.rpc.RpcException;
 import de.bastian.server.rpc.RemoteServiceServlet;
 
 public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
 
+  /**
+   * Returns true if the user exists!
+   * @param String username
+   * @return boolean
+   */
   private boolean checkUsername(String username) {
     if (username == null || username.equals("")) {
-      return false;
+      return true;
     }
 
     PersistenceManager pm = this.getPersistenceManager();
@@ -23,14 +30,14 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     List<User> users = (List<User>) query.execute(username);
 
     if (users.size() > 0) {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   }
 
-  public boolean createUser(String username, String password) {
-    if (!this.checkUsername(username)) {
-      return false;
+  public void createUser(String username, String password) throws RpcException {
+    if (this.checkUsername(username)) {
+      throw new RpcException("The user '" + username + "' allready exists!");
     }
 
     PersistenceManager pm = this.getPersistenceManager();
@@ -38,16 +45,15 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     try {
       pm.makePersistent(new User(username, password));
     } catch (Exception e) {
-      return false;
+      throw new RpcException("Failed to create user '" + username + "'!");
     } finally {
       pm.close();
     }
-    return true;
   }
 
-  public boolean updateUser(de.bastian.client.model.User updateUser) {
-    if (!this.checkUsername(updateUser.getUsername())) {
-      return false;
+  public void updateUser(de.bastian.client.model.User updateUser) throws RpcException {
+    if (this.checkUsername(updateUser.getUsername())) {
+      throw new RpcException("The user '" + updateUser.getUsername() + "' allready exists!");
     }
 
     PersistenceManager pm = this.getPersistenceManager();
@@ -57,14 +63,13 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
 
       user.setUsername(updateUser.getUsername());
     } catch (Exception e) {
-      return false;
+      throw new RpcException("Failed to update user '" + updateUser.getUsername()  + "'!");
     } finally {
       pm.close();
     }
-    return true;
   }
 
-  public boolean removeUser(Long id) {
+  public void removeUser(Long id) throws RpcException {
     PersistenceManager pm = this.getPersistenceManager();
 
     try {
@@ -72,15 +77,14 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
 
       pm.deletePersistent(user);
     } catch (Exception e) {
-      return false;
+      throw new RpcException("Failed to remove user!");
     } finally {
       pm.close();
     }
-    return true;
   }
 
-  public boolean removeUser(de.bastian.client.model.User removeUser) {
-    return this.removeUser(removeUser.getId());
+  public void removeUser(de.bastian.client.model.User removeUser) throws RpcException {
+    this.removeUser(removeUser.getId());
   }
 
   public List<de.bastian.client.model.User> getAll() {
@@ -102,7 +106,7 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     return ret;
   }
 
-  public boolean login(String username, String password) {
+  public void login(String username, String password) throws RpcException {
     PersistenceManager pm = this.getPersistenceManager();
 
     Query query = pm.newQuery(User.class, "username == usernameParam");
@@ -113,11 +117,10 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     for (User user : users) {
       if (user.checkPassword(password)) {
         this.getSession().setAttribute("user", user);
-        return true;
       }
     }
 
-    return false;
+    throw new RpcException("Wrong username or password!");
   }
 
 }

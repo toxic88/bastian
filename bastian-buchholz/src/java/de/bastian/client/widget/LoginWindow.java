@@ -1,19 +1,25 @@
 package de.bastian.client.widget;
 
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.event.WindowEvent;
+import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.widget.Window;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
-import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import de.bastian.client.AppEvents;
 import de.bastian.client.rpc.ServiceManager;
 import de.bastian.client.overrides.FormPanel;
+import de.bastian.client.rpc.RpcException;
 
 public class LoginWindow {
 
@@ -23,6 +29,9 @@ public class LoginWindow {
 
   public static Window get() {
     if (LoginWindow.win == null) {
+      /**
+       * FormPanel
+       */
       final FormPanel fp = new FormPanel();
       fp.setHeaderVisible(false);
       fp.setBorders(false);
@@ -30,6 +39,9 @@ public class LoginWindow {
       fp.setPadding(5);
       fp.setLabelWidth(60);
 
+      /**
+       * Fields
+       */
       final TextField<String> username = new TextField<String>();
       username.setFieldLabel("Username");
       username.setAllowBlank(false);
@@ -44,6 +56,9 @@ public class LoginWindow {
       fp.add(username, formData);
       fp.add(password, formData);
 
+      /**
+       * Buttons
+       */
       Button loginBtn = new Button("Login", new SelectionListener<ButtonEvent>() {
 
         @Override
@@ -53,14 +68,15 @@ public class LoginWindow {
             return;
           }
 
-          AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+          AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 
             public void onFailure(Throwable caught) {
-              com.google.gwt.user.client.Window.alert(caught.toString());
+              if (caught instanceof RpcException) {
+                Dispatcher.get().dispatch(AppEvents.Error, ((RpcException) caught).getError());
+              }
             }
 
-            public void onSuccess(Boolean result) {
-              com.google.gwt.user.client.Window.alert(result.toString());
+            public void onSuccess(Void result) {
               LoginWindow.get().hide();
             }
 
@@ -85,6 +101,9 @@ public class LoginWindow {
 
       });
 
+      /**
+       * Window
+       */
       Window w = new Window();
 
       w.setLayout(new FitLayout());
@@ -102,6 +121,9 @@ public class LoginWindow {
       w.setWidth(250);
       w.setHeight(126);
 
+      /**
+       * Listeners
+       */
       w.addListener(Events.BeforeShow, new Listener<WindowEvent>() {
 
         @Override
@@ -109,6 +131,13 @@ public class LoginWindow {
           username.setValue(null);
           password.setValue(null);
           fp.clearInvalid();
+        }
+
+      });
+      w.addListener(Events.Hide, new Listener<WindowEvent>() {
+
+        public void handleEvent(WindowEvent be) {
+          History.newItem(null);
         }
 
       });
