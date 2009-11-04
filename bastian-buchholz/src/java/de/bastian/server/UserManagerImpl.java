@@ -12,6 +12,10 @@ import de.bastian.server.rpc.RemoteServiceServlet;
 
 public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
 
+  private de.bastian.client.model.User getUserModel(User user) {
+    return new de.bastian.client.model.User(user.getId(), user.getUsername(), user.getCreateDate());
+  }
+
   /**
    * Returns true if the user exists!
    * @param String username
@@ -35,7 +39,7 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     return false;
   }
 
-  public void createUser(String username, String password) throws RpcException {
+  public de.bastian.client.model.User createUser(String username, String password) throws RpcException {
     if (this.checkUsername(username)) {
       throw new RpcException("The user '" + username + "' allready exists!");
     }
@@ -43,7 +47,9 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     PersistenceManager pm = this.getPersistenceManager();
 
     try {
-      pm.makePersistent(new User(username, password));
+      User user = new User(username, password);
+      pm.makePersistent(user);
+      return this.getUserModel(user);
     } catch (Exception e) {
       throw new RpcException("Failed to create user '" + username + "'!");
     } finally {
@@ -97,7 +103,7 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
       List<User> users = (List<User>) query.execute();
 
       for (User user : users) {
-        ret.add(new de.bastian.client.model.User(user.getId(), user.getUsername(), user.getCreateDate()));
+        ret.add(this.getUserModel(user));
       }
     } finally {
       pm.close();

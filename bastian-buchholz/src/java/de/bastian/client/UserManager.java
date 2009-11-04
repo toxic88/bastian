@@ -11,7 +11,7 @@ import de.bastian.client.rpc.RpcException;
 @RemoteServiceRelativePath("user")
 public interface UserManager extends RemoteService {
 
-  public void createUser(String firstname, String password) throws RpcException;
+  public User createUser(String firstname, String password) throws RpcException;
 
   public void updateUser(User updateUser) throws RpcException;
 

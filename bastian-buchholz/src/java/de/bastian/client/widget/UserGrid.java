@@ -35,7 +35,6 @@ import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 
-import de.bastian.client.Application;
 import de.bastian.client.AppEvents;
 import de.bastian.client.AppRegistryKeys;
 import de.bastian.client.UserManagerAsync;
@@ -160,18 +159,16 @@ public class UserGrid {
             return;
           }
 
-          AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+          AsyncCallback<User> callback = new AsyncCallback<User>() {
 
             public void onFailure(Throwable caught) {
                 if (caught instanceof RpcException) {
                   Dispatcher.get().dispatch(AppEvents.Error, ((RpcException) caught).getError());
                 }
-                username.setValue(null);
-                password.setValue(null);
             }
 
-            public void onSuccess(Void result) {
-              loader.load();
+            public void onSuccess(User result) {
+              store.add(result);
             }
 
           };

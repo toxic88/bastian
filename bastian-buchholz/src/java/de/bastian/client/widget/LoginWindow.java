@@ -86,6 +86,7 @@ public class LoginWindow {
 
           username.setValue(null);
           password.setValue(null);
+          fp.clearInvalid();
         }
 
       });

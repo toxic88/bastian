@@ -8,7 +8,7 @@ import de.bastian.client.model.User;
 
 public interface UserManagerAsync {
 
-  public void createUser(String firstname, String password, AsyncCallback<Void> callback);
+  public void createUser(String firstname, String password, AsyncCallback<User> callback);
 
   public void updateUser(User updateUser, AsyncCallback<Void> asyncCallback);
 
