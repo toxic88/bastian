@@ -98,41 +98,6 @@ public class UserGrid {
       g.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
       /**
-       * Listeners
-       */
-      g.addListener(Events.AfterEdit, new Listener<GridEvent<User>>() {
-
-        public void handleEvent(GridEvent<User> be) {
-          final Record rec = be.getRecord();
-
-          AsyncCallback<Void> callback = new AsyncCallback<Void>() {
-
-            public void onFailure(Throwable caught) {
-              if (caught instanceof RpcException) {
-                Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
-              }
-              rec.reject(false);
-            }
-
-            public void onSuccess(Void result) {
-              rec.commit(false);
-            }
-
-          };
-
-          ServiceManager.getUserService().updateUser((User) rec.getModel(), callback);
-        }
-
-      });
-      g.addListener(Events.Attach, new Listener<GridEvent<User>>() {
-
-        public void handleEvent(GridEvent<User> be) {
-          loader.load();
-        }
-
-      });
-
-      /**
        * ContentPanel
        */
       ContentPanel p = new ContentPanel(new FitLayout());
@@ -249,7 +214,7 @@ public class UserGrid {
         public void selectionChanged(SelectionChangedEvent<User> se) {
           if (se.getSelectedItem() != null) {
             deleteSelectedUser.setVisible(true);
-            deleteSelectedUser.setText("Delete '" + se.getSelectedItem().getUsername() + "'!");
+            deleteSelectedUser.setText("Delete '" + Format.htmlEncode(se.getSelectedItem().getUsername()) + "'!");
           } else {
             deleteSelectedUser.setVisible(false);
           }
