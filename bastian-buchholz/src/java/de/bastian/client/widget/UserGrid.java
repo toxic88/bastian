@@ -35,9 +35,7 @@ import com.extjs.gxt.ui.client.widget.grid.GridCellRenderer;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 
-import de.bastian.client.AppEvents;
-import de.bastian.client.AppRegistryKeys;
-import de.bastian.client.UserManagerAsync;
+import de.bastian.client.Application;
 import de.bastian.client.model.User;
 import de.bastian.client.overrides.EditorGrid;
 import de.bastian.client.rpc.RpcException;
@@ -109,7 +107,7 @@ public class UserGrid {
 
             public void onFailure(Throwable caught) {
               if (caught instanceof RpcException) {
-                Dispatcher.get().dispatch(AppEvents.Error, ((RpcException) caught).getError());
+                Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
               }
               rec.reject(false);
             }
@@ -120,8 +118,7 @@ public class UserGrid {
 
           };
 
-          UserManagerAsync userService = (UserManagerAsync) Registry.get(AppRegistryKeys.SERVICES_USER);
-          userService.updateUser((User) rec.getModel(), callback);
+          ServiceManager.getUserService().updateUser((User) rec.getModel(), callback);
         }
 
       });
@@ -140,6 +137,7 @@ public class UserGrid {
       p.add(g);
       p.setHeading("Users");
       p.setFrame(true);
+      p.setIcon(Application.Icons.user());
 
       /**
        * Toolbar
@@ -151,7 +149,7 @@ public class UserGrid {
       final TextField<String> password = new TextField<String>();
       password.setPassword(true);
       toolBar.add(password);
-      toolBar.add(new Button("Add", new SelectionListener<ButtonEvent>() {
+      toolBar.add(new Button("Add", Application.Icons.userAdd(), new SelectionListener<ButtonEvent>() {
 
         public void componentSelected(ButtonEvent event) {
 
@@ -163,7 +161,7 @@ public class UserGrid {
 
             public void onFailure(Throwable caught) {
                 if (caught instanceof RpcException) {
-                  Dispatcher.get().dispatch(AppEvents.Error, ((RpcException) caught).getError());
+                  Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
                 }
             }
 
@@ -173,15 +171,14 @@ public class UserGrid {
 
           };
 
-          UserManagerAsync userService = (UserManagerAsync) Registry.get(AppRegistryKeys.SERVICES_USER);
-          userService.createUser(username.getValue(), password.getValue(), callback);
+          ServiceManager.getUserService().createUser(username.getValue(), password.getValue(), callback);
 
           username.setValue(null);
           password.setValue(null);
         }
 
       }));
-      toolBar.add(new Button("Delete selected user", new SelectionListener<ButtonEvent>() {
+      toolBar.add(new Button("Delete selected user", Application.Icons.userDelete(), new SelectionListener<ButtonEvent>() {
 
         @Override
         public void componentSelected(ButtonEvent ce) {
@@ -191,7 +188,7 @@ public class UserGrid {
 
               public void onFailure(Throwable caught) {
                   if (caught instanceof RpcException) {
-                    Dispatcher.get().dispatch(AppEvents.Error, ((RpcException) caught).getError());
+                    Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
                   }
               }
 
@@ -201,8 +198,7 @@ public class UserGrid {
 
             };
 
-            UserManagerAsync userService = (UserManagerAsync) Registry.get(AppRegistryKeys.SERVICES_USER);
-            userService.removeUser(user, callback);
+            ServiceManager.getUserService().removeUser(user, callback);
           }
         }
 

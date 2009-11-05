@@ -5,8 +5,8 @@ import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.widget.Window;
 
+import de.bastian.client.Application;
 import de.bastian.client.widget.LoginWindow;
-import de.bastian.client.AppEvents;
 
 public class LoginView extends View {
 
@@ -18,7 +18,7 @@ public class LoginView extends View {
 
   @Override
   protected void handleEvent(AppEvent event) {
-    if (event.getType() == AppEvents.Login) {
+    if (event.getType() == Application.Events.Login.getType()) {
       this.loginWindow.show();
     }
   }

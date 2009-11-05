@@ -78,4 +78,8 @@ public class User implements Serializable {
     return Arrays.equals(this.password, User.passwordToHash(password));
   }
 
+  public de.bastian.client.model.User getRpcUser() {
+    return new de.bastian.client.model.User(this.getId(), this.getUsername(), this.getCreateDate());
+  }
+
 }

@@ -5,7 +5,6 @@ import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 
 import de.bastian.client.Application;
-import de.bastian.client.AppEvents;
 import de.bastian.client.view.AppView;
 
 public class AppController extends Controller {
@@ -13,8 +12,8 @@ public class AppController extends Controller {
   private AppView appView;
 
   public AppController() {
-    this.registerEventTypes(AppEvents.Init);
-    this.registerEventTypes(AppEvents.Error);
+    this.registerEventTypes(Application.Events.Init.getType());
+    this.registerEventTypes(Application.Events.Error.getType());
   }
 
   @Override
@@ -24,10 +23,10 @@ public class AppController extends Controller {
 
   @Override
   public void handleEvent(AppEvent event) {
-    if (event.getType() == AppEvents.Init) {
+    if (event.getType() == Application.Events.Init.getType()) {
       this.forwardToView(this.appView, event);
-    } else if (event.getType() == AppEvents.Error) {
-      MessageBox.alert(Application.MESSAGES.error(), event.<String>getData(), null);
+    } else if (event.getType() == Application.Events.Error.getType()) {
+      MessageBox.alert(Application.Messages.error(), event.<String>getData(), null);
     }
   }
 

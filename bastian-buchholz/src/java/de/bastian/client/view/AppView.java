@@ -16,8 +16,7 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
-import de.bastian.client.AppEvents;
-import de.bastian.client.AppRegistryKeys;
+import de.bastian.client.Application;
 import de.bastian.client.widget.UserGrid;
 
 public class AppView extends View {
@@ -40,8 +39,8 @@ public class AppView extends View {
     this.createCenter();
     this.createWest();
 
-    Registry.register(AppRegistryKeys.VIEWPORT_CENTER, this.center);
-    Registry.register(AppRegistryKeys.VIEWPORT_WEST, this.west);
+    Registry.register(Application.Keys.VIEWPORT_CENTER, this.center);
+    Registry.register(Application.Keys.VIEWPORT_WEST, this.west);
 
     RootPanel.get().add(this.viewport);
   }
@@ -69,7 +68,7 @@ public class AppView extends View {
     this.west = new LayoutContainer(new FitLayout());
 
     ContentPanel p = new ContentPanel();
-    p.addText("<a href='#Login'>Login</a>");
+    p.addText("<a href='#" + Application.Events.Login + "'>Login</a>");
     p.setHeading("Navigation");
     p.setFrame(true);
     this.west.add(p);
@@ -82,7 +81,7 @@ public class AppView extends View {
 
   @Override
   protected void handleEvent(AppEvent event) {
-    if (event.getType() == AppEvents.Init) {
+    if (event.getType() == Application.Events.Init.getType()) {
       this.initUI();
     }
   }
