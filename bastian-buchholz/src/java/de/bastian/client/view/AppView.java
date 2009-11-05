@@ -1,9 +1,13 @@
 package de.bastian.client.view;
 
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
+import com.extjs.gxt.ui.client.event.ContainerEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
@@ -15,7 +19,9 @@ import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
+import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
 
+import com.extjs.gxt.ui.client.widget.layout.VBoxLayoutData;
 import de.bastian.client.Application;
 import de.bastian.client.widget.UserGrid;
 
@@ -65,11 +71,20 @@ public class AppView extends View {
   }
 
   private void createWest() {
-    this.west = new LayoutContainer(new FitLayout());
+    VBoxLayout layout = new VBoxLayout();
+    layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.STRETCH);
+    this.west = new LayoutContainer(layout);
 
     ContentPanel p = new ContentPanel();
-    p.addText("<a href='#" + Application.Events.Login + "'>Login</a>");
-    p.setHeading("Navigation");
+    //p.add(new Hyperlink("" + Application.Events.Login, "" + Application.Events.Login));
+    p.addText("Lalalalalalalalalala");
+    p.setHeading("User");
+    p.setFrame(true);
+    this.west.add(p, new VBoxLayoutData(new Margins(0, 0, 5, 0)));
+
+    p = new ContentPanel();
+    p.addText("Lalalalalalalalalala");
+    p.setHeading("Just an other one");
     p.setFrame(true);
     this.west.add(p);
 
