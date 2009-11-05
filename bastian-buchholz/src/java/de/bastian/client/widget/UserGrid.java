@@ -1,5 +1,6 @@
 package de.bastian.client.widget;
 
+import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.Style.SelectionMode;
+import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Format;
@@ -178,7 +180,7 @@ public class UserGrid {
         }
 
       }));
-      toolBar.add(new Button("Delete selected user", Application.Icons.userDelete(), new SelectionListener<ButtonEvent>() {
+      final Button deleteSelectedUser = new Button(" ", Application.Icons.userDelete(), new SelectionListener<ButtonEvent>() {
 
         @Override
         public void componentSelected(ButtonEvent ce) {
@@ -202,8 +204,58 @@ public class UserGrid {
           }
         }
 
-      }));
+      });
+      deleteSelectedUser.setVisible(false);
+      toolBar.add(deleteSelectedUser);
       p.setTopComponent(toolBar);
+
+      /**
+       * Listeners
+       */
+      g.addListener(Events.AfterEdit, new Listener<GridEvent<User>>() {
+
+        public void handleEvent(GridEvent<User> be) {
+          final Record rec = be.getRecord();
+
+          AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+
+            public void onFailure(Throwable caught) {
+              if (caught instanceof RpcException) {
+                Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
+              }
+              rec.reject(false);
+            }
+
+            public void onSuccess(Void result) {
+              rec.commit(false);
+            }
+
+          };
+
+          ServiceManager.getUserService().updateUser((User) rec.getModel(), callback);
+        }
+
+      });
+      g.addListener(Events.Attach, new Listener<GridEvent<User>>() {
+
+        public void handleEvent(GridEvent<User> be) {
+          loader.load();
+        }
+
+      });
+      g.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<User>() {
+
+        @Override
+        public void selectionChanged(SelectionChangedEvent<User> se) {
+          if (se.getSelectedItem() != null) {
+            deleteSelectedUser.setVisible(true);
+            deleteSelectedUser.setText("Delete '" + se.getSelectedItem().getUsername() + "'!");
+          } else {
+            deleteSelectedUser.setVisible(false);
+          }
+        }
+
+      });
 
       UserGrid.grid = p;
     }
