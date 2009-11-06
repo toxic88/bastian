@@ -119,6 +119,7 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     for (User user : users) {
       if (user.checkPassword(password)) {
         this.getSession().setAttribute("user", user);
+        return;
       }
     }
 

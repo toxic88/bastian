@@ -14,6 +14,9 @@ public interface AppIcons extends ImageBundle {
   @Resource("error.png")
   AbstractImagePrototype error();
 
+  @Resource("group.png")
+  AbstractImagePrototype group();
+
   @Resource("lock.png")
   AbstractImagePrototype lock();
 

@@ -25,6 +25,7 @@ import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Format;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.Text;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.grid.CellEditor;
@@ -103,15 +104,17 @@ public class UserGrid {
       p.add(g);
       p.setHeading("Users");
       p.setFrame(true);
-      p.setIcon(Application.Icons.user());
+      p.setIcon(Application.Icons.group());
 
       /**
        * Toolbar
        */
       ToolBar toolBar = new ToolBar();
       toolBar.setSpacing(2);
+      toolBar.add(new Text("Username:"));
       final TextField<String> username = new TextField<String>();
       toolBar.add(username);
+      toolBar.add(new Text("Password:"));
       final TextField<String> password = new TextField<String>();
       password.setPassword(true);
       toolBar.add(password);
@@ -202,8 +205,13 @@ public class UserGrid {
       });
       g.addListener(Events.Attach, new Listener<GridEvent<User>>() {
 
+        private boolean isLoaded = false;
+
         public void handleEvent(GridEvent<User> be) {
-          loader.load();
+          if (!this.isLoaded) {
+            loader.load();
+            this.isLoaded = true;
+          }
         }
 
       });

@@ -139,7 +139,7 @@ public class LoginWindow {
       w.addListener(Events.Hide, new Listener<WindowEvent>() {
 
         public void handleEvent(WindowEvent be) {
-          History.newItem(null);
+          History.back();
         }
 
       });

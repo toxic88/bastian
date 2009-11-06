@@ -16,3 +16,17 @@
   z-index:20000;
   background-color:#DFE8F6;
 }
+
+/* Links */
+a {
+  color:#3764A0;
+  text-decoration:none;
+}
+
+a:hover {
+  color:#15428B;
+}
+
+#navigation a {
+  display:block;
+}

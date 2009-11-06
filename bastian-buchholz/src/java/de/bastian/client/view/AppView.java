@@ -1,13 +1,9 @@
 package de.bastian.client.view;
 
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import com.extjs.gxt.ui.client.Registry;
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
-import com.extjs.gxt.ui.client.event.ContainerEvent;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.Listener;
 import com.extjs.gxt.ui.client.mvc.AppEvent;
 import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
@@ -19,11 +15,9 @@ import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayout;
 import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
-import com.extjs.gxt.ui.client.widget.layout.VBoxLayout;
 
-import com.extjs.gxt.ui.client.widget.layout.VBoxLayoutData;
 import de.bastian.client.Application;
-import de.bastian.client.widget.UserGrid;
+import de.bastian.client.widget.NavigationPanel;
 
 public class AppView extends View {
 
@@ -62,7 +56,12 @@ public class AppView extends View {
   private void createCenter() {
     this.center = new LayoutContainer(new FitLayout());
 
-    this.center.add(UserGrid.get()); // TODO: Should be dynamically!
+    ContentPanel p = new ContentPanel();
+    p.setFrame(true);
+    p.setHeading("Willkommen");
+    p.addText("Willkommen!");
+
+    this.center.add(p);
 
     BorderLayoutData data = new BorderLayoutData(LayoutRegion.CENTER);
     data.setMargins(new Margins(5, 5, 5, 5));
@@ -71,26 +70,10 @@ public class AppView extends View {
   }
 
   private void createWest() {
-    VBoxLayout layout = new VBoxLayout();
-    layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.STRETCH);
-    this.west = new LayoutContainer(layout);
-
-    ContentPanel p = new ContentPanel();
-    //p.add(new Hyperlink("" + Application.Events.Login, "" + Application.Events.Login));
-    p.addText("Lalalalalalalalalala");
-    p.setHeading("User");
-    p.setFrame(true);
-    this.west.add(p, new VBoxLayoutData(new Margins(0, 0, 5, 0)));
-
-    p = new ContentPanel();
-    p.addText("Lalalalalalalalalala");
-    p.setHeading("Just an other one");
-    p.setFrame(true);
-    this.west.add(p);
+    this.west = NavigationPanel.get();
 
     BorderLayoutData data = new BorderLayoutData(LayoutRegion.WEST);
     data.setMargins(new Margins(5, 0, 5, 5));
-
     this.viewport.add(this.west, data);
   }
 
