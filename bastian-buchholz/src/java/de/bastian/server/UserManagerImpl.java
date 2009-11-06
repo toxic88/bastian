@@ -5,9 +5,10 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import de.bastian.db.User;
+import de.bastian.client.Application;
 import de.bastian.client.UserManager;
 import de.bastian.client.rpc.RpcException;
+import de.bastian.db.User;
 import de.bastian.server.rpc.RemoteServiceServlet;
 
 public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
@@ -118,12 +119,18 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
 
     for (User user : users) {
       if (user.checkPassword(password)) {
-        this.getSession().setAttribute("user", user);
+        this.getSession().setAttribute(Application.Keys.SESSION_NAME, user);
+        this.addCookie(Application.Keys.COOKIE_NAME, user.toString());
         return;
       }
     }
 
     throw new RpcException("Wrong username or password!");
+  }
+
+  public void logout() {
+    this.getSession().removeAttribute(Application.Keys.SESSION_NAME);
+    this.removeCookie(Application.Keys.COOKIE_NAME);
   }
 
 }

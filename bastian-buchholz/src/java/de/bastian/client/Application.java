@@ -2,6 +2,7 @@ package de.bastian.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.History;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -59,6 +60,14 @@ public class Application implements EntryPoint {
 
     public static final String VIEWPORT_WEST = "viewport_west";
 
+    public static final String SESSION_NAME = "user";
+
+    public static final String COOKIE_NAME = "enigneppaelgoog";
+
+  }
+
+  public static boolean isLoggedIn() {
+    return Cookies.getCookie(Application.Keys.COOKIE_NAME) != null;
   }
 
   public void onModuleLoad() {
