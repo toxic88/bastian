@@ -15,6 +15,7 @@ import com.extjs.gxt.ui.client.mvc.Dispatcher;
 
 import de.bastian.client.controller.AppController;
 import de.bastian.client.controller.LoginController;
+import de.bastian.client.controller.TimetableController;
 import de.bastian.client.controller.UserController;
 import de.bastian.client.icons.AppIcons;
 
@@ -34,9 +35,9 @@ public class Application implements EntryPoint {
    * Application events
    */
   public static enum Events {
-    Init, Error,         // Main application events
-    Login, User,         // Component events
-    LoggedIn, LoggedOut; // Logical events
+    Init, Error,            // Main application events
+    Login, User, TimeTable, // Component events
+    LoggedIn, LoggedOut;    // Logical events
 
     private EventType eventType = new EventType();
 
@@ -91,6 +92,8 @@ public class Application implements EntryPoint {
           dispatcher.dispatch(Application.Events.Login.getType());
         } else if (token.equals("" + Application.Events.User)) {
           dispatcher.dispatch(Application.Events.User.getType());
+        } else if (token.equals("" + Application.Events.TimeTable)) {
+          dispatcher.dispatch(Application.Events.TimeTable.getType());
         }
 
       }
@@ -103,6 +106,7 @@ public class Application implements EntryPoint {
     dispatcher.addController(new AppController());
     dispatcher.addController(new LoginController());
     dispatcher.addController(new UserController());
+    dispatcher.addController(new TimetableController());
 
     dispatcher.dispatch(Application.Events.Init.getType());
 

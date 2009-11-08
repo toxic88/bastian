@@ -64,8 +64,7 @@ public class UserGrid {
 
       };
 
-      ModelReader reader = new ModelReader();
-      final ListLoader<ListLoadResult<ModelData>> loader = new BaseListLoader<ListLoadResult<ModelData>>(proxy, reader);
+      final ListLoader<ListLoadResult<ModelData>> loader = new BaseListLoader<ListLoadResult<ModelData>>(proxy, new ModelReader());
       final ListStore<User> store = new ListStore<User>(loader);
 
       /**
@@ -95,6 +94,7 @@ public class UserGrid {
        */
       final EditorGrid<User> g = new EditorGrid<User>(store, cm);
       g.setBorders(true);
+      g.getView().setForceFit(true);
       g.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
       /**

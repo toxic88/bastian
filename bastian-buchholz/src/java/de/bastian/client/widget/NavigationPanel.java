@@ -16,6 +16,11 @@ public class NavigationPanel {
 
   private static LayoutContainer navigation = null;
 
+  private static VBoxLayoutData vBoxLayoutData = new VBoxLayoutData(new Margins(0, 0, 5, 0));
+
+  private NavigationPanel() {
+  }
+
   public static LayoutContainer get() {
     if (NavigationPanel.navigation == null) {
       VBoxLayout layout = new VBoxLayout();
@@ -25,18 +30,29 @@ public class NavigationPanel {
 
       ContentPanel p;
 
+      /**
+       * Navigation
+       */
       p = new ContentPanel();
       p.setHeading("Navigation");
       p.setFrame(true);
-      p.add(new Hyperlink("User manager", "" + Application.Events.User));
-      n.add(p, new VBoxLayoutData(new Margins(0, 0, 5, 0)));
 
+      p.add(new Hyperlink("Timetable", "" + Application.Events.TimeTable));
+      p.add(new Hyperlink("User manager", "" + Application.Events.User));
+
+      n.add(p, vBoxLayoutData);
+
+      /**
+       * User
+       */
       p = new ContentPanel();
       p.setHeading("User");
       p.setIcon(Application.Icons.user());
       p.setFrame(true);
+
       p.add(new Hyperlink("" + Application.Events.Login, "" + Application.Events.Login));
-      n.add(p, new VBoxLayoutData(new Margins(0, 0, 5, 0)));
+      
+      n.add(p, vBoxLayoutData);
 
       DeferredCommand.addCommand(new Command() {
 

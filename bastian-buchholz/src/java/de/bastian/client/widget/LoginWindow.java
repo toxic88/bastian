@@ -27,6 +27,9 @@ public class LoginWindow {
 
   private static FormData formData = new FormData("100%");
 
+  private LoginWindow() {
+  }
+
   public static Window get() {
     if (LoginWindow.win == null) {
       /**
