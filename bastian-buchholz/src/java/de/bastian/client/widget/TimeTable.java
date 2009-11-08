@@ -1,14 +1,16 @@
 package de.bastian.client.widget;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.grid.ColumnConfig;
 import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
+
 import de.bastian.client.model.Timetable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TimeTable {
 
@@ -36,6 +38,7 @@ public class TimeTable {
       for (ColumnConfig cfg : cm.getColumns()) {
         cfg.setMenuDisabled(true);
         cfg.setSortable(false);
+        cfg.setResizable(false);
       }
 
       Grid g = new Grid(store, cm);
