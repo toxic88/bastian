@@ -60,9 +60,9 @@ public class Application implements EntryPoint {
 
     public static final String VIEWPORT_WEST = "viewport_west";
 
-    public static final String SESSION_NAME = "user";
+    public static final String SESSION_NAME = "ee11cbb19052e40b07aac0ca060c23ee";
 
-    public static final String COOKIE_NAME = "enigneppaelgoog";
+    public static final String COOKIE_NAME = "900cff6e4532927ffe090f2aa0590cee";
 
   }
 
@@ -111,7 +111,7 @@ public class Application implements EntryPoint {
     /**
      * Fade out the overlay
      */
-    new El(XDOM.getElementById("loading-mask")).fadeOut(FxConfig.NONE);
+    El.fly(XDOM.getElementById("loading-mask")).fadeOut(FxConfig.NONE);
   }
 
 }
