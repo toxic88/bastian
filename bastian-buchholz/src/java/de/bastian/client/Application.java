@@ -35,14 +35,27 @@ public class Application implements EntryPoint {
    * Application events
    */
   public static enum Events {
-    Init, Error,            // Main application events
-    Login, User, TimeTable, // Component events
-    LoggedIn, LoggedOut;    // Logical events
+    Init, Error,                              // Main application events
+    Login(true), User(true), TimeTable(true), // Component events
+    LoggedIn, LoggedOut;                      // Logical events
 
     private EventType eventType = new EventType();
 
+    private boolean historyEvent = false;
+
+    Events() {
+    }
+
+    Events(boolean historyEvent) {
+      this.historyEvent = historyEvent;
+    }
+
     public EventType getType() {
       return this.eventType;
+    }
+
+    public boolean isHistoryEvent() {
+      return this.historyEvent;
     }
 
     @Override
@@ -88,12 +101,12 @@ public class Application implements EntryPoint {
         }
         this.lastToken = token;
 
-        if (token.equals("" + Application.Events.Login)) {
-          dispatcher.dispatch(Application.Events.Login.getType());
-        } else if (token.equals("" + Application.Events.User)) {
-          dispatcher.dispatch(Application.Events.User.getType());
-        } else if (token.equals("" + Application.Events.TimeTable)) {
-          dispatcher.dispatch(Application.Events.TimeTable.getType());
+        try {
+          Events e = Application.Events.valueOf(token);
+          if (e.isHistoryEvent()) {
+            dispatcher.dispatch(e.getType());
+          }
+        } catch(Exception e) {
         }
 
       }
@@ -101,13 +114,16 @@ public class Application implements EntryPoint {
     });
 
     /**
-     * Controllers
+     * Add the controllers
      */
     dispatcher.addController(new AppController());
     dispatcher.addController(new LoginController());
     dispatcher.addController(new UserController());
     dispatcher.addController(new TimetableController());
 
+    /**
+     * Dispatch the Init event
+     */
     dispatcher.dispatch(Application.Events.Init.getType());
 
     History.fireCurrentHistoryState();
