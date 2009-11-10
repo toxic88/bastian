@@ -6,6 +6,7 @@ import com.extjs.gxt.ui.client.mvc.Controller;
 import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 
 import de.bastian.client.Application;
 import de.bastian.client.widget.TimeTable;
@@ -22,17 +23,14 @@ public class TimetableView extends View {
   protected void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.TimeTable.getType()) {
       LayoutContainer center = (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
-      if (this.timeTable.getParent() != center) {
-        center.removeAll();
-        center.add(this.timeTable);
-        center.layout();
-      }
+      ((CardLayout) center.getLayout()).setActiveItem(this.timeTable);
     }
   }
 
   @Override
   protected void initialize() {
-    this.timeTable = TimeTable.get();
+    LayoutContainer center = (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
+    center.add(this.timeTable = TimeTable.get());
   }
 
 }
