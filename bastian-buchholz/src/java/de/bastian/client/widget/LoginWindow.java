@@ -2,6 +2,7 @@ package de.bastian.client.widget;
 
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
 
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
@@ -111,7 +112,7 @@ public class LoginWindow {
       Window w = new Window();
 
       w.setLayout(new FitLayout());
-      w.setIcon(Application.Icons.lock());
+      w.setIcon(AbstractImagePrototype.create(Application.Resources.lock()));
 
       w.addButton(loginBtn);
       w.addButton(cancelBtn);

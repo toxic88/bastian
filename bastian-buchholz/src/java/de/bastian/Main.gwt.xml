@@ -2,7 +2,11 @@
 <module>
   <inherits name="com.google.gwt.user.User"/>
   <inherits name="com.google.gwt.i18n.I18N"/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  
   <inherits name="com.extjs.gxt.ui.GXT"/>
+
   <entry-point class="de.bastian.client.Application"/>
+
   <extend-property name="locale" values="en,de"/>
 </module>

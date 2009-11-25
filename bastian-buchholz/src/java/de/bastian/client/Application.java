@@ -17,7 +17,7 @@ import de.bastian.client.controller.AppController;
 import de.bastian.client.controller.LoginController;
 import de.bastian.client.controller.TimetableController;
 import de.bastian.client.controller.UserController;
-import de.bastian.client.icons.AppIcons;
+import de.bastian.client.resources.AppResources;
 
 public class Application implements EntryPoint {
 
@@ -29,7 +29,7 @@ public class Application implements EntryPoint {
   /**
    * Icons
    */
-  public static AppIcons Icons = GWT.create(AppIcons.class);
+  public static AppResources Resources = GWT.create(AppResources.class);
 
   /**
    * Application events
@@ -85,6 +85,9 @@ public class Application implements EntryPoint {
   }
 
   public void onModuleLoad() {
+    Application.Resources.gxtCss().ensureInjected();
+    Application.Resources.applicationCss().ensureInjected();
+
     final Dispatcher dispatcher = Dispatcher.get();
 
     /**

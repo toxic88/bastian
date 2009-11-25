@@ -7,7 +7,7 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library>
-                    <file>${file.reference.gwt-dev-linux.jar}</file>
+                    <file>${file.reference.gwt-dev.jar}</file>
                 </library>
                 <library>
                     <file>${file.reference.gwt-user.jar}</file>

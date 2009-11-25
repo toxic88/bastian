@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
 
 import com.extjs.gxt.ui.client.data.BaseListLoader;
 import com.extjs.gxt.ui.client.data.ListLoadResult;
@@ -104,7 +105,7 @@ public class UserGrid {
       p.add(g);
       p.setHeading("Users");
       p.setFrame(true);
-      p.setIcon(Application.Icons.group());
+      p.setIcon(AbstractImagePrototype.create(Application.Resources.group()));
 
       /**
        * Toolbar
@@ -118,7 +119,7 @@ public class UserGrid {
       final TextField<String> password = new TextField<String>();
       password.setPassword(true);
       toolBar.add(password);
-      toolBar.add(new Button("Add", Application.Icons.userAdd(), new SelectionListener<ButtonEvent>() {
+      toolBar.add(new Button("Add", AbstractImagePrototype.create(Application.Resources.userAdd()), new SelectionListener<ButtonEvent>() {
 
         public void componentSelected(ButtonEvent event) {
 
@@ -147,7 +148,7 @@ public class UserGrid {
         }
 
       }));
-      final Button deleteSelectedUser = new Button(" ", Application.Icons.userDelete(), new SelectionListener<ButtonEvent>() {
+      final Button deleteSelectedUser = new Button(" ", AbstractImagePrototype.create(Application.Resources.userDelete()), new SelectionListener<ButtonEvent>() {
 
         @Override
         public void componentSelected(ButtonEvent ce) {

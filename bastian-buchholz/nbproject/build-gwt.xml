@@ -206,7 +206,7 @@
         <echo>GWT Compiling client-side code.</echo>
         <java classpath="${javac.classpath}:${src.dir}:${build.classes.dir}" failonerror="true"
           classname="com.google.gwt.dev.Compiler" fork="true"
-          jvmargs="${gwt.compiler.jvmargs}">
+          jvmargs="${gwt.compiler.jvmargs}" maxmemory="512m">
             <arg value="-war"/>
             <arg path="${build.web.dir}/"/>
             <arg value="-style"/>
@@ -229,7 +229,7 @@
         <echo>GWT Compiling client-side code.</echo>
         <java classpath="${javac.classpath}:${src.dir}:${build.classes.dir}" failonerror="true"
           classname="com.google.gwt.dev.Compiler" fork="true"
-          jvmargs="${gwt.compiler.jvmargs}">
+          jvmargs="${gwt.compiler.jvmargs}" maxmemory="512m">
             <arg value="-war"/>
             <arg path="${build.web.dir}/"/>
             <arg value="-style"/>

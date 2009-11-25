@@ -2,6 +2,7 @@ package de.bastian.client.widget;
 
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
+import com.google.gwt.user.client.ui.AbstractImagePrototype;
 import com.google.gwt.user.client.ui.Hyperlink;
 
 import com.extjs.gxt.ui.client.util.Margins;
@@ -47,7 +48,7 @@ public class NavigationPanel {
        */
       p = new ContentPanel();
       p.setHeading("User");
-      p.setIcon(Application.Icons.user());
+      p.setIcon(AbstractImagePrototype.create(Application.Resources.user()));
       p.setFrame(true);
 
       p.add(new Hyperlink("" + Application.Events.Login, "" + Application.Events.Login));
