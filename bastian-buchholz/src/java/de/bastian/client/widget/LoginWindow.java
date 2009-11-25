@@ -20,7 +20,6 @@ import com.extjs.gxt.ui.client.widget.layout.FormData;
 import de.bastian.client.Application;
 import de.bastian.client.rpc.ServiceManager;
 import de.bastian.client.overrides.FormPanel;
-import de.bastian.client.rpc.RpcException;
 
 public class LoginWindow {
 
@@ -75,9 +74,7 @@ public class LoginWindow {
           AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 
             public void onFailure(Throwable caught) {
-              if (caught instanceof RpcException) {
-                Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
-              }
+              Dispatcher.get().dispatch(Application.Events.Error.getType(), caught);
             }
 
             public void onSuccess(Void result) {

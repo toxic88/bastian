@@ -41,7 +41,6 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import de.bastian.client.Application;
 import de.bastian.client.model.User;
 import de.bastian.client.overrides.EditorGrid;
-import de.bastian.client.rpc.RpcException;
 import de.bastian.client.rpc.ServiceManager;
 
 public class UserGrid {
@@ -130,9 +129,7 @@ public class UserGrid {
           AsyncCallback<User> callback = new AsyncCallback<User>() {
 
             public void onFailure(Throwable caught) {
-                if (caught instanceof RpcException) {
-                  Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
-                }
+              Dispatcher.get().dispatch(Application.Events.Error.getType(), caught);
             }
 
             public void onSuccess(User result) {
@@ -157,9 +154,7 @@ public class UserGrid {
             AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 
               public void onFailure(Throwable caught) {
-                  if (caught instanceof RpcException) {
-                    Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
-                  }
+                Dispatcher.get().dispatch(Application.Events.Error.getType(), caught);
               }
 
               public void onSuccess(Void result) {
@@ -188,10 +183,8 @@ public class UserGrid {
           AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 
             public void onFailure(Throwable caught) {
-              if (caught instanceof RpcException) {
-                Dispatcher.get().dispatch(Application.Events.Error.getType(), ((RpcException) caught).getError());
-              }
               rec.reject(false);
+              Dispatcher.get().dispatch(Application.Events.Error.getType(), caught);
             }
 
             public void onSuccess(Void result) {

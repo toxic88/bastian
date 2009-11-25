@@ -58,11 +58,6 @@ public class Application implements EntryPoint {
       return this.historyEvent;
     }
 
-    @Override
-    public String toString() {
-      return this.name();
-    }
-
   }
 
   /**
@@ -85,6 +80,9 @@ public class Application implements EntryPoint {
   }
 
   public void onModuleLoad() {
+    /**
+     * Add stylesheet
+     */
     Application.Resources.applicationCss().ensureInjected();
 
     final Dispatcher dispatcher = Dispatcher.get();
