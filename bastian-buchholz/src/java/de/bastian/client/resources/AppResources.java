@@ -6,10 +6,6 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface AppResources extends ClientBundle {
 
-  @Source("gxt.css")
-  @CssResource.NotStrict
-  CssResource gxtCss();
-
   @Source("application.css")
   @CssResource.NotStrict
   CssResource applicationCss();

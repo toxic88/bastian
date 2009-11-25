@@ -85,7 +85,6 @@ public class Application implements EntryPoint {
   }
 
   public void onModuleLoad() {
-    Application.Resources.gxtCss().ensureInjected();
     Application.Resources.applicationCss().ensureInjected();
 
     final Dispatcher dispatcher = Dispatcher.get();
