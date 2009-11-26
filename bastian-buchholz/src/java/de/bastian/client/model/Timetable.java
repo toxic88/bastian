@@ -23,69 +23,69 @@ public class Timetable extends BaseModel {
   }
 
   public Timetable(Integer id, String time, String monday, String tuesday, String wednesday, String thursday, String friday) {
-    this.setId(id);
-    this.setTime(time);
-    this.setMonday(monday);
-    this.setTuesday(tuesday);
-    this.setWednesday(wednesday);
-    this.setThursday(thursday);
-    this.setFriday(friday);
+    setId(id);
+    setTime(time);
+    setMonday(monday);
+    setTuesday(tuesday);
+    setWednesday(wednesday);
+    setThursday(thursday);
+    setFriday(friday);
   }
 
   public int getId() {
-    return (Integer) this.get("id");
+    return (Integer) get("id");
   }
 
   public void setId(Integer id) {
-    this.set("id", id);
+    set("id", id);
   }
 
   public String getTime() {
-    return (String) this.get("time");
+    return (String) get("time");
   }
 
   public void setTime(String time) {
-    this.set("time", time);
+    set("time", time);
   }
 
   public String getMonday() {
-    return (String) this.get("monday");
+    return (String) get("monday");
   }
 
   public void setMonday(String monday) {
-    this.set("monday", monday);
+    set("monday", monday);
   }
 
   public String getTuesday() {
-    return (String) this.get("tuesday");
+    return (String) get("tuesday");
   }
 
   public void setTuesday(String tuesday) {
-    this.set("tuesday", tuesday);
+    set("tuesday", tuesday);
   }
 
   public String getWednesday() {
-    return (String) this.get("wednesday");
+    return (String) get("wednesday");
   }
 
   public void setWednesday(String wednesday) {
-    this.set("wednesday", wednesday);
+    set("wednesday", wednesday);
   }
 
   public String getThursday() {
-    return (String) this.get("thursday");
+    return (String) get("thursday");
   }
 
   public void setThursday(String thursday) {
-    this.set("thursday", thursday);
+    set("thursday", thursday);
   }
 
   public String getFriday() {
-    return (String) this.get("friday");
+    return (String) get("friday");
   }
 
   public void setFriday(String friday) {
-    this.set("friday", friday);
+    set("friday", friday);
   }
 
 }

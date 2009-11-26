@@ -63,10 +63,10 @@ public class NavigationPanel {
 
       });
 
-      NavigationPanel.navigation = n;
+      navigation = n;
     }
 
-    return NavigationPanel.navigation;
+    return navigation;
   }
 
 }

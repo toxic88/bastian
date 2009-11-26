@@ -11,18 +11,18 @@ public class LoginController extends Controller {
   private LoginView loginView;
 
   public LoginController() {
-    this.registerEventTypes(Application.Events.Login.getType());
+    registerEventTypes(Application.Events.Login.getType());
   }
 
   @Override
   protected void initialize() {
-    this.loginView = new LoginView(this);
+    loginView = new LoginView(this);
   }
 
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.Login.getType()) {
-      this.forwardToView(this.loginView, event);
+      this.forwardToView(loginView, event);
     }
   }
 

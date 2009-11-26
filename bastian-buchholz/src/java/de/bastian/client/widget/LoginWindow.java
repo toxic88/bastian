@@ -18,7 +18,6 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormData;
 
 import de.bastian.client.Application;
-import de.bastian.client.rpc.ServiceManager;
 import de.bastian.client.overrides.FormPanel;
 
 public class LoginWindow {
@@ -83,7 +82,7 @@ public class LoginWindow {
 
           };
 
-          ServiceManager.getUserService().login(username.getValue(), password.getValue(), callback);
+          Application.Services.getUserService().login(username.getValue(), password.getValue(), callback);
 
           username.setValue(null);
           password.setValue(null);
@@ -145,10 +144,10 @@ public class LoginWindow {
 
       });
 
-      LoginWindow.win = w;
+      win = w;
     }
 
-    return LoginWindow.win;
+    return win;
   }
 
 }

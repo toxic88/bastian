@@ -32,17 +32,17 @@ public class AppView extends View {
   }
 
   private void initUI() {
-    this.viewport = new Viewport();
-    this.viewport.setLayout(new BorderLayout());
+    viewport = new Viewport();
+    viewport.setLayout(new BorderLayout());
 
-    this.createNorth();
-    this.createCenter();
-    this.createWest();
+    createNorth();
+    createCenter();
+    createWest();
 
-    Registry.register(Application.Keys.VIEWPORT_CENTER, this.center);
-    Registry.register(Application.Keys.VIEWPORT_WEST, this.west);
+    Registry.register(Application.Keys.VIEWPORT_CENTER, center);
+    Registry.register(Application.Keys.VIEWPORT_WEST, west);
 
-    RootPanel.get().add(this.viewport);
+    RootPanel.get().add(viewport);
   }
 
   private void createNorth() {
@@ -50,37 +50,40 @@ public class AppView extends View {
 
     BorderLayoutData data = new BorderLayoutData(LayoutRegion.NORTH, 33);
     data.setMargins(new Margins());
-    this.viewport.add(northPanel, data);
+    viewport.add(northPanel, data);
   }
 
   private void createCenter() {
-    this.center = new LayoutContainer(new CardLayout());
+    center = new LayoutContainer(new CardLayout());
 
+    /**
+     * Default content
+     */
     ContentPanel p = new ContentPanel();
     p.setFrame(true);
     p.setHeading("Willkommen");
     p.addText("Willkommen!");
 
-    this.center.add(p);
+    center.add(p);
 
     BorderLayoutData data = new BorderLayoutData(LayoutRegion.CENTER);
     data.setMargins(new Margins(5, 5, 5, 5));
 
-    this.viewport.add(this.center, data);
+    viewport.add(center, data);
   }
 
   private void createWest() {
-    this.west = NavigationPanel.get();
+    west = NavigationPanel.get();
 
     BorderLayoutData data = new BorderLayoutData(LayoutRegion.WEST);
     data.setMargins(new Margins(5, 0, 5, 5));
-    this.viewport.add(this.west, data);
+    viewport.add(west, data);
   }
 
   @Override
   protected void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.Init.getType()) {
-      this.initUI();
+      initUI();
     }
   }
 

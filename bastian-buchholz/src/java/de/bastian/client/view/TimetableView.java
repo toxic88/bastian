@@ -23,14 +23,14 @@ public class TimetableView extends View {
   protected void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.TimeTable.getType()) {
       LayoutContainer center = (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
-      ((CardLayout) center.getLayout()).setActiveItem(this.timeTable);
+      ((CardLayout) center.getLayout()).setActiveItem(timeTable);
     }
   }
 
   @Override
   protected void initialize() {
     LayoutContainer center = (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
-    center.add(this.timeTable = TimeTable.get());
+    center.add(timeTable = TimeTable.get());
   }
 
 }

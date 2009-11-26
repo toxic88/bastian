@@ -11,18 +11,18 @@ public class TimetableController extends Controller {
   private TimetableView timetableView;
 
   public TimetableController() {
-    this.registerEventTypes(Application.Events.TimeTable.getType());
+    registerEventTypes(Application.Events.TimeTable.getType());
   }
 
   @Override
   protected void initialize() {
-    this.timetableView = new TimetableView(this);
+    timetableView = new TimetableView(this);
   }
 
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.TimeTable.getType()) {
-      this.forwardToView(this.timetableView, event);
+      this.forwardToView(timetableView, event);
     }
   }
 

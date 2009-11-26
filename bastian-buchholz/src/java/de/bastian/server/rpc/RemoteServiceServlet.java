@@ -15,21 +15,21 @@ public class RemoteServiceServlet extends com.google.gwt.user.server.rpc.RemoteS
   }
 
   protected PersistenceManager getPersistenceManager() {
-    return this.getPersistenceManagerFactory().getPersistenceManager();
+    return getPersistenceManagerFactory().getPersistenceManager();
   }
 
   protected HttpSession getSession() {
-    return this.getThreadLocalRequest().getSession(true);
+    return getThreadLocalRequest().getSession(true);
   }
 
   protected void addCookie(Cookie cookie) {
-    this.getThreadLocalResponse().addCookie(cookie);
+    getThreadLocalResponse().addCookie(cookie);
   }
 
   protected void addCookie(String name, String value) {
     Cookie cookie = new Cookie(name, value);
     cookie.setPath("/");
-    this.addCookie(cookie);
+    addCookie(cookie);
   }
 
   protected void removeCookie(String name) {
@@ -37,12 +37,12 @@ public class RemoteServiceServlet extends com.google.gwt.user.server.rpc.RemoteS
     if (cookie != null) {
       cookie.setMaxAge(0);
       cookie.setPath("/");
-      this.addCookie(cookie);
+      addCookie(cookie);
     }
   }
 
   protected Cookie getCookie(String name) {
-    Cookie[] cookies = this.getThreadLocalRequest().getCookies();
+    Cookie[] cookies = getThreadLocalRequest().getCookies();
     if (cookies != null) {
       for (Cookie cookie : cookies) {
         if (cookie.getName().equals(name)) {

@@ -32,21 +32,21 @@ public class User implements Serializable {
   private Date createDate;
 
   public User() {
-    this.createDate = new Date();
+    createDate = new Date();
   }
 
   public User(String firstName, String password) {
     this();
-    this.setUsername(firstName);
-    this.setPassword(password);
+    setUsername(firstName);
+    setPassword(password);
   }
 
   public Long getId() {
-    return this.id;
+    return id;
   }
 
   public String getUsername() {
-    return this.username;
+    return username;
   }
 
   public void setUsername(String username) {
@@ -54,7 +54,7 @@ public class User implements Serializable {
   }
 
   public byte[] getPassword() {
-    return this.password;
+    return password;
   }
 
   public void setPassword(String password) {
@@ -62,7 +62,7 @@ public class User implements Serializable {
   }
 
   public Date getCreateDate() {
-    return this.createDate;
+    return createDate;
   }
 
   public static byte[] passwordToHash(String password) {
@@ -79,7 +79,7 @@ public class User implements Serializable {
   }
 
   public de.bastian.client.model.User getRpcUser() {
-    return new de.bastian.client.model.User(this.getId(), this.getUsername(), this.getCreateDate());
+    return new de.bastian.client.model.User(getId(), getUsername(), getCreateDate());
   }
 
 }

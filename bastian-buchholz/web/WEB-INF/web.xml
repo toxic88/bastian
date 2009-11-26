@@ -3,7 +3,7 @@
 
   <servlet>
     <servlet-name>User</servlet-name>
-    <servlet-class>de.bastian.server.UserManagerImpl</servlet-class>
+    <servlet-class>de.bastian.server.rpc.services.UserManagerImpl</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>User</servlet-name>

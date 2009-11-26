@@ -14,7 +14,7 @@ public class RpcException extends Exception implements Serializable {
   }
 
   public String getError() {
-    return this.error;
+    return error;
   }
 
 }

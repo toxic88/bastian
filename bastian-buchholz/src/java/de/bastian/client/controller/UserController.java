@@ -11,18 +11,18 @@ public class UserController extends Controller {
   private UserView userView;
 
   public UserController() {
-    this.registerEventTypes(Application.Events.User.getType());
+    registerEventTypes(Application.Events.User.getType());
   }
 
   @Override
   protected void initialize() {
-    this.userView = new UserView(this);
+    userView = new UserView(this);
   }
 
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.User.getType()) {
-      this.forwardToView(this.userView, event);
+      this.forwardToView(userView, event);
     }
   }
 

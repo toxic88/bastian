@@ -41,7 +41,6 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 import de.bastian.client.Application;
 import de.bastian.client.model.User;
 import de.bastian.client.overrides.EditorGrid;
-import de.bastian.client.rpc.ServiceManager;
 
 public class UserGrid {
 
@@ -59,7 +58,7 @@ public class UserGrid {
 
         @Override
         protected void load(Object loadConfig, AsyncCallback<List<User>> callback) {
-          ServiceManager.getUserService().getAll(callback);
+          Application.Services.getUserService().getAll(callback);
         }
 
       };
@@ -138,7 +137,7 @@ public class UserGrid {
 
           };
 
-          ServiceManager.getUserService().createUser(username.getValue(), password.getValue(), callback);
+          Application.Services.getUserService().createUser(username.getValue(), password.getValue(), callback);
 
           username.setValue(null);
           password.setValue(null);
@@ -150,6 +149,7 @@ public class UserGrid {
         @Override
         public void componentSelected(ButtonEvent ce) {
           final User user = g.getSelectionModel().getSelectedItem();
+
           if (user != null) {
             AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 
@@ -163,7 +163,7 @@ public class UserGrid {
 
             };
 
-            ServiceManager.getUserService().removeUser(user, callback);
+            Application.Services.getUserService().removeUser(user, callback);
           }
         }
 
@@ -173,7 +173,7 @@ public class UserGrid {
       p.setTopComponent(toolBar);
 
       /**
-       * Listeners
+       * Edit logic
        */
       g.addListener(Events.AfterEdit, new Listener<GridEvent<User>>() {
 
@@ -193,22 +193,28 @@ public class UserGrid {
 
           };
 
-          ServiceManager.getUserService().updateUser((User) rec.getModel(), callback);
+          Application.Services.getUserService().updateUser((User) rec.getModel(), callback);
         }
 
       });
+      /**
+       * Load the grid for the first time
+       */
       g.addListener(Events.Attach, new Listener<GridEvent<User>>() {
 
         private boolean isLoaded = false;
 
         public void handleEvent(GridEvent<User> be) {
-          if (!this.isLoaded) {
+          if (!isLoaded) {
             loader.load();
-            this.isLoaded = true;
+            isLoaded = true;
           }
         }
 
       });
+      /**
+       * Show or hide the delete button depending of what is selected
+       */
       g.getSelectionModel().addSelectionChangedListener(new SelectionChangedListener<User>() {
 
         @Override
@@ -223,10 +229,10 @@ public class UserGrid {
 
       });
 
-      UserGrid.grid = p;
+      grid = p;
     }
 
-    return UserGrid.grid;
+    return grid;
   }
 
 }

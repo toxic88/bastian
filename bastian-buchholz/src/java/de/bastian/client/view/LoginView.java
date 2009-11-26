@@ -19,13 +19,13 @@ public class LoginView extends View {
   @Override
   protected void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.Login.getType()) {
-      this.loginWindow.show();
+      loginWindow.show();
     }
   }
 
   @Override
   protected void initialize() {
-    this.loginWindow = LoginWindow.get();
+    loginWindow = LoginWindow.get();
   }
 
 }

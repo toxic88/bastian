@@ -19,19 +19,19 @@ public class AppController extends Controller {
 
   @Override
   protected void initialize() {
-    this.appView = new AppView(this);
+    appView = new AppView(this);
   }
 
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.Init.getType()) {
-      this.forwardToView(this.appView, event);
+      this.forwardToView(appView, event);
     } else if (event.getType() == Application.Events.Error.getType()) {
 
       Object data = event.getData();
 
       if (data instanceof Throwable) {
-        event.setData(((RpcException) data).getError());
+        event.setData( ((RpcException) data).getError() );
       }
       
       MessageBox.alert(Application.Messages.error(), event.<String>getData(), null);

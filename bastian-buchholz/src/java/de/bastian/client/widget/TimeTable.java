@@ -50,10 +50,10 @@ public class TimeTable {
       p.setHeading("Timetable");
       p.setFrame(true);
 
-      TimeTable.grid = p;
+      grid = p;
     }
 
-    return TimeTable.grid;
+    return grid;
   }
 
 }

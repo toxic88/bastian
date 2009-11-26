@@ -17,7 +17,8 @@ import de.bastian.client.controller.AppController;
 import de.bastian.client.controller.LoginController;
 import de.bastian.client.controller.TimetableController;
 import de.bastian.client.controller.UserController;
-import de.bastian.client.resources.AppResources;
+import de.bastian.client.resources.Resources;
+import de.bastian.client.rpc.RpcServices;
 
 public class Application implements EntryPoint {
 
@@ -29,7 +30,12 @@ public class Application implements EntryPoint {
   /**
    * Icons
    */
-  public static AppResources Resources = GWT.create(AppResources.class);
+  public static Resources Resources = GWT.create(Resources.class);
+
+  /**
+   * RPC Services
+   */
+  public static RpcServices Services = RpcServices.get();
 
   /**
    * Application events
@@ -51,11 +57,11 @@ public class Application implements EntryPoint {
     }
 
     public EventType getType() {
-      return this.eventType;
+      return eventType;
     }
 
     public boolean isHistoryEvent() {
-      return this.historyEvent;
+      return historyEvent;
     }
 
   }
@@ -96,10 +102,10 @@ public class Application implements EntryPoint {
 
       public void onValueChange(ValueChangeEvent<String> event) {
         String token = event.getValue();
-        if (token.equals(this.lastToken)) {
+        if (token.equals(lastToken)) {
           return;
         }
-        this.lastToken = token;
+        lastToken = token;
 
         try {
           Events e = Application.Events.valueOf(token);
@@ -126,6 +132,9 @@ public class Application implements EntryPoint {
      */
     dispatcher.dispatch(Application.Events.Init.getType());
 
+    /**
+     * If a token allready exists fire the ValueChangeHandler
+     */
     History.fireCurrentHistoryState();
 
     /**
