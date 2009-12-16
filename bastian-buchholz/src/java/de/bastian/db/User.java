@@ -30,14 +30,14 @@ public class User implements Serializable {
   private byte[] password;
 
   @Persistent
-  private List<Integer> rights;
+  private List<String> rights;
 
   @Persistent
   @Column(allowsNull = "false")
   private Date createDate;
 
   public User() {
-    List<Integer> r = new ArrayList<Integer>();
+    List<String> r = new ArrayList<String>();
     r.add(de.bastian.client.model.User.USER);
     setRights(r);
     createDate = new Date();
@@ -49,7 +49,7 @@ public class User implements Serializable {
     setPassword(password);
   }
 
-  public User(String firstname, String password, Integer right) {
+  public User(String firstname, String password, String right) {
     this(firstname, password);
     addRight(right);
   }
@@ -74,22 +74,22 @@ public class User implements Serializable {
     this.password = User.passwordToHash(password);
   }
 
-  public List<Integer> getRights() {
+  public List<String> getRights() {
     return rights;
   }
 
-  public boolean hasRight(Integer right) {
+  public boolean hasRight(String right) {
     if (rights.contains(right)) {
       return true;
     }
     return false;
   }
 
-  public void setRights(List<Integer> rights) {
+  public void setRights(List<String> rights) {
     this.rights = rights;
   }
 
-  public void addRight(Integer right) {
+  public void addRight(String right) {
     if (!rights.contains(right)) {
       rights.add(right);
     }

@@ -7,15 +7,15 @@ import com.extjs.gxt.ui.client.data.BaseModel;
 
 public class User extends BaseModel {
 
-  final public static int ADMIN = 1;
-  final public static int USER = 2;
+  final public static String ADMIN = "admin";
+  final public static String USER = "user";
 
   public User() {
     setId(new Long(-1));
     setCreateDate(new Date());
   }
 
-  public User(Long id, String username, List<Integer> rights, Date createDate) {
+  public User(Long id, String username, List<String> rights, Date createDate) {
     this();
     setId(id);
     setUsername(username);
@@ -39,11 +39,11 @@ public class User extends BaseModel {
     set("username", username);
   }
 
-  public List<Integer> getRights() {
-    return (List<Integer>) get("rights");
+  public List<String> getRights() {
+    return (List<String>) get("rights");
   }
 
-  public void setRights(List<Integer> rights) {
+  public void setRights(List<String> rights) {
     set("rights", rights);
   }
 
