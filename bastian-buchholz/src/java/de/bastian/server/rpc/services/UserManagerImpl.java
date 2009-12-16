@@ -1,7 +1,9 @@
 package de.bastian.server.rpc.services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
@@ -97,7 +99,7 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
 
     List ret = new ArrayList();
     try {
-      List<User> users = (List<User>) query.execute();
+      List<User> users = (List<User>) pm.detachCopyAll((Collection<?>) query.execute());
 
       for (User user : users) {
         ret.add(user.getRpcUser());

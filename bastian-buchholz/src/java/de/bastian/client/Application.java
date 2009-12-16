@@ -87,7 +87,7 @@ public class Application implements EntryPoint {
 
   public void onModuleLoad() {
     /**
-     * Add stylesheet
+     * Add my stylesheet
      */
     Application.Resources.applicationCss().ensureInjected();
 

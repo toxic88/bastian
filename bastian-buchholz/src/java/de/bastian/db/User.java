@@ -2,6 +2,8 @@ package de.bastian.db;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -28,10 +30,16 @@ public class User implements Serializable {
   private byte[] password;
 
   @Persistent
+  private List<Integer> rights;
+
+  @Persistent
   @Column(allowsNull = "false")
   private Date createDate;
 
   public User() {
+    List<Integer> r = new ArrayList<Integer>();
+    r.add(de.bastian.client.model.User.USER);
+    setRights(r);
     createDate = new Date();
   }
 
@@ -39,6 +47,11 @@ public class User implements Serializable {
     this();
     setUsername(firstName);
     setPassword(password);
+  }
+
+  public User(String firstname, String password, Integer right) {
+    this(firstname, password);
+    addRight(right);
   }
 
   public Long getId() {
@@ -61,6 +74,27 @@ public class User implements Serializable {
     this.password = User.passwordToHash(password);
   }
 
+  public List<Integer> getRights() {
+    return rights;
+  }
+
+  public boolean hasRight(Integer right) {
+    if (rights.contains(right)) {
+      return true;
+    }
+    return false;
+  }
+
+  public void setRights(List<Integer> rights) {
+    this.rights = rights;
+  }
+
+  public void addRight(Integer right) {
+    if (!rights.contains(right)) {
+      rights.add(right);
+    }
+  }
+
   public Date getCreateDate() {
     return createDate;
   }
@@ -79,7 +113,7 @@ public class User implements Serializable {
   }
 
   public de.bastian.client.model.User getRpcUser() {
-    return new de.bastian.client.model.User(getId(), getUsername(), getCreateDate());
+    return new de.bastian.client.model.User(getId(), getUsername(), getRights(), getCreateDate());
   }
 
 }

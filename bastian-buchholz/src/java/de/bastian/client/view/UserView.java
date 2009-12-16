@@ -22,15 +22,17 @@ public class UserView extends View {
   @Override
   protected void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.User.getType()) {
-      LayoutContainer center = (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
-      ((CardLayout) center.getLayout()).setActiveItem(userGrid);
+      ((CardLayout) getCenter().getLayout()).setActiveItem(userGrid);
     }
   }
 
   @Override
   protected void initialize() {
-    LayoutContainer center = (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
-    center.add(userGrid = UserGrid.get());
+    getCenter().add(userGrid = UserGrid.get());
+  }
+
+  private static LayoutContainer getCenter() {
+    return (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
   }
 
 }

@@ -73,6 +73,9 @@ public class AppView extends View {
   }
 
   private void createWest() {
+    /**
+     * Create the navigation
+     */
     west = NavigationPanel.get();
 
     BorderLayoutData data = new BorderLayoutData(LayoutRegion.WEST);

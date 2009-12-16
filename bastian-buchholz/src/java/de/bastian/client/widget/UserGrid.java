@@ -76,7 +76,26 @@ public class UserGrid {
       cfg.setRenderer(new GridCellRenderer<User>() {
 
         public Object render(User model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<User> store, Grid<User> grid) {
-          return Format.htmlEncode((String) model.get(property));
+          return Format.htmlEncode(model.getUsername());
+        }
+
+      });
+      columns.add(cfg);
+
+      cfg = new ColumnConfig("rights", "Rights", 200);
+      cfg.setRenderer(new GridCellRenderer<User>() {
+
+        public Object render(User model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<User> store, Grid<User> grid) {
+          String ret = "";
+
+          if (model.isAdmin()) {
+            ret += " Admin ";
+          }
+          if (model.isUser()) {
+            ret += " User ";
+          }
+
+          return ret;
         }
 
       });

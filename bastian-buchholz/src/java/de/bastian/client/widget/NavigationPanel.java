@@ -1,5 +1,8 @@
 package de.bastian.client.widget;
 
+import com.extjs.gxt.ui.client.event.ComponentEvent;
+import com.extjs.gxt.ui.client.event.Events;
+import com.extjs.gxt.ui.client.event.Listener;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
@@ -58,7 +61,7 @@ public class NavigationPanel {
       DeferredCommand.addCommand(new Command() {
 
         public void execute() {
-          n.layout();
+          n.layout(true);
         }
 
       });
