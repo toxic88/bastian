@@ -33,7 +33,7 @@ public class RemoteServiceServlet extends com.google.gwt.user.server.rpc.RemoteS
   }
 
   protected void removeCookie(String name) {
-    Cookie cookie = this.getCookie(name);
+    Cookie cookie = getCookie(name);
     if (cookie != null) {
       cookie.setMaxAge(0);
       cookie.setPath("/");

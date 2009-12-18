@@ -2,10 +2,10 @@ package de.bastian.db;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
