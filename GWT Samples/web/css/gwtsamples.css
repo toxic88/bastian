@@ -1,0 +1,32 @@
+body {
+  font-family:Verdana;
+  font-size:0.8em;
+}
+
+a {
+  color:#003399;
+  text-decoration:none;
+}
+
+#header {
+  color:#003399;
+  font-size:2em;
+  margin-left:5px;
+  margin-top:5px;
+}
+
+#footer {
+  font-size:0.7em;
+  text-align:center;
+  margin-top:0;
+}
+
+.navigation {
+  padding:5px;
+}
+
+.content {
+  padding:5px;
+  padding-left:20px;
+  border-left:1px solid #bbbbbb;
+}
