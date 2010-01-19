@@ -20,7 +20,8 @@ public class SampleEntryPoint implements EntryPoint {
 
   final Hyperlink helloWorldLink = new Hyperlink("Hello World", "HelloWorld");
   final Hyperlink helloWorldAsyncLink = new Hyperlink("Hello World Async", "HelloWorldAsync");
-  final Hyperlink rpcLink = new Hyperlink("RPC Sample", "RPCSample");
+  final Hyperlink rpcLink = new Hyperlink("RPC Sample", "RPC");
+  final Hyperlink widgetLink = new Hyperlink("Widgets", "Widgets");
 
   public void onModuleLoad() {
     renderLinks();
@@ -32,6 +33,7 @@ public class SampleEntryPoint implements EntryPoint {
 
   private void renderLayout() {
     root.setStylePrimaryName("content");
+    root.add(new HTML("<--- Click on a link to see the sample"));
 
     n.setSpacing(5);
     n.setStylePrimaryName("navigation");
@@ -50,6 +52,7 @@ public class SampleEntryPoint implements EntryPoint {
     n.add(helloWorldLink);
     n.add(helloWorldAsyncLink);
     n.add(rpcLink);
+    n.add(widgetLink);
   }
 
   private void initHistory() {
@@ -68,8 +71,10 @@ public class SampleEntryPoint implements EntryPoint {
           HelloWorldSample.run(root);
         } else if (token.equals("HelloWorldAsync")) {
           HelloWorldAsyncSample.run(root);
-        } else if (token.equals("RPCSample")) {
+        } else if (token.equals("RPC")) {
           RpcSample.run(root);
+        } else if (token.equals("Widgets")) {
+          WidgetSample.run(root);
         }
 
         lastToken = token;

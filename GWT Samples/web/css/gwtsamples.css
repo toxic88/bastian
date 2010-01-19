@@ -21,12 +21,32 @@ a {
   margin-top:0;
 }
 
-.navigation {
-  padding:5px;
-}
-
 .content {
   padding:5px;
   padding-left:20px;
   border-left:1px solid #bbbbbb;
+}
+
+.navigation, .gwt-SuggestBoxPopup .item, .gwt-TabBarItem, .gwt-TabPanelBottom, .datePickerDay, .datePickerWeekdayLabel, .datePickerWeekendLabel {
+  padding:5px;
+}
+
+.gwt-SuggestBoxPopup .item:hover, .datePickerDayIsValue, .gwt-TabBarItem-selected, .item-selected {
+  background-color:#bbbbbb;
+}
+
+.datePickerDay, .gwt-TabBarItem, .datePickerWeekdayLabel, .datePickerWeekendLabel, .gwt-SuggestBoxPopup {
+  border:1px solid #bbbbbb;
+}
+
+.datePickerMonth, .datePickerDay, .datePickerWeekdayLabel, .datePickerWeekendLabel {
+  text-align:center;
+}
+
+.datePickerWeekdayLabel, .datePickerWeekendLabel {
+  font-weight:bold;
+}
+
+.gwt-DatePicker {
+  width:0 !important;
 }
