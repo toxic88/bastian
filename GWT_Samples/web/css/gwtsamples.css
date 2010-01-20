@@ -1,0 +1,52 @@
+body {
+  font-family:Verdana;
+  font-size:0.8em;
+}
+
+a {
+  color:#003399;
+  text-decoration:none;
+}
+
+#header {
+  color:#003399;
+  font-size:2em;
+  margin-left:5px;
+  margin-top:5px;
+}
+
+#footer {
+  font-size:0.7em;
+  text-align:center;
+  margin-top:0;
+}
+
+.content {
+  padding:5px;
+  padding-left:20px;
+  border-left:1px solid #bbbbbb;
+}
+
+.navigation, .gwt-SuggestBoxPopup .item, .gwt-TabBarItem, .gwt-TabPanelBottom, .datePickerDay, .datePickerWeekdayLabel, .datePickerWeekendLabel {
+  padding:5px;
+}
+
+.gwt-SuggestBoxPopup .item:hover, .datePickerDayIsValue, .gwt-TabBarItem-selected, .item-selected {
+  background-color:#bbbbbb;
+}
+
+.datePickerDay, .gwt-TabBarItem, .datePickerWeekdayLabel, .datePickerWeekendLabel, .gwt-SuggestBoxPopup {
+  border:1px solid #bbbbbb;
+}
+
+.datePickerMonth, .datePickerDay, .datePickerWeekdayLabel, .datePickerWeekendLabel {
+  text-align:center;
+}
+
+.datePickerWeekdayLabel, .datePickerWeekendLabel {
+  font-weight:bold;
+}
+
+.gwt-DatePicker {
+  width:1px !important;
+}
