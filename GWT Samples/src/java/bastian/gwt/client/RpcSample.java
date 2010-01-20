@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package bastian.gwt.client;
 
 import bastian.gwt.client.rpc.Echo;
