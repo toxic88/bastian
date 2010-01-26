@@ -1,7 +1,6 @@
 package de.bastian.client.widget;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
@@ -10,6 +9,7 @@ import com.extjs.gxt.ui.client.widget.grid.ColumnModel;
 import com.extjs.gxt.ui.client.widget.grid.Grid;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 
+import de.bastian.client.Application;
 import de.bastian.client.model.Timetable;
 
 public class TimeTable {
@@ -24,15 +24,15 @@ public class TimeTable {
       ListStore<Timetable> store = new ListStore<Timetable>();
       store.add(Timetable.getTimetable());
 
-      List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
+      ArrayList<ColumnConfig> columns = new ArrayList<ColumnConfig>();
 
-      columns.add(new ColumnConfig("time",      "Time",      100));
-      columns.add(new ColumnConfig("monday",    "Monday",    100));
-      columns.add(new ColumnConfig("tuesday",   "Tuesday",   100));
-      columns.add(new ColumnConfig("wednesday", "Wednesday", 100));
-      columns.add(new ColumnConfig("thursday",  "Thursday",  100));
-      columns.add(new ColumnConfig("friday",    "Friday",    100));
-      columns.add(new ColumnConfig("id",        "Hour",      100));
+      columns.add(new ColumnConfig("time",      Application.Messages.time(),      100));
+      columns.add(new ColumnConfig("monday",    Application.Messages.monday(),    100));
+      columns.add(new ColumnConfig("tuesday",   Application.Messages.tuesday(),   100));
+      columns.add(new ColumnConfig("wednesday", Application.Messages.wednesday(), 100));
+      columns.add(new ColumnConfig("thursday",  Application.Messages.thursday(),  100));
+      columns.add(new ColumnConfig("friday",    Application.Messages.friday(),    100));
+      columns.add(new ColumnConfig("id",        Application.Messages.hour(),      100));
 
       ColumnModel cm = new ColumnModel(columns);
       for (ColumnConfig cfg : cm.getColumns()) {
@@ -47,7 +47,7 @@ public class TimeTable {
 
       ContentPanel p = new ContentPanel(new FitLayout());
       p.add(g);
-      p.setHeading("Timetable");
+      p.setHeading(Application.Messages.timetable());
       p.setFrame(true);
 
       grid = p;

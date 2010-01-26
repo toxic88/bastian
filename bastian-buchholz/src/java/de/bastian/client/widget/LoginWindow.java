@@ -45,12 +45,12 @@ public class LoginWindow {
        * Fields
        */
       final TextField<String> username = new TextField<String>();
-      username.setFieldLabel("Username");
+      username.setFieldLabel(Application.Messages.username());
       username.setAllowBlank(false);
       username.setMessageTarget("tooltip");
 
       final TextField<String> password = new TextField<String>();
-      password.setFieldLabel("Password");
+      password.setFieldLabel(Application.Messages.password());
       password.setAllowBlank(false);
       password.setMessageTarget("tooltip");
       password.setPassword(true);
@@ -61,7 +61,7 @@ public class LoginWindow {
       /**
        * Buttons
        */
-      Button loginBtn = new Button("Login", new SelectionListener<ButtonEvent>() {
+      Button loginBtn = new Button(Application.Messages.login(), new SelectionListener<ButtonEvent>() {
 
         @Override
         public void componentSelected(ButtonEvent ce) {
@@ -94,7 +94,7 @@ public class LoginWindow {
 
       new FormButtonBinding(fp).addButton(loginBtn);
 
-      Button cancelBtn = new Button("Cancel", new SelectionListener<ButtonEvent>() {
+      Button cancelBtn = new Button(Application.Messages.cancel(), new SelectionListener<ButtonEvent>() {
 
         @Override
         public void componentSelected(ButtonEvent ce) {
@@ -116,7 +116,7 @@ public class LoginWindow {
 
       w.add(fp);
 
-      w.setHeading("Login");
+      w.setHeading(Application.Messages.login());
       w.setModal(true);
       w.setFocusWidget(username);
       w.setDraggable(false);

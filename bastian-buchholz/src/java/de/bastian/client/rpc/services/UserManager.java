@@ -1,6 +1,6 @@
 package de.bastian.client.rpc.services;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -19,7 +19,7 @@ public interface UserManager extends RemoteService {
   
   public void removeUser(User user) throws RpcException;
 
-  public List<User> getAll();
+  public ArrayList<User> getAll();
 
   public void login(String username, String password) throws RpcException;
 

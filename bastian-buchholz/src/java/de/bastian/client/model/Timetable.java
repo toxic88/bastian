@@ -2,12 +2,11 @@ package de.bastian.client.model;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Timetable extends BaseModel {
 
-  public static List<Timetable> getTimetable() {
-    List<Timetable> t = new ArrayList<Timetable>();
+  public static ArrayList<Timetable> getTimetable() {
+    ArrayList<Timetable> t = new ArrayList<Timetable>();
     t.add(new Timetable(1, "7:50 - 8:35",   "BWL", "BWL/SAE", "WI",      "BWL/SAE", "OS"));
     t.add(new Timetable(2, "8:35 - 9:20",   "BWL", "BWL/SAE", "WI",      "BWL/SAE", "OS"));
     t.add(new Timetable(3, "9:40 - 10:25",  "ITS", "BWL/SAE", "ITS",     "SAE",     "WI"));

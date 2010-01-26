@@ -1,21 +1,25 @@
 package de.bastian.client.model;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.extjs.gxt.ui.client.data.BaseModel;
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class User extends BaseModel {
 
-  final public static String ADMIN = "admin";
-  final public static String USER = "user";
+  public static enum Rights implements IsSerializable {
+    Admin, User;
+  }
+
+  private Rights tmp;
 
   public User() {
     setId(new Long(-1));
     setCreateDate(new Date());
   }
 
-  public User(Long id, String username, List<String> rights, Date createDate) {
+  public User(Long id, String username, ArrayList<Rights> rights, Date createDate) {
     this();
     setId(id);
     setUsername(username);
@@ -39,20 +43,20 @@ public class User extends BaseModel {
     set("username", username);
   }
 
-  public List<String> getRights() {
-    return (List<String>) get("rights");
+  public ArrayList<Rights> getRights() {
+    return (ArrayList<Rights>) get("rights");
   }
 
-  public void setRights(List<String> rights) {
+  public void setRights(ArrayList<Rights> rights) {
     set("rights", rights);
   }
 
   public boolean isAdmin() {
-    return getRights().contains(ADMIN);
+    return getRights().contains(Rights.Admin);
   }
 
   public boolean isUser() {
-    return getRights().contains(USER);
+    return getRights().contains(Rights.User);
   }
 
   public Date getCreateDate() {

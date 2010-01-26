@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -30,15 +29,15 @@ public class User implements Serializable {
   private byte[] password;
 
   @Persistent
-  private List<String> rights;
+  private ArrayList<de.bastian.client.model.User.Rights> rights;
 
   @Persistent
   @Column(allowsNull = "false")
   private Date createDate;
 
   public User() {
-    List<String> r = new ArrayList<String>();
-    r.add(de.bastian.client.model.User.USER);
+    ArrayList<de.bastian.client.model.User.Rights> r = new ArrayList<de.bastian.client.model.User.Rights>();
+    r.add(de.bastian.client.model.User.Rights.User);
     setRights(r);
     createDate = new Date();
   }
@@ -49,7 +48,7 @@ public class User implements Serializable {
     setPassword(password);
   }
 
-  public User(String firstname, String password, String right) {
+  public User(String firstname, String password, de.bastian.client.model.User.Rights right) {
     this(firstname, password);
     addRight(right);
   }
@@ -74,22 +73,22 @@ public class User implements Serializable {
     this.password = User.passwordToHash(password);
   }
 
-  public List<String> getRights() {
+  public ArrayList<de.bastian.client.model.User.Rights> getRights() {
     return rights;
   }
 
-  public boolean hasRight(String right) {
+  public boolean hasRight(de.bastian.client.model.User.Rights right) {
     if (rights.contains(right)) {
       return true;
     }
     return false;
   }
 
-  public void setRights(List<String> rights) {
+  public void setRights(ArrayList<de.bastian.client.model.User.Rights> rights) {
     this.rights = rights;
   }
 
-  public void addRight(String right) {
+  public void addRight(de.bastian.client.model.User.Rights right) {
     if (!rights.contains(right)) {
       rights.add(right);
     }

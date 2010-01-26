@@ -92,12 +92,12 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     removeUser(removeUser.getId());
   }
 
-  public List<de.bastian.client.model.User> getAll() {
+  public ArrayList<de.bastian.client.model.User> getAll() {
     PersistenceManager pm = getPersistenceManager();
 
     Query query = pm.newQuery(User.class);
 
-    List ret = new ArrayList();
+    ArrayList ret = new ArrayList();
     try {
       List<User> users = (List<User>) pm.detachCopyAll((Collection<?>) query.execute());
 

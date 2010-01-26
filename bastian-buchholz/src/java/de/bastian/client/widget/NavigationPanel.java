@@ -1,8 +1,5 @@
 package de.bastian.client.widget;
 
-import com.extjs.gxt.ui.client.event.ComponentEvent;
-import com.extjs.gxt.ui.client.event.Events;
-import com.extjs.gxt.ui.client.event.Listener;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
@@ -38,11 +35,11 @@ public class NavigationPanel {
        * Navigation
        */
       p = new ContentPanel();
-      p.setHeading("Navigation");
+      p.setHeading(Application.Messages.navigation());
       p.setFrame(true);
 
-      p.add(new Hyperlink("Timetable", Application.Messages.timetable()));
-      p.add(new Hyperlink("User manager", Application.Messages.user_manager()));
+      p.add(new Hyperlink(Application.Messages.timetable(), "" + Application.Events.TimeTable));
+      p.add(new Hyperlink(Application.Messages.user_manager(), "" + Application.Events.User));
 
       n.add(p, vBoxLayoutData);
 
@@ -50,11 +47,11 @@ public class NavigationPanel {
        * User
        */
       p = new ContentPanel();
-      p.setHeading("User");
+      p.setHeading(Application.Messages.user());
       p.setIcon(AbstractImagePrototype.create(Application.Resources.user()));
       p.setFrame(true);
 
-      p.add(new Hyperlink(Application.Messages.login(), Application.Messages.login()));
+      p.add(new Hyperlink(Application.Messages.login(), "" + Application.Events.Login));
       
       n.add(p, vBoxLayoutData);
 

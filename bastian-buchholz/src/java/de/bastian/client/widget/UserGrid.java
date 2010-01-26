@@ -1,8 +1,7 @@
 package de.bastian.client.widget;
 
-import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -18,10 +17,11 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.GridEvent;
 import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionChangedEvent;
+import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.mvc.Dispatcher;
 import com.extjs.gxt.ui.client.Style.SelectionMode;
-import com.extjs.gxt.ui.client.event.SelectionChangedListener;
 import com.extjs.gxt.ui.client.store.ListStore;
 import com.extjs.gxt.ui.client.store.Record;
 import com.extjs.gxt.ui.client.util.Format;
@@ -54,10 +54,10 @@ public class UserGrid {
       /**
        * Proxy, Reader, Loader and Store
        */
-      RpcProxy<List<User>> proxy = new RpcProxy<List<User>>() {
+      RpcProxy<ArrayList<User>> proxy = new RpcProxy<ArrayList<User>>() {
 
         @Override
-        protected void load(Object loadConfig, AsyncCallback<List<User>> callback) {
+        protected void load(Object loadConfig, AsyncCallback<ArrayList<User>> callback) {
           Application.Services.getUserService().getAll(callback);
         }
 
@@ -69,9 +69,9 @@ public class UserGrid {
       /**
        * Columns
        */
-      List<ColumnConfig> columns = new ArrayList<ColumnConfig>();
+      ArrayList<ColumnConfig> columns = new ArrayList<ColumnConfig>();
       ColumnConfig cfg;
-      cfg = new ColumnConfig("username", "Username", 200);
+      cfg = new ColumnConfig("username", Application.Messages.username(), 200);
       cfg.setEditor(new CellEditor(new TextField<String>()));
       cfg.setRenderer(new GridCellRenderer<User>() {
 
@@ -82,7 +82,7 @@ public class UserGrid {
       });
       columns.add(cfg);
 
-      cfg = new ColumnConfig("rights", "Rights", 200);
+      cfg = new ColumnConfig("rights", Application.Messages.rights(), 200);
       cfg.setRenderer(new GridCellRenderer<User>() {
 
         public Object render(User model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<User> store, Grid<User> grid) {
@@ -101,7 +101,7 @@ public class UserGrid {
       });
       columns.add(cfg);
 
-      cfg = new ColumnConfig("createDate", "Create date", 200);
+      cfg = new ColumnConfig("createDate", Application.Messages.create_date(), 200);
       cfg.setDateTimeFormat(DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss"));
       columns.add(cfg);
 
@@ -120,7 +120,7 @@ public class UserGrid {
        */
       ContentPanel p = new ContentPanel(new FitLayout());
       p.add(g);
-      p.setHeading("Users");
+      p.setHeading(Application.Messages.users());
       p.setFrame(true);
       p.setIcon(AbstractImagePrototype.create(Application.Resources.group()));
 
@@ -129,14 +129,14 @@ public class UserGrid {
        */
       ToolBar toolBar = new ToolBar();
       toolBar.setSpacing(2);
-      toolBar.add(new Text("Username:"));
+      toolBar.add(new Text(Application.Messages.username() + ":"));
       final TextField<String> username = new TextField<String>();
       toolBar.add(username);
-      toolBar.add(new Text("Password:"));
+      toolBar.add(new Text(Application.Messages.password() + ":"));
       final TextField<String> password = new TextField<String>();
       password.setPassword(true);
       toolBar.add(password);
-      toolBar.add(new Button("Add", AbstractImagePrototype.create(Application.Resources.userAdd()), new SelectionListener<ButtonEvent>() {
+      toolBar.add(new Button(Application.Messages.add(), AbstractImagePrototype.create(Application.Resources.userAdd()), new SelectionListener<ButtonEvent>() {
 
         public void componentSelected(ButtonEvent event) {
 
@@ -240,7 +240,7 @@ public class UserGrid {
         public void selectionChanged(SelectionChangedEvent<User> se) {
           if (se.getSelectedItem() != null) {
             deleteSelectedUser.setVisible(true);
-            deleteSelectedUser.setText("Delete '" + Format.htmlEncode(se.getSelectedItem().getUsername()) + "'!");
+            deleteSelectedUser.setText(Application.Messages.delete() + " '" + Format.htmlEncode(se.getSelectedItem().getUsername()) + "'!");
           } else {
             deleteSelectedUser.setVisible(false);
           }

@@ -1,6 +1,6 @@
 package de.bastian.client.rpc.services;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -16,7 +16,7 @@ public interface UserManagerAsync {
 
   public void removeUser(User user, AsyncCallback<Void> asyncCallback);
 
-  public void getAll(AsyncCallback<List<User>> callback);
+  public void getAll(AsyncCallback<ArrayList<User>> callback);
 
   public void login(String username, String password, AsyncCallback<Void> asyncCallback);
 
