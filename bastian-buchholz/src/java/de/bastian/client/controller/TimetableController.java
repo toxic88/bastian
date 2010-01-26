@@ -22,7 +22,7 @@ public class TimetableController extends Controller {
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.TimeTable.getType()) {
-      this.forwardToView(timetableView, event);
+      forwardToView(timetableView, event);
     }
   }
 

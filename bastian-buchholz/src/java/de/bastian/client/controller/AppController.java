@@ -13,8 +13,10 @@ public class AppController extends Controller {
   private AppView appView;
 
   public AppController() {
-    this.registerEventTypes(Application.Events.Init.getType());
-    this.registerEventTypes(Application.Events.Error.getType());
+    registerEventTypes(Application.Events.Init.getType());
+    registerEventTypes(Application.Events.Error.getType());
+    registerEventTypes(Application.Events.LoggedIn.getType());
+    registerEventTypes(Application.Events.LoggedOut.getType());
   }
 
   @Override
@@ -25,7 +27,7 @@ public class AppController extends Controller {
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.Init.getType()) {
-      this.forwardToView(appView, event);
+      forwardToView(appView, event);
     } else if (event.getType() == Application.Events.Error.getType()) {
 
       Object data = event.getData();
@@ -35,6 +37,10 @@ public class AppController extends Controller {
       }
       
       MessageBox.alert(Application.Messages.error(), event.<String>getData(), null);
+    } else if (event.getType() == Application.Events.LoggedIn.getType()) {
+      Application.setLoggedIn(true);
+    } else if (event.getType() == Application.Events.LoggedOut.getType()) {
+      Application.setLoggedIn(false);
     }
   }
 

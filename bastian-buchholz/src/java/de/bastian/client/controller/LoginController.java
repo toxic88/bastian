@@ -22,7 +22,7 @@ public class LoginController extends Controller {
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.Login.getType()) {
-      this.forwardToView(loginView, event);
+      forwardToView(loginView, event);
     }
   }
 

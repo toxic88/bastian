@@ -37,6 +37,8 @@ public class Application implements EntryPoint {
    */
   public static RpcServices Services = RpcServices.get();
 
+  private static boolean loggedIn = false;
+
   /**
    * Application events
    */
@@ -81,8 +83,12 @@ public class Application implements EntryPoint {
 
   }
 
+  public static void setLoggedIn(boolean loggedIn) {
+    Application.loggedIn = loggedIn;
+  }
+
   public static boolean isLoggedIn() {
-    return Cookies.getCookie(Application.Keys.COOKIE_NAME) != null;
+    return loggedIn;
   }
 
   public void onModuleLoad() {

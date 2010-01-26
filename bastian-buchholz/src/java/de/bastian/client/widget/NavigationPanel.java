@@ -41,8 +41,8 @@ public class NavigationPanel {
       p.setHeading("Navigation");
       p.setFrame(true);
 
-      p.add(new Hyperlink("Timetable", "" + Application.Events.TimeTable));
-      p.add(new Hyperlink("User manager", "" + Application.Events.User));
+      p.add(new Hyperlink("Timetable", Application.Messages.timetable()));
+      p.add(new Hyperlink("User manager", Application.Messages.user_manager()));
 
       n.add(p, vBoxLayoutData);
 
@@ -54,7 +54,7 @@ public class NavigationPanel {
       p.setIcon(AbstractImagePrototype.create(Application.Resources.user()));
       p.setFrame(true);
 
-      p.add(new Hyperlink("" + Application.Events.Login, "" + Application.Events.Login));
+      p.add(new Hyperlink(Application.Messages.login(), Application.Messages.login()));
       
       n.add(p, vBoxLayoutData);
 

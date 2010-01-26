@@ -22,7 +22,7 @@ public class UserController extends Controller {
   @Override
   public void handleEvent(AppEvent event) {
     if (event.getType() == Application.Events.User.getType()) {
-      this.forwardToView(userView, event);
+      forwardToView(userView, event);
     }
   }
 

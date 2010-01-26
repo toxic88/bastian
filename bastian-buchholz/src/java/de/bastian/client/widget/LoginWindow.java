@@ -77,6 +77,7 @@ public class LoginWindow {
             }
 
             public void onSuccess(Void result) {
+              Dispatcher.get().dispatch(Application.Events.LoggedIn.getType());
               LoginWindow.get().hide();
             }
 
