@@ -61,6 +61,10 @@ public class Application implements EntryPoint {
       return eventType;
     }
 
+    public String getHash() {
+      return name();
+    }
+
     public boolean isHistoryEvent() {
       return historyEvent;
     }
