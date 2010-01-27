@@ -26,5 +26,6 @@ public interface AppMessages extends Messages {
   String username();
   String users();
   String wednesday();
+  String welcome();
 
 }

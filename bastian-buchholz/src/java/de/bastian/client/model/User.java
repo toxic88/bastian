@@ -12,7 +12,7 @@ public class User extends BaseModel {
     Admin, User;
   }
 
-  private Rights tmp;
+  private Rights tmp;  /* Serialization issue */
 
   public User() {
     setId(new Long(-1));

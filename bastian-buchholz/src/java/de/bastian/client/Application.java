@@ -51,8 +51,7 @@ public class Application implements EntryPoint {
 
     private boolean historyEvent = false;
 
-    Events() {
-    }
+    Events() { }
 
     Events(boolean historyEvent) {
       this.historyEvent = historyEvent;

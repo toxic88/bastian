@@ -61,8 +61,8 @@ public class AppView extends View {
      */
     ContentPanel p = new ContentPanel();
     p.setFrame(true);
-    p.setHeading("Willkommen");
-    p.addText("Willkommen!");
+    p.setHeading(Application.Messages.welcome());
+    p.addText(Application.Messages.welcome());
 
     center.add(p);
 

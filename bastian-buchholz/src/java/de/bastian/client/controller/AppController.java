@@ -13,10 +13,11 @@ public class AppController extends Controller {
   private AppView appView;
 
   public AppController() {
-    registerEventTypes(Application.Events.Init.getType());
-    registerEventTypes(Application.Events.Error.getType());
-    registerEventTypes(Application.Events.LoggedIn.getType());
-    registerEventTypes(Application.Events.LoggedOut.getType());
+    registerEventTypes(Application.Events.Init.getType(),
+                       Application.Events.Error.getType(),
+                       Application.Events.LoggedIn.getType(),
+                       Application.Events.LoggedOut.getType()
+                      );
   }
 
   @Override

@@ -21,7 +21,7 @@ public class UserController extends Controller {
 
   @Override
   public void handleEvent(AppEvent event) {
-    if (event.getType() == Application.Events.User.getType()) {
+    if (event.getType() == Application.Events.User.getType() && Application.isLoggedIn()) {
       forwardToView(userView, event);
     }
   }
