@@ -1,4 +1,4 @@
-package de.bastian.server.rpc.services;
+package de.bastian.server;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,12 +8,11 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import de.bastian.client.Application;
+import de.bastian.client.model.User;
 import de.bastian.client.rpc.services.UserManager;
 import de.bastian.client.rpc.RpcException;
-import de.bastian.db.User;
-import de.bastian.server.rpc.RemoteServiceServlet;
 
-public class UserManagerImpl extends RemoteServiceServlet implements UserManager {
+public class UserManagerImpl extends MyRemoteServiceServlet implements UserManager {
 
   /**
    * Returns true if the user exists!
@@ -25,12 +24,12 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
       return true;
     }
 
-    PersistenceManager pm = getPersistenceManager();
+    PersistenceManager pm = Store.getPersistenceManager();
 
-    Query query = pm.newQuery(User.class, "username == usernameParam");
+    Query query = pm.newQuery(Store.User.class, "username == usernameParam");
     query.declareParameters("String usernameParam");
 
-    List<User> users = (List<User>) query.execute(username);
+    List<Store.User> users = (List<Store.User>) query.execute(username);
 
     if (users.size() > 0) {
       return true;
@@ -43,10 +42,10 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
       throw new RpcException("The user '" + username + "' allready exists!");
     }
 
-    PersistenceManager pm = getPersistenceManager();
+    PersistenceManager pm = Store.getPersistenceManager();
 
     try {
-      User user = new User(username, password);
+      Store.User user = new Store.User(username, password);
       pm.makePersistent(user);
       return user.getRpcUser();
     } catch (Exception e) {
@@ -56,15 +55,15 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     }
   }
 
-  public void updateUser(de.bastian.client.model.User updateUser) throws RpcException {
+  public void updateUser(User updateUser) throws RpcException {
     if (checkUsername(updateUser.getUsername())) {
       throw new RpcException("The user '" + updateUser.getUsername() + "' allready exists!");
     }
 
-    PersistenceManager pm = getPersistenceManager();
+    PersistenceManager pm = Store.getPersistenceManager();
 
     try {
-      User user = pm.getObjectById(User.class, updateUser.getId());
+      Store.User user = pm.getObjectById(Store.User.class, updateUser.getId());
 
       user.setUsername(updateUser.getUsername());
     } catch (Exception e) {
@@ -75,10 +74,10 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
   }
 
   public void removeUser(Long id) throws RpcException {
-    PersistenceManager pm = getPersistenceManager();
+    PersistenceManager pm = Store.getPersistenceManager();
 
     try {
-      User user = pm.getObjectById(User.class, id);
+      Store.User user = pm.getObjectById(Store.User.class, id);
 
       pm.deletePersistent(user);
     } catch (Exception e) {
@@ -88,20 +87,20 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
     }
   }
 
-  public void removeUser(de.bastian.client.model.User removeUser) throws RpcException {
+  public void removeUser(User removeUser) throws RpcException {
     removeUser(removeUser.getId());
   }
 
-  public ArrayList<de.bastian.client.model.User> getAll() {
-    PersistenceManager pm = getPersistenceManager();
+  public ArrayList<User> getAll() {
+    PersistenceManager pm = Store.getPersistenceManager();
 
-    Query query = pm.newQuery(User.class);
+    Query query = pm.newQuery(Store.User.class);
 
     ArrayList ret = new ArrayList();
     try {
-      List<User> users = (List<User>) pm.detachCopyAll((Collection<?>) query.execute());
+      List<Store.User> users = (List<Store.User>) pm.detachCopyAll((Collection<?>) query.execute());
 
-      for (User user : users) {
+      for (Store.User user : users) {
         ret.add(user.getRpcUser());
       }
     } finally {
@@ -112,14 +111,14 @@ public class UserManagerImpl extends RemoteServiceServlet implements UserManager
   }
 
   public void login(String username, String password) throws RpcException {
-    PersistenceManager pm = getPersistenceManager();
+    PersistenceManager pm = Store.getPersistenceManager();
 
-    Query query = pm.newQuery(User.class, "username == usernameParam");
+    Query query = pm.newQuery(Store.User.class, "username == usernameParam");
     query.declareParameters("String usernameParam");
 
-    List<User> users = (List<User>) query.execute(username);
+    List<Store.User> users = (List<Store.User>) query.execute(username);
 
-    for (User user : users) {
+    for (Store.User user : users) {
       if (user.checkPassword(password)) {
         getSession().setAttribute(Application.Keys.SESSION_NAME, user);
         addCookie(Application.Keys.COOKIE_NAME, user.toString());

@@ -1,22 +1,11 @@
-package de.bastian.server.rpc;
+package de.bastian.server;
 
-import javax.jdo.JDOHelper;
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
-public class RemoteServiceServlet extends com.google.gwt.user.server.rpc.RemoteServiceServlet {
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-  private static final PersistenceManagerFactory pmfInstance = JDOHelper.getPersistenceManagerFactory("transactions-optional");
-
-  protected PersistenceManagerFactory getPersistenceManagerFactory() {
-    return RemoteServiceServlet.pmfInstance;
-  }
-
-  protected PersistenceManager getPersistenceManager() {
-    return getPersistenceManagerFactory().getPersistenceManager();
-  }
+public class MyRemoteServiceServlet extends RemoteServiceServlet {
 
   protected HttpSession getSession() {
     return getThreadLocalRequest().getSession(true);
