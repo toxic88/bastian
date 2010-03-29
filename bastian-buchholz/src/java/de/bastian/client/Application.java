@@ -76,10 +76,6 @@ public class Application implements EntryPoint {
    */
   public class Keys {
 
-    public static final String VIEWPORT_CENTER = "viewport_center";
-
-    public static final String VIEWPORT_WEST = "viewport_west";
-
     public static final String SESSION_NAME = "ee11cbb19052e40b07aac0ca060c23ee";
 
     public static final String COOKIE_NAME = "900cff6e4532927ffe090f2aa0590cee";

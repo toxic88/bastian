@@ -9,7 +9,6 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 
 import de.bastian.client.Application;
-import de.bastian.client.widget.TimeTable;
 
 public class TimetableView extends View {
 
@@ -28,11 +27,11 @@ public class TimetableView extends View {
 
   @Override
   protected void initialize() {
-    getCenter().add(timeTable = TimeTable.get());
+    getCenter().add(timeTable = TimetableViewUi.get());
   }
 
   private static LayoutContainer getCenter() {
-    return (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
+    return AppView.center;
   }
 
 }

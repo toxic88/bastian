@@ -6,7 +6,6 @@ import com.extjs.gxt.ui.client.mvc.View;
 import com.extjs.gxt.ui.client.widget.Window;
 
 import de.bastian.client.Application;
-import de.bastian.client.widget.LoginWindow;
 
 public class LoginView extends View {
 
@@ -25,7 +24,7 @@ public class LoginView extends View {
 
   @Override
   protected void initialize() {
-    loginWindow = LoginWindow.get();
+    loginWindow = LoginViewUi.get();
   }
 
 }

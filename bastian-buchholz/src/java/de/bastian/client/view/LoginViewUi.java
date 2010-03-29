@@ -1,4 +1,4 @@
-package de.bastian.client.widget;
+package de.bastian.client.view;
 
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -20,17 +20,16 @@ import com.extjs.gxt.ui.client.widget.layout.FormData;
 import de.bastian.client.Application;
 import de.bastian.client.overrides.FormPanel;
 
-public class LoginWindow {
+public class LoginViewUi {
 
   private static Window win = null;
 
   private static FormData formData = new FormData("100%");
 
-  private LoginWindow() {
-  }
+  private LoginViewUi() { }
 
   public static Window get() {
-    if (LoginWindow.win == null) {
+    if (LoginViewUi.win == null) {
       /**
        * FormPanel
        */
@@ -78,7 +77,7 @@ public class LoginWindow {
 
             public void onSuccess(Void result) {
               Dispatcher.get().dispatch(Application.Events.LoggedIn.getType());
-              LoginWindow.get().hide();
+              LoginViewUi.get().hide();
             }
 
           };
@@ -98,7 +97,7 @@ public class LoginWindow {
 
         @Override
         public void componentSelected(ButtonEvent ce) {
-          LoginWindow.get().hide();
+          LoginViewUi.get().hide();
         }
 
       });

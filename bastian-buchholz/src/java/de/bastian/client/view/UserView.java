@@ -9,7 +9,6 @@ import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 
 import de.bastian.client.Application;
-import de.bastian.client.widget.UserGrid;
 
 public class UserView extends View {
 
@@ -28,11 +27,11 @@ public class UserView extends View {
 
   @Override
   protected void initialize() {
-    getCenter().add(userGrid = UserGrid.get());
+    getCenter().add(userGrid = UserViewUi.get());
   }
 
   private static LayoutContainer getCenter() {
-    return (LayoutContainer) Registry.get(Application.Keys.VIEWPORT_CENTER);
+    return AppView.center;
   }
 
 }

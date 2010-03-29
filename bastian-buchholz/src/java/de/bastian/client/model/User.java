@@ -19,6 +19,13 @@ public class User extends BaseModel {
     setCreateDate(new Date());
   }
 
+  public User(String username, String password, ArrayList<Rights> rights) {
+    this();
+    setUsername(username);
+    setPassword(password);
+    setRights(rights);
+  }
+
   public User(Long id, String username, ArrayList<Rights> rights, Date createDate) {
     this();
     setId(id);
@@ -41,6 +48,14 @@ public class User extends BaseModel {
 
   public void setUsername(String username) {
     set("username", username);
+  }
+
+  public String getPassword() {
+    return (String) get("password");
+  }
+
+  public void setPassword(String password) {
+    set("password", password);
   }
 
   public ArrayList<Rights> getRights() {

@@ -32,6 +32,9 @@ public class Store {
   }
 
 
+  /**
+   * User
+   */
   @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "false")
   public static class User implements Serializable {
 
@@ -67,9 +70,9 @@ public class Store {
       setPassword(password);
     }
 
-    public User(String firstname, String password, Rights right) {
+    public User(String firstname, String password, ArrayList<Rights> rights) {
       this(firstname, password);
-      addRight(right);
+      setRights(rights);
     }
 
     public Long getId() {
@@ -110,6 +113,12 @@ public class Store {
     public void addRight(Rights right) {
       if (!rights.contains(right)) {
         rights.add(right);
+      }
+    }
+
+    public void removeRight(Rights right) {
+      if (rights.contains(right)) {
+        rights.remove(right);
       }
     }
 

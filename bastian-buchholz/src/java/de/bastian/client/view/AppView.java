@@ -17,15 +17,14 @@ import com.extjs.gxt.ui.client.widget.layout.BorderLayoutData;
 import com.extjs.gxt.ui.client.widget.layout.CardLayout;
 
 import de.bastian.client.Application;
-import de.bastian.client.widget.NavigationPanel;
 
 public class AppView extends View {
 
-  private Viewport viewport;
+  public static Viewport viewport;
 
-  private LayoutContainer center;
+  public static LayoutContainer center;
 
-  private LayoutContainer west;
+  public static LayoutContainer west;
 
   public AppView(Controller controller) {
     super(controller);
@@ -38,9 +37,6 @@ public class AppView extends View {
     createNorth();
     createCenter();
     createWest();
-
-    Registry.register(Application.Keys.VIEWPORT_CENTER, center);
-    Registry.register(Application.Keys.VIEWPORT_WEST, west);
 
     RootPanel.get().add(viewport);
   }
@@ -76,7 +72,7 @@ public class AppView extends View {
     /**
      * Create the navigation
      */
-    west = NavigationPanel.get();
+    west = NavigationViewUi.get();
 
     BorderLayoutData data = new BorderLayoutData(LayoutRegion.WEST);
     data.setMargins(new Margins(5, 0, 5, 5));

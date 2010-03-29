@@ -1,4 +1,4 @@
-package de.bastian.client.widget;
+package de.bastian.client.view;
 
 import java.util.ArrayList;
 
@@ -39,17 +39,18 @@ import com.extjs.gxt.ui.client.widget.toolbar.ToolBar;
 
 import de.bastian.client.Application;
 import de.bastian.client.model.User;
+import de.bastian.client.model.User.Rights;
 import de.bastian.client.overrides.EditorGrid;
 
-public class UserGrid {
+public class UserViewUi {
 
   private static ContentPanel grid = null;
 
-  private UserGrid() {
+  private UserViewUi() {
   }
 
   public static ContentPanel get() {
-    if (UserGrid.grid == null) {
+    if (UserViewUi.grid == null) {
       /**
        * Proxy, Reader, Loader and Store
        */
@@ -87,11 +88,8 @@ public class UserGrid {
         public Object render(User model, String property, ColumnData config, int rowIndex, int colIndex, ListStore<User> store, Grid<User> grid) {
           String ret = "";
 
-          if (model.isAdmin()) {
-            ret += " Admin ";
-          }
-          if (model.isUser()) {
-            ret += " User ";
+          for (Rights right : model.getRights()) {
+            ret += right.name() + " ";
           }
 
           return ret;

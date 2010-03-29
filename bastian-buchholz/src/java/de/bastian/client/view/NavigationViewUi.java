@@ -1,4 +1,4 @@
-package de.bastian.client.widget;
+package de.bastian.client.view;
 
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
@@ -13,17 +13,16 @@ import com.extjs.gxt.ui.client.widget.layout.VBoxLayoutData;
 
 import de.bastian.client.Application;
 
-public class NavigationPanel {
+public class NavigationViewUi {
 
   private static LayoutContainer navigation = null;
 
   private static VBoxLayoutData vBoxLayoutData = new VBoxLayoutData(new Margins(0, 0, 5, 0));
 
-  private NavigationPanel() {
-  }
+  private NavigationViewUi() { }
 
   public static LayoutContainer get() {
-    if (NavigationPanel.navigation == null) {
+    if (NavigationViewUi.navigation == null) {
       VBoxLayout layout = new VBoxLayout();
       layout.setVBoxLayoutAlign(VBoxLayout.VBoxLayoutAlign.STRETCH);
       final LayoutContainer n = new LayoutContainer(layout);

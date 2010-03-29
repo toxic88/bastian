@@ -1,4 +1,4 @@
-package de.bastian.client.widget;
+package de.bastian.client.view;
 
 import java.util.ArrayList;
 
@@ -12,15 +12,14 @@ import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import de.bastian.client.Application;
 import de.bastian.client.model.Timetable;
 
-public class TimeTable {
+public class TimetableViewUi {
 
   private static ContentPanel grid = null;
 
-  private TimeTable() {
-  }
+  private TimetableViewUi() { }
 
   public static ContentPanel get() {
-    if (TimeTable.grid == null) {
+    if (TimetableViewUi.grid == null) {
       ListStore<Timetable> store = new ListStore<Timetable>();
       store.add(Timetable.getTimetable());
 
