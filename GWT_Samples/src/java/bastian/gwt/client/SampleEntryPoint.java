@@ -1,6 +1,8 @@
 package bastian.gwt.client;
 
+import bastian.gwt.client.resources.Resources;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -14,6 +16,8 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SampleEntryPoint implements EntryPoint {
 
+  public static Resources Resources = GWT.create(Resources.class);
+
   final DockLayoutPanel p = new DockLayoutPanel(Unit.EM);
   final FlowPanel root = new FlowPanel();
   final VerticalPanel n = new VerticalPanel();
@@ -22,8 +26,11 @@ public class SampleEntryPoint implements EntryPoint {
   final Hyperlink helloWorldAsyncLink = new Hyperlink("Hello World Async", "HelloWorldAsync");
   final Hyperlink rpcLink = new Hyperlink("RPC Sample", "RPC");
   final Hyperlink widgetLink = new Hyperlink("Widgets", "Widgets");
+  final Hyperlink clientBundleLink = new Hyperlink("Client Bundle", "ClientBundle");
 
   public void onModuleLoad() {
+    Resources.gwtSampleCss().ensureInjected();
+
     renderLinks();
 
     renderLayout();
@@ -53,6 +60,7 @@ public class SampleEntryPoint implements EntryPoint {
     n.add(helloWorldAsyncLink);
     n.add(rpcLink);
     n.add(widgetLink);
+    n.add(clientBundleLink);
   }
 
   private void initHistory() {
@@ -75,6 +83,8 @@ public class SampleEntryPoint implements EntryPoint {
           RpcSample.run(root);
         } else if (token.equals("Widgets")) {
           WidgetSample.run(root);
+        } else if (token.equals("ClientBundle")) {
+          ClientBundleSample.run(root);
         }
 
         lastToken = token;
