@@ -10,8 +10,8 @@ public interface Resources extends ClientBundle {
   @CssResource.NotStrict
   CssResource antibodydb();
 
-  @Source("dkfz_logo.gif")
-  ImageResource dkfzLogo();
+  @Source("dkfz_logo.png")
+    ImageResource dkfzLogo();
 
   @Source("add.png")
   ImageResource add();

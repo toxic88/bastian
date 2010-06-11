@@ -859,3 +859,38 @@ Returned null to createEntityManagerFactory.
 	... 22 more
 [ERROR] 500 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 57 bytes
 
+
+
+Starting Jetty on port 8888
+   [WARN] failed SelectChannelConnector@127.0.0.1:8888
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:542)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:424)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1054)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:804)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:279)
+   [WARN] failed Server@19d688
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:542)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:424)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1054)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:804)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:279)
+
+
