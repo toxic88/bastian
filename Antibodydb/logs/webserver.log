@@ -1,0 +1,861 @@
+Starting HTTP on port 8888
+Starting Jetty on port 8888
+   jetty-6.1.x
+   [WARN] failed SelectChannelConnector@127.0.0.1:8888
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+   [WARN] failed Server@5fbbf3
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+
+Starting HTTP on port 8888
+Starting Jetty on port 8888
+   jetty-6.1.x
+   Started SelectChannelConnector@127.0.0.1:8888
+200 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1) 495 bytes
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.nocache.js (127.0.0.1) 1453 bytes
+   Request headers
+      Host: 127.0.0.1:8888
+      User-Agent: Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2) Gecko/20100115 Firefox/3.6
+      Accept: */*
+      Accept-Language: en-us,en;q=0.8,de-de;q=0.5,de;q=0.3
+      Accept-Encoding: gzip,deflate
+      Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Keep-Alive: 115
+      Connection: keep-alive
+      Referer: http://127.0.0.1:8888/?gwt.codesvr=127.0.0.1:9997
+   Response headers
+      Content-Type: text/html; charset=iso-8859-1
+      Content-Length: 1453
+Stopping Jetty server
+   Stopped successfully
+Shutdown hook executing
+
+Starting HTTP on port 8888
+Starting Jetty on port 8888
+   jetty-6.1.x
+   Started SelectChannelConnector@127.0.0.1:8888
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.nocache.js (127.0.0.1) 1453 bytes
+   Request headers
+      Host: 127.0.0.1:8888
+      User-Agent: Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2) Gecko/20100115 Firefox/3.6
+      Accept: */*
+      Accept-Language: en-us,en;q=0.8,de-de;q=0.5,de;q=0.3
+      Accept-Encoding: gzip,deflate
+      Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Keep-Alive: 115
+      Connection: keep-alive
+      Referer: http://127.0.0.1:8888/?gwt.codesvr=127.0.0.1:9997
+   Response headers
+      Content-Type: text/html; charset=iso-8859-1
+      Content-Length: 1453
+Stopping Jetty server
+   Stopped successfully
+Shutdown hook executing
+
+Starting HTTP on port 8888
+Starting Jetty on port 8888
+   jetty-6.1.x
+   Started SelectChannelConnector@127.0.0.1:8888
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.nocache.js (127.0.0.1) 1453 bytes
+   Request headers
+      Host: 127.0.0.1:8888
+      User-Agent: Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2) Gecko/20100115 Firefox/3.6
+      Accept: */*
+      Accept-Language: en-us,en;q=0.8,de-de;q=0.5,de;q=0.3
+      Accept-Encoding: gzip,deflate
+      Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Keep-Alive: 115
+      Connection: keep-alive
+      Referer: http://127.0.0.1:8888/?gwt.codesvr=127.0.0.1:9997
+   Response headers
+      Content-Type: text/html; charset=iso-8859-1
+      Content-Length: 1453
+Stopping Jetty server
+   Stopped successfully
+Shutdown hook executing
+
+Starting HTTP on port 8888
+Starting Jetty on port 8888
+   jetty-6.1.x
+   Started SelectChannelConnector@127.0.0.1:8888
+200 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1) 495 bytes
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.nocache.js (127.0.0.1) 1453 bytes
+   Request headers
+      Host: 127.0.0.1:8888
+      User-Agent: Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2) Gecko/20100115 Firefox/3.6
+      Accept: */*
+      Accept-Language: en-us,en;q=0.8,de-de;q=0.5,de;q=0.3
+      Accept-Encoding: gzip,deflate
+      Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Keep-Alive: 115
+      Connection: keep-alive
+      Referer: http://127.0.0.1:8888/?gwt.codesvr=127.0.0.1:9997
+   Response headers
+      Content-Type: text/html; charset=iso-8859-1
+      Content-Length: 1453
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.nocache.js (127.0.0.1) 1453 bytes
+   Request headers
+      Host: 127.0.0.1:8888
+      User-Agent: Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2) Gecko/20100115 Firefox/3.6
+      Accept: */*
+      Accept-Language: en-us,en;q=0.8,de-de;q=0.5,de;q=0.3
+      Accept-Encoding: gzip,deflate
+      Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Keep-Alive: 115
+      Connection: keep-alive
+      Referer: http://127.0.0.1:8888/?gwt.codesvr=127.0.0.1:9997
+      Cache-Control: max-age=0
+   Response headers
+      Content-Type: text/html; charset=iso-8859-1
+      Content-Length: 1453
+200 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1) 506 bytes
+200 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1) 6030 bytes
+200 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1) 10702 bytes
+
+Starting HTTP on port 8888
+Starting Jetty on port 8888
+   jetty-6.1.x
+200 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1) 506 bytes
+200 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1) 6030 bytes
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+   [WARN] failed SelectChannelConnector@127.0.0.1:8888
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+   [WARN] failed Server@1ca203
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+Stopping Jetty server
+   Stopped successfully
+Shutdown hook executing
+
+Starting HTTP on port 8888
+Starting Jetty on port 8888
+   jetty-6.1.x
+   Started SelectChannelConnector@127.0.0.1:8888
+200 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1) 506 bytes
+200 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1) 6030 bytes
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /?gwt.codesvr=127.0.0.1:9997 (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+304 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1)
+Stopping Jetty server
+   Stopped successfully
+Shutdown hook executing
+
+
+
+Starting Jetty on port 8888
+   [WARN] failed SelectChannelConnector@127.0.0.1:8888
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+   [WARN] failed Server@476914
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+
+Starting Jetty on port 8888
+   [WARN] failed SelectChannelConnector@127.0.0.1:8888
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+   [WARN] failed Server@170526a
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind(Native Method)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+	at org.mortbay.jetty.nio.SelectChannelConnector.open(SelectChannelConnector.java:205)
+	at org.mortbay.jetty.nio.SelectChannelConnector.doStart(SelectChannelConnector.java:304)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at org.mortbay.jetty.Server.doStart(Server.java:233)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:39)
+	at com.google.gwt.dev.shell.jetty.JettyLauncher.start(JettyLauncher.java:543)
+	at com.google.gwt.dev.DevMode.doStartUpServer(DevMode.java:421)
+	at com.google.gwt.dev.DevModeBase.startUp(DevModeBase.java:1035)
+	at com.google.gwt.dev.DevModeBase.run(DevModeBase.java:783)
+	at com.google.gwt.dev.DevMode.main(DevMode.java:275)
+
+
+
+
+
+
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1) 1431 bytes
+
+
+
+
+
+Starting Jetty on port 8888
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.Login.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.LoginImpl.login(LoginImpl.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.antibodydb/services/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.Login.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.LoginImpl.login(LoginImpl.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.antibodydb/services/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.Login.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.LoginImpl.login(LoginImpl.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.antibodydb/services/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.Login.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.LoginImpl.login(LoginImpl.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.antibodydb/services/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.Login.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.LoginImpl.login(LoginImpl.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.antibodydb/services/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.Login.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.LoginImpl.login(LoginImpl.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.antibodydb/services/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.Login.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.LoginImpl.login(LoginImpl.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.antibodydb/services/login (127.0.0.1) 57 bytes
+
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/de.dkfz.mga.antibodydb.antibodydb.nocache.js (127.0.0.1) 1464 bytes
+[WARN] 404 - GET /de.dkfz.mga.antibodydb.antibodydb/hosted.html?de_dkfz_mga_antibodydb_antibodydb (127.0.0.1) 1431 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/services/login (127.0.0.1) 1434 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+[WARN] 404 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 1425 bytes
+
+Starting Jetty on port 8888
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.LoginService.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.Login.login(Login.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.LoginService.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.Login.login(Login.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.LoginService.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.Login.login(Login.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 57 bytes
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.LoginService.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.Login.login(Login.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 57 bytes
+Reloading web app to reflect changes in /home/bastian/NetBeansProjects/Antibodydb/build/web
+   [WARN] Exception while dispatching incoming RPC call
+com.google.gwt.user.server.rpc.UnexpectedException: Service method 'public abstract de.dkfz.mga.antibodydb.shared.User de.dkfz.mga.antibodydb.client.services.LoginService.login(java.lang.String,java.lang.String)' threw an unexpected exception: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at com.google.gwt.user.server.rpc.RPC.encodeResponseForFailure(RPC.java:378)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:581)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processCall(RemoteServiceServlet.java:190)
+	at com.google.gwt.user.server.rpc.RemoteServiceServlet.processPost(RemoteServiceServlet.java:226)
+	at com.google.gwt.user.server.rpc.AbstractRemoteServiceServlet.doPost(AbstractRemoteServiceServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487)
+	at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:362)
+	at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)
+	at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)
+	at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:729)
+	at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.handler.RequestLogHandler.handle(RequestLogHandler.java:49)
+	at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)
+	at org.mortbay.jetty.Server.handle(Server.java:324)
+	at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)
+	at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)
+	at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:647)
+	at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)
+	at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)
+	at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)
+	at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)
+Caused by: javax.persistence.PersistenceException: No Persistence provider for EntityManager named AntibodyPU:  The following providers:
+oracle.toplink.essentials.PersistenceProvider
+oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider
+Returned null to createEntityManagerFactory.
+
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:154)
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:83)
+	at de.dkfz.mga.antibodydb.server.Login.login(Login.java:13)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.user.server.rpc.RPC.invokeAndEncodeResponse(RPC.java:562)
+	... 22 more
+[ERROR] 500 - POST /de.dkfz.mga.antibodydb.Antibodydb/login (127.0.0.1) 57 bytes
+

@@ -1,0 +1,399 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+  xmlns:ui='urn:ui:com.google.gwt.uibinder'
+  xmlns:g='urn:import:com.google.gwt.user.client.ui'
+  xmlns:d='urn:import:com.google.gwt.dom.client'>
+
+  <ui:with field='res' type='de.dkfz.mga.antibodydb.client.resources.Resources' />
+
+  <ui:style>
+
+    .table th, .table td {
+      vertical-align: middle;
+    }
+
+    .table th {
+      width: 120px;
+      text-align: left;
+      font-weight: normal;
+      color: #000000;
+    }
+
+    .table td {
+      padding-right: 5px;
+    }
+
+    .largeTable {
+      width: 100%;
+    }
+
+    .largeTable input, .largeTable textarea, .largeTable select {
+      width: 100%;
+    }
+
+    .imageTable input {
+      width: 300px;
+    }
+
+    .actionImages {
+      cursor: pointer;
+      margin-bottom: -2px;
+    }
+
+    .imageTemplate {
+      display: none;
+    }
+
+  </ui:style>
+
+  <g:HTMLPanel>
+    <h1>Edit</h1>
+
+    <g:FormPanel ui:field="antibodyForm">
+      <g:HTMLPanel>
+        <h3>Antibody <g:Image resource="{res.delete}" altText="Reset" title="Reset" styleName="{style.actionImages}" ui:field="antibodyReset" /></h3>
+        <table class="{style.table} {style.largeTable}">
+          <tr>
+            <th><label>Antibody:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Lot#:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Source:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Dilution Western:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Stock:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <g:FormPanel ui:field="commentsForm">
+      <g:HTMLPanel>
+        <h3>Comments <g:Image resource="{res.delete}" altText="Reset" title="Reset" styleName="{style.actionImages}" ui:field="commentsReset" /></h3>
+        <table class="{style.table} {style.largeTable}">
+          <tr>
+            <th><label>Evaluation Western:</label></th>
+            <td><select><option>test</option></select></td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <th><label>Evaluation Capture Array:</label></th>
+            <td><select><option>test</option></select></td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <th><label>Evaluation RPPA:</label></th>
+            <td><select><option>test</option></select></td>
+            <td><textarea></textarea></td>
+          </tr>
+        </table>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <g:FormPanel ui:field="newFieldsForm">
+      <g:HTMLPanel>
+        <h3>New Fields <g:Image resource="{res.delete}" altText="Reset" title="Reset" styleName="{style.actionImages}" ui:field="newFieldsReset" /></h3>
+        <table class="{style.table} {style.largeTable}">
+          <tr>
+            <th><label>IP:</label></th>
+            <td><select><option>test</option></select></td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <th><label>IF:</label></th>
+            <td><select><option>test</option></select></td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <th><label>IHC:</label></th>
+            <td><select><option>test</option></select></td>
+            <td><textarea></textarea></td>
+          </tr>
+          <tr>
+            <th><label>FACS:</label></th>
+            <td><select><option>test</option></select></td>
+            <td><textarea></textarea></td>
+          </tr>
+        </table>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <g:FormPanel ui:field="targetProteinForm">
+      <g:HTMLPanel>
+        <h3>Target Protein <g:Image resource="{res.delete}" altText="Reset" title="Reset" styleName="{style.actionImages}" ui:field="targetProteinReset" /></h3>
+        <table class="{style.table} {style.largeTable}">
+          <tr>
+            <th><label>Target Protein:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>MW [kD]:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>GeneID:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Gene name:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Synonym	References:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <g:FormPanel ui:field="incubationprotocolForm">
+      <g:HTMLPanel>
+        <h3>Incubationprotocol <g:Image resource="{res.delete}" altText="Reset" title="Reset" styleName="{style.actionImages}" ui:field="incubationprotocolReset" /></h3>
+        <table class="{style.table} {style.largeTable}">
+          <tr>
+            <th><label>Incubationprotocol:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Blocking:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>1°AB Incubation:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Washing I:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>2°AB Incubation:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Washing II:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <g:FormPanel ui:field="buffersetForm">
+      <g:HTMLPanel>
+        <h3>Bufferset <g:Image resource="{res.delete}" altText="Reset" title="Reset" styleName="{style.actionImages}" ui:field="buffersetReset" /></h3>
+        <table class="{style.table} {style.largeTable}">
+          <tr>
+            <th><label>Bufferset:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Washbuffer:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>1°AB Incubation:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>2°AB Incubation:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Blocking:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <g:FormPanel ui:field="imagesForm">
+      <g:HTMLPanel>
+        <h3>Images <g:Image resource="{res.delete}" altText="Delete Tab" title="Delete Tab" styleName="{style.actionImages}" ui:field="imagesReset" /></h3>
+         <g:TabLayoutPanel barHeight="30" ui:field="imageTabs">
+        </g:TabLayoutPanel>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <g:HTMLPanel styleName="{style.imageTemplate}" ui:field="imageTemplate">
+      <div>
+
+        <table class="{style.table}" style="float:right;">
+          <tr>
+            <td>Lane</td>
+            <td>Lysate/Protein</td>
+            <td>Total Protein</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td><input type="text" /></td>
+            <td><input type="text" /> µg</td>
+          </tr>
+        </table>
+
+        <table class="{style.table} {style.imageTable}">
+          <tr>
+            <th><label>Image:</label></th>
+            <td><input type="file" /></td>
+          </tr>
+          <tr>
+            <th><label>Signal:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Sensitivity:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Linear Manual:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Contrast:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+
+        <table class="{style.table} {style.imageTable}">
+          <tr>
+            <th><label>SDS-Page:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>% Acrylamid:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Sep.time [h]:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Voltage:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Size [mm]:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+
+      </div>
+    </g:HTMLPanel>
+
+    <g:FormPanel ui:field="otherForm">
+      <g:HTMLPanel>
+        <h3>Other <g:Image resource="{res.delete}" altText="Reset" title="Reset" styleName="{style.actionImages}" ui:field="otherReset" /></h3>
+        <table class="{style.table} {style.largeTable}">
+          <tr>
+            <th><label>Datasheet:</label></th>
+            <td><input type="file" /></td>
+          </tr>
+          <tr>
+            <th><label>Embedding:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Fixation:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>2°AB Incubation:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <th><label>Blocking:</label></th>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+      </g:HTMLPanel>
+    </g:FormPanel>
+
+    <table>
+      <tr>
+        <td><g:Button ui:field="save">Save</g:Button></td>
+        <td><g:Anchor href="javascript:;" ui:field="reset">Reset</g:Anchor></td>
+      </tr>
+    </table>
+
+  </g:HTMLPanel>
+
+</ui:UiBinder>

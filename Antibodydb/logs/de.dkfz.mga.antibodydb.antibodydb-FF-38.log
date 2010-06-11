@@ -1,0 +1,18 @@
+
+Validating newly compiled units
+   [ERROR] Errors in 'file:/home/bastian/NetBeansProjects/Antibodydb/src/java/de/dkfz/mga/antibodydb/client/view/EditView.java'
+      [ERROR] Line 72: The constructor HTMLPanel(int) is undefined
+Finding entry point classes
+   [ERROR] Unable to find type 'de.dkfz.mga.antibodydb.client.Antibodydb'
+      [ERROR] Hint: Previous compiler errors may have made this type unavailable
+      [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[ERROR] Failed to load module 'de.dkfz.mga.antibodydb.antibodydb' from user agent 'Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2.3) Gecko/20100423 Ubuntu/10.04 (lucid) Firefox/3.6.3' at localhost:43097
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.cfg.ModuleDef.checkForSeedTypes(ModuleDef.java:489)
+	at com.google.gwt.dev.cfg.ModuleDef.getCompilationState(ModuleDef.java:282)
+	at com.google.gwt.dev.DevModeBase$UiBrowserWidgetHostImpl.createModuleSpaceHost(DevModeBase.java:99)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:180)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+

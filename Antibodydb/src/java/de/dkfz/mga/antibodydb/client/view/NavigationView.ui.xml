@@ -1,0 +1,47 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+  xmlns:ui='urn:ui:com.google.gwt.uibinder'
+  xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:style>
+    .ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .li {
+      margin: 0;
+      padding: 0;
+    }
+    .a > a {
+        background-color:#F1F1F1;
+        border-bottom:1px solid #FFFFFF;
+        border-top:1px solid #FFFFFF;
+        color:#000000;
+        display:block;
+        line-height:1.7em;
+        padding-left:10px;
+    }
+
+ </ui:style>
+
+  <g:DeckPanel ui:field="navigation">
+
+    <g:HTMLPanel ui:field="logout">
+      <ul class="{style.ul}">
+        <li class="{style.li}"><g:Hyperlink styleName="{style.a}" targetHistoryToken="home">Home</g:Hyperlink></li>
+        <li class="{style.li}"><g:Hyperlink styleName="{style.a}" targetHistoryToken="login">Login</g:Hyperlink></li>
+      </ul>
+    </g:HTMLPanel>
+
+    <g:HTMLPanel ui:field="login">
+      <ul class="{style.ul}">
+        <li class="{style.li}"><g:Hyperlink styleName="{style.a}" targetHistoryToken="home">Home</g:Hyperlink></li>
+        <li class="{style.li}"><g:Hyperlink styleName="{style.a}" targetHistoryToken="edit">Edit</g:Hyperlink></li>
+        <li class="{style.li}"><g:Hyperlink styleName="{style.a}" targetHistoryToken="logout">Logout</g:Hyperlink></li>
+      </ul>
+    </g:HTMLPanel>
+
+  </g:DeckPanel>
+
+</ui:UiBinder>

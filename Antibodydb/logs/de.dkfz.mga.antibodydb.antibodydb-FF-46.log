@@ -1,0 +1,47 @@
+Rebinding de.dkfz.mga.antibodydb.client.view.EditView.EditViewUiBinder
+   Invoking com.google.gwt.dev.javac.StandardGeneratorContext@1efcffb
+      [ERROR] <g:FormPanel ui:field='form'> can contain only widgets, but found <h1>
+[ERROR] Deferred binding failed for 'de.dkfz.mga.antibodydb.client.view.EditView.EditViewUiBinder'; expect subsequent failures
+Rebinding com.google.gwt.dom.client.StyleInjector.StyleInjectorImpl
+   [WARN] For the following type(s), generated source was never committed (did you forget to call commit()?)
+      [WARN] de.dkfz.mga.antibodydb.client.view.EditView_EditViewUiBinderImpl
+[ERROR] Unable to load module entry point class de.dkfz.mga.antibodydb.client.Antibodydb (see associated exception for details)
+java.lang.RuntimeException: Deferred binding failed for 'de.dkfz.mga.antibodydb.client.view.EditView$EditViewUiBinder' (did you forget to inherit a required module?)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:43)
+	at com.google.gwt.core.client.GWT.create(GWT.java:98)
+	at de.dkfz.mga.antibodydb.client.view.EditView.<clinit>(EditView.java:24)
+	at de.dkfz.mga.antibodydb.client.presenter.EditPresenter.<init>(EditPresenter.java:13)
+	at de.dkfz.mga.antibodydb.client.presenter.EditPresenter.get(EditPresenter.java:22)
+	at de.dkfz.mga.antibodydb.client.Antibodydb.onValueChange(Antibodydb.java:51)
+	at com.google.gwt.event.logical.shared.ValueChangeEvent.dispatch(ValueChangeEvent.java:128)
+	at com.google.gwt.event.logical.shared.ValueChangeEvent.dispatch(ValueChangeEvent.java:1)
+	at com.google.gwt.event.shared.HandlerManager$HandlerRegistry.fireEvent(HandlerManager.java:65)
+	at com.google.gwt.event.shared.HandlerManager$HandlerRegistry.access$1(HandlerManager.java:53)
+	at com.google.gwt.event.shared.HandlerManager.fireEvent(HandlerManager.java:178)
+	at com.google.gwt.user.client.impl.HistoryImpl.fireEvent(HistoryImpl.java:74)
+	at com.google.gwt.event.logical.shared.ValueChangeEvent.fire(ValueChangeEvent.java:43)
+	at com.google.gwt.user.client.impl.HistoryImpl.fireHistoryChangedImpl(HistoryImpl.java:81)
+	at com.google.gwt.user.client.History.fireCurrentHistoryState(History.java:121)
+	at de.dkfz.mga.antibodydb.client.Antibodydb.onModuleLoad(Antibodydb.java:32)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:369)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.rebind(ModuleSpace.java:541)
+	at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:414)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:39)
+	... 24 more
+[ERROR] Failed to load module 'de.dkfz.mga.antibodydb.antibodydb' from user agent 'Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2.3) Gecko/20100423 Ubuntu/10.04 (lucid) Firefox/3.6.3' at localhost:41674
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:399)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+

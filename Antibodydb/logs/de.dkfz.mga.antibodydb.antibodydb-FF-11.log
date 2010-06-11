@@ -1,0 +1,38 @@
+
+Rebinding de.dkfz.mga.antibodydb.client.view.DkfzView.DkfzViewUiBinder
+   Invoking com.google.gwt.dev.javac.StandardGeneratorContext@b53d4f
+      [ERROR] No class matching "HeaderView" in urn:import:de.dkfz.mga.antibodydb.client
+[ERROR] Deferred binding failed for 'de.dkfz.mga.antibodydb.client.view.DkfzView.DkfzViewUiBinder'; expect subsequent failures
+Rebinding com.google.gwt.dom.client.StyleInjector.StyleInjectorImpl
+   [WARN] For the following type(s), generated source was never committed (did you forget to call commit()?)
+      [WARN] de.dkfz.mga.antibodydb.client.view.DkfzView_DkfzViewUiBinderImpl
+[ERROR] Unable to load module entry point class de.dkfz.mga.antibodydb.client.Antibodydb (see associated exception for details)
+java.lang.RuntimeException: Deferred binding failed for 'de.dkfz.mga.antibodydb.client.view.DkfzView$DkfzViewUiBinder' (did you forget to inherit a required module?)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:43)
+	at com.google.gwt.core.client.GWT.create(GWT.java:98)
+	at de.dkfz.mga.antibodydb.client.view.DkfzView.<clinit>(DkfzView.java:15)
+	at de.dkfz.mga.antibodydb.client.Antibodydb.onModuleLoad(Antibodydb.java:25)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:369)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.rebind(ModuleSpace.java:541)
+	at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:414)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:39)
+	... 12 more
+[ERROR] Failed to load module 'de.dkfz.mga.antibodydb.antibodydb' from user agent 'Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2.3) Gecko/20100423 Ubuntu/10.04 (lucid) Firefox/3.6.3' at localhost:52423
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:399)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+
+
+

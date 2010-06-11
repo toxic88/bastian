@@ -1,0 +1,154 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+  xmlns:ui='urn:ui:com.google.gwt.uibinder'
+  xmlns:g='urn:import:com.google.gwt.user.client.ui'
+  xmlns:my='urn:import:de.dkfz.mga.antibodydb.client.view'>
+
+  <ui:style>
+    .dkfz {
+        border-spacing:1px;
+        border-collapse:separate;
+        width:90%;
+        margin:0 auto;
+        text-align:left; /* IE bugfix @see body */
+    }
+
+    .dkfz tr.dkfz_top {
+        height:19px;
+    }
+
+    .dkfz tr.dkfz_header {
+        height:90px;
+    }
+
+    .dkfz tr.dkfz_middle {
+        height:20px;
+    }
+
+    .dkfz tr.dkfz_bottom {
+        height:800px;
+    }
+
+    .dkfz td.left {
+        width:19px;
+    }
+
+    .dkfz td.navigation {
+        width:172px;
+    }
+
+    .dkfz td.content {
+        width:auto;
+    }
+
+    .dkfz td.right {
+        width:19px;
+    }
+
+    .dkfz tr.dkfz_top td.left {
+        background-color:#9C9C9C;
+    }
+
+    .dkfz tr.dkfz_top td.navigation {
+        background-color:#D4D4DC;
+    }
+
+    .dkfz tr.dkfz_top td.content {
+        background-color:#F1F1F1;
+    }
+
+    .dkfz tr.dkfz_top td.right {
+        background-color:#E2E2E2;
+    }
+
+    .dkfz tr.dkfz_header td.left {
+        background-color:#9C9C9C;
+    }
+
+    .dkfz tr.dkfz_header td.navigation {
+        background-color:#E2E2E2;
+    }
+
+    .dkfz tr.dkfz_header td.content {
+        background-color:#FFFFFF;
+        padding:10px;
+    }
+
+    .dkfz tr.dkfz_header td.right {
+        background-color:#E2E2E2;
+    }
+
+    .dkfz tr.dkfz_middle td.left {
+        background-color:#0444BC;
+    }
+
+    .dkfz tr.dkfz_middle td.navigation {
+        background-color:#849CCC;
+    }
+
+    .dkfz tr.dkfz_middle td.content {
+        background-color:#DEDEDE;
+    }
+
+    .dkfz tr.dkfz_middle td.right {
+        background-color:#C4C4C4;
+    }
+
+    .dkfz tr.dkfz_bottom td.left {
+        background-color:#0444BC;
+    }
+
+    .dkfz tr.dkfz_bottom td.navigation {
+        background-color:#C9D8F0;
+        padding:0;
+        vertical-align:top;
+    }
+
+    .dkfz tr.dkfz_bottom td.content {
+        background-color:#FFFFFF;
+        padding-right:20px;
+        padding-left:20px;
+    }
+
+    .dkfz tr.dkfz_bottom td.right {
+        background-color:#B2C6E9;
+    }
+
+  </ui:style>
+
+  <g:HTMLPanel>
+    <table class="{style.dkfz}">
+        <tr class="{style.dkfz_top}">
+            <td class="{style.left}"></td>
+            <td class="{style.navigation}"></td>
+            <td class="{style.content}"></td>
+            <td class="{style.right}"></td>
+        </tr>
+        <tr class="{style.dkfz_header}">
+            <td class="{style.left}"></td>
+            <td class="{style.navigation}"></td>
+            <td class="{style.content}">
+                <my:HeaderView />
+            </td>
+            <td class="{style.right}"></td>
+        </tr>
+        <tr class="{style.dkfz_middle}">
+            <td class="{style.left}"></td>
+            <td class="{style.navigation}"></td>
+            <td class="{style.content}"></td>
+            <td class="{style.right}"></td>
+        </tr>
+        <tr class="{style.dkfz_bottom}">
+            <td class="{style.left}"></td>
+            <td class="{style.navigation}">
+              <my:NavigationView ui:field="navigation" />
+            </td>
+            <td class="{style.content}">
+              <g:DeckPanel ui:field="content" />
+            </td>
+            <td class="{style.right}"></td>
+        </tr>
+    </table>
+  </g:HTMLPanel>
+
+</ui:UiBinder>

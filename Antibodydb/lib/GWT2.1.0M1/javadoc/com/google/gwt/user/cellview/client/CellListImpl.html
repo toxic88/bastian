@@ -1,0 +1,757 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<TITLE>
+CellListImpl (Google Web Toolkit Javadoc)
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="CellListImpl (Google Web Toolkit Javadoc)";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+GWT 2.1.0.M1</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellList.Style.html" title="interface in com.google.gwt.user.cellview.client"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellTable.html" title="class in com.google.gwt.user.cellview.client"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../../index.html?com/google/gwt/user/cellview/client/CellListImpl.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CellListImpl.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.google.gwt.user.cellview.client</FONT>
+<BR>
+Class CellListImpl&lt;T&gt;</H2>
+<PRE>
+java.lang.Object
+  <IMG SRC="../../../../../../resources/inherit.gif" ALT="extended by "><B>com.google.gwt.user.cellview.client.CellListImpl&lt;T&gt;</B>
+</PRE>
+<DL>
+<DT><DT><B>Type Parameters:</B><DD><CODE>T</CODE> - the data type of items in the list</DL>
+<HR>
+<DL>
+<DT><PRE>public abstract class <B>CellListImpl&lt;T&gt;</B><DT>extends java.lang.Object</DL>
+</PRE>
+
+<P>
+Implementation of <A HREF="../../../../../../com/google/gwt/user/cellview/client/CellList.html" title="class in com.google.gwt.user.cellview.client"><CODE>CellList</CODE></A>. This
+ class is subject to change or deletion. Do not rely on this class.
+<P>
+
+<P>
+<HR>
+
+<P>
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#CellListImpl(com.google.gwt.view.client.PagingListView, int, com.google.gwt.dom.client.Element)">CellListImpl</A></B>(<A HREF="../../../../../../com/google/gwt/view/client/PagingListView.html" title="interface in com.google.gwt.view.client">PagingListView</A>&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;listView,
+             int&nbsp;pageSize,
+             <A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A>&nbsp;childContainer)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;<A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#convertToElements(java.lang.String)">convertToElements</A></B>(java.lang.String&nbsp;html)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convert the specified HTML into DOM elements and return the parent of the
+ DOM elements.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected abstract &nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#dependsOnSelection()">dependsOnSelection</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Check whether or not the cells in the list depend on the selection state.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected abstract &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#emitHtml(java.lang.StringBuilder, java.util.List, int, com.google.gwt.view.client.SelectionModel)">emitHtml</A></B>(java.lang.StringBuilder&nbsp;sb,
+         java.util.List&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;values,
+         int&nbsp;start,
+         <A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client">SelectionModel</A>&lt;? super <A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;selectionModel)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Construct the HTML that represents the list of items.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#getData()">getData</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the list of data within the current range.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#getDataSize()">getDataSize</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the overall data size.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#getDisplayedItemCount()">getDisplayedItemCount</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the number of items that are within the current page and data range.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#getPageSize()">getPageSize</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#getPageStart()">getPageStart</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../../com/google/gwt/view/client/Range.html" title="interface in com.google.gwt.view.client">Range</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#getRange()">getRange</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client">SelectionModel</A>&lt;? super <A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#getSelectionModel()">getSelectionModel</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#onSizeChanged()">onSizeChanged</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Called when pageStart, pageSize, or data size changes.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#redraw()">redraw</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Redraw the list with the current data.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#refresh()">refresh</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Request data from the delegate.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#removeLastItem()">removeLastItem</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove the last element from the list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;<A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#renderChildContents(java.lang.String)">renderChildContents</A></B>(java.lang.String&nbsp;html)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the contents of the child container.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setData(java.util.List, int)">setData</A></B>(java.util.List&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;values,
+        int&nbsp;valuesStart)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the data in the list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setDataSize(int)">setDataSize</A></B>(int&nbsp;size)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the overall size of the list.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setDelegate(com.google.gwt.view.client.ListView.Delegate)">setDelegate</A></B>(<A HREF="../../../../../../com/google/gwt/view/client/ListView.Delegate.html" title="interface in com.google.gwt.view.client">ListView.Delegate</A>&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;delegate)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setPager(com.google.gwt.view.client.PagingListView.Pager)">setPager</A></B>(<A HREF="../../../../../../com/google/gwt/view/client/PagingListView.Pager.html" title="interface in com.google.gwt.view.client">PagingListView.Pager</A>&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;pager)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setPageSize(int)">setPageSize</A></B>(int&nbsp;pageSize)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the number of items to show on each page.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setPageStart(int)">setPageStart</A></B>(int&nbsp;pageStart)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the start index of the range.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected abstract &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setSelected(com.google.gwt.dom.client.Element, boolean)">setSelected</A></B>(<A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A>&nbsp;elem,
+            boolean&nbsp;selected)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mark an element as selected or unselected.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#setSelectionModel(com.google.gwt.view.client.SelectionModel, boolean)">setSelectionModel</A></B>(<A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client">SelectionModel</A>&lt;? super <A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;selectionModel,
+                  boolean&nbsp;updateSelection)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the <A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client"><CODE>SelectionModel</CODE></A>, optionally triggering an update.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>protected &nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html#updateSelection()">updateSelection</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Update the table based on the current selection.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="CellListImpl(com.google.gwt.view.client.PagingListView, int, com.google.gwt.dom.client.Element)"><!-- --></A><H3>
+CellListImpl</H3>
+<PRE>
+public <B>CellListImpl</B>(<A HREF="../../../../../../com/google/gwt/view/client/PagingListView.html" title="interface in com.google.gwt.view.client">PagingListView</A>&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;listView,
+                    int&nbsp;pageSize,
+                    <A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A>&nbsp;childContainer)</PRE>
+<DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getData()"><!-- --></A><H3>
+getData</H3>
+<PRE>
+public java.util.List&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt; <B>getData</B>()</PRE>
+<DL>
+<DD>Get the list of data within the current range. The data may not be
+ complete.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the list of data</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDataSize()"><!-- --></A><H3>
+getDataSize</H3>
+<PRE>
+public int <B>getDataSize</B>()</PRE>
+<DL>
+<DD>Get the overall data size.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the data size</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getDisplayedItemCount()"><!-- --></A><H3>
+getDisplayedItemCount</H3>
+<PRE>
+public int <B>getDisplayedItemCount</B>()</PRE>
+<DL>
+<DD>Get the number of items that are within the current page and data range.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the number of displayed items</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getPageSize()"><!-- --></A><H3>
+getPageSize</H3>
+<PRE>
+public int <B>getPageSize</B>()</PRE>
+<DL>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the page size</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getPageStart()"><!-- --></A><H3>
+getPageStart</H3>
+<PRE>
+public int <B>getPageStart</B>()</PRE>
+<DL>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the start index of the current page (inclusive)</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRange()"><!-- --></A><H3>
+getRange</H3>
+<PRE>
+public <A HREF="../../../../../../com/google/gwt/view/client/Range.html" title="interface in com.google.gwt.view.client">Range</A> <B>getRange</B>()</PRE>
+<DL>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the range of data being displayed</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSelectionModel()"><!-- --></A><H3>
+getSelectionModel</H3>
+<PRE>
+public <A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client">SelectionModel</A>&lt;? super <A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt; <B>getSelectionModel</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="redraw()"><!-- --></A><H3>
+redraw</H3>
+<PRE>
+public void <B>redraw</B>()</PRE>
+<DL>
+<DD>Redraw the list with the current data.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="refresh()"><!-- --></A><H3>
+refresh</H3>
+<PRE>
+public void <B>refresh</B>()</PRE>
+<DL>
+<DD>Request data from the delegate.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setData(java.util.List, int)"><!-- --></A><H3>
+setData</H3>
+<PRE>
+public void <B>setData</B>(java.util.List&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;values,
+                    int&nbsp;valuesStart)</PRE>
+<DL>
+<DD>Set the data in the list.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>values</CODE> - the new data<DD><CODE>valuesStart</CODE> - the start index of the values</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDataSize(int)"><!-- --></A><H3>
+setDataSize</H3>
+<PRE>
+public void <B>setDataSize</B>(int&nbsp;size)</PRE>
+<DL>
+<DD>Set the overall size of the list.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>size</CODE> - the overall size</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDelegate(com.google.gwt.view.client.ListView.Delegate)"><!-- --></A><H3>
+setDelegate</H3>
+<PRE>
+public void <B>setDelegate</B>(<A HREF="../../../../../../com/google/gwt/view/client/ListView.Delegate.html" title="interface in com.google.gwt.view.client">ListView.Delegate</A>&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;delegate)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setPager(com.google.gwt.view.client.PagingListView.Pager)"><!-- --></A><H3>
+setPager</H3>
+<PRE>
+public void <B>setPager</B>(<A HREF="../../../../../../com/google/gwt/view/client/PagingListView.Pager.html" title="interface in com.google.gwt.view.client">PagingListView.Pager</A>&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;pager)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setPageSize(int)"><!-- --></A><H3>
+setPageSize</H3>
+<PRE>
+public void <B>setPageSize</B>(int&nbsp;pageSize)</PRE>
+<DL>
+<DD>Set the number of items to show on each page.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>pageSize</CODE> - the page size</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setPageStart(int)"><!-- --></A><H3>
+setPageStart</H3>
+<PRE>
+public void <B>setPageStart</B>(int&nbsp;pageStart)</PRE>
+<DL>
+<DD>Set the start index of the range.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>pageStart</CODE> - the start index</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSelectionModel(com.google.gwt.view.client.SelectionModel, boolean)"><!-- --></A><H3>
+setSelectionModel</H3>
+<PRE>
+public void <B>setSelectionModel</B>(<A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client">SelectionModel</A>&lt;? super <A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;selectionModel,
+                              boolean&nbsp;updateSelection)</PRE>
+<DL>
+<DD>Set the <A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client"><CODE>SelectionModel</CODE></A>, optionally triggering an update.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>selectionModel</CODE> - the new <A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client"><CODE>SelectionModel</CODE></A><DD><CODE>updateSelection</CODE> - true to update selection</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="convertToElements(java.lang.String)"><!-- --></A><H3>
+convertToElements</H3>
+<PRE>
+protected <A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A> <B>convertToElements</B>(java.lang.String&nbsp;html)</PRE>
+<DL>
+<DD>Convert the specified HTML into DOM elements and return the parent of the
+ DOM elements.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>html</CODE> - the HTML to convert
+<DT><B>Returns:</B><DD>the parent element</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="dependsOnSelection()"><!-- --></A><H3>
+dependsOnSelection</H3>
+<PRE>
+protected abstract boolean <B>dependsOnSelection</B>()</PRE>
+<DL>
+<DD>Check whether or not the cells in the list depend on the selection state.
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>true if cells depend on selection, false if not</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="emitHtml(java.lang.StringBuilder, java.util.List, int, com.google.gwt.view.client.SelectionModel)"><!-- --></A><H3>
+emitHtml</H3>
+<PRE>
+protected abstract void <B>emitHtml</B>(java.lang.StringBuilder&nbsp;sb,
+                                 java.util.List&lt;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;values,
+                                 int&nbsp;start,
+                                 <A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client">SelectionModel</A>&lt;? super <A HREF="../../../../../../com/google/gwt/user/cellview/client/CellListImpl.html" title="type parameter in CellListImpl">T</A>&gt;&nbsp;selectionModel)</PRE>
+<DL>
+<DD>Construct the HTML that represents the list of items.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>sb</CODE> - the <CODE>StringBuilder</CODE> to build into<DD><CODE>values</CODE> - the values to render<DD><CODE>start</CODE> - the start index<DD><CODE>selectionModel</CODE> - the <A HREF="../../../../../../com/google/gwt/view/client/SelectionModel.html" title="interface in com.google.gwt.view.client"><CODE>SelectionModel</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="onSizeChanged()"><!-- --></A><H3>
+onSizeChanged</H3>
+<PRE>
+protected void <B>onSizeChanged</B>()</PRE>
+<DL>
+<DD>Called when pageStart, pageSize, or data size changes.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="removeLastItem()"><!-- --></A><H3>
+removeLastItem</H3>
+<PRE>
+protected void <B>removeLastItem</B>()</PRE>
+<DL>
+<DD>Remove the last element from the list.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="renderChildContents(java.lang.String)"><!-- --></A><H3>
+renderChildContents</H3>
+<PRE>
+protected <A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A> <B>renderChildContents</B>(java.lang.String&nbsp;html)</PRE>
+<DL>
+<DD>Set the contents of the child container.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>html</CODE> - the html to render in the child
+<DT><B>Returns:</B><DD>the new child container</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSelected(com.google.gwt.dom.client.Element, boolean)"><!-- --></A><H3>
+setSelected</H3>
+<PRE>
+protected abstract void <B>setSelected</B>(<A HREF="../../../../../../com/google/gwt/dom/client/Element.html" title="class in com.google.gwt.dom.client">Element</A>&nbsp;elem,
+                                    boolean&nbsp;selected)</PRE>
+<DL>
+<DD>Mark an element as selected or unselected. This is called when a cells
+ selection state changes, but the cell does not depend on selection.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>elem</CODE> - the element to modify<DD><CODE>selected</CODE> - true if selected, false if not</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="updateSelection()"><!-- --></A><H3>
+updateSelection</H3>
+<PRE>
+protected void <B>updateSelection</B>()</PRE>
+<DL>
+<DD>Update the table based on the current selection.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../index-all.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+GWT 2.1.0.M1</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellList.Style.html" title="interface in com.google.gwt.user.cellview.client"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../../com/google/gwt/user/cellview/client/CellTable.html" title="class in com.google.gwt.user.cellview.client"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../../../index.html?com/google/gwt/user/cellview/client/CellListImpl.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CellListImpl.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,215 @@
+Loading module de.dkfz.mga.antibodydb.antibodydb
+   Top URL: http://127.0.0.1:8888/?gwt.codesvr=127.0.0.1:9997
+   User agent: Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2) Gecko/20100115 Firefox/3.6
+   Remote socket: localhost:32849
+Refreshing module 'de.dkfz.mga.antibodydb.antibodydb'
+   Refreshing resources
+   Refreshing resources
+   Refreshing resources
+Removing invalidated units
+Finding entry point classes
+Linking module 'de.dkfz.mga.antibodydb.antibodydb'
+   Invoking Linker RPC policy file manifest
+   Invoking Linker Standard
+   Invoking Linker Export CompilationResult symbol maps
+   Invoking Linker Emit compile report artifacts
+   Linking compilation into /home/bastian/NetBeansProjects/Antibodydb/build/web/de.dkfz.mga.antibodydb.antibodydb
+Rebinding de.dkfz.mga.antibodydb.client.resources.Resources
+   Invoking com.google.gwt.dev.javac.StandardGeneratorContext@6914b7
+      Preparing method dkfzLogo
+         Adding image 'dkfzLogo'
+   Adding '1' new generated units
+      Removing invalidated units
+Rebinding de.dkfz.mga.antibodydb.client.resources.Messages
+   Invoking com.google.gwt.dev.javac.StandardGeneratorContext@6914b7
+      Processing interface de.dkfz.mga.antibodydb.client.resources.Messages
+   Adding '1' new generated units
+      Removing invalidated units
+Rebinding com.google.gwt.i18n.client.impl.LocaleInfoImpl
+   Invoking com.google.gwt.dev.javac.StandardGeneratorContext@6914b7
+      Processing interface com.google.gwt.i18n.client.constants.DateTimeConstantsImpl
+         Generating method body for weekendRange()
+         Generating method body for standaloneMonths()
+         Generating method body for weekdays()
+         Generating method body for standaloneShortMonths()
+         Generating method body for firstDayOfTheWeek()
+         Generating method body for months()
+         Generating method body for eraNames()
+         Generating method body for narrowMonths()
+         Generating method body for shortMonths()
+         Generating method body for narrowWeekdays()
+         Generating method body for standaloneWeekdays()
+         Generating method body for standaloneNarrowMonths()
+         Generating method body for standaloneNarrowWeekdays()
+         Generating method body for ampms()
+         Generating method body for dateFormats()
+         Generating method body for shortWeekdays()
+         Generating method body for timeFormats()
+         Generating method body for standaloneShortWeekdays()
+         Generating method body for eras()
+         Generating method body for quarters()
+         Generating method body for shortQuarters()
+      Processing interface com.google.gwt.i18n.client.constants.NumberConstantsImpl
+         Generating method body for percentPattern()
+         Generating method body for zeroDigit()
+         Generating method body for scientificPattern()
+         Generating method body for decimalSeparator()
+         Generating method body for notANumber()
+         Generating method body for minusSign()
+         Generating method body for infinity()
+         Generating method body for exponentialSymbol()
+         Generating method body for plusSign()
+         Generating method body for currencyPattern()
+         Generating method body for monetaryGroupingSeparator()
+         Generating method body for groupingSeparator()
+         Generating method body for perMill()
+         Generating method body for monetarySeparator()
+         Generating method body for decimalPattern()
+         Generating method body for percent()
+         Generating method body for defCurrencyCode()
+   Adding '4' new generated units
+      Removing invalidated units
+Rebinding de.dkfz.mga.antibodydb.client.DkfzView.DkfzViewUiBinder
+   Invoking com.google.gwt.dev.javac.StandardGeneratorContext@6914b7
+      [ERROR] Found widget <g:HTMLPanel> in an HTML context
+[ERROR] Deferred binding failed for 'de.dkfz.mga.antibodydb.client.DkfzView.DkfzViewUiBinder'; expect subsequent failures
+Rebinding com.google.gwt.dom.client.StyleInjector.StyleInjectorImpl
+   [WARN] For the following type(s), generated source was never committed (did you forget to call commit()?)
+      [WARN] de.dkfz.mga.antibodydb.client.DkfzView_DkfzViewUiBinderImpl
+[ERROR] Unable to load module entry point class de.dkfz.mga.antibodydb.client.Antibodydb (see associated exception for details)
+java.lang.RuntimeException: Deferred binding failed for 'de.dkfz.mga.antibodydb.client.DkfzView$DkfzViewUiBinder' (did you forget to inherit a required module?)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:43)
+	at com.google.gwt.core.client.GWT.create(GWT.java:98)
+	at de.dkfz.mga.antibodydb.client.DkfzView.<clinit>(DkfzView.java:12)
+	at de.dkfz.mga.antibodydb.client.Antibodydb.onModuleLoad(Antibodydb.java:23)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:369)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.rebind(ModuleSpace.java:541)
+	at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:414)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:39)
+	... 12 more
+[ERROR] Failed to load module 'de.dkfz.mga.antibodydb.antibodydb' from user agent 'Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2) Gecko/20100115 Firefox/3.6' at localhost:32849
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:399)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+
+
+
+
+
+
+Rebinding de.dkfz.mga.antibodydb.client.view.EditView.EditViewUiBinder
+   Adding '3' new generated units
+      Validating newly compiled units
+         [ERROR] Errors in 'generated://3B5625AD48B35B37667446CD3E89E6AC/de/dkfz/mga/antibodydb/client/view/EditView_EditViewUiBinderImpl.java'
+            [ERROR] Line 198: Type mismatch: cannot convert from HTMLPanel to FormPanel
+   [ERROR] Unable to find recently-generated type 'de.dkfz.mga.antibodydb.client.view.EditView_EditViewUiBinderImpl
+[ERROR] Deferred binding failed for 'de.dkfz.mga.antibodydb.client.view.EditView.EditViewUiBinder'; expect subsequent failures
+[ERROR] Unable to load module entry point class de.dkfz.mga.antibodydb.client.Antibodydb (see associated exception for details)
+java.lang.RuntimeException: Deferred binding failed for 'de.dkfz.mga.antibodydb.client.view.EditView$EditViewUiBinder' (did you forget to inherit a required module?)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:43)
+	at com.google.gwt.core.client.GWT.create(GWT.java:98)
+	at de.dkfz.mga.antibodydb.client.view.EditView.<clinit>(EditView.java:19)
+	at de.dkfz.mga.antibodydb.client.presenter.EditPresenter.<init>(EditPresenter.java:14)
+	at de.dkfz.mga.antibodydb.client.presenter.EditPresenter.get(EditPresenter.java:27)
+	at de.dkfz.mga.antibodydb.client.Antibodydb.onValueChange(Antibodydb.java:51)
+	at com.google.gwt.event.logical.shared.ValueChangeEvent.dispatch(ValueChangeEvent.java:128)
+	at com.google.gwt.event.logical.shared.ValueChangeEvent.dispatch(ValueChangeEvent.java:1)
+	at com.google.gwt.event.shared.HandlerManager$HandlerRegistry.fireEvent(HandlerManager.java:65)
+	at com.google.gwt.event.shared.HandlerManager$HandlerRegistry.access$1(HandlerManager.java:53)
+	at com.google.gwt.event.shared.HandlerManager.fireEvent(HandlerManager.java:178)
+	at com.google.gwt.user.client.impl.HistoryImpl.fireEvent(HistoryImpl.java:74)
+	at com.google.gwt.event.logical.shared.ValueChangeEvent.fire(ValueChangeEvent.java:43)
+	at com.google.gwt.user.client.impl.HistoryImpl.fireHistoryChangedImpl(HistoryImpl.java:81)
+	at com.google.gwt.user.client.History.fireCurrentHistoryState(History.java:121)
+	at de.dkfz.mga.antibodydb.client.Antibodydb.onModuleLoad(Antibodydb.java:32)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:369)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+Caused by: com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.rebind(ModuleSpace.java:541)
+	at com.google.gwt.dev.shell.ModuleSpace.rebindAndCreate(ModuleSpace.java:414)
+	at com.google.gwt.dev.shell.GWTBridgeImpl.create(GWTBridgeImpl.java:39)
+	... 24 more
+[ERROR] Failed to load module 'de.dkfz.mga.antibodydb.antibodydb' from user agent 'Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2.3) Gecko/20100423 Ubuntu/10.04 (lucid) Firefox/3.6.3' at localhost:38672
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.shell.ModuleSpace.onLoad(ModuleSpace.java:399)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:185)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:380)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+
+
+
+
+[ERROR] Uncaught exception escaped
+java.lang.IndexOutOfBoundsException: Index: 11, Size: 11
+	at java.util.ArrayList.RangeCheck(ArrayList.java:547)
+	at java.util.ArrayList.get(ArrayList.java:322)
+	at de.dkfz.mga.antibodydb.client.view.EditView.addImageTab(EditView.java:91)
+	at de.dkfz.mga.antibodydb.client.view.EditView$1.onClick(EditView.java:80)
+	at com.google.gwt.event.dom.client.ClickEvent.dispatch(ClickEvent.java:54)
+	at com.google.gwt.event.dom.client.ClickEvent.dispatch(ClickEvent.java:1)
+	at com.google.gwt.event.shared.HandlerManager$HandlerRegistry.fireEvent(HandlerManager.java:65)
+	at com.google.gwt.event.shared.HandlerManager$HandlerRegistry.access$1(HandlerManager.java:53)
+	at com.google.gwt.event.shared.HandlerManager.fireEvent(HandlerManager.java:178)
+	at com.google.gwt.user.client.ui.Widget.fireEvent(Widget.java:52)
+	at com.google.gwt.event.dom.client.DomEvent.fireNativeEvent(DomEvent.java:116)
+	at com.google.gwt.user.client.ui.Widget.onBrowserEvent(Widget.java:100)
+	at com.google.gwt.user.client.DOM.dispatchEventImpl(DOM.java:1307)
+	at com.google.gwt.user.client.DOM.dispatchEvent(DOM.java:1263)
+	at sun.reflect.GeneratedMethodAccessor57.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:157)
+	at com.google.gwt.dev.shell.BrowserChannel.reactToMessagesWhileWaitingForReturn(BrowserChannel.java:1713)
+	at com.google.gwt.dev.shell.BrowserChannelServer.invokeJavascript(BrowserChannelServer.java:165)
+	at com.google.gwt.dev.shell.ModuleSpaceOOPHM.doInvoke(ModuleSpaceOOPHM.java:120)
+	at com.google.gwt.dev.shell.ModuleSpace.invokeNative(ModuleSpace.java:507)
+	at com.google.gwt.dev.shell.ModuleSpace.invokeNativeObject(ModuleSpace.java:264)
+	at com.google.gwt.dev.shell.JavaScriptHost.invokeNativeObject(JavaScriptHost.java:91)
+	at com.google.gwt.core.client.impl.Impl.apply(Impl.java)
+	at com.google.gwt.core.client.impl.Impl.entry0(Impl.java:188)
+	at sun.reflect.GeneratedMethodAccessor54.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.gwt.dev.shell.MethodAdaptor.invoke(MethodAdaptor.java:103)
+	at com.google.gwt.dev.shell.MethodDispatch.invoke(MethodDispatch.java:71)
+	at com.google.gwt.dev.shell.OophmSessionHandler.invoke(OophmSessionHandler.java:157)
+	at com.google.gwt.dev.shell.BrowserChannel.reactToMessages(BrowserChannel.java:1668)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:401)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:222)
+	at java.lang.Thread.run(Thread.java:619)
+
+Finding entry point classes
+   [ERROR] Unable to find type 'de.dkfz.mga.antibodydb.client.Antibodydb'
+      [ERROR] Hint: Previous compiler errors may have made this type unavailable
+      [ERROR] Hint: Check the inheritance chain from your module; it may not be inheriting a required module or a module may not be adding its source path entries properly
+[ERROR] Failed to load module 'de.dkfz.mga.antibodydb.antibodydb' from user agent 'Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.2.3) Gecko/20100423 Ubuntu/10.04 (lucid) Firefox/3.6.3' at localhost:46298
+com.google.gwt.core.ext.UnableToCompleteException: (see previous log entries)
+	at com.google.gwt.dev.cfg.ModuleDef.checkForSeedTypes(ModuleDef.java:512)
+	at com.google.gwt.dev.cfg.ModuleDef.getCompilationState(ModuleDef.java:291)
+	at com.google.gwt.dev.DevModeBase$UiBrowserWidgetHostImpl.createModuleSpaceHost(DevModeBase.java:97)
+	at com.google.gwt.dev.shell.OophmSessionHandler.loadModule(OophmSessionHandler.java:176)
+	at com.google.gwt.dev.shell.BrowserChannelServer.processConnection(BrowserChannelServer.java:520)
+	at com.google.gwt.dev.shell.BrowserChannelServer.run(BrowserChannelServer.java:362)
+	at java.lang.Thread.run(Thread.java:619)
