@@ -26,13 +26,13 @@ public class DkfzPresenter implements Presenter {
     });
 
     Antibodydb.EventBus.addHandler(LoginEvent.TYPE, new LoginEventHandler() {
-      public void onShow(LoginEvent event) {
+      public void onLogin(LoginEvent event) {
         view.showLogin();
       }
     });
 
     Antibodydb.EventBus.addHandler(LogoutEvent.TYPE, new LogoutEventHandler() {
-      public void onShow(LogoutEvent event) {
+      public void onLogout(LogoutEvent event) {
         view.showLogout();
       }
     });

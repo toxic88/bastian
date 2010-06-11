@@ -4,6 +4,6 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface LogoutEventHandler extends EventHandler {
 
-  void onShow(LogoutEvent event);
+  void onLogout(LogoutEvent event);
 
 }

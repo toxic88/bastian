@@ -5,6 +5,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Widget;
 import de.dkfz.mga.antibodydb.client.Antibodydb;
 import de.dkfz.mga.antibodydb.client.event.LoginEvent;
+import de.dkfz.mga.antibodydb.client.event.LogoutEvent;
+import de.dkfz.mga.antibodydb.client.event.LogoutEventHandler;
 import de.dkfz.mga.antibodydb.client.view.LoginView;
 import de.dkfz.mga.antibodydb.shared.User;
 
@@ -16,6 +18,18 @@ public class LoginPresenter implements Presenter {
 
   private LoginPresenter() {
     view = new LoginView(this);
+
+    Antibodydb.EventBus.addHandler(LogoutEvent.TYPE, new LogoutEventHandler() {
+      public void onLogout(LogoutEvent event) {
+          AsyncCallback<Void> cb = new AsyncCallback<Void>() {
+            public void onFailure(Throwable caught) {}
+            public void onSuccess(Void result) {}
+          };
+
+          Antibodydb.LoginService.logout(cb);
+      }
+    });
+
   }
 
   public void onLoginButtonClicked(String username, String password) {

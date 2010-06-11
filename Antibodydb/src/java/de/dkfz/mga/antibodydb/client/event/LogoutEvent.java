@@ -12,7 +12,7 @@ public class LogoutEvent extends GwtEvent<LogoutEventHandler> {
 
   @Override
   protected void dispatch(LogoutEventHandler handler) {
-    handler.onShow(this);
+    handler.onLogout(this);
   }
 
 }

@@ -23,7 +23,7 @@ public class LoginEvent extends GwtEvent<LoginEventHandler> {
 
   @Override
   protected void dispatch(LoginEventHandler handler) {
-    handler.onShow(this);
+    handler.onLogin(this);
   }
 
 }
