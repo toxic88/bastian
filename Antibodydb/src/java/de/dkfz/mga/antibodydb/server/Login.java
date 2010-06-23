@@ -3,16 +3,21 @@ package de.dkfz.mga.antibodydb.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.dkfz.mga.antibodydb.client.services.LoginService;
-import de.dkfz.mga.antibodydb.shared.User;
-import javax.persistence.Persistence;
 
 public class Login extends RemoteServiceServlet implements LoginService {
 
-  public User login(String username, String password) {
+  public de.dkfz.mga.antibodydb.shared.User login(String username, String password) {
 
-    //Persistence.createEntityManagerFactory("AntibodyPU");
+    /*PersistenceManagerFactory emf = JDOHelper.getPersistenceManagerFactory("transactions-optional");
+    PersistenceManager em = emf.getPersistenceManager();
 
-    return new User();
+    User user = em.getObjectById(User.class, 10);
+
+    de.dkfz.mga.antibodydb.shared.User ret = new de.dkfz.mga.antibodydb.shared.User();
+    ret.setUsername(user.getUsername());
+
+    return ret;*/
+    return new de.dkfz.mga.antibodydb.shared.User();
   }
 
   public void logout() {

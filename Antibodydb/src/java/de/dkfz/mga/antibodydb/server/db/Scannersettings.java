@@ -47,7 +47,7 @@ public class Scannersettings implements Serializable {
   private String contrast;
   @Column(name = "Signal")
   private String signal;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "fsTScannersettingsid")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "scannersettings")
   private List<Images> imagesList;
 
   public Scannersettings() {

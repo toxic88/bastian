@@ -1,0 +1,165 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+  xmlns:ui='urn:ui:com.google.gwt.uibinder'
+  xmlns:g='urn:import:com.google.gwt.user.client.ui'
+  xmlns:d='urn:import:com.google.gwt.dom.client'>
+
+  <ui:with field='res' type='de.dkfz.mga.antibodydb.client.resources.Resources' />
+
+  <ui:style>
+
+    .table th, .table td {
+      vertical-align: middle;
+    }
+
+    .table th {
+      width: 120px;
+      text-align: left;
+      font-weight: normal;
+      color: #000000;
+    }
+
+    .table td {
+      padding-right: 5px;
+    }
+
+    .imageTable input {
+      width: 300px;
+    }
+
+  </ui:style>
+
+  <g:HTMLPanel ui:field="imageTemplate">
+
+    <table class="{style.table}" style="float:right;">
+      <tr>
+        <td>Lane</td>
+        <td>Lysate/Protein</td>
+        <td>Total Protein</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td><input ui:field="Lysate_Protein_1" type="text" /></td>
+        <td><input ui:field="Total_Protein_1" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><input ui:field="Lysate_Protein_2" type="text" /></td>
+        <td><input ui:field="Total_Protein_2" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><input ui:field="Lysate_Protein_3" type="text" /></td>
+        <td><input ui:field="Total_Protein_3" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><input ui:field="Lysate_Protein_4" type="text" /></td>
+        <td><input ui:field="Total_Protein_4" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><input ui:field="Lysate_Protein_5" type="text" /></td>
+        <td><input ui:field="Total_Protein_5" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><input ui:field="Lysate_Protein_6" type="text" /></td>
+        <td><input ui:field="Total_Protein_6" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><input ui:field="Lysate_Protein_7" type="text" /></td>
+        <td><input ui:field="Total_Protein_7" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><input ui:field="Lysate_Protein_8" type="text" /></td>
+        <td><input ui:field="Total_Protein_8" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><input ui:field="Lysate_Protein_9" type="text" /></td>
+        <td><input ui:field="Total_Protein_9" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><input ui:field="Lysate_Protein_10" type="text" /></td>
+        <td><input ui:field="Total_Protein_10" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><input ui:field="Lysate_Protein_11" type="text" /></td>
+        <td><input ui:field="Total_Protein_11" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td><input ui:field="Lysate_Protein_12" type="text" /></td>
+        <td><input ui:field="Total_Protein_12" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td><input ui:field="Lysate_Protein_13" type="text" /></td>
+        <td><input ui:field="Total_Protein_13" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td><input ui:field="Lysate_Protein_14" type="text" /></td>
+        <td><input ui:field="Total_Protein_14" type="text" /> µg</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td><input ui:field="Lysate_Protein_15" type="text" /></td>
+        <td><input ui:field="Total_Protein_15" type="text" /> µg</td>
+      </tr>
+    </table>
+
+    <table class="{style.table} {style.imageTable}">
+      <tr>
+        <th><label>Image:</label></th>
+        <td><a href="#edit/upload/image">Upload</a><input ui:field="Image" type="hidden" /></td>
+      </tr>
+      <tr>
+        <th><label>Signal:</label></th>
+        <td><input ui:field="Signal" type="text" /></td>
+      </tr>
+      <tr>
+        <th><label>Sensitivity:</label></th>
+        <td><input ui:field="Sensitivity" type="text" /></td>
+      </tr>
+      <tr>
+        <th><label>Linear Manual:</label></th>
+        <td><input ui:field="Linear_Manual" type="text" /></td>
+      </tr>
+      <tr>
+        <th><label>Contrast:</label></th>
+        <td><input ui:field="Contrast" type="text" /></td>
+      </tr>
+    </table>
+
+    <table class="{style.table} {style.imageTable}">
+      <tr>
+        <th><label>SDS-Page:</label></th>
+        <td><input ui:field="SDS" type="text" /></td>
+      </tr>
+      <tr>
+        <th><label>% Acrylamid:</label></th>
+        <td><input ui:field="Acrylamid" type="text" /></td>
+      </tr>
+      <tr>
+        <th><label>Sep.time [h]:</label></th>
+        <td><input ui:field="Sep" type="text" /></td>
+      </tr>
+      <tr>
+        <th><label>Voltage:</label></th>
+        <td><input ui:field="Voltage" type="text" /></td>
+      </tr>
+      <tr>
+        <th><label>Size [mm]:</label></th>
+        <td><input ui:field="Size" type="text" /></td>
+      </tr>
+    </table>
+
+  </g:HTMLPanel>
+
+</ui:UiBinder>

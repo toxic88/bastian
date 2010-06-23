@@ -47,7 +47,7 @@ public class Bufferset implements Serializable {
   private String incubation2;
   @Column(name = "Blocking")
   private String blocking;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "fsTBuffersetid")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "bufferset")
   private List<Incubationprotocol> incubationprotocolList;
 
   public Bufferset() {

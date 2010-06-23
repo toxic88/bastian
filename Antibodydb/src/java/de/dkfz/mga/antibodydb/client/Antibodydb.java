@@ -17,6 +17,7 @@ import de.dkfz.mga.antibodydb.client.resources.Messages;
 import de.dkfz.mga.antibodydb.client.resources.Resources;
 import de.dkfz.mga.antibodydb.client.services.LoginService;
 import de.dkfz.mga.antibodydb.client.services.LoginServiceAsync;
+import de.dkfz.mga.antibodydb.shared.User;
 
 public class Antibodydb implements EntryPoint, ValueChangeHandler<String> {
 
@@ -24,6 +25,8 @@ public class Antibodydb implements EntryPoint, ValueChangeHandler<String> {
   public static Messages Messages = GWT.create(Messages.class);
   public static HandlerManager EventBus = new HandlerManager(null);
   public static LoginServiceAsync LoginService = GWT.create(LoginService.class);
+  public static User User = null;
+  public static String Token = null;
 
   private String lastToken = null;
 
@@ -37,24 +40,24 @@ public class Antibodydb implements EntryPoint, ValueChangeHandler<String> {
   }
 
   public void onValueChange(ValueChangeEvent<String> event) {
-    String token = event.getValue();
+    Token = event.getValue();
 
-    if (token.equals(lastToken)) {
+    if (Token.equals(lastToken)) {
       return;
     }
 
-    if (token.equals("")) {
+    if (Token.equals("")) {
       History.newItem("home");
       return;
     }
 
-    if (token.equals("login")) {
+    if (Token.startsWith("login")) {
       EventBus.fireEvent(new ShowEvent(LoginPresenter.get()));
-    } else if (token.equals("home")) {
+    } else if (Token.startsWith("home")) {
       EventBus.fireEvent(new ShowEvent(HomePresenter.get()));
-    } else if (token.equals("edit")) {
+    } else if (Token.startsWith("edit") && User != null) {
       EventBus.fireEvent(new ShowEvent(EditPresenter.get()));
-    } else if (token.equals("logout")) {
+    } else if (Token.startsWith("logout")) {
       EventBus.fireEvent(new LogoutEvent());
     }
 

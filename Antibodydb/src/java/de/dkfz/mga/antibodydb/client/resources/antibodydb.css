@@ -143,3 +143,8 @@ table.grid th, table.grid td {
   border:1px solid #003399;
   padding:5px;
 }
+
+.gwt-PopupPanelGlass {
+  background-color:#F1F1F1;
+  opacity:.2;
+}

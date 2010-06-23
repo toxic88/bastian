@@ -48,11 +48,11 @@ public class DkfzPresenter implements Presenter {
   }
 
   public static DkfzPresenter get() {
-    if (DkfzPresenter.instance == null) {
-      DkfzPresenter.instance = new DkfzPresenter();
+    if (instance == null) {
+      instance = new DkfzPresenter();
     }
 
-    return DkfzPresenter.instance;
+    return instance;
   }
 
 }

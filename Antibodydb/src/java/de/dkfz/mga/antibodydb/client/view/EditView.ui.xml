@@ -31,17 +31,19 @@
       width: 100%;
     }
 
-    .imageTable input {
-      width: 300px;
-    }
-
     .actionImages {
       cursor: pointer;
-      margin-bottom: -2px;
+      margin-top: 2px;
+      float: right;
     }
 
-    .imageTemplate {
-      display: none;
+    .fileuploadDialog {
+      background-color: #FFFFFF;
+      border: 1px solid #000000;
+      padding: 5px;
+      box-shadow:0 0 10px #000000;
+      -moz-box-shadow:0 0 10px #000000;
+      -webkit-box-shadow:0 0 10px #000000;
     }
 
   </ui:style>
@@ -219,145 +221,10 @@
     <g:FormPanel ui:field="imagesForm">
       <g:HTMLPanel>
         <h3>Images <g:Image resource="{res.delete}" altText="Delete Tab" title="Delete Tab" styleName="{style.actionImages}" ui:field="imagesReset" /></h3>
-         <g:TabLayoutPanel barHeight="30" ui:field="imageTabs">
+        <g:TabLayoutPanel barHeight="30" ui:field="imageTabs">
         </g:TabLayoutPanel>
       </g:HTMLPanel>
     </g:FormPanel>
-
-    <g:HTMLPanel styleName="{style.imageTemplate}" ui:field="imageTemplate">
-      <div>
-
-        <table class="{style.table}" style="float:right;">
-          <tr>
-            <td>Lane</td>
-            <td>Lysate/Protein</td>
-            <td>Total Protein</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>12</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>13</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>14</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-          <tr>
-            <td>15</td>
-            <td><input type="text" /></td>
-            <td><input type="text" /> µg</td>
-          </tr>
-        </table>
-
-        <table class="{style.table} {style.imageTable}">
-          <tr>
-            <th><label>Image:</label></th>
-            <td><input type="file" /></td>
-          </tr>
-          <tr>
-            <th><label>Signal:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>Sensitivity:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>Linear Manual:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>Contrast:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-        </table>
-
-        <table class="{style.table} {style.imageTable}">
-          <tr>
-            <th><label>SDS-Page:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>% Acrylamid:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>Sep.time [h]:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>Voltage:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>Size [mm]:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-        </table>
-
-      </div>
-    </g:HTMLPanel>
 
     <g:FormPanel ui:field="otherForm">
       <g:HTMLPanel>
@@ -365,7 +232,7 @@
         <table class="{style.table} {style.largeTable}">
           <tr>
             <th><label>Datasheet:</label></th>
-            <td><input type="file" /></td>
+            <td><a href="#edit/upload/datasheet">Upload</a></td>
           </tr>
           <tr>
             <th><label>Embedding:</label></th>
@@ -373,10 +240,6 @@
           </tr>
           <tr>
             <th><label>Fixation:</label></th>
-            <td><input type="text" /></td>
-          </tr>
-          <tr>
-            <th><label>2°AB Incubation:</label></th>
             <td><input type="text" /></td>
           </tr>
           <tr>
@@ -394,6 +257,21 @@
       </tr>
     </table>
 
+    <g:PopupPanel ui:field="fileuploadDialog" styleName="{style.fileuploadDialog}" glassEnabled="true" modal="true" visible="false">
+      <g:FormPanel ui:field="fileuploadForm">
+        <g:HTMLPanel>
+          <table style="margin:0;">
+            <tr>
+              <td colspan="2"><g:FileUpload name="file" /></td>
+            </tr>
+            <tr>
+              <td><g:Button ui:field="upload">Upload</g:Button></td>
+              <td><g:Hyperlink targetHistoryToken="edit" ui:field="cancel">Cancel</g:Hyperlink></td>
+            </tr>
+          </table>
+        </g:HTMLPanel>
+      </g:FormPanel>
+    </g:PopupPanel>
   </g:HTMLPanel>
 
 </ui:UiBinder>

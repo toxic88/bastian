@@ -50,7 +50,7 @@ public class Targetprotein implements Serializable {
   private String stock;
   @Column(name = "References")
   private String references;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "fsTTargetproteinid")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "targetprotein")
   private List<Antibody> antibodyList;
 
   public Targetprotein() {

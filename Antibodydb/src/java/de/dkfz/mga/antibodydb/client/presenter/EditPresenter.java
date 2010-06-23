@@ -2,6 +2,7 @@ package de.dkfz.mga.antibodydb.client.presenter;
 
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Widget;
+import de.dkfz.mga.antibodydb.client.Antibodydb;
 import de.dkfz.mga.antibodydb.client.view.EditView;
 
 public class EditPresenter implements Presenter {
@@ -23,11 +24,15 @@ public class EditPresenter implements Presenter {
   }
 
   public static EditPresenter get() {
-    if (EditPresenter.instance == null) {
-      EditPresenter.instance = new EditPresenter();
+    if (instance == null) {
+      instance = new EditPresenter();
     }
 
-    return EditPresenter.instance;
+    if (Antibodydb.Token.contains("upload")) {
+      instance.view.showFileuploadDialog();
+    }
+
+    return instance;
   }
 
 }

@@ -47,7 +47,7 @@ public class Sds implements Serializable {
   private String voltage;
   @Column(name = "Size")
   private String size;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "fsTSDSid")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sds")
   private List<Images> imagesList;
 
   public Sds() {

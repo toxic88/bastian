@@ -2,7 +2,7 @@ package de.dkfz.mga.antibodydb.shared;
 
 import java.io.Serializable;
 
-public class Westernimage implements Serializable {
+public class Images implements Serializable {
 
   private long id;
 
@@ -18,7 +18,7 @@ public class Westernimage implements Serializable {
 
   /* Getter / Setter */
 
-  public Westernimage() {
+  public Images() {
     
   }
 

@@ -8,6 +8,16 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/de.dkfz.mga.antibodydb.Antibodydb/login</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Fileupload</servlet-name>
+        <servlet-class>de.dkfz.mga.antibodydb.server.Fileupload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Fileupload</servlet-name>
+        <url-pattern>/de.dkfz.mga.antibodydb.Antibodydb/fileupload</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>Antibodydb.html</welcome-file>
     </welcome-file-list>

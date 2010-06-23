@@ -52,11 +52,11 @@ public class Incubationprotocol implements Serializable {
   private String washing1;
   @Column(name = "Washing_2")
   private String washing2;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "fsTIncubationprotocolid")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "incubationprotocol")
   private List<Antibody> antibodyList;
   @JoinColumn(name = "fs_T_Bufferset_id", referencedColumnName = "id")
   @ManyToOne(optional = false)
-  private Bufferset fsTBuffersetid;
+  private Bufferset bufferset;
 
   public Incubationprotocol() {
   }
@@ -129,12 +129,12 @@ public class Incubationprotocol implements Serializable {
     this.antibodyList = antibodyList;
   }
 
-  public Bufferset getFsTBuffersetid() {
-    return fsTBuffersetid;
+  public Bufferset getBufferset() {
+    return bufferset;
   }
 
-  public void setFsTBuffersetid(Bufferset fsTBuffersetid) {
-    this.fsTBuffersetid = fsTBuffersetid;
+  public void setBufferset(Bufferset bufferset) {
+    this.bufferset = bufferset;
   }
 
   @Override

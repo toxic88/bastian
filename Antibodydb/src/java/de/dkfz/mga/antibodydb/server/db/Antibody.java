@@ -105,14 +105,14 @@ public class Antibody implements Serializable {
   @Basic(optional = false)
   @Column(name = "Validated")
   private int validated;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "fsTAntibodyid")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "antibody")
   private List<Images> imagesList;
-  @JoinColumn(name = "fs_T_Incubationprotocol_id", referencedColumnName = "id")
-  @ManyToOne(optional = false)
-  private Incubationprotocol fsTIncubationprotocolid;
   @JoinColumn(name = "fs_T_Targetprotein_id", referencedColumnName = "id")
   @ManyToOne(optional = false)
-  private Targetprotein fsTTargetproteinid;
+  private Targetprotein targetprotein;
+  @JoinColumn(name = "fs_T_Incubationprotocol_id", referencedColumnName = "id")
+  @ManyToOne(optional = false)
+  private Incubationprotocol incubationprotocol;
 
   public Antibody() {
   }
@@ -327,20 +327,20 @@ public class Antibody implements Serializable {
     this.imagesList = imagesList;
   }
 
-  public Incubationprotocol getFsTIncubationprotocolid() {
-    return fsTIncubationprotocolid;
+  public Targetprotein getTargetprotein() {
+    return targetprotein;
   }
 
-  public void setFsTIncubationprotocolid(Incubationprotocol fsTIncubationprotocolid) {
-    this.fsTIncubationprotocolid = fsTIncubationprotocolid;
+  public void setTargetprotein(Targetprotein targetprotein) {
+    this.targetprotein = targetprotein;
   }
 
-  public Targetprotein getFsTTargetproteinid() {
-    return fsTTargetproteinid;
+  public Incubationprotocol getIncubationprotocol() {
+    return incubationprotocol;
   }
 
-  public void setFsTTargetproteinid(Targetprotein fsTTargetproteinid) {
-    this.fsTTargetproteinid = fsTTargetproteinid;
+  public void setIncubationprotocol(Incubationprotocol incubationprotocol) {
+    this.incubationprotocol = incubationprotocol;
   }
 
   @Override

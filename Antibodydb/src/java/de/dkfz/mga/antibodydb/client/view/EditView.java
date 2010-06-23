@@ -1,19 +1,22 @@
 package de.dkfz.mga.antibodydb.client.view;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FormPanel;
+import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FormHandler;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import de.dkfz.mga.antibodydb.client.Antibodydb;
@@ -28,7 +31,7 @@ public class EditView extends Composite {
 
   private EditPresenter presenter = null;
 
-  ArrayList<String> numbers = new ArrayList<String>();
+  private ArrayList<String> numbers = new ArrayList<String>();
 
   @UiField FormPanel antibodyForm;
   @UiField FormPanel commentsForm;
@@ -38,6 +41,8 @@ public class EditView extends Composite {
   @UiField FormPanel buffersetForm;
   @UiField FormPanel imagesForm;
   @UiField FormPanel otherForm;
+
+  private ArrayList<EditImageView> images = new ArrayList<EditImageView>();
 
   @UiField Image antibodyReset;
   @UiField Image commentsReset;
@@ -49,10 +54,15 @@ public class EditView extends Composite {
   @UiField Image otherReset;
 
   @UiField TabLayoutPanel imageTabs;
-  @UiField HTMLPanel imageTemplate;
 
   @UiField Anchor reset;
   @UiField Button save;
+
+  @UiField PopupPanel fileuploadDialog;
+  @UiField FormPanel fileuploadForm;
+  @UiField Button upload;
+  @UiField Hyperlink cancel;
+
 
   public EditView(EditPresenter presenter) {
     initWidget(uiBinder.createAndBindUi(this));
@@ -71,6 +81,12 @@ public class EditView extends Composite {
     numbers.add("Ten");
 
     initImageTabs();
+    initFileuploadForm();
+  }
+
+  public void showFileuploadDialog() {
+    fileuploadDialog.center();
+    fileuploadDialog.show();
   }
 
   private void initImageTabs() {
@@ -82,15 +98,14 @@ public class EditView extends Composite {
         addImageTab();
       }
     });
-
     imageTabs.add(new HTMLPanel("Please click on the other tabs."), add);
+
     addImageTab();
   }
 
-  public void addImageTab() {
-    Element clone = DOM.clone(imageTemplate.getElement(), true);
-
-    imageTabs.insert(new HTMLPanel(clone.getInnerHTML()), numbers.get(imageTabs.getWidgetCount()), imageTabs.getWidgetCount() - 1);
+  private void addImageTab() {
+    images.add(new EditImageView());
+    imageTabs.insert(images.get(images.size() - 1), numbers.get(imageTabs.getWidgetCount()), imageTabs.getWidgetCount() - 1);
 
     (new Timer() {
       @Override
@@ -100,12 +115,34 @@ public class EditView extends Composite {
     }).schedule(20);
   }
 
-  public void removeImageTab() {
+  private void removeImageTab() {
     if (imageTabs.getWidgetCount() > 2) {
+      images.remove(imageTabs.getWidgetCount() - 2);
       imageTabs.remove(imageTabs.getWidgetCount() - 2);
     } else if (presenter != null) {
       presenter.resetForm(imagesForm);
     }
+  }
+
+  private void initFileuploadForm() {
+    fileuploadForm.setAction(GWT.getModuleBaseURL()  + "fileupload");
+    fileuploadForm.setEncoding(FormPanel.ENCODING_MULTIPART);
+    fileuploadForm.setMethod(FormPanel.METHOD_POST);
+
+    fileuploadForm.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
+      public void onSubmitComplete(SubmitCompleteEvent event) {
+        if (Antibodydb.Token.contains("datasheet")) {
+
+        } else {
+          EditImageView eiv = images.get(imageTabs.getSelectedIndex());
+          eiv.Image.setValue(event.getResults());
+        }
+        fileuploadForm.reset();
+        fileuploadDialog.hide();
+        History.newItem("edit");
+      }
+    });
+
   }
 
   @UiHandler("reset")
@@ -172,6 +209,16 @@ public class EditView extends Composite {
     if (presenter != null) {
       presenter.resetForm(otherForm);
     }
+  }
+
+  @UiHandler("upload")
+  void handleUploadClick(ClickEvent e) {
+    fileuploadForm.submit();
+  }
+
+  @UiHandler("cancel")
+  void handleCancelClick(ClickEvent e) {
+    fileuploadDialog.hide();
   }
 
 }

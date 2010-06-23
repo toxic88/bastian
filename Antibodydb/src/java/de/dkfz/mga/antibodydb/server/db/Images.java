@@ -35,18 +35,18 @@ public class Images implements Serializable {
   @Basic(optional = false)
   @Column(name = "Imagepath")
   private String imagepath;
-  @JoinColumn(name = "fs_T_Antibody_id", referencedColumnName = "id")
-  @ManyToOne(optional = false)
-  private Antibody fsTAntibodyid;
-  @JoinColumn(name = "fs_T_Lane_id", referencedColumnName = "id")
-  @ManyToOne(optional = false)
-  private Lane fsTLaneid;
-  @JoinColumn(name = "fs_T_Scannersettings_id", referencedColumnName = "id")
-  @ManyToOne(optional = false)
-  private Scannersettings fsTScannersettingsid;
   @JoinColumn(name = "fs_T_SDS_id", referencedColumnName = "id")
   @ManyToOne(optional = false)
-  private Sds fsTSDSid;
+  private Sds sds;
+  @JoinColumn(name = "fs_T_Scannersettings_id", referencedColumnName = "id")
+  @ManyToOne(optional = false)
+  private Scannersettings scannersettings;
+  @JoinColumn(name = "fs_T_Lane_id", referencedColumnName = "id")
+  @ManyToOne(optional = false)
+  private Lane lane;
+  @JoinColumn(name = "fs_T_Antibody_id", referencedColumnName = "id")
+  @ManyToOne(optional = false)
+  private Antibody antibody;
 
   public Images() {
   }
@@ -76,36 +76,36 @@ public class Images implements Serializable {
     this.imagepath = imagepath;
   }
 
-  public Antibody getFsTAntibodyid() {
-    return fsTAntibodyid;
+  public Sds getSds() {
+    return sds;
   }
 
-  public void setFsTAntibodyid(Antibody fsTAntibodyid) {
-    this.fsTAntibodyid = fsTAntibodyid;
+  public void setSds(Sds sds) {
+    this.sds = sds;
   }
 
-  public Lane getFsTLaneid() {
-    return fsTLaneid;
+  public Scannersettings getScannersettings() {
+    return scannersettings;
   }
 
-  public void setFsTLaneid(Lane fsTLaneid) {
-    this.fsTLaneid = fsTLaneid;
+  public void setScannersettings(Scannersettings scannersettings) {
+    this.scannersettings = scannersettings;
   }
 
-  public Scannersettings getFsTScannersettingsid() {
-    return fsTScannersettingsid;
+  public Lane getLane() {
+    return lane;
   }
 
-  public void setFsTScannersettingsid(Scannersettings fsTScannersettingsid) {
-    this.fsTScannersettingsid = fsTScannersettingsid;
+  public void setLane(Lane lane) {
+    this.lane = lane;
   }
 
-  public Sds getFsTSDSid() {
-    return fsTSDSid;
+  public Antibody getAntibody() {
+    return antibody;
   }
 
-  public void setFsTSDSid(Sds fsTSDSid) {
-    this.fsTSDSid = fsTSDSid;
+  public void setAntibody(Antibody antibody) {
+    this.antibody = antibody;
   }
 
   @Override

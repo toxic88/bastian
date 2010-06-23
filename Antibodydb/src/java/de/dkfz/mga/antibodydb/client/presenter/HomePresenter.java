@@ -18,11 +18,11 @@ public class HomePresenter implements Presenter {
   }
 
   public static HomePresenter get() {
-    if (HomePresenter.instance == null) {
-      HomePresenter.instance = new HomePresenter();
+    if (instance == null) {
+      instance = new HomePresenter();
     }
 
-    return HomePresenter.instance;
-  }
+      return instance;
+    }
 
 }

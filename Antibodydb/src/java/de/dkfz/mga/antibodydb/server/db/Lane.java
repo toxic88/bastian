@@ -122,7 +122,7 @@ public class Lane implements Serializable {
   private String totalProtein14;
   @Column(name = "Total_Protein_15")
   private String totalProtein15;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "fsTLaneid")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "lane")
   private List<Images> imagesList;
 
   public Lane() {

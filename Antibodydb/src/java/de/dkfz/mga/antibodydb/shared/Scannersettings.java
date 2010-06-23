@@ -14,10 +14,20 @@ public class Scannersettings implements Serializable {
 
   private String contrast;
 
+  private String signal;
+
   /* Getter / Setter */
 
   public Scannersettings() {
     
+  }
+
+  public String getSignal() {
+    return signal;
+  }
+
+  public void setSignal(String signal) {
+    this.signal = signal;
   }
 
   public String getBrightness() {
