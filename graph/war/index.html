@@ -1,0 +1,229 @@
+<!doctype html>
+<html manifest="graph.manifest">
+    <head>
+        <title>Graph Drawer</title>
+        
+        <style type="text/css">
+            @import url("/style.css");
+        </style>
+        
+        <script src="util.js"></script>
+        <script src="Observable.js"></script>
+        <script src="Elem.js"></script>
+        <script src="ColorElem.js"></script>
+        <script src="Func.js"></script>
+        <script src="Point.js"></script>
+        <script src="Line.js"></script>
+        <script src="CoordinateSystem.js"></script>
+    </head>
+    <body>
+
+        <h1>Graph Drawer</h1>
+        <canvas id="c" width="800" height="800"></canvas>
+
+        <div style="margin-left: 810px;width: 420px;">
+            <h2>Function - Color</h2>
+            <div id="functions">
+                <input type="text" class="function" value="x" /><input type="text" class="color" value="blue" /><input type="text" class="function" /><input type="text" class="color" /><br />
+            </div>
+            <input type="button" value="Add functions" onclick="addFunction();" />
+
+
+            <h2>Point X - Point Y - Color</h2>
+    
+            <div id="points">
+                <input type="text" class="pointx" /><input type="text" class="pointy" /><input type="text" class="pointcolor" /><br />
+            </div>
+            <input type="button" value="Add points" onclick="addPoint();" /><br />
+    
+            Step size: <input id="stepSize" tpye="text" value="50" style="width: 30px;" />
+            <input type="button" value="Draw!" onclick="draw();" />
+            <input type="button" value="Reset!" onclick="reset();" />
+            <input type="button" value="Convert to png..." onclick="convertToPNG();" />
+
+            <hr />
+
+            <h2>Info: <small>(x values may be a bit off)</small></h2>
+            <div id="info"></div>
+    
+            <hr />
+    
+            <h2>Samples:</h2>
+            <ul>
+                <li>x</li>
+                <li>x^2</li>
+                <li>sin(x)</li>
+                <li>cos(x)</li>
+                <li>tan(x)</li>
+                <li>1/2x</li>
+                <li>4+(-1)/2x*-pi</li>
+            </ul>
+
+            <hr />
+
+            <h2>How to use:</h2>
+            <ul>
+                <li>Use your mouse and drag the coordinate system to the top, right, bottom or left.</li>
+                <li>Use the mousewheel to zoom in and out.</li>
+            </ul>
+
+            <hr />
+
+            <h2>Successful tested with:</h2>
+            <ul>
+                <li>Google Chrome 9 (dev)</li>
+                <li>Firefox 4.0b8pre</li>
+                <li>Internet Explorer 9 (beta)</li>
+                <li>Opera 11 Beta</li>
+                <li>Android 2.2</li>
+                <li>iOS</li>
+            </ul>
+
+            <hr />
+
+            <a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-button"></a><script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
+            <a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fgraph.bastian-buchholz.appspot.com%2F&amp;layout=button_count&amp;show_faces=false&amp;width=120&amp;action=recommend&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+
+            <hr />
+
+            <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-3139755400202938";
+                /* Graph @ Appspot */
+                google_ad_slot = "9250945137";
+                google_ad_width = 300;
+                google_ad_height = 250;
+            //-->
+            </script>
+            <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+
+        </div>
+
+        <script>
+var inputs = document.querySelectorAll("#functions, #points, #stepSize"),
+    ss     = document.getElementById("stepSize"),
+    info   = document.getElementById("info"),
+    fs     = document.getElementById("functions"),
+    ps     = document.getElementById("points"),
+    change = true, // to not redraw with every onblur
+    test   = new CoordinateSystem(document.getElementById("c"));
+
+test.on("afterZoom", function() {
+    ss.value = this.getStepSize();
+});
+
+// ######## draw function wich adds all functions and points to the coordinate system ########
+function draw() {
+    var f  = document.querySelectorAll(".function"),
+        px = document.querySelectorAll(".pointx"),
+        py = document.querySelectorAll(".pointy"),
+        c  = document.querySelectorAll(".color"),
+        pc = document.querySelectorAll(".pointcolor");    
+    
+    test.setStepSize(ss.value);
+
+    test.clearElements();
+    test.clear();
+    test.drawCoordinateSystem();
+    
+    info.innerHTML = "";
+    
+    var t;
+
+    for (var i = 0; i < f.length; i++) {
+        var vf = f[i].value;
+
+        if (vf !== "") {
+            t = new Func(vf);
+            t.setColor(c[i].value || "#F00");
+    
+            test.addElement(t);
+    
+            var pre = document.createElement("pre");
+            pre.style.color = t.getColor();
+            pre.innerHTML = "y = { " + t.getYIntersection() + " } x = { " + t.getXIntersections().join(" ; ") + " }";
+            if (t.getSlope()) {
+                pre.innerHTML += " m = " + t.getSlope() + " &alpha; = " + t.getSlopeAngle() + "&deg;";
+            }
+    
+            info.appendChild(pre);
+        }
+    }
+
+    for (var i = 0; i < px.length; i++) {
+        var vx = px[i].value, vy = py[i].value;
+
+        if (vx !== "" && vy !== "") {
+            p = new Point(vx, vy);
+            p.setColor(pc[i].value || "#F00");
+
+            test.addElement(p);
+        }
+    }
+
+};
+
+draw();
+
+
+// ######## Adding new fields ########
+function addFunction() {
+    fs.innerHTML += '<input type="text" class="function" /><input type="text" class="color" /><input type="text" class="function" /><input type="text" class="color" /><br />';
+}
+
+function addPoint() {
+    ps.innerHTML += '<input type="text" class="pointx" /><input type="text" class="pointy" /><input type="text" class="pointcolor" /><br />';
+}
+
+//######## Resets the view ########
+function reset() {
+    ss.value = 50;
+    test.setOffsetX(0);
+    test.setOffsetY(0);
+    draw();
+}
+
+// ######## export to png ########
+function convertToPNG() {
+    window.open(test.el.toDataURL());
+}
+
+// ######## Blur event for the input fields ########
+for (var i = 0;i < inputs.length; i++) {
+    inputs[i].addEventListener("blur", function(e) {
+        change && draw() || (change = false);
+    }, true);
+}
+
+window.addEventListener("keyup", function(e) {
+    switch(e.keyCode) {
+        case 9: // tab key
+            break;
+        case 13: // enter
+            if (e.target.toString() == "[object HTMLInputElement]") {
+                draw();
+                change = false;
+            }
+            break;
+        default: // force change because of input
+            change = e.target.toString() == "[object HTMLInputElement]";
+    }
+}, false);
+        </script>
+
+        <div style="clear: both;text-align: center;padding-top: 15px;"><a href="http://bastian-buchholz.appspot.com/">Created by Bastian Buchholz</a></div>
+        
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-19670654-1"]);
+  _gaq.push(["_setDomainName", ".bastian-buchholz.appspot.com"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+    ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+    </body>
+</html>
