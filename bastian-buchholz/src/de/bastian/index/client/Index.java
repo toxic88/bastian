@@ -12,7 +12,6 @@ import de.bastian.index.client.data.Buzz;
 import de.bastian.index.client.data.BuzzFeed;
 import de.bastian.index.client.resources.Resources;
 
-
 public class Index implements EntryPoint {
 
     public static Resources RESOURCES = GWT.create(Resources.class);
@@ -21,7 +20,11 @@ public class Index implements EntryPoint {
     public void onModuleLoad() {
         RESOURCES.style().ensureInjected();
 
-        final Element el = RootPanel.get("center").getElement();
+        AppView view = new AppView();
+        RootPanel.get().add(view);
+
+
+        final Element el = view.getContent();
 
         JsonpRequestBuilder jsonp = new JsonpRequestBuilder();
         jsonp.requestObject("https://www.googleapis.com/buzz/v1/activities/110795566216949339348/@public?alt=json", new AsyncCallback<BuzzFeed>() {
@@ -37,10 +40,9 @@ public class Index implements EntryPoint {
 
                     String c = (b.getAttachments() != null && b.getAttachments().get(0).getContent() != null ? b.getAttachments().get(0).getContent() : b.getContent());
 
-                    el.setInnerHTML(el.getInnerHTML() + "<a href='" + b.getAlternateLink().getUrl() + "'><h2>" + b.getTitle() + "</h2></a><p>" + c + "</p>");
+                    el.setInnerHTML(el.getInnerHTML() + "<div class='article'><a href='" + b.getAlternateLink().getUrl() + "'><h2>" + b.getTitle() + "</h2></a><p>" + c + "</p></div>");
                 }
             }
-
         });
 
     }

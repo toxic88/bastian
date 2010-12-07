@@ -2,7 +2,6 @@ package de.bastian.index.client.data;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-
 public class BuzzLink extends JavaScriptObject {
 
     protected BuzzLink() {}

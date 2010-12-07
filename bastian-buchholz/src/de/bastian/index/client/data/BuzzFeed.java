@@ -3,7 +3,6 @@ package de.bastian.index.client.data;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 
-
 public class BuzzFeed extends JavaScriptObject {
 
     protected BuzzFeed() {}
