@@ -16,11 +16,11 @@
     .wrapper {
       background-color: #DFE8F6;
       min-height: 600px;
-        
+
       border-radius: 10px;
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
-          
+
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
       -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
       -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
@@ -30,31 +30,31 @@
       margin: 0 40px 0 0;
       list-style: none;
     }
-    
+
     .nav li {
       float: right;
       margin-bottom:-5px;
       margin-right:15px;
       margin-top:15px;
       background-color: #DFE8F6;
-      
+
       box-shadow: 0 20px 0px #DFE8F6, 0 0 10px rgba(0, 0, 0, 0.8);
       -moz-box-shadow: 0 20px 0px #DFE8F6, 0 0 10px rgba(0, 0, 0, 0.8);
       -webkit-box-shadow: 0 20px 0px #DFE8F6, 0 0 10px rgba(0, 0, 0, 0.8);
-      
+
       border-radius: 5px 5px 0 0;
       -webkit-border-radius: 5px 5px 0 0;
       -moz-border-radius: 5px 5px 0 0;
     }
-    
+
     .nav li a {
       padding: 10px;
       display: block;
     }
-    
+
     .nav li:hover {
       margin-top:14px;
-    
+
       box-shadow: 0 15px 0px #DFE8F6, 0 0 15px rgba(0, 0, 0, 0.8);
       -moz-box-shadow: 0 15px 0px #DFE8F6, 0 0 15px rgba(0, 0, 0, 0.8);
       -webkit-box-shadow: 0 15px 0px #DFE8F6, 0 0 15px rgba(0, 0, 0, 0.8);
@@ -65,17 +65,17 @@
       text-align: justify;
       margin-right: 280px;
     }
-        
+
     .right {
       float: right;
       width: 200px;
       padding: 20px;
     }
-    
+
     .right ul {
       color: #3764A0;
     }
-        
+
     .footer {
       text-align: center;
       margin-top: 10px;
@@ -84,28 +84,36 @@
       font-size: 11px;
       color: #DFE8F6;
     }
+    
+    .ads {
+        border-top: 1px solid #4D6D8C;
+        margin-top: 20px;
+        padding-top: 10px;
+    }
     </ui:style>
     <g:HTMLPanel styleName="{style.outer}">
           <ul class="{style.nav}">
-    
+
             <!-- <li><a href="javasctipt:;">Link 1</a></li> -->
-    
+
           </ul>
-    
+
           <div class="{style.title}"><h1>Bastian's Homepage</h1></div>
-    
+
           <div class="clear {style.wrapper}">
-    
+
             <div class="{style.right}">
               <h2>Projects:</h2>
               <ul>
                 <li><a href="http://graph.bastian-buchholz.appspot.com/">Graph drawer</a></li>
               </ul>
               
+              <div class="{style.ads}" ui:field="ads"></div>
+
             </div>
-    
+
             <div class="{style.content}" ui:field="content"></div>
-    
+
             <div class="clear" ></div>
           </div>
           <div class="{style.footer}">&copy; Bastian Buchholz</div>
