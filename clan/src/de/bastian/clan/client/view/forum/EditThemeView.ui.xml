@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateLocales="en">
+    <ui:style>
+        
+    </ui:style>
+    <g:HTMLPanel>
+        <h1>C-LAN <ui:msg key="forum">Forum</ui:msg></h1>
+        <h2 ui:field="header"></h2>
+        <table>
+            <tr>
+                <th><ui:msg key="title">Title</ui:msg>:</th>
+                <td><g:TextBox ui:field="title"></g:TextBox></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="text">Text</ui:msg>:</th>
+                <td><g:TextArea ui:field="text"></g:TextArea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><g:Button ui:field="button"></g:Button></td>
+            </tr>
+        </table>
+    </g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateLocales="en">
+    <ui:style type="de.bastian.clan.client.view.NavigationView.Style">
+        .nav {
+            margin-right: -65px;
+            float: right;
+        }
+        
+        .nav ul {
+            margin: 0;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .nav ul li {
+            text-align: right;
+            background-color: #262626;
+            margin-top: 15px;
+            cursor: pointer;
+            
+            -webkit-box-shadow: #262626 -10px 0 0, #000 0 0 10px;
+            -moz-box-shadow: #262626 -10px 0 0, #000 0 0 10px;
+            box-shadow: #262626 -10px 0 0, #000 0 0 10px;
+            
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+        
+        .nav ul li a {
+            display: block;
+            padding: 10px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </ui:style> 
+
+    <g:HTMLPanel styleName="{style.nav}">
+        <ul>
+            <li><g:Anchor ui:field="start"><ui:msg key="start">Start</ui:msg></g:Anchor></li>
+            <li><g:Anchor ui:field="forum"><ui:msg key="forum">Forum</ui:msg></g:Anchor></li>
+            <li><g:Anchor ui:field="pictures"><ui:msg key="pictures">Pictures</ui:msg></g:Anchor></li>
+            <li><g:Anchor ui:field="members"><ui:msg key="members">Members</ui:msg></g:Anchor></li>
+            <li><g:Anchor ui:field="login"><ui:msg key="login">Login</ui:msg></g:Anchor></li>
+            <li><g:Anchor ui:field="logout"><ui:msg key="logout">Logout</ui:msg></g:Anchor></li>
+        </ul>
+    </g:HTMLPanel>
+
+</ui:UiBinder> 

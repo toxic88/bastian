@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:cv="urn:import:com.google.gwt.user.cellview.client"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateLocales="en">
+    <g:HTMLPanel>
+        <h1><ui:msg key="users">Users</ui:msg></h1>
+
+        <cv:CellTable ui:field="table"></cv:CellTable>
+
+    </g:HTMLPanel>
+</ui:UiBinder> 

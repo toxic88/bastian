@@ -1,0 +1,80 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #B0AEAC;
+  background-color: rgb(57, 56, 54); /* #4C5844 rgb(57, 56, 54) */
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body, input, textarea, select {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #FFF;
+}
+
+input[type=text], input[type=password], textarea, select {
+  border: 1px solid #82807C;
+  background-color: #4D4B49;
+  padding: 4px;
+  outline: none;
+  width: 100%;
+}
+
+input[type=submit], input[type=button], button {
+  background-color: #1A1A1A;
+  border: 1px solid #707070;
+  color: #909090;
+}
+
+h1 {
+  color: #8BC53F;
+  text-align: center;
+  text-shadow: #8BC53F 0 0 3px;
+  border-bottom: 1px solid #666;
+}
+
+a {
+  color: #62A7E3;
+  text-decoration: none;
+
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+}
+
+a:hover {
+  color: #FFFFFF;
+
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+}
+
+a img {
+  border: none;
+}
+
+table td, table th {
+  vertical-align: middle;
+}
+
+table.grid {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 5px 0 5px 0;
+}
+
+table.grid td, table.grid th {
+  border: 1px solid #4D4B49;
+  padding: 5px;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: none;
+  background-color: #262626;
+}
+
+form table td, form table th {
+  vertical-align: middle;
+}

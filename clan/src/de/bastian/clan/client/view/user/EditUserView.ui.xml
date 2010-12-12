@@ -1,0 +1,41 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateLocales="en">
+    <ui:style>
+    </ui:style>
+    <g:HTMLPanel>
+        <h1><ui:msg key="edit">Edit</ui:msg> <ui:msg key="user">user</ui:msg></h1>
+        <table>
+            <tr>
+                <th><ui:msg key="firstname">Firstname</ui:msg>:</th>
+                <td><g:TextBox ui:field="firstname"></g:TextBox></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="lastname">Lastname</ui:msg>:</th>
+                <td><g:TextBox ui:field="lastname"></g:TextBox></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="password">Password</ui:msg>:</th>
+                <td><g:PasswordTextBox ui:field="password"></g:PasswordTextBox></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="email">Email</ui:msg>:</th>
+                <td><g:TextBox ui:field="email"></g:TextBox></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="steamid">Steamid</ui:msg>:</th>
+                <td><g:TextBox ui:field="steamid"></g:TextBox></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="type">Type</ui:msg>:</th>
+                <td><g:ListBox ui:field="type"></g:ListBox></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><g:Button ui:field="button"></g:Button></td>
+            </tr>
+        </table>
+    </g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateLocales="en">
+    <ui:style>
+        
+    </ui:style>
+    <g:HTMLPanel>
+        <h1 ui:field="header">User: loading...</h1>
+        <table class="grid">
+            <tr>
+                <th><ui:msg key="firstname">Firstname</ui:msg>:</th>
+                <td ui:field="firstname"></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="lastname">Lastname</ui:msg>:</th>
+                <td ui:field="lastname"></td>
+            </tr>
+            <tr>
+                <th><ui:msg key="lastlogin">Last login</ui:msg>:</th>
+                <td ui:field="lastlogin"></td>
+            </tr>
+        </table>
+    </g:HTMLPanel>
+</ui:UiBinder> 
