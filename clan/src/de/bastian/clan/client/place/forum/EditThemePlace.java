@@ -14,10 +14,18 @@ public class EditThemePlace extends Place {
         this.token = token;
 
         String[] topicTheme = token.split(":");
-        topicId = new Long(topicTheme[0]);
+        try {
+            topicId = new Long(topicTheme[0]);
+        } catch(Exception e) {
+            topicId = null;
+        }
 
         if (topicTheme.length == 2) {
-            themeId = new Long(topicTheme[1]);
+            try {
+                themeId = new Long(topicTheme[1]);
+            } catch (Exception e) {
+                themeId = null;
+            }
         } else {
             themeId = null;
         }

@@ -2,8 +2,11 @@ package de.bastian.clan.client.mvp;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.place.shared.Place;
 
+import de.bastian.clan.client.Clan;
 import de.bastian.clan.client.ClientFactory;
 import de.bastian.clan.client.activity.HelloActivity;
 import de.bastian.clan.client.activity.LoginActivity;
@@ -37,7 +40,6 @@ public class AppActivityMapper implements ActivityMapper {
 
     @Override
     public Activity getActivity(Place place) {
-        // TODO: check if user is logged in or not for some places
         if (place instanceof HelloPlace) {
             return new HelloActivity(place, clientFactory);
         }
@@ -51,9 +53,6 @@ public class AppActivityMapper implements ActivityMapper {
         if (place instanceof UsersPlace) {
             return new UsersActivity((UsersPlace) place, clientFactory);
         }
-        if (place instanceof EditUserPlace) {
-            return new EditUserActivity((EditUserPlace) place, clientFactory);
-        }
 
         if (place instanceof TopicPlace) {
             return new TopicActivity((TopicPlace) place, clientFactory);
@@ -61,15 +60,30 @@ public class AppActivityMapper implements ActivityMapper {
         if (place instanceof ThemesPlace) {
             return new ThemesActivity((ThemesPlace) place, clientFactory);
         }
-        if (place instanceof EditThemePlace) {
-            return new EditThemeActivity((EditThemePlace) place, clientFactory);
-        }
         if (place instanceof PostsPlace) {
             return new PostsActivity((PostsPlace) place, clientFactory);
         }
-        if (place instanceof EditPostPlace) {
-            return new EditPostActivity((EditPostPlace) place, clientFactory);
+
+
+        if (Clan.CURRENTUSER != null) {
+            if (place instanceof EditUserPlace) {
+                return new EditUserActivity((EditUserPlace) place, clientFactory);
+            }
+
+            if (place instanceof EditThemePlace) {
+                return new EditThemeActivity((EditThemePlace) place, clientFactory);
+            }
+            if (place instanceof EditPostPlace) {
+                return new EditPostActivity((EditPostPlace) place, clientFactory);
+            }
         }
+
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+            @Override
+            public void execute() {
+                Clan.PLACECONTROLLER.goTo(new LoginPlace());
+            }
+        });
 
         return null;
     }

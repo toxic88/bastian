@@ -14,7 +14,11 @@ public class ThemesPlace extends Place {
         this.token = token;
 
         String[] topicPage = token.split(":");
-        topicId = new Long(topicPage[0]);
+        try {
+            topicId = new Long(topicPage[0]);
+        } catch (Exception e) {
+            topicId = null;
+        }
 
         if (topicPage.length == 2) {
             page = Integer.parseInt(topicPage[1]);

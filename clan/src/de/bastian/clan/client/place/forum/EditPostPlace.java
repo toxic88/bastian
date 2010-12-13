@@ -15,14 +15,26 @@ public class EditPostPlace extends Place {
         this.token = token;
 
         String[] topicThemePost = token.split(":");
-        topicId = new Long(topicThemePost[0]);
+        try {
+            topicId = new Long(topicThemePost[0]);
+        } catch (Exception e) {
+            topicId = null;
+        }
 
         if (topicThemePost.length >= 2) {
-            themeId = new Long(topicThemePost[1]);
+            try {
+                themeId = new Long(topicThemePost[1]);
+            } catch (Exception e) {
+                themeId = null;
+            }
         }
 
         if (topicThemePost.length == 3) {
-            postId = new Long(topicThemePost[2]);
+            try {
+                postId = new Long(topicThemePost[2]);
+            } catch (Exception e) {
+                postId = null;
+            }
         } else {
             postId = null;
         }

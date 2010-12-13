@@ -14,6 +14,8 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.persistence.Version;
 
+import com.google.appengine.api.datastore.Text;
+
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Post {
 
@@ -25,7 +27,7 @@ public class Post {
     private String title;
 
     @Persistent
-    private String text;
+    private Text text;
 
     @Persistent
     private Date created;
@@ -192,11 +194,18 @@ public class Post {
     }
 
     public String getText() {
-        return text;
+        if (text == null) {
+            return null;
+        }
+        return text.getValue();
     }
 
     public void setText(String text) {
-        this.text = text;
+        if (text == null) {
+            this.text = null;
+        } else {
+            this.text = new Text(text);
+        }
     }
 
     public Date getCreated() {

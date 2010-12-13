@@ -11,7 +11,12 @@ public class UserPlace extends Place {
 
     public UserPlace(String token) {
         this.token = token;
-        this.userId = new Long(token);
+
+        try {
+            userId = new Long(token);
+        } catch (Exception e) {
+            userId = null;
+        }
     }
 
     public String getToken() {

@@ -74,7 +74,6 @@ public class EditUserView extends Composite {
         if (user == null) {
             button.setText(Clan.MESSAGES.createUser());
         } else {
-
             firstname.setText(user.getFirstname());
             lastname.setText(user.getLastname());
             email.setText(user.getEmail());
