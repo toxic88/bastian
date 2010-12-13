@@ -5,24 +5,7 @@
              xmlns:my="urn:import:de.bastian.clan.client.view.widgets"
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
-    <ui:style type="de.bastian.clan.client.view.forum.PostsView.Style">
-        .post {
-            background-color: #262626;
-            border: 1px solid #666666;
-            margin-bottom: 5px;
-            margin-top: 5px;
-            padding: 10px;
-            cursor: auto;
-            
-            -webkit-box-shadow: #666 0 0 5px;
-            -moz-box-shadow: #666 0 0 5px;
-            box-shadow: #666 0 0 5px;
-        }
-        
-        .post a {
-            display: block;
-        }
-        
+    <ui:style>
         .pager {
             margin: 5px;
             text-align: center;
@@ -40,7 +23,7 @@
         
         <my:HyperlinkPager ui:field="pagerTop" styleName="{style.pager}"></my:HyperlinkPager>
         
-        <cw:CellList ui:field="content"></cw:CellList>
+        <g:FlowPanel ui:field="content"></g:FlowPanel>
         
         <g:InlineHyperlink ui:field="newPostBottom" styleName="{style.newPost}"><ui:msg key="newPost">New post</ui:msg></g:InlineHyperlink>
         

@@ -29,14 +29,14 @@ public class HyperlinkPager extends Composite {
     }
 
     public void setPageSizeCount(int currentPage, int perPage, int count) {
-        int pages = (int) Math.ceil((double)count / perPage);
+        int pages = (int) Math.ceil((double)count / perPage) - 1;
 
         content.clear();
 
         content.add(new InlineHyperlink("<", prefix + ( currentPage - 1 < 0 ? 0 : currentPage - 1 )));
         addSpacer();
 
-        for (int i = 0; i < pages; i++) {
+        for (int i = 0; i <= pages; i++) {
             if (i == currentPage) {
                 content.add(new InlineHTML("" + (i + 1)));
             } else {
@@ -45,7 +45,7 @@ public class HyperlinkPager extends Composite {
             addSpacer();
         }
 
-        content.add(new InlineHyperlink(">", prefix + ( currentPage + 1 >= pages ? pages : currentPage + 1 )));
+        content.add(new InlineHyperlink(">", prefix + ( currentPage + 1 > pages ? pages : currentPage + 1 )));
     }
 
     private void addSpacer() {

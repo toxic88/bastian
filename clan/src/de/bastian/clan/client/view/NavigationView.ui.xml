@@ -5,7 +5,7 @@
              ui:generateLocales="en">
     <ui:style type="de.bastian.clan.client.view.NavigationView.Style">
         .nav {
-            margin-right: -65px;
+            margin-right: -80px;
             float: right;
         }
         
@@ -13,6 +13,7 @@
             margin: 0;
             list-style: none;
             padding: 0;
+            min-width: 81px;
         }
         
         .nav ul li {
