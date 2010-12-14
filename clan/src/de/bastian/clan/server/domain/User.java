@@ -21,6 +21,7 @@ import com.google.gwt.requestfactory.server.RequestFactoryServlet;
 
 import de.bastian.clan.server.ClanAuthFilter;
 import de.bastian.clan.server.Util;
+import de.bastian.clan.shared.ValidationException;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class User {
@@ -144,6 +145,8 @@ public class User {
 
         } catch (UserAllreadyExistsException e) {
 
+        } catch (ValidationException e) {
+
         } finally {
             pm.close();
         }
@@ -159,7 +162,14 @@ public class User {
         return (User) getServletRequest().getSession().getAttribute(ClanAuthFilter.APPSESSIONID);
     }
 
-    public void persist() throws UserAllreadyExistsException {
+    public void persist() throws UserAllreadyExistsException, ValidationException {
+        if (getFirstname() == null || getFirstname().trim().isEmpty() ||
+                getLastname() == null || getLastname().trim().isEmpty() ||
+                getPassword() == null || getPassword().trim().isEmpty() ||
+                getEmail() == null || getEmail().trim().isEmpty()) {
+            throw new ValidationException();
+        }
+
         PersistenceManager pm = persistenceManager();
 
         try {
@@ -181,8 +191,6 @@ public class User {
                     setPassword(Util.bytesToHex(algorithm.digest(getPassword().getBytes())));
                 }
             }
-
-            // TODO: check for null manually
 
             pm.makePersistent(this);
         } catch (NoSuchAlgorithmException e) {

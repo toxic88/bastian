@@ -74,7 +74,3 @@ table.grid td, table.grid th {
   text-shadow: none;
   background-color: #262626;
 }
-
-form table td, form table th {
-  vertical-align: middle;
-}

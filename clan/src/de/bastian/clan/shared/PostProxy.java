@@ -15,13 +15,13 @@ public interface PostProxy extends EntityProxy {
     Date getCreated();
     Date getChanged();
     Long getUser();
-    Long getPost();
+    Long getTheme();
     Long getTopic();
 
     void setTitle(String title);
     void setText(String text);
     void setUser(Long user);
-    void setPost(Long post);
+    void setTheme(Long theme);
     void setTopic(Long topic);
 
     @Override

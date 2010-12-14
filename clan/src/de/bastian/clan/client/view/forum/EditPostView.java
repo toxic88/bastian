@@ -65,10 +65,10 @@ public class EditPostView extends Composite {
         this.post = post;
 
         if (post == null) {
-            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + Clan.MESSAGES.newPost());
+            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + Clan.MESSAGES.newPost());
             button.setText(Clan.MESSAGES.createPost());
         } else {
-            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + post.getTitle());
+            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + post.getTitle());
 
             title.setText(post.getTitle());
             text.setText(post.getText());
@@ -87,7 +87,7 @@ public class EditPostView extends Composite {
         if (post == null) {
             post = request.create(PostProxy.class);
             post.setTopic(topic.getId());
-            post.setPost(theme.getId());
+            post.setTheme(theme.getId());
             post.setUser(Clan.CURRENTUSER.getId());
         } else {
             if (post.getUser() != Clan.CURRENTUSER.getId()) {

@@ -12,6 +12,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import de.bastian.clan.shared.ValidationException;
+
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Topic {
 
@@ -70,7 +72,12 @@ public class Topic {
         return list;
     }
 
-    public void persist() {
+    public void persist() throws ValidationException {
+        if (getName() == null || getName().trim().isEmpty() ||
+                getUser() == null || User.isLoggedIn() == null) {
+            throw new ValidationException();
+        }
+
         PersistenceManager pm = persistenceManager();
 
         try {
@@ -81,8 +88,6 @@ public class Topic {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);
             }
-
-            // TODO: check for null manually
 
             pm.makePersistent(this);
         } finally {

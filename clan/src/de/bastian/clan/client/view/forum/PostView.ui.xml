@@ -20,8 +20,9 @@
             display: block;
         }
         
-        .post table th {
+        .post table th, .post table td {
             text-align: left;
+            vertical-align: top;
         }
         
         .right {
@@ -31,8 +32,15 @@
     <g:HTMLPanel styleName="{style.post}">
         <table width="100%">
             <tr>
-                <td width="150px" rowspan="2" ui:field="user">User...</td>
-                <th><span class="{style.right}" ui:field="links"></span><span ui:field="title"></span></th>
+                <td width="150px" rowspan="2">
+                    <g:Hyperlink ui:field="username"></g:Hyperlink>
+                    <div ui:field="created"></div>
+                    <div ui:field="changed"></div>
+                </td>
+                <th>
+                    <div class="{style.right}" ui:field="links"></div>
+                    <div ui:field="title"></div>
+                </th>
             </tr>
             <tr>
                 <td ui:field="text"></td>

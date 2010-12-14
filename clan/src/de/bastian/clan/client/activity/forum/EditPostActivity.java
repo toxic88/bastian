@@ -62,7 +62,7 @@ public class EditPostActivity extends AppActivity {
                             request.findPost(postId).fire(new AppReceiver<PostProxy>() {
                                 @Override
                                 public void onSuccess(PostProxy post) {
-                                    if (post.getPost() != theme.getId()) { // could only be happen if the user change the historytoken
+                                    if (post.getTheme() != theme.getId()) { // could only be happen if the user change the historytoken
                                         History.back();
                                         return;
                                     }

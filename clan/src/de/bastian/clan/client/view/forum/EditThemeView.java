@@ -87,7 +87,7 @@ public class EditThemeView extends Composite {
             theme.setTopic(topic.getId());
             theme.setUser(Clan.CURRENTUSER.getId());
         } else {
-            if (theme.getId() != Clan.CURRENTUSER.getId()) {
+            if (theme.getUser() != Clan.CURRENTUSER.getId()) {
                 History.back();
                 return;
             }

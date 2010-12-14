@@ -16,6 +16,8 @@ import javax.persistence.Version;
 
 import com.google.appengine.api.datastore.Text;
 
+import de.bastian.clan.shared.ValidationException;
+
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Post {
 
@@ -39,7 +41,7 @@ public class Post {
     private Long user;
 
     @Persistent
-    private Long post;
+    private Long theme;
 
     @Persistent
     private Long topic;
@@ -89,7 +91,7 @@ public class Post {
         PersistenceManager pm = persistenceManager();
 
         try {
-            Query query = pm.newQuery(Post.class, "post == null && topic == :topicParam");
+            Query query = pm.newQuery(Post.class, "theme == null && topic == :topicParam");
             query.setRange(start, end);
 
             List<Post> results = (List<Post>) query.execute(topic);
@@ -105,7 +107,7 @@ public class Post {
         PersistenceManager pm = persistenceManager();
 
         try {
-            Query query = pm.newQuery("select count() from de.bastian.clan.server.domain.Post where post == null && topic == :topicParam");
+            Query query = pm.newQuery("select count() from de.bastian.clan.server.domain.Post where theme == null && topic == :topicParam");
 
             return (Integer) query.execute(topic);
         } finally {
@@ -142,7 +144,13 @@ public class Post {
         }
     }
 
-    public void persist() {
+    public void persist() throws ValidationException {
+        if (getTitle() == null || getTitle().trim().isEmpty() ||
+                getText() == null || getText().trim().isEmpty() ||
+                getUser() == null || User.isLoggedIn() == null) {
+            throw new ValidationException();
+        }
+
         PersistenceManager pm = persistenceManager();
 
         try {
@@ -153,8 +161,6 @@ public class Post {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);
             }
-
-            // TODO: check for null manually
 
             pm.makePersistent(this);
         } finally {
@@ -232,12 +238,12 @@ public class Post {
         this.user = user;
     }
 
-    public Long getPost() {
-        return post;
+    public Long getTheme() {
+        return theme;
     }
 
-    public void setPost(Long post) {
-        this.post = post;
+    public void setTheme(Long theme) {
+        this.theme = theme;
     }
 
     public Long getTopic() {

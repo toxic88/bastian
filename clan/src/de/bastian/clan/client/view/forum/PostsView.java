@@ -54,7 +54,7 @@ public class PostsView extends Composite {
         }
 
         for (PostProxy post : posts) {
-            content.add(new PostView(post, null).asWidget());
+            content.add(new PostView(post).asWidget());
         }
 
         pagerTop.setPrefix("posts:" + theme.getId() + ":");

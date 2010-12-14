@@ -14,7 +14,7 @@ public interface PostRequest extends RequestContext {
     Request<List<PostProxy>> findAll();
     Request<List<PostProxy>> findThemes(Long topic, int start, int end);
     Request<Integer> countThemes(Long topic);
-    Request<List<PostProxy>> findPosts(Long parent, int start, int end);
+    Request<List<PostProxy>> findPosts(Long theme, int start, int end);
     Request<Integer> countPosts(Long parent);
 
     InstanceRequest<PostProxy, Void> persist();
