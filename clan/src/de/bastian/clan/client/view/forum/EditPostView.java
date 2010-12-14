@@ -30,8 +30,6 @@ public class EditPostView extends Composite {
 
     public static interface EditPostViewConstants extends Constants {
         String newPost();
-        String createPost();
-        String changePost();
     }
 
     private TopicProxy topic = null;
@@ -66,13 +64,11 @@ public class EditPostView extends Composite {
 
         if (post == null) {
             header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + Clan.MESSAGES.newPost());
-            button.setText(Clan.MESSAGES.createPost());
         } else {
             header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + post.getTitle());
 
             title.setText(post.getTitle());
             text.setText(post.getText());
-            button.setText(Clan.MESSAGES.changePost());
         }
     }
 

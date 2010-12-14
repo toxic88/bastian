@@ -26,7 +26,6 @@ public class ThemesView extends Composite {
 
     public static interface ThemesViewConstants extends Constants {
         String forum();
-        String noThemesPosted();
     }
 
     public ThemesView() {

@@ -33,8 +33,6 @@ public class EditThemeView extends Composite {
 
     public static interface EditThemeViewConstants extends Constants {
         String newTheme();
-        String createTheme();
-        String changeTheme();
     }
 
     public EditThemeView() {
@@ -64,13 +62,11 @@ public class EditThemeView extends Composite {
 
         if (theme == null) {
             header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + Clan.MESSAGES.newTheme());
-            button.setText(Clan.MESSAGES.createTheme());
         } else {
             header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + theme.getTitle());
 
             title.setText(theme.getTitle());
             text.setText(theme.getText());
-            button.setText(Clan.MESSAGES.changeTheme());
         }
     }
 

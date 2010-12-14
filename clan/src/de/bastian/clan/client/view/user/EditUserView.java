@@ -2,7 +2,6 @@ package de.bastian.clan.client.view.user;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.client.Constants;
 import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -26,11 +25,6 @@ public class EditUserView extends Composite {
     private static UserDetailViewUiBinder uiBinder = GWT.create(UserDetailViewUiBinder.class);
 
     interface UserDetailViewUiBinder extends UiBinder<Widget, EditUserView> {}
-
-    public static interface EditUserConstants extends Constants {
-        String createUser();
-        String changeUser();
-    }
 
     private UserProxy user = null;
 
@@ -71,9 +65,7 @@ public class EditUserView extends Composite {
     public void setUser(UserProxy user) {
         this.user = user;
 
-        if (user == null) {
-            button.setText(Clan.MESSAGES.createUser());
-        } else {
+        if (user != null) {
             firstname.setText(user.getFirstname());
             lastname.setText(user.getLastname());
             email.setText(user.getEmail());
@@ -85,8 +77,6 @@ public class EditUserView extends Composite {
                     type.setSelectedIndex(i);
                 }
             }
-
-            button.setText(Clan.MESSAGES.changeUser());
         }
     }
 

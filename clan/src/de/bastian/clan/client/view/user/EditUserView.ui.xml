@@ -6,7 +6,7 @@
     <ui:style>
     </ui:style>
     <g:HTMLPanel>
-        <h1><ui:msg key="edit">Edit</ui:msg> <ui:msg key="user">user</ui:msg></h1>
+        <h1><ui:msg key="editUser">Edit user</ui:msg></h1>
         <table>
             <tr>
                 <th><ui:msg key="firstname">Firstname</ui:msg>:</th>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><g:Button ui:field="button"></g:Button></td>
+                <td><g:Button ui:field="button"><ui:msg key="save">Save</ui:msg></g:Button></td>
             </tr>
         </table>
     </g:HTMLPanel>
