@@ -116,14 +116,14 @@ public class Post {
     }
 
     @SuppressWarnings("unchecked")
-    public static List<Post> findPosts(Long parent, int start, int end) {
+    public static List<Post> findPosts(Long theme, int start, int end) {
         PersistenceManager pm = persistenceManager();
 
         try {
-            Query query = pm.newQuery(Post.class, "post == :postParam");
+            Query query = pm.newQuery(Post.class, "theme == :themeParam");
             query.setRange(start, end);
 
-            List<Post> results = (List<Post>) query.execute(parent);
+            List<Post> results = (List<Post>) query.execute(theme);
             results.size(); // stupid check to receive all posts
 
             return results;
@@ -132,13 +132,13 @@ public class Post {
         }
     }
 
-    public static int countPosts(Long parent) {
+    public static int countPosts(Long theme) {
         PersistenceManager pm = persistenceManager();
 
         try {
-            Query query = pm.newQuery("select count() from de.bastian.clan.server.domain.Post where post == :postParam");
+            Query query = pm.newQuery("select count() from de.bastian.clan.server.domain.Post where theme == :themeParam");
 
-            return (Integer) query.execute(parent);
+            return (Integer) query.execute(theme);
         } finally {
             pm.close();
         }
