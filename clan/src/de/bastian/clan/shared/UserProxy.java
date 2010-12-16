@@ -19,7 +19,7 @@ public interface UserProxy extends EntityProxy {
     String getLastname();
     String getEmail();
     String getPassword();
-    String getType();
+    Type getType();
     String getSteamid();
     Date getCreated();
     Date getLastLogin();
@@ -28,7 +28,7 @@ public interface UserProxy extends EntityProxy {
     void setLastname(String lastname);
     void setEmail(String email);
     void setPassword(String password);
-    void setType(String type);
+    void setType(Type type);
     void setSteamid(String steamid);
 
     @Override

@@ -21,5 +21,8 @@
   <extend-property name="locale" values="en"/>
   <extend-property name="locale" values="de"/>
   <set-property-fallback name="locale" value="de"/>
+  <inherits name="de.bastian.clan.Clan"/>
+  <inherits name="de.bastian.clan.Clan"/>
+  <inherits name="de.bastian.clan.Clan"/>
 
 </module>

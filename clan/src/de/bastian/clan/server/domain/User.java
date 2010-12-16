@@ -1,5 +1,6 @@
 package de.bastian.clan.server.domain;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -21,10 +22,12 @@ import com.google.gwt.requestfactory.server.RequestFactoryServlet;
 
 import de.bastian.clan.server.ClanAuthFilter;
 import de.bastian.clan.server.Util;
+import de.bastian.clan.shared.UserProxy.Type;
 import de.bastian.clan.shared.ValidationException;
 
+@SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class User {
+public class User implements Serializable {
 
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -43,7 +46,7 @@ public class User {
     private String password;
 
     @Persistent
-    private String type;
+    private Type type;
 
     @Persistent
     private String steamid;
@@ -137,7 +140,7 @@ public class User {
                 user.setLastLogin(new Date());
                 user.persist();
 
-                getServletRequest().getSession().setAttribute(ClanAuthFilter.APPSESSIONID, user);
+                getServletRequest().getSession(true).setAttribute(ClanAuthFilter.APPSESSIONID, user);
 
                 return user;
             }
@@ -260,11 +263,11 @@ public class User {
         this.password = password;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

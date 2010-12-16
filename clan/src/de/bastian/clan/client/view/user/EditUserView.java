@@ -73,7 +73,7 @@ public class EditUserView extends Composite {
 
             Type[] list = UserProxy.Type.values();
             for (int i = 0; i < list.length; i++) {
-                if (list[i].toString().equals(user.getType())) {
+                if (list[i].equals(user.getType())) {
                     type.setSelectedIndex(i);
                 }
             }
@@ -96,7 +96,7 @@ public class EditUserView extends Composite {
         user.setLastname(lastname.getText());
         user.setEmail(email.getText());
         user.setSteamid(steamid.getText());
-        user.setType(type.getValue(type.getSelectedIndex()));
+        user.setType(Type.valueOf(type.getValue(type.getSelectedIndex())));
 
         request.persist().using(user).fire(new AppReceiver<Void>() {
             @Override
@@ -118,7 +118,6 @@ public class EditUserView extends Composite {
         password.setText("");
         email.setText("");
         steamid.setText("");
-        button.setText("");
     }
 
     @Override

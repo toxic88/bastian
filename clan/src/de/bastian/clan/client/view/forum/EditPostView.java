@@ -115,7 +115,6 @@ public class EditPostView extends Composite {
 
         title.setText("");
         text.setText("");
-        button.setText("");
     }
 
     @Override

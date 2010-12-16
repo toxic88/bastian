@@ -34,7 +34,6 @@ public class ThemeView extends Composite {
         title.setHTML(SafeHtmlUtils.fromString(theme.getTitle()));
         title.setTargetHistoryToken("posts:" + theme.getId());
 
-
         PostRequest themeRequest = Clan.REQUESTFACTORY.postRequest();
         themeRequest.countPosts(theme.getId()).fire(new Receiver<Integer>() {
            @Override
