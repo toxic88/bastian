@@ -16,6 +16,7 @@ import de.bastian.clan.shared.PostProxy;
 import de.bastian.clan.shared.PostRequest;
 import de.bastian.clan.shared.TopicProxy;
 import de.bastian.clan.shared.TopicRequest;
+import de.bastian.clan.shared.UserProxy;
 
 
 public class EditThemeActivity extends AppActivity {
@@ -55,14 +56,17 @@ public class EditThemeActivity extends AppActivity {
                                 return;
                             }
 
+                            if (Clan.CURRENTUSER == null || (theme != null && (theme.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
+                                History.back();
+                                return;
+                            }
+
                             editThemeView.setTheme(topic, theme);
                             containerWidget.setWidget(editThemeView.asWidget());
                         }
                     });
-
                 }
             });
-
         } else {
             Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                 @Override

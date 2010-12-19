@@ -50,7 +50,6 @@ public class PostsView extends Composite {
 
         if (page == 0) { // add the theme as first post
             posts.add(0, theme);
-            count++;
         }
 
         for (PostProxy post : posts) {

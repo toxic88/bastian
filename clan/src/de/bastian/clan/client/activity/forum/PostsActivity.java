@@ -62,7 +62,7 @@ public class PostsActivity extends AppActivity {
                                     request.countPosts(themeId).fire(new AppReceiver<Integer>() {
                                         @Override
                                         public void onSuccess(Integer count) {
-                                            postsView.setPosts(topic, parent, posts, page, count);
+                                            postsView.setPosts(topic, parent, posts, page, ++count);
                                             containerWidget.setWidget(postsView.asWidget());
                                         }
                                     });

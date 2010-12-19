@@ -10,6 +10,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.requestfactory.shared.Receiver;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.bastian.clan.client.events.LoginEvent;
@@ -18,6 +19,7 @@ import de.bastian.clan.client.message.AppMessages;
 import de.bastian.clan.client.mvp.AppActivityMapper;
 import de.bastian.clan.client.mvp.AppPlaceHistoryMapper;
 import de.bastian.clan.client.place.HelloPlace;
+import de.bastian.clan.client.place.LoginPlace;
 import de.bastian.clan.client.resource.Resources;
 import de.bastian.clan.client.view.ClanView;
 import de.bastian.clan.shared.AppRequestFactory;
@@ -80,6 +82,9 @@ public class Clan implements EntryPoint {
             public void onSuccess(UserProxy user) {
                 if (user != null){
                     EVENTBUS.fireEvent(new LoginEvent(user));
+                    if (PLACECONTROLLER.getWhere() instanceof LoginPlace) {
+                        History.back();
+                    }
                 }
             }
         });

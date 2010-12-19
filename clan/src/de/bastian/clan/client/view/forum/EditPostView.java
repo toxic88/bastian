@@ -20,6 +20,7 @@ import de.bastian.clan.client.mvp.AppReceiver;
 import de.bastian.clan.shared.PostProxy;
 import de.bastian.clan.shared.PostRequest;
 import de.bastian.clan.shared.TopicProxy;
+import de.bastian.clan.shared.UserProxy;
 
 
 public class EditPostView extends Composite {
@@ -73,7 +74,7 @@ public class EditPostView extends Composite {
     }
 
     private void updatePost() {
-        if (Clan.CURRENTUSER == null) {
+        if (Clan.CURRENTUSER == null || (post != null && (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
             History.back();
             return;
         }
@@ -86,11 +87,6 @@ public class EditPostView extends Composite {
             post.setTheme(theme.getId());
             post.setUser(Clan.CURRENTUSER.getId());
         } else {
-            if (post.getUser() != Clan.CURRENTUSER.getId()) {
-                History.back();
-                return;
-            }
-
             post = request.edit(post);
         }
         post.setTitle(title.getText());

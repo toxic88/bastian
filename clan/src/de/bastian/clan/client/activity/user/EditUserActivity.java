@@ -1,6 +1,9 @@
 package de.bastian.clan.client.activity.user;
 
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import de.bastian.clan.client.Clan;
@@ -30,13 +33,24 @@ public class EditUserActivity extends AppActivity {
             request.findUser(userId).fire(new AppReceiver<UserProxy>() {
                 @Override
                 public void onSuccess(UserProxy user) {
-                    userDetailView.setUser(user);
-                    containerWidget.setWidget(userDetailView.asWidget());
+                    if (Clan.CURRENTUSER != null && (user.getId() == Clan.CURRENTUSER.getId() || Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
+                        userDetailView.setUser(user);
+                        containerWidget.setWidget(userDetailView.asWidget());
+                    } else {
+                        History.back();
+                    }
                 }
             });
-        } else {
+        } else if (Clan.CURRENTUSER != null && Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)) {
             userDetailView.setUser(null);
             containerWidget.setWidget(userDetailView.asWidget());
+        } else {
+            Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                @Override
+                public void execute() {
+                    History.back();
+                }
+            });
         }
     }
 

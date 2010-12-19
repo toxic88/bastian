@@ -1,8 +1,10 @@
 package de.bastian.clan.client.view.user;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.TableRowElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.requestfactory.shared.ServerFailure;
+import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -26,6 +28,10 @@ public class EditUserView extends Composite {
 
     interface UserDetailViewUiBinder extends UiBinder<Widget, EditUserView> {}
 
+    interface Style extends CssResource {
+        String hidden();
+    }
+
     private UserProxy user = null;
 
     public EditUserView() {
@@ -35,6 +41,9 @@ public class EditUserView extends Composite {
             type.addItem(t.toString());
         }
     }
+
+    @UiField
+    Style style;
 
     @UiField
     TextBox firstname;
@@ -50,6 +59,9 @@ public class EditUserView extends Composite {
 
     @UiField
     TextBox steamid;
+
+    @UiField
+    TableRowElement typerow;
 
     @UiField
     ListBox type;
@@ -77,6 +89,11 @@ public class EditUserView extends Composite {
                     type.setSelectedIndex(i);
                 }
             }
+
+            if (!Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)) {
+                typerow.addClassName(style.hidden());
+            }
+
         }
     }
 
@@ -84,8 +101,12 @@ public class EditUserView extends Composite {
         UserRequest request = Clan.REQUESTFACTORY.userRequest();
 
         if (user == null) {
-            user = request.create(UserProxy.class);
-            user.setPassword(password.getText());
+            if (Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)) {
+                user = request.create(UserProxy.class);
+                user.setPassword(password.getText());
+            } else {
+                History.back();
+            }
         } else {
             user = request.edit(user);
             if (!password.getText().equals("")) {
@@ -96,7 +117,9 @@ public class EditUserView extends Composite {
         user.setLastname(lastname.getText());
         user.setEmail(email.getText());
         user.setSteamid(steamid.getText());
-        user.setType(Type.valueOf(type.getValue(type.getSelectedIndex())));
+        if (Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)) {
+            user.setType(Type.valueOf(type.getValue(type.getSelectedIndex())));
+        }
 
         request.persist().using(user).fire(new AppReceiver<Void>() {
             @Override

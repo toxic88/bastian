@@ -2,7 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:g="urn:import:com.google.gwt.user.client.ui">
     <ui:with field="res" type="de.bastian.clan.client.resource.Resources" />
-    <ui:style>
+    <ui:style type="de.bastian.clan.client.view.forum.PostView.Style">
         .post {
             background-color: #262626;
             border: 1px solid #666666;
@@ -27,7 +27,11 @@
         
         .right {
             float: right;
-        } 
+        }
+        
+        .hidden {
+            display: none;
+        }
     </ui:style>
     <g:HTMLPanel styleName="{style.post}">
         <table width="100%">

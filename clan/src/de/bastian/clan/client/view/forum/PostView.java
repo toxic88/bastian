@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.TableCellElement;
 import com.google.gwt.requestfactory.shared.Receiver;
+import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -22,6 +23,10 @@ public class PostView extends Composite {
 
     interface PostViewUiBinder extends UiBinder<Widget, PostView> {}
 
+    interface Style extends CssResource {
+        String hidden();
+    }
+
     public PostView(final PostProxy post) {
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -32,10 +37,14 @@ public class PostView extends Composite {
             changed.setInnerHTML(Clan.DATERENDERER.format(post.getChanged()));
         }
 
-        if (post.getTheme() == null) {
-            links.setInnerHTML("<a href='#editTheme:" + post.getTopic() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+        if (Clan.CURRENTUSER == null || (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
+            links.addClassName(style.hidden());
         } else {
-            links.setInnerHTML("<a href='#editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+            if (post.getTheme() == null) {
+                links.setInnerHTML("<a href='#editTheme:" + post.getTopic() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+            } else {
+                links.setInnerHTML("<a href='#editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+            }
         }
 
         text.setInnerHTML(SafeHtmlUtils.fromString(post.getText()).asString().replace("\n", "<br />"));
@@ -49,6 +58,9 @@ public class PostView extends Composite {
             }
         });
     }
+
+    @UiField
+    Style style;
 
     @UiField
     Hyperlink username;

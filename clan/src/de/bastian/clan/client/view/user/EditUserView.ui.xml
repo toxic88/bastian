@@ -3,7 +3,10 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
-    <ui:style>
+    <ui:style type="de.bastian.clan.client.view.user.EditUserView.Style">
+        .hidden {
+            display: none;
+        }
     </ui:style>
     <g:HTMLPanel>
         <h1><ui:msg key="editUser">Edit user</ui:msg></h1>
@@ -28,7 +31,7 @@
                 <th><ui:msg key="steamid">Steamid</ui:msg>:</th>
                 <td><g:TextBox ui:field="steamid"></g:TextBox></td>
             </tr>
-            <tr>
+            <tr ui:field="typerow">
                 <th><ui:msg key="type">Type</ui:msg>:</th>
                 <td><g:ListBox ui:field="type"></g:ListBox></td>
             </tr>

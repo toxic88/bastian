@@ -16,6 +16,7 @@ import de.bastian.clan.shared.PostProxy;
 import de.bastian.clan.shared.PostRequest;
 import de.bastian.clan.shared.TopicProxy;
 import de.bastian.clan.shared.TopicRequest;
+import de.bastian.clan.shared.UserProxy;
 
 
 public class EditPostActivity extends AppActivity {
@@ -67,6 +68,11 @@ public class EditPostActivity extends AppActivity {
                                         return;
                                     }
 
+                                    if (Clan.CURRENTUSER == null || (post != null && (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
+                                        History.back();
+                                        return;
+                                    }
+
                                     editPostView.setPost(topic, theme, post);
                                     containerWidget.setWidget(editPostView.asWidget());
                                 }
@@ -75,8 +81,6 @@ public class EditPostActivity extends AppActivity {
                     });
                 }
             });
-
-
         } else {
             Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                 @Override
