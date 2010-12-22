@@ -15,6 +15,8 @@ import de.bastian.clan.client.activity.forum.EditThemeActivity;
 import de.bastian.clan.client.activity.forum.PostsActivity;
 import de.bastian.clan.client.activity.forum.ThemesActivity;
 import de.bastian.clan.client.activity.forum.TopicActivity;
+import de.bastian.clan.client.activity.picture.EditPictureActivity;
+import de.bastian.clan.client.activity.picture.PicturesActivity;
 import de.bastian.clan.client.activity.user.EditUserActivity;
 import de.bastian.clan.client.activity.user.UserActivity;
 import de.bastian.clan.client.activity.user.UsersActivity;
@@ -25,6 +27,8 @@ import de.bastian.clan.client.place.forum.EditThemePlace;
 import de.bastian.clan.client.place.forum.PostsPlace;
 import de.bastian.clan.client.place.forum.ThemesPlace;
 import de.bastian.clan.client.place.forum.TopicPlace;
+import de.bastian.clan.client.place.picture.EditPicturePlace;
+import de.bastian.clan.client.place.picture.PicturesPlace;
 import de.bastian.clan.client.place.user.EditUserPlace;
 import de.bastian.clan.client.place.user.UserPlace;
 import de.bastian.clan.client.place.user.UsersPlace;
@@ -64,6 +68,9 @@ public class AppActivityMapper implements ActivityMapper {
             return new PostsActivity((PostsPlace) place, clientFactory);
         }
 
+        if (place instanceof PicturesPlace) {
+            return new PicturesActivity((PicturesPlace) place, clientFactory);
+        }
 
         if (Clan.CURRENTUSER != null) {
             if (place instanceof EditUserPlace) {
@@ -75,6 +82,10 @@ public class AppActivityMapper implements ActivityMapper {
             }
             if (place instanceof EditPostPlace) {
                 return new EditPostActivity((EditPostPlace) place, clientFactory);
+            }
+
+            if (place instanceof EditPicturePlace) {
+                return new EditPictureActivity((EditPicturePlace) place, clientFactory);
             }
         }
 

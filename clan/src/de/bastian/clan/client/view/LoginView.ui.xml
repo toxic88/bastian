@@ -3,6 +3,8 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
+    <ui:style>
+    </ui:style>
     <g:HTMLPanel>
         <h1><ui:msg key="login">Login</ui:msg></h1>
         <table>

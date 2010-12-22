@@ -3,6 +3,7 @@ package de.bastian.clan.client.view.user;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.TableCellElement;
+import com.google.gwt.i18n.client.Constants;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -18,6 +19,10 @@ public class UserView extends Composite {
     private static UserViewUiBinder uiBinder = GWT.create(UserViewUiBinder.class);
 
     interface UserViewUiBinder extends UiBinder<Widget, UserView> {}
+
+    public static interface UserViewConstants extends Constants {
+        String user();
+    }
 
     public UserView() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -36,7 +41,7 @@ public class UserView extends Composite {
     TableCellElement lastlogin;
 
     public void setUser(UserProxy user) {
-        header.setInnerHTML("User: " + SafeHtmlUtils.fromString(user.getFirstname()).asString());
+        header.setInnerHTML(Clan.MESSAGES.user() + ": " + SafeHtmlUtils.fromString(user.getFirstname()).asString());
 
         firstname.setInnerHTML(SafeHtmlUtils.fromString(user.getFirstname()).asString());
         lastname.setInnerHTML(SafeHtmlUtils.fromString(user.getLastname()).asString());

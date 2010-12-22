@@ -11,6 +11,8 @@ import de.bastian.clan.client.view.forum.EditThemeView;
 import de.bastian.clan.client.view.forum.PostsView;
 import de.bastian.clan.client.view.forum.ThemesView;
 import de.bastian.clan.client.view.forum.TopicView;
+import de.bastian.clan.client.view.picture.EditPictureView;
+import de.bastian.clan.client.view.picture.PicturesView;
 import de.bastian.clan.client.view.user.EditUserView;
 import de.bastian.clan.client.view.user.UserView;
 import de.bastian.clan.client.view.user.UsersView;
@@ -32,6 +34,9 @@ public class ClientFactoryImpl implements ClientFactory {
     private static final EditThemeView editThemeView = new EditThemeView();
     private static final PostsView postsView = new PostsView();
     private static final EditPostView editPostView = new EditPostView();
+
+    private static final PicturesView picturesView = new PicturesView();
+    private static final EditPictureView editPictureView = new EditPictureView();
 
     @Override
     public EventBus getEventBus() {
@@ -66,7 +71,7 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public EditUserView getUserDetailView() {
+    public EditUserView getEditUserView() {
         return userDetailView;
     }
 
@@ -94,6 +99,16 @@ public class ClientFactoryImpl implements ClientFactory {
     @Override
     public EditPostView getEditPostView() {
         return editPostView;
+    }
+
+    @Override
+    public PicturesView getPicturesView() {
+        return picturesView;
+    }
+
+    @Override
+    public EditPictureView getEditPictureView() {
+        return editPictureView;
     }
 
 }

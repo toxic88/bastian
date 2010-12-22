@@ -10,6 +10,8 @@ import de.bastian.clan.client.place.forum.EditThemePlace;
 import de.bastian.clan.client.place.forum.PostsPlace;
 import de.bastian.clan.client.place.forum.ThemesPlace;
 import de.bastian.clan.client.place.forum.TopicPlace;
+import de.bastian.clan.client.place.picture.EditPicturePlace;
+import de.bastian.clan.client.place.picture.PicturesPlace;
 import de.bastian.clan.client.place.user.EditUserPlace;
 import de.bastian.clan.client.place.user.UserPlace;
 import de.bastian.clan.client.place.user.UsersPlace;
@@ -26,6 +28,9 @@ import de.bastian.clan.client.place.user.UsersPlace;
     ThemesPlace.Tokenizer.class,
     EditThemePlace.Tokenizer.class,
     PostsPlace.Tokenizer.class,
-    EditPostPlace.Tokenizer.class
+    EditPostPlace.Tokenizer.class,
+
+    PicturesPlace.Tokenizer.class,
+    EditPicturePlace.Tokenizer.class
 })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {}

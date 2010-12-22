@@ -12,9 +12,9 @@
             padding: 10px;
             cursor: auto;
             
+            box-shadow: #666 0 0 5px;
             -webkit-box-shadow: #666 0 0 5px;
             -moz-box-shadow: #666 0 0 5px;
-            box-shadow: #666 0 0 5px;
         }
         
         .right {
@@ -22,7 +22,7 @@
         }        
     </ui:style>
     <g:HTMLPanel styleName="{style.theme}">
-        <div class="{style.right}" ui:field="answers"></div>
+        <div class="{style.right}"><span><ui:msg key="answers">Answers</ui:msg>:</span> <span ui:field="answers"></span></div>
         <g:Hyperlink ui:field="title"></g:Hyperlink>
         <div>
             <span><ui:msg key="startedBy">Started by</ui:msg>:</span>

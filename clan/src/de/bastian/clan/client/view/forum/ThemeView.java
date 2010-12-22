@@ -1,8 +1,7 @@
 package de.bastian.clan.client.view.forum;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.i18n.client.Constants;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -24,10 +23,6 @@ public class ThemeView extends Composite {
 
     interface ThemeViewUiBinder extends UiBinder<Widget, ThemeView> {}
 
-    public static interface ThemeViewConstants extends Constants {
-        String answers();
-    }
-
     public ThemeView(PostProxy theme) {
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -38,7 +33,7 @@ public class ThemeView extends Composite {
         themeRequest.countPosts(theme.getId()).fire(new Receiver<Integer>() {
            @Override
             public void onSuccess(Integer count) {
-               answers.setInnerHTML(Clan.MESSAGES.answers() + ": " + count);
+               answers.setInnerHTML("" + count);
             }
         });
 
@@ -50,12 +45,10 @@ public class ThemeView extends Composite {
                 username.setTargetHistoryToken("user:" + user.getId());
             }
         });
-
-
     }
 
     @UiField
-    DivElement answers;
+    SpanElement answers;
 
     @UiField
     Hyperlink title;

@@ -4,6 +4,8 @@
              xmlns:cv="urn:import:com.google.gwt.user.cellview.client"
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
+    <ui:style>
+    </ui:style>
     <g:HTMLPanel>
         <h1><ui:msg key="users">Users</ui:msg></h1>
 

@@ -21,7 +21,11 @@ public class PostsPlace extends Place {
         }
 
         if (themePost.length == 2) {
-            page = Integer.parseInt(themePost[1]);
+            try {
+                page = Integer.parseInt(themePost[1]);
+            } catch (Exception e) {
+                page = 0;
+            }
         } else {
             page = 0;
         }

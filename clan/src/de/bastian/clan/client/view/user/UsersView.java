@@ -30,7 +30,6 @@ public class UsersView extends Composite {
     public static interface UsersViewConstants extends Constants {
         String firstname();
         String lastname();
-        String email();
         String lastlogin();
     }
 
@@ -64,14 +63,6 @@ public class UsersView extends Composite {
             }
         };
         table.addColumn(lastnameColumn, Clan.MESSAGES.lastname());
-
-        TextColumn<UserProxy> emailColumn = new TextColumn<UserProxy>() {
-            @Override
-            public String getValue(UserProxy user) {
-                return user.getEmail();
-            }
-        };
-        table.addColumn(emailColumn, Clan.MESSAGES.email());
 
         Column<UserProxy, Date> lastlogindateColumn = new Column<UserProxy, Date>(new DateCell(Clan.DATERENDERER)) {
             @Override

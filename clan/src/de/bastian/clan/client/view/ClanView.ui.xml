@@ -3,7 +3,6 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:my="urn:import:de.bastian.clan.client.view">
     <ui:with field="res" type="de.bastian.clan.client.resource.Resources" />
-     
     <ui:style>
         .wrapper {
             -webkit-box-shadow: #000 0 0 10px;
@@ -41,7 +40,6 @@
             margin-bottom: 10px;
         }
     </ui:style>
-
     <g:HTMLPanel>
         <g:HTMLPanel styleName="{style.wrapper}">
 

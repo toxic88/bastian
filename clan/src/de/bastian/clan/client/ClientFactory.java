@@ -10,6 +10,8 @@ import de.bastian.clan.client.view.forum.EditThemeView;
 import de.bastian.clan.client.view.forum.PostsView;
 import de.bastian.clan.client.view.forum.ThemesView;
 import de.bastian.clan.client.view.forum.TopicView;
+import de.bastian.clan.client.view.picture.EditPictureView;
+import de.bastian.clan.client.view.picture.PicturesView;
 import de.bastian.clan.client.view.user.EditUserView;
 import de.bastian.clan.client.view.user.UserView;
 import de.bastian.clan.client.view.user.UsersView;
@@ -24,12 +26,15 @@ public interface ClientFactory {
 
     UsersView getUsersView();
     UserView getUserView();
-    EditUserView getUserDetailView();
+    EditUserView getEditUserView();
 
     TopicView getTopicView();
     ThemesView getThemesView();
     EditThemeView getEditThemeView();
     PostsView getPostsView();
     EditPostView getEditPostView();
+
+    PicturesView getPicturesView();
+    EditPictureView getEditPictureView();
 
 }

@@ -1,5 +1,3 @@
 package de.bastian.clan.shared;
 
-public class ValidationException extends Exception {
-
-}
+public class ValidationException extends Exception {}

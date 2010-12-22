@@ -16,6 +16,7 @@ import de.bastian.clan.client.events.LogoutEvent;
 import de.bastian.clan.client.place.HelloPlace;
 import de.bastian.clan.client.place.LoginPlace;
 import de.bastian.clan.client.place.forum.TopicPlace;
+import de.bastian.clan.client.place.picture.PicturesPlace;
 import de.bastian.clan.client.place.user.UsersPlace;
 import de.bastian.clan.shared.UserRequest;
 
@@ -84,7 +85,7 @@ public class NavigationView extends Composite {
 
     @UiHandler("pictures")
     void onClickPictures(ClickEvent e) {
-        // TODO: goto PicturesPlace...
+        Clan.PLACECONTROLLER.goTo(new PicturesPlace());
     }
 
     @UiHandler("members")

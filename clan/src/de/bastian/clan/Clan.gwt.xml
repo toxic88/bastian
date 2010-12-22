@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to="clan">
-  <inherits name="com.google.gwt.user.User"/>
-  <inherits name="com.google.gwt.i18n.I18N"/>
-  <inherits name="com.google.gwt.i18n.CldrLocales"/>
 
-  <inherits name="com.google.gwt.activity.Activity"/>
-  <inherits name="com.google.gwt.place.Place"/>
-
-  <replace-with class="de.bastian.clan.client.ClientFactoryImpl">
+    <inherits name="com.google.gwt.user.User"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name="com.google.gwt.i18n.CldrLocales"/>
+    
+    <inherits name="com.google.gwt.activity.Activity"/>
+    <inherits name="com.google.gwt.place.Place"/>
+    
+    <inherits name="de.bastian.gwt.fileapi.FileApi"/>
+    
+    <replace-with class="de.bastian.clan.client.ClientFactoryImpl">
     <when-type-is class="de.bastian.clan.client.ClientFactory"/>
-  </replace-with>
-  
-  <inherits name="com.google.gwt.requestfactory.RequestFactory"/>
-
-  <source path="client"/>
-  <source path="shared"/>
-
-  <entry-point class="de.bastian.clan.client.Clan"/>
-
-  <extend-property name="locale" values="en"/>
-  <extend-property name="locale" values="de"/>
-  <set-property-fallback name="locale" value="de"/>
+    </replace-with>
+    
+    <inherits name="com.google.gwt.requestfactory.RequestFactory"/>
+    
+    <source path="client"/>
+    <source path="shared"/>
+    
+    <entry-point class="de.bastian.clan.client.Clan"/>
+    
+    <extend-property name="locale" values="en"/>
+    <extend-property name="locale" values="de"/>
+    <set-property-fallback name="locale" value="de"/>
 
 </module>

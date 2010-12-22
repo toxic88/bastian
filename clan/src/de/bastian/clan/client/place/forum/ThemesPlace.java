@@ -21,7 +21,11 @@ public class ThemesPlace extends Place {
         }
 
         if (topicPage.length == 2) {
-            page = Integer.parseInt(topicPage[1]);
+            try {
+                page = Integer.parseInt(topicPage[1]);
+            } catch (Exception e) {
+                page = 0;
+            }
         } else {
             page = 0;
         }

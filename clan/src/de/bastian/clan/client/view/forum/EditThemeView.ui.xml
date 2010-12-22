@@ -4,7 +4,6 @@
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
     <ui:style>
-        
     </ui:style>
     <g:HTMLPanel>
         <h1>C-LAN <ui:msg key="forum">Forum</ui:msg></h1>

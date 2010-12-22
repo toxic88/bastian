@@ -4,10 +4,9 @@
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
     <ui:style>
-        
     </ui:style>
     <g:HTMLPanel>
-        <h1 ui:field="header">User: loading...</h1>
+        <h1 ui:field="header"></h1>
         <table class="grid">
             <tr>
                 <th><ui:msg key="firstname">Firstname</ui:msg>:</th>

@@ -7,5 +7,6 @@ public interface AppRequestFactory extends RequestFactory {
     UserRequest userRequest();
     TopicRequest topicRequest();
     PostRequest postRequest();
+    PictureRequest pictureRequest();
 
 }

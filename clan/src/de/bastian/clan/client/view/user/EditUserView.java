@@ -98,6 +98,10 @@ public class EditUserView extends Composite {
     }
 
     private void updateUser() {
+        if (Clan.CURRENTUSER == null) { // TODO: check ids..
+            return;
+        }
+
         UserRequest request = Clan.REQUESTFACTORY.userRequest();
 
         if (user == null) {

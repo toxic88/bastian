@@ -39,8 +39,7 @@
         .hidden {
             display: none;
         }
-    </ui:style> 
-
+    </ui:style>
     <g:HTMLPanel styleName="{style.nav}">
         <ul>
             <li><g:Anchor ui:field="start"><ui:msg key="start">Start</ui:msg></g:Anchor></li>

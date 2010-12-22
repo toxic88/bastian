@@ -26,7 +26,7 @@ public class EditUserActivity extends AppActivity {
 
     @Override
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
-        final EditUserView userDetailView = clientFactory.getUserDetailView();
+        final EditUserView editUserView = clientFactory.getEditUserView();
 
         if (userId != null) {
             UserRequest request = Clan.REQUESTFACTORY.userRequest();
@@ -34,16 +34,16 @@ public class EditUserActivity extends AppActivity {
                 @Override
                 public void onSuccess(UserProxy user) {
                     if (Clan.CURRENTUSER != null && (user.getId() == Clan.CURRENTUSER.getId() || Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
-                        userDetailView.setUser(user);
-                        containerWidget.setWidget(userDetailView.asWidget());
+                        editUserView.setUser(user);
+                        containerWidget.setWidget(editUserView.asWidget());
                     } else {
                         History.back();
                     }
                 }
             });
         } else if (Clan.CURRENTUSER != null && Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)) {
-            userDetailView.setUser(null);
-            containerWidget.setWidget(userDetailView.asWidget());
+            editUserView.setUser(null);
+            containerWidget.setWidget(editUserView.asWidget());
         } else {
             Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                 @Override
