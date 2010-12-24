@@ -18,6 +18,7 @@ import de.bastian.clan.client.Clan;
 import de.bastian.clan.client.mvp.AppReceiver;
 import de.bastian.clan.shared.PictureProxy;
 import de.bastian.clan.shared.PictureRequest;
+import de.bastian.clan.shared.UserProxy;
 import de.bastian.gwt.fileapi.client.file.FileReader;
 import de.bastian.gwt.fileapi.client.file.event.LoadEndEvent;
 import de.bastian.gwt.fileapi.client.file.exception.BrowserNotSupportedException;
@@ -59,7 +60,12 @@ public class EditPictureView extends Composite {
                 @Override
                 public void onLoadEnd(LoadEndEvent e) {
                     if (fr.getError() == null) {
-                        image.setSrc((String) fr.getResult());
+                        String res = (String) fr.getResult();
+                        if (res.startsWith("data:image")) {
+                            image.setSrc(res);
+                        } else {
+                            // do something...
+                        }
                     }
                 }
             });
@@ -83,12 +89,13 @@ public class EditPictureView extends Composite {
         }
     }
 
-    public void updatePicture() {
-        if (Clan.CURRENTUSER == null || upload.getFiles().length() == 0) {
+    private void updatePicture() {
+        if (Clan.CURRENTUSER == null || (picture != null && (picture.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
+            History.back();
             return;
         }
 
-        final PictureRequest request = Clan.REQUESTFACTORY.pictureRequest();
+        PictureRequest request = Clan.REQUESTFACTORY.pictureRequest();
 
         if (picture == null) {
             picture = request.create(PictureProxy.class);

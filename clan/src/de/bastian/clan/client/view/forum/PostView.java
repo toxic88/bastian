@@ -38,12 +38,12 @@ public class PostView extends Composite {
         }
 
         if (Clan.CURRENTUSER == null || (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
-            links.addClassName(style.hidden());
+            actions.addClassName(style.hidden());
         } else {
             if (post.getTheme() == null) {
-                links.setInnerHTML("<a href='#editTheme:" + post.getTopic() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+                actions.setInnerHTML("<a href='#editTheme:" + post.getTopic() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
             } else {
-                links.setInnerHTML("<a href='#editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+                actions.setInnerHTML("<a href='#editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
             }
         }
 
@@ -75,7 +75,7 @@ public class PostView extends Composite {
     DivElement title;
 
     @UiField
-    DivElement links;
+    DivElement actions;
 
     @UiField
     TableCellElement text;

@@ -12,6 +12,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.ValidationException;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
@@ -84,9 +85,11 @@ public class Topic {
             if (getId() == null) { // only on create...
                 setCreated(new Date());
                 setVersion(1);
-            } else {
+            } else if (getUser() == User.isLoggedIn().getId() || User.isLoggedIn().getType().equals(UserProxy.Type.Admin)) {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);
+            } else {
+                throw new ValidationException();
             }
 
             pm.makePersistent(this);
@@ -95,10 +98,14 @@ public class Topic {
         }
     }
 
-    public void remove() {
+    public void remove() throws ValidationException {
         PersistenceManager pm = persistenceManager();
 
         try {
+            if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+                throw new ValidationException();
+            }
+
             Topic topic = pm.getObjectById(Topic.class, getId());
             pm.deletePersistent(topic);
         } finally {

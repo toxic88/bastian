@@ -22,6 +22,7 @@ import com.google.gwt.requestfactory.server.RequestFactoryServlet;
 
 import de.bastian.clan.server.ClanAuthFilter;
 import de.bastian.clan.server.Util;
+import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.UserProxy.Type;
 import de.bastian.clan.shared.ValidationException;
 
@@ -203,10 +204,14 @@ public class User implements Serializable {
         }
     }
 
-    public void remove() {
+    public void remove() throws ValidationException {
         PersistenceManager pm = persistenceManager();
 
         try {
+            if (User.isLoggedIn() == null || (getId() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+                throw new ValidationException();
+            }
+
             User user = pm.getObjectById(User.class, getId());
             pm.deletePersistent(user);
         } finally {
@@ -214,10 +219,8 @@ public class User implements Serializable {
         }
     }
 
-    @SuppressWarnings("serial")
     public class UserAllreadyExistsException extends Exception {}
 
-    @SuppressWarnings("serial")
     public class UserDoesNotExistException extends Exception {}
 
 

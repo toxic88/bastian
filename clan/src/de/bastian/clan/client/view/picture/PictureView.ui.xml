@@ -3,7 +3,7 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
-    <ui:style>
+    <ui:style type="de.bastian.clan.client.view.picture.PictureView.Style">
         .images {
             border: 1px solid #666666;
             float: left;
@@ -22,10 +22,19 @@
             max-height: 130px;
             max-width: 200px;
         }
+        
+        .actions {
+            text-align: center;
+        }
+        
+        .hidden {
+            display: none;
+        }
     </ui:style>
     <g:HTMLPanel styleName="{style.images}">
         <a ui:field="link" target="_blank"><img ui:field="image" class="{style.image}" /></a>
         <div ui:field="description"></div>
         <div><span><ui:msg key="by">By</ui:msg></span>: <g:InlineHyperlink ui:field="username"></g:InlineHyperlink></div>
+        <div class="{style.actions}" ui:field="actions"></div>
     </g:HTMLPanel>
 </ui:UiBinder> 

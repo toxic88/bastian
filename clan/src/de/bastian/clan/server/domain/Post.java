@@ -16,6 +16,7 @@ import javax.persistence.Version;
 
 import com.google.appengine.api.datastore.Text;
 
+import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.ValidationException;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
@@ -157,9 +158,11 @@ public class Post {
             if (getId() == null) { // only on create...
                 setCreated(new Date());
                 setVersion(1);
-            } else {
+            } else if (getUser() == User.isLoggedIn().getId() || User.isLoggedIn().getType().equals(UserProxy.Type.Admin)) {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);
+            } else {
+                throw new ValidationException();
             }
 
             pm.makePersistent(this);
@@ -168,12 +171,15 @@ public class Post {
         }
     }
 
-    public void remove() {
+    public void remove() throws ValidationException {
         PersistenceManager pm = persistenceManager();
 
         try {
-            Post post = pm.getObjectById(Post.class, getId()); // TODO: handle post.getPost() != null
+            if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+                throw new ValidationException();
+            }
 
+            Post post = pm.getObjectById(Post.class, getId()); // TODO: handle post.getPost() != null
             pm.deletePersistent(post);
         } finally {
             pm.close();

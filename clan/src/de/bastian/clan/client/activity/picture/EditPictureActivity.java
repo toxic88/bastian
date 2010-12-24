@@ -14,6 +14,7 @@ import de.bastian.clan.client.place.picture.EditPicturePlace;
 import de.bastian.clan.client.view.picture.EditPictureView;
 import de.bastian.clan.shared.PictureProxy;
 import de.bastian.clan.shared.PictureRequest;
+import de.bastian.clan.shared.UserProxy;
 import de.bastian.gwt.fileapi.client.file.FileReader;
 
 public class EditPictureActivity extends AppActivity {
@@ -34,11 +35,11 @@ public class EditPictureActivity extends AppActivity {
             request.findPicture(pictureId).fire(new AppReceiver<PictureProxy>() {
                 @Override
                 public void onSuccess(PictureProxy picture) {
-                    if (Clan.CURRENTUSER != null) {
+                    if (Clan.CURRENTUSER == null || (picture != null && (picture.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
+                        History.back();
+                    } else {
                         editPictureView.setPicture(picture);
                         containerWidget.setWidget(editPictureView.asWidget());
-                    } else {
-                        History.back();
                     }
                 }
             });

@@ -20,4 +20,7 @@ public interface Resources extends ClientBundle {
     @Source("pencil.png")
     ImageResource pencil();
 
+    @Source("transparent.gif")
+    ImageResource transparent();
+
 }
