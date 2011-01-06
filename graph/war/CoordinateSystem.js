@@ -19,8 +19,6 @@
             this.setOffsetX(0); // default offset x
             this.setOffsetY(0); // default offset y
             
-            this.initEvents(); // init event handlers
-
             this.addEvents("beforeDraw",
                            "afterDraw",
                            "beforeAddElement",
@@ -31,7 +29,9 @@
                            "afterZoom",
                            "beforeMove",
                            "afterMove"
-                          );
+            );
+            
+            this.initEvents(); // init event handlers
             
             this.drawCoordinateSystem();
         },
