@@ -1,7 +1,6 @@
 package de.bastian.gwt.fileapi.sample.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.Image;
@@ -18,7 +17,7 @@ import de.bastian.gwt.fileapi.client.ui.FileUpload;
  */
 public class FileApi implements EntryPoint {
 
-    private final Label error = new Label("Your browser is not supported");
+    private final Label error = new Label("Your browser does not support the File API");
     private final Image image = new Image();
     private final FileUpload upload = new FileUpload();
 
@@ -48,7 +47,5 @@ public class FileApi implements EntryPoint {
 
         RootPanel.get().add(upload);
         RootPanel.get().add(image);
-
-        GWT.log("" + upload.isMultiple());
     }
 }

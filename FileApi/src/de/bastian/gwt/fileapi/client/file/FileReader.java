@@ -71,7 +71,7 @@ public class FileReader implements HasHandlers {
     private final native void init() /*-{
         var self = this;
 
-        self.@de.bastian.gwt.fileapi.client.file.FileReader::impl = new FileReader();
+        self.@de.bastian.gwt.fileapi.client.file.FileReader::impl = new $wnd.FileReader();
 
         self.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onloadstart = $entry(function(e) {
             self.@de.bastian.gwt.fileapi.client.file.FileReader::onLoadStart(ZII)(e.lengthComputable, e.loaded, e.total);
