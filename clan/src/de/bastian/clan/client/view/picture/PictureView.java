@@ -64,6 +64,7 @@ public class PictureView extends Composite {
                     final ConfirmPopupPanel popup = ConfirmPopupPanel.get();
 
                     popup.setText(Clan.MESSAGES.deletePicture());
+                    popup.setNoHandler(null);
                     popup.setYesHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent event) {
