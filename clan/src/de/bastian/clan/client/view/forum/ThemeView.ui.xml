@@ -22,7 +22,7 @@
         }        
     </ui:style>
     <g:HTMLPanel styleName="{style.theme}">
-        <div class="{style.right}"><span><ui:msg key="answers">Answers</ui:msg>:</span> <span ui:field="answers"></span></div>
+        <div class="{style.right}"><span><ui:msg key="replies">Replies</ui:msg>:</span> <span ui:field="replies"></span></div>
         <g:Hyperlink ui:field="title"></g:Hyperlink>
         <div>
             <span><ui:msg key="startedBy">Started by</ui:msg>:</span>

@@ -65,6 +65,8 @@ public class Post {
 
         try {
             return pm.getObjectById(Post.class, id);
+        } catch(RuntimeException e) {
+            return null;
         } finally {
             pm.close();
         }

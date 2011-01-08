@@ -51,6 +51,8 @@ public class Topic {
 
         try {
             return pm.getObjectById(Topic.class, id);
+        } catch(RuntimeException e) {
+            return null;
         } finally {
             pm.close();
         }

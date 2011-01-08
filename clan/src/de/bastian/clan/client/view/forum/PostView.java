@@ -9,7 +9,9 @@ import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
+import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.bastian.clan.client.Clan;
@@ -38,13 +40,18 @@ public class PostView extends Composite {
         }
 
         if (Clan.CURRENTUSER == null || (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
-            actions.addClassName(style.hidden());
+            actions.addStyleName(style.hidden());
         } else {
+            InlineHyperlink edit = new InlineHyperlink();
             if (post.getTheme() == null) {
-                actions.setInnerHTML("<a href='#editTheme:" + post.getTopic() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+                edit.setTargetHistoryToken("editTheme:" + post.getTopic() + ":" + post.getId());
             } else {
-                actions.setInnerHTML("<a href='#editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+                edit.setTargetHistoryToken("editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId());
             }
+            edit.setHTML("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />");
+            actions.add(edit);
+
+            // TOOD: delete
         }
 
         text.setInnerHTML(SafeHtmlUtils.fromString(post.getText()).asString().replace("\n", "<br />"));
@@ -75,7 +82,7 @@ public class PostView extends Composite {
     DivElement title;
 
     @UiField
-    DivElement actions;
+    FlowPanel actions;
 
     @UiField
     TableCellElement text;

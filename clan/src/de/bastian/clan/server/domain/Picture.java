@@ -57,6 +57,8 @@ public class Picture {
 
         try {
             return pm.getObjectById(Picture.class, id);
+        } catch(RuntimeException e) {
+            return null;
         } finally {
             pm.close();
         }
@@ -119,13 +121,13 @@ public class Picture {
     }
 
     public void remove() throws ValidationException {
+        if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+            throw new ValidationException();
+        }
+
         PersistenceManager pm = persistenceManager();
 
         try {
-            if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
-                throw new ValidationException();
-            }
-
             Picture picture = pm.getObjectById(Picture.class, getId());
             pm.deletePersistent(picture);
         } finally {

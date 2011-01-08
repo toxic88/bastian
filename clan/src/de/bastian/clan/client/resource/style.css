@@ -74,3 +74,27 @@ table.grid td, table.grid th {
   text-shadow: none;
   background-color: #262626;
 }
+
+/* gwt popuppanel styles */
+
+.gwt-PopupPanelGlass {
+    background: rgba(38, 38, 38, 0.5);
+}
+.gwt-PopupPanel {
+    padding: 10px;
+    -moz-box-shadow: 0 0 10px #A25024;
+    background-color: #262626;
+    border: 1px solid #A25024;
+}
+
+.gwt-PopupPanel table {
+    width: 100%;
+}
+
+.gwt-PopupPanel .right {
+    text-align: right;
+}
+
+.gwt-PopupPanel .text {
+    padding-bottom: 10px;
+}

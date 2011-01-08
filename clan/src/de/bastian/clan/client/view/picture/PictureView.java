@@ -4,21 +4,34 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.Constants;
+import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.bastian.clan.client.Clan;
 import de.bastian.clan.client.mvp.AppReceiver;
+import de.bastian.clan.client.view.widgets.ConfirmPopupPanel;
 import de.bastian.clan.shared.PictureProxy;
+import de.bastian.clan.shared.PictureRequest;
 import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.UserRequest;
 
 public class PictureView extends Composite {
+
+    public static interface PictureViewConstants extends Constants {
+        String deletePicture();
+    }
 
     private static PictureViewUiBinder uiBinder = GWT.create(PictureViewUiBinder.class);
 
@@ -28,7 +41,7 @@ public class PictureView extends Composite {
         String hidden();
     }
 
-    public PictureView(PictureProxy picture) {
+    public PictureView(final PictureProxy picture) {
         initWidget(uiBinder.createAndBindUi(this));
 
         link.setHref(picture.getImage());
@@ -36,9 +49,45 @@ public class PictureView extends Composite {
         description.setInnerHTML(SafeHtmlUtils.fromString(picture.getDescription()).asString());
 
         if (Clan.CURRENTUSER == null || (Clan.CURRENTUSER.getId() != picture.getUser() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
-            actions.addClassName(style.hidden());
+            actions.addStyleName(style.hidden());
         } else {
-            actions.setInnerHTML("<a href='#editPicture:" + picture.getId() + "'><img src='" + Clan.RESOURCES.pencil().getURL() + "' /></a>");
+            InlineHyperlink edit = new InlineHyperlink();
+            edit.setTargetHistoryToken("editPicture:" + picture.getId());
+            edit.setHTML("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />");
+            actions.add(edit);
+
+            Anchor delete = new Anchor("javascript:;");
+            delete.setHTML("<img src='" + Clan.RESOURCES.delete().getURL() + "' />");
+            delete.addClickHandler(new ClickHandler() {
+                @Override
+                public void onClick(ClickEvent event) {
+                    final ConfirmPopupPanel popup = ConfirmPopupPanel.get();
+
+                    popup.setText(Clan.MESSAGES.deletePicture());
+                    popup.setYesHandler(new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent event) {
+                            PictureRequest request = Clan.REQUESTFACTORY.pictureRequest();
+
+                            request.remove().using(request.edit(picture)).fire(new AppReceiver<Void>() {
+                                @Override
+                                public void onSuccess(Void response) {
+                                    popup.hide();
+                                    History.fireCurrentHistoryState();
+                                }
+                                @Override
+                                public void onFailure(ServerFailure error) {
+                                    // do something
+                                }
+                            });
+                        }
+                    });
+
+                    popup.center();
+                    popup.show();
+                }
+            });
+            actions.add(delete);
         }
 
         UserRequest request = Clan.REQUESTFACTORY.userRequest();
@@ -68,6 +117,6 @@ public class PictureView extends Composite {
     InlineHyperlink username;
 
     @UiField
-    DivElement actions;
+    FlowPanel actions;
 
 }

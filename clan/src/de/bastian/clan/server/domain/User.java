@@ -80,6 +80,8 @@ public class User implements Serializable {
 
         try {
             return pm.getObjectById(User.class, id);
+        } catch(RuntimeException e) {
+            return null;
         } finally {
             pm.close();
         }

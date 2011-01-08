@@ -33,7 +33,7 @@ public class ThemeView extends Composite {
         themeRequest.countPosts(theme.getId()).fire(new Receiver<Integer>() {
            @Override
             public void onSuccess(Integer count) {
-               answers.setInnerHTML("" + count);
+               replies.setInnerHTML("" + count);
             }
         });
 
@@ -48,7 +48,7 @@ public class ThemeView extends Composite {
     }
 
     @UiField
-    SpanElement answers;
+    SpanElement replies;
 
     @UiField
     Hyperlink title;

@@ -18,13 +18,13 @@
         <h1>C-LAN <ui:msg key="forum">Forum</ui:msg></h1>
         <h2 ui:field="header"></h2>
         
-        <g:InlineHyperlink ui:field="newPostTop" styleName="{style.newPost}"><ui:msg key="newPost">New post</ui:msg></g:InlineHyperlink>
+        <g:InlineHyperlink ui:field="newPostTop" styleName="{style.newPost}"><ui:msg key="reply">Reply</ui:msg></g:InlineHyperlink>
         
         <my:HyperlinkPager ui:field="pagerTop" styleName="{style.pager}"></my:HyperlinkPager>
         
         <g:FlowPanel ui:field="content"></g:FlowPanel>
         
-        <g:InlineHyperlink ui:field="newPostBottom" styleName="{style.newPost}"><ui:msg key="newPost">New post</ui:msg></g:InlineHyperlink>
+        <g:InlineHyperlink ui:field="newPostBottom" styleName="{style.newPost}"><ui:msg key="reply">Reply</ui:msg></g:InlineHyperlink>
         
         <my:HyperlinkPager ui:field="pagerBottom" styleName="{style.pager}"></my:HyperlinkPager>
         

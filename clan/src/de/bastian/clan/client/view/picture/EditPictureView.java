@@ -71,7 +71,7 @@ public class EditPictureView extends Composite {
             });
             fr.readAsDataURL(upload.getFiles().get(0));
         } catch (BrowserNotSupportedException err) {
-
+            // do something
         }
     }
 
