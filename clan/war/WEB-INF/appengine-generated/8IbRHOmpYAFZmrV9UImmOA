@@ -1,0 +1,33 @@
+﻿%56%69%65%6c%65%20%47%72%fc%df%65%2c%20%42%61%73%74%69%61%6e
+
+http://www.google.de/search?hl=de&source=hp&q=%56%69%65%6c%65%20%47%72%fc%df%65%2c%20%42%61%73%74%69%61%6e
+
+var s = "Viele Grüße, Bastian";
+for (var i =0; i < s.length;i++) {
+	console.log(s.charCodeAt(i).toString(16) + " " + s[i]);
+}
+
+56 V
+69 i
+65 e
+6c l
+65 e
+20
+47 G
+72 r
+fc ü
+df ß
+65 e
+2c ,
+20
+42 B
+61 a
+73 s
+74 t
+69 i
+61 a
+6e n
+
+
+
+-extra src/com/google/gwt/i18n/client

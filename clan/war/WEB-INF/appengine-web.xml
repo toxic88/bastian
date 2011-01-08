@@ -15,7 +15,12 @@
   </static-files>
 
   <system-properties>
-    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties" />
   </system-properties>
+  
+  <static-error-handlers>
+    <handler file="error.html" />
+    <handler file="overquota.html" error-code="over_quota" />
+  </static-error-handlers>
 
 </appengine-web-app>

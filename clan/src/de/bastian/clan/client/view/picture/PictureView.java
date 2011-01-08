@@ -78,7 +78,7 @@ public class PictureView extends Composite {
                                 }
                                 @Override
                                 public void onFailure(ServerFailure error) {
-                                    // do something
+                                    // TODO: do something...
                                 }
                             });
                         }
