@@ -50,7 +50,7 @@ public class EditPictureView extends Composite {
 
     @UiHandler("upload")
     void onChangeUpload(ChangeEvent e) {
-        if (upload.getFiles().length() == 0) {
+        if (upload.getFiles() == null || upload.getFiles().length() == 0) {
             return;
         }
 
@@ -64,14 +64,14 @@ public class EditPictureView extends Composite {
                         if (res.startsWith("data:image")) {
                             image.setSrc(res);
                         } else {
-                            // do something...
+                            // TODO: do something...
                         }
                     }
                 }
             });
             fr.readAsDataURL(upload.getFiles().get(0));
         } catch (BrowserNotSupportedException err) {
-            // do something
+            // TODO: do something...
         }
     }
 

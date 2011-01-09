@@ -96,6 +96,7 @@ public class Post {
         try {
             Query query = pm.newQuery(Post.class, "theme == null && topic == :topicParam");
             query.setRange(start, end);
+            query.setOrdering("created DESC"); // TODO: this can be better!
 
             List<Post> results = (List<Post>) query.execute(topic);
             results.size(); // stupid check to receive all posts
@@ -125,6 +126,23 @@ public class Post {
         try {
             Query query = pm.newQuery(Post.class, "theme == :themeParam");
             query.setRange(start, end);
+            query.setOrdering("created ASC");
+
+            List<Post> results = (List<Post>) query.execute(theme);
+            results.size(); // stupid check to receive all posts
+
+            return results;
+        } finally {
+            pm.close();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Post> findAllPosts(Long theme) {
+        PersistenceManager pm = persistenceManager();
+
+        try {
+            Query query = pm.newQuery(Post.class, "theme == :themeParam");
 
             List<Post> results = (List<Post>) query.execute(theme);
             results.size(); // stupid check to receive all posts
@@ -174,14 +192,21 @@ public class Post {
     }
 
     public void remove() throws ValidationException {
+        if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+            throw new ValidationException();
+        }
+
         PersistenceManager pm = persistenceManager();
 
         try {
-            if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
-                throw new ValidationException();
-            }
+            Post post = pm.getObjectById(Post.class, getId());
 
-            Post post = pm.getObjectById(Post.class, getId()); // TODO: handle post.getPost() != null
+            if (post.getTheme() == null) {
+                List<Post> posts = Post.findAllPosts(post.getId());
+                for (Post p : posts) {
+                    p.remove();
+                }
+            }
             pm.deletePersistent(post);
         } finally {
             pm.close();

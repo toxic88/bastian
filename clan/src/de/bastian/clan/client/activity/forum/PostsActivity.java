@@ -2,8 +2,6 @@ package de.bastian.clan.client.activity.forum;
 
 import java.util.List;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -36,50 +34,46 @@ public class PostsActivity extends AppActivity {
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
         final PostsView postsView = clientFactory.getPostsView();
 
-        if (themeId != null) {
-            PostRequest request = Clan.REQUESTFACTORY.postRequest();
+        PostRequest request = Clan.REQUESTFACTORY.postRequest();
 
-            request.findPost(themeId).fire(new AppReceiver<PostProxy>() {
-                @Override
-                public void onSuccess(final PostProxy parent) {
-                    TopicRequest request = Clan.REQUESTFACTORY.topicRequest();
-
-                    request.findTopic(parent.getTopic()).fire(new AppReceiver<TopicProxy>() {
-                        @Override
-                        public void onSuccess(final TopicProxy topic) {
-                            PostRequest request = Clan.REQUESTFACTORY.postRequest();
-
-                            request.findPosts(parent.getId(), pageSize * page, pageSize * page + pageSize).fire(new AppReceiver<List<PostProxy>>() {
-                                @Override
-                                public void onSuccess(final List<PostProxy> posts) {
-                                    if (posts.size() == 0 && page != 0) {
-                                        History.back();
-                                        return;
-                                    }
-
-                                    PostRequest request = Clan.REQUESTFACTORY.postRequest();
-
-                                    request.countPosts(themeId).fire(new AppReceiver<Integer>() {
-                                        @Override
-                                        public void onSuccess(Integer count) {
-                                            postsView.setPosts(topic, parent, posts, page, ++count);
-                                            containerWidget.setWidget(postsView.asWidget());
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        } else {
-            Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-                @Override
-                public void execute() {
+        request.findPost(themeId).fire(new AppReceiver<PostProxy>() {
+            @Override
+            public void onSuccess(final PostProxy parent) {
+                if (parent == null) {
                     History.back();
+                    return;
                 }
-            });
-        }
+
+                TopicRequest request = Clan.REQUESTFACTORY.topicRequest();
+
+                request.findTopic(parent.getTopic()).fire(new AppReceiver<TopicProxy>() {
+                    @Override
+                    public void onSuccess(final TopicProxy topic) {
+                        PostRequest request = Clan.REQUESTFACTORY.postRequest();
+
+                        request.findPosts(parent.getId(), pageSize * page, pageSize * page + pageSize).fire(new AppReceiver<List<PostProxy>>() {
+                            @Override
+                            public void onSuccess(final List<PostProxy> posts) {
+                                if (posts.size() == 0 && page != 0) {
+                                    History.back();
+                                    return;
+                                }
+
+                                PostRequest request = Clan.REQUESTFACTORY.postRequest();
+
+                                request.countPosts(themeId).fire(new AppReceiver<Integer>() {
+                                    @Override
+                                    public void onSuccess(Integer count) {
+                                        postsView.setPosts(topic, parent, posts, page, ++count);
+                                        containerWidget.setWidget(postsView.asWidget());
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
 }

@@ -17,7 +17,7 @@ import de.bastian.clan.shared.PictureRequest;
 
 public class PicturesActivity extends AppActivity {
 
-    public static final int pageSize = 10;
+    public static final int pageSize = 9;
 
     private int page;
 

@@ -5,8 +5,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.InlineHyperlink;
+import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class HyperlinkPager extends Composite {
@@ -33,23 +33,32 @@ public class HyperlinkPager extends Composite {
 
         content.clear();
 
-        content.add(new InlineHyperlink("<", prefix + ( currentPage - 1 < 0 ? 0 : currentPage - 1 )));
+        if (currentPage - 1 < 0) {
+            content.add(new InlineLabel("<"));
+        } else {
+            content.add(new InlineHyperlink("<", prefix + (currentPage - 1)));
+        }
+
         addSpacer();
 
         for (int i = 0; i <= pages; i++) {
             if (i == currentPage) {
-                content.add(new InlineHTML("" + (i + 1)));
+                content.add(new InlineLabel("" + (i + 1)));
             } else {
                 content.add(new InlineHyperlink("" + (i + 1), prefix + i));
             }
             addSpacer();
         }
 
-        content.add(new InlineHyperlink(">", prefix + ( currentPage + 1 > pages ? pages : currentPage + 1 )));
+        if (currentPage + 1 > pages) {
+            content.add(new InlineLabel(">"));
+        } else {
+            content.add(new InlineHyperlink(">", prefix + (currentPage + 1)));
+        }
     }
 
     private void addSpacer() {
-        content.add(new InlineHTML(" "));
+        content.add(new InlineLabel(" "));
     }
 
 }

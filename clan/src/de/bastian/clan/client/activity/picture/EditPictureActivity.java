@@ -23,7 +23,7 @@ public class EditPictureActivity extends AppActivity {
 
     public EditPictureActivity(EditPicturePlace place, ClientFactory clientFactory) {
         super(place, clientFactory);
-         this.pictureId = place.getPictureId();
+        this.pictureId = place.getPictureId();
     }
 
     @Override
@@ -32,6 +32,7 @@ public class EditPictureActivity extends AppActivity {
 
         if (pictureId != null && FileReader.isSupported()) {
             PictureRequest request = Clan.REQUESTFACTORY.pictureRequest();
+
             request.findPicture(pictureId).fire(new AppReceiver<PictureProxy>() {
                 @Override
                 public void onSuccess(PictureProxy picture) {

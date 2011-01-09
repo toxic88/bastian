@@ -2,8 +2,6 @@ package de.bastian.clan.client.activity.forum;
 
 import java.util.List;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -36,43 +34,39 @@ public class ThemesActivity extends AppActivity {
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
         final ThemesView themesView = clientFactory.getThemesView();
 
-        if (topicId != null) {
-            TopicRequest request = Clan.REQUESTFACTORY.topicRequest();
+        TopicRequest request = Clan.REQUESTFACTORY.topicRequest();
 
-            request.findTopic(topicId).fire(new AppReceiver<TopicProxy>() {
-                @Override
-                public void onSuccess(final TopicProxy topic) {
-                    PostRequest request = Clan.REQUESTFACTORY.postRequest();
-
-                    request.findThemes(topicId, pageSize * page, pageSize * page + pageSize).fire(new AppReceiver<List<PostProxy>>() {
-                        @Override
-                        public void onSuccess(final List<PostProxy> themes) {
-                            if (themes.size() == 0 && page != 0) {
-                                History.back();
-                                return;
-                            }
-
-                            PostRequest request = Clan.REQUESTFACTORY.postRequest();
-
-                            request.countThemes(topic.getId()).fire(new AppReceiver<Integer>() {
-                                @Override
-                                public void onSuccess(Integer count) {
-                                    themesView.setThemes(topic, themes, page, count);
-                                    containerWidget.setWidget(themesView.asWidget());
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        } else {
-            Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-                @Override
-                public void execute() {
+        request.findTopic(topicId).fire(new AppReceiver<TopicProxy>() {
+            @Override
+            public void onSuccess(final TopicProxy topic) {
+                if (topic == null) {
                     History.back();
+                    return;
                 }
-            });
-        }
+
+                PostRequest request = Clan.REQUESTFACTORY.postRequest();
+
+                request.findThemes(topicId, pageSize * page, pageSize * page + pageSize).fire(new AppReceiver<List<PostProxy>>() {
+                    @Override
+                    public void onSuccess(final List<PostProxy> themes) {
+                        if (themes.size() == 0 && page != 0) {
+                            History.back();
+                            return;
+                        }
+
+                        PostRequest request = Clan.REQUESTFACTORY.postRequest();
+
+                        request.countThemes(topic.getId()).fire(new AppReceiver<Integer>() {
+                            @Override
+                            public void onSuccess(Integer count) {
+                                themesView.setThemes(topic, themes, page, count);
+                                containerWidget.setWidget(themesView.asWidget());
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
 }

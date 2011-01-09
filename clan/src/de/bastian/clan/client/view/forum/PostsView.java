@@ -57,10 +57,10 @@ public class PostsView extends Composite {
         }
 
         pagerTop.setPrefix("posts:" + theme.getId() + ":");
-        pagerTop.setPageSizeCount(page, PostsActivity.pageSize, count);
+        pagerTop.setPageSizeCount(page, PostsActivity.pageSize, count - 1);
 
         pagerBottom.setPrefix("posts:" + theme.getId() + ":");
-        pagerBottom.setPageSizeCount(page, PostsActivity.pageSize, count);
+        pagerBottom.setPageSizeCount(page, PostsActivity.pageSize, count - 1);
 
         newPostTop.setTargetHistoryToken("editPost:" + topic.getId() + ":" + theme.getId());
         newPostBottom.setTargetHistoryToken("editPost:" + topic.getId() + ":" + theme.getId());

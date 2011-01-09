@@ -16,10 +16,6 @@
             -moz-box-shadow: #666 0 0 5px;
         }
         
-        .post a {
-            display: block;
-        }
-        
         .post table th, .post table td {
             text-align: left;
             vertical-align: top;
