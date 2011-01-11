@@ -7,12 +7,10 @@ import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.Constants;
-import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -20,16 +18,20 @@ import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.bastian.clan.client.Clan;
+import de.bastian.clan.client.activity.picture.PicturesActivity;
 import de.bastian.clan.client.mvp.AppReceiver;
 import de.bastian.clan.client.view.widgets.ConfirmPopupPanel;
 import de.bastian.clan.shared.PictureProxy;
-import de.bastian.clan.shared.PictureRequest;
 import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.UserRequest;
 
 public class PictureView extends Composite {
 
-    public static interface PictureViewConstants extends Constants {
+    public interface Presenter {
+        void removePicture(PictureProxy picture);
+    }
+
+    public interface PictureViewConstants extends Constants {
         String deletePicture();
     }
 
@@ -41,7 +43,7 @@ public class PictureView extends Composite {
         String hidden();
     }
 
-    public PictureView(final PictureProxy picture) {
+    public PictureView(final PictureProxy picture, final PicturesActivity activity) {
         initWidget(uiBinder.createAndBindUi(this));
 
         link.setHref(picture.getImage());
@@ -68,19 +70,7 @@ public class PictureView extends Composite {
                     popup.setYesHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent event) {
-                            PictureRequest request = Clan.REQUESTFACTORY.pictureRequest();
-
-                            request.remove().using(request.edit(picture)).fire(new AppReceiver<Void>() {
-                                @Override
-                                public void onSuccess(Void response) {
-                                    popup.hide();
-                                    History.fireCurrentHistoryState();
-                                }
-                                @Override
-                                public void onFailure(ServerFailure error) {
-                                    // TODO: do something...
-                                }
-                            });
+                            activity.removePicture(picture);
                         }
                     });
 

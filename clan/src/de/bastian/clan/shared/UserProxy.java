@@ -9,8 +9,7 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
 @ProxyFor(de.bastian.clan.server.domain.User.class)
 public interface UserProxy extends EntityProxy {
 
-    public static enum Type
-    {
+    public static enum Type {
         Admin, Member, User
     }
 
@@ -23,6 +22,7 @@ public interface UserProxy extends EntityProxy {
     String getSteamid();
     Date getCreated();
     Date getLastLogin();
+    Integer getVersion();
 
     void setFirstname(String firstname);
     void setLastname(String lastname);

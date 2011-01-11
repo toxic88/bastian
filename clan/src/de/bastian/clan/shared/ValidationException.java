@@ -1,3 +1,5 @@
 package de.bastian.clan.shared;
 
-public class ValidationException extends Exception {}
+import java.io.Serializable;
+
+public class ValidationException extends Exception implements Serializable {}

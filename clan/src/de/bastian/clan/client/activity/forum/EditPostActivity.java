@@ -1,6 +1,7 @@
 package de.bastian.clan.client.activity.forum;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -16,8 +17,7 @@ import de.bastian.clan.shared.TopicProxy;
 import de.bastian.clan.shared.TopicRequest;
 import de.bastian.clan.shared.UserProxy;
 
-
-public class EditPostActivity extends AppActivity {
+public class EditPostActivity extends AppActivity implements EditPostView.Presenter {
 
     private Long topicId;
     private Long themeId;
@@ -33,6 +33,7 @@ public class EditPostActivity extends AppActivity {
     @Override
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
         final EditPostView editPostView = clientFactory.getEditPostView();
+        editPostView.setActivity(this);
 
         TopicRequest request = Clan.REQUESTFACTORY.topicRequest();
 
@@ -81,6 +82,43 @@ public class EditPostActivity extends AppActivity {
                         });
                     }
                 });
+            }
+        });
+    }
+
+    @Override
+    public void updatePost(TopicProxy topic, PostProxy theme, PostProxy post, String title, String text) {
+        if (Clan.CURRENTUSER == null || (post != null && (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
+            History.back();
+            return;
+        }
+
+        if (topic == null || theme == null || title.isEmpty() || text.isEmpty()) {
+            // TODO: show input errors
+            return;
+        }
+
+        PostRequest request = Clan.REQUESTFACTORY.postRequest();
+
+        if (post == null) {
+            post = request.create(PostProxy.class);
+            post.setTopic(topic.getId());
+            post.setTheme(theme.getId());
+            post.setUser(Clan.CURRENTUSER.getId());
+        } else {
+            post = request.edit(post);
+        }
+        post.setTitle(title);
+        post.setText(text);
+
+        request.persist().using(post).fire(new AppReceiver<Void>() {
+            @Override
+            public void onSuccess(Void response) {
+                History.back();
+            }
+            @Override
+            public void onFailure(ServerFailure error) {
+                // TODO: do something....
             }
         });
     }

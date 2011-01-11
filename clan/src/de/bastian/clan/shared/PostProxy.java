@@ -17,6 +17,7 @@ public interface PostProxy extends EntityProxy {
     Long getUser();
     Long getTheme();
     Long getTopic();
+    Integer getVersion();
 
     void setTitle(String title);
     void setText(String text);

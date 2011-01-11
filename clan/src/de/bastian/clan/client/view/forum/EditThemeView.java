@@ -4,11 +4,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.Constants;
-import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextArea;
@@ -16,18 +14,22 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.bastian.clan.client.Clan;
-import de.bastian.clan.client.mvp.AppReceiver;
+import de.bastian.clan.client.activity.forum.EditThemeActivity;
 import de.bastian.clan.shared.PostProxy;
-import de.bastian.clan.shared.PostRequest;
 import de.bastian.clan.shared.TopicProxy;
-import de.bastian.clan.shared.UserProxy;
 
 
 public class EditThemeView extends Composite {
 
+    public interface Presenter {
+        void updateTheme(TopicProxy topic, PostProxy theme, String title, String text);
+    }
+
     private static EditThemeViewUiBinder uiBinder = GWT.create(EditThemeViewUiBinder.class);
 
     interface EditThemeViewUiBinder extends UiBinder<Widget, EditThemeView> {}
+
+    private EditThemeActivity activity;
 
     private TopicProxy topic = null;
     private PostProxy theme = null;
@@ -54,7 +56,7 @@ public class EditThemeView extends Composite {
 
     @UiHandler("button")
     void onClickButton(ClickEvent e) {
-        updateTheme();
+        activity.updateTheme(topic, theme, title.getText(), text.getText());
     }
 
     public void setTheme(TopicProxy topic, PostProxy theme) {
@@ -71,40 +73,9 @@ public class EditThemeView extends Composite {
         }
     }
 
-    private void updateTheme() {
-        if (Clan.CURRENTUSER == null || (theme != null && (theme.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
-            History.back();
-            return;
-        }
-
-        PostRequest request = Clan.REQUESTFACTORY.postRequest();
-
-        if (theme == null) {
-            theme = request.create(PostProxy.class);
-            theme.setTopic(topic.getId());
-            theme.setUser(Clan.CURRENTUSER.getId());
-        } else {
-            theme = request.edit(theme);
-        }
-        theme.setTitle(title.getText());
-        theme.setText(text.getText());
-
-        request.persist().using(theme).fire(new AppReceiver<Void>() {
-            @Override
-            public void onSuccess(Void response) {
-                History.back();
-            }
-            @Override
-            public void onFailure(ServerFailure error) {
-                // TODO: do something....
-            }
-        });
-    }
-
     private void reset() {
         topic = null;
         theme = null;
-
         title.setText("");
         text.setText("");
     }
@@ -113,6 +84,10 @@ public class EditThemeView extends Composite {
     protected void onDetach() {
         super.onDetach();
         reset();
+    }
+
+    public void setActivity(EditThemeActivity activity) {
+        this.activity = activity;
     }
 
 }

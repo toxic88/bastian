@@ -23,6 +23,8 @@ public class PostsView extends Composite {
 
     interface PostsViewUiBinder extends UiBinder<Widget, PostsView> {}
 
+    private PostsActivity activity;
+
     public PostsView() {
         initWidget(uiBinder.createAndBindUi(this));
     }
@@ -53,7 +55,7 @@ public class PostsView extends Composite {
         }
 
         for (PostProxy post : posts) {
-            content.add(new PostView(post).asWidget());
+            content.add(new PostView(post, activity));
         }
 
         pagerTop.setPrefix("posts:" + theme.getId() + ":");
@@ -75,6 +77,10 @@ public class PostsView extends Composite {
     protected void onDetach() {
         super.onDetach();
         reset();
+    }
+
+    public void setActivity(PostsActivity activity) {
+        this.activity = activity;
     }
 
 }

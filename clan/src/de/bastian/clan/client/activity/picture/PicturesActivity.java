@@ -3,6 +3,7 @@ package de.bastian.clan.client.activity.picture;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -11,11 +12,13 @@ import de.bastian.clan.client.ClientFactory;
 import de.bastian.clan.client.mvp.AppActivity;
 import de.bastian.clan.client.mvp.AppReceiver;
 import de.bastian.clan.client.place.picture.PicturesPlace;
+import de.bastian.clan.client.view.picture.PictureView;
 import de.bastian.clan.client.view.picture.PicturesView;
+import de.bastian.clan.client.view.widgets.ConfirmPopupPanel;
 import de.bastian.clan.shared.PictureProxy;
 import de.bastian.clan.shared.PictureRequest;
 
-public class PicturesActivity extends AppActivity {
+public class PicturesActivity extends AppActivity implements PictureView.Presenter {
 
     public static final int pageSize = 9;
 
@@ -29,6 +32,7 @@ public class PicturesActivity extends AppActivity {
     @Override
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
         final PicturesView picturesView = clientFactory.getPicturesView();
+        picturesView.setActivity(this);
 
         PictureRequest request = Clan.REQUESTFACTORY.pictureRequest();
 
@@ -49,6 +53,23 @@ public class PicturesActivity extends AppActivity {
                         containerWidget.setWidget(picturesView.asWidget());
                     }
                 });
+            }
+        });
+    }
+
+    @Override
+    public void removePicture(PictureProxy picture) {
+        PictureRequest request = Clan.REQUESTFACTORY.pictureRequest();
+
+        request.remove().using(request.edit(picture)).fire(new AppReceiver<Void>() {
+            @Override
+            public void onSuccess(Void response) {
+                ConfirmPopupPanel.get().hide();
+                History.fireCurrentHistoryState();
+            }
+            @Override
+            public void onFailure(ServerFailure error) {
+                // TODO: do something...
             }
         });
     }

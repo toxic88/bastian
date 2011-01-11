@@ -17,8 +17,9 @@ public class PicturesView extends Composite {
 
     private static PicturesViewUiBinder uiBinder = GWT.create(PicturesViewUiBinder.class);
 
-    interface PicturesViewUiBinder extends UiBinder<Widget, PicturesView> {
-    }
+    interface PicturesViewUiBinder extends UiBinder<Widget, PicturesView> {}
+
+    private PicturesActivity activity;
 
     public PicturesView() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -35,7 +36,7 @@ public class PicturesView extends Composite {
 
     public void setPictures(List<PictureProxy> pictures, int page, int count) {
         for (PictureProxy picture : pictures) {
-            content.add(new PictureView(picture));
+            content.add(new PictureView(picture, activity));
         }
 
         pagerTop.setPrefix("pictures:");
@@ -53,6 +54,10 @@ public class PicturesView extends Composite {
     protected void onDetach() {
         super.onDetach();
         reset();
+    }
+
+    public void setActivity(PicturesActivity activity) {
+        this.activity = activity;
     }
 
 }

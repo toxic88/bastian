@@ -15,6 +15,7 @@ public interface PictureProxy extends EntityProxy {
     Date getCreated();
     Date getChanged();
     Long getUser();
+    Integer getVersion();
 
     void setDescription(String description);
     void setImage(String image);

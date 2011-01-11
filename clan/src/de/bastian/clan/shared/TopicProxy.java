@@ -14,6 +14,7 @@ public interface TopicProxy extends EntityProxy {
     Date getCreated();
     Date getChanged();
     Long getUser();
+    Integer getVersion();
 
     void setName(String name);
     void setUser(Long user);
