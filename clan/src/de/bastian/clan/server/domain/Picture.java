@@ -121,7 +121,7 @@ public class Picture {
     }
 
     public void remove() throws ValidationException {
-        if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+        if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && !User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
             throw new ValidationException();
         }
 

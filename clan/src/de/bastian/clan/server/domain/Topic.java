@@ -101,13 +101,13 @@ public class Topic {
     }
 
     public void remove() throws ValidationException {
+        if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && !User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+            throw new ValidationException();
+        }
+
         PersistenceManager pm = persistenceManager();
 
         try {
-            if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
-                throw new ValidationException();
-            }
-
             Topic topic = pm.getObjectById(Topic.class, getId());
             pm.deletePersistent(topic);
         } finally {

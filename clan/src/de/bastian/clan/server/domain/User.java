@@ -207,13 +207,13 @@ public class User implements Serializable {
     }
 
     public void remove() throws ValidationException {
+        if (User.isLoggedIn() == null || (getId() != User.isLoggedIn().getId() && !User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+            throw new ValidationException();
+        }
+
         PersistenceManager pm = persistenceManager();
 
         try {
-            if (User.isLoggedIn() == null || (getId() != User.isLoggedIn().getId() && User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
-                throw new ValidationException();
-            }
-
             User user = pm.getObjectById(User.class, getId());
             pm.deletePersistent(user);
         } finally {
