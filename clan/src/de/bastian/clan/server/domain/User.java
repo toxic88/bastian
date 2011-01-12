@@ -22,9 +22,9 @@ import com.google.gwt.requestfactory.server.RequestFactoryServlet;
 
 import de.bastian.clan.server.ClanAuthFilter;
 import de.bastian.clan.server.Util;
+import de.bastian.clan.server.ValidationException;
 import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.UserProxy.Type;
-import de.bastian.clan.shared.ValidationException;
 
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION)

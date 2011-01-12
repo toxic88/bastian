@@ -14,8 +14,8 @@ import javax.persistence.Version;
 
 import com.google.appengine.api.datastore.Text;
 
+import de.bastian.clan.server.ValidationException;
 import de.bastian.clan.shared.UserProxy;
-import de.bastian.clan.shared.ValidationException;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Picture {

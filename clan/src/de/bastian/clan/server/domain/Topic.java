@@ -12,8 +12,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import de.bastian.clan.server.ValidationException;
 import de.bastian.clan.shared.UserProxy;
-import de.bastian.clan.shared.ValidationException;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Topic {
