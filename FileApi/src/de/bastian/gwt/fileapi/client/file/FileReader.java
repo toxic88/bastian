@@ -50,7 +50,7 @@ public class FileReader implements HasHandlers {
      * @return boolean
      */
     public final static native boolean isSupported() /*-{
-        return $wnd.FileReader ? true : false;
+        return !!$wnd.FileReader;
     }-*/;
 
     /**
