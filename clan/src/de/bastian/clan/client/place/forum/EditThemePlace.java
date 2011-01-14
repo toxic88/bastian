@@ -20,13 +20,9 @@ public class EditThemePlace extends Place {
             topicId = null;
         }
 
-        if (topicTheme.length == 2) {
-            try {
-                themeId = new Long(topicTheme[1]);
-            } catch (Exception e) {
-                themeId = null;
-            }
-        } else {
+        try {
+            themeId = new Long(topicTheme[1]);
+        } catch (Exception e) {
             themeId = null;
         }
     }

@@ -1,8 +1,7 @@
 package de.bastian.clan.client.activity.user;
 
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -12,10 +11,11 @@ import de.bastian.clan.client.mvp.AppActivity;
 import de.bastian.clan.client.mvp.AppReceiver;
 import de.bastian.clan.client.place.user.UserPlace;
 import de.bastian.clan.client.view.user.UserView;
+import de.bastian.clan.client.view.widgets.ConfirmPopupPanel;
 import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.UserRequest;
 
-public class UserActivity extends AppActivity {
+public class UserActivity extends AppActivity implements UserView.Presenter {
 
     private Long userId;
 
@@ -27,24 +27,38 @@ public class UserActivity extends AppActivity {
     @Override
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
         final UserView userView = clientFactory.getUserView();
+        userView.setActivity(this);
 
-        if (userId != null) {
-            UserRequest request = Clan.REQUESTFACTORY.userRequest();
-            request.findUser(userId).fire(new AppReceiver<UserProxy>() {
-                @Override
-                public void onSuccess(UserProxy user) {
-                    userView.setUser(user);
-                    containerWidget.setWidget(userView.asWidget());
-                }
-            });
-        } else {
-            Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-                @Override
-                public void execute() {
+        UserRequest request = Clan.REQUESTFACTORY.userRequest();
+        request.findUser(userId).fire(new AppReceiver<UserProxy>() {
+            @Override
+            public void onSuccess(UserProxy user) {
+                if (user == null) {
                     History.back();
+                    return;
                 }
-            });
-        }
+
+                userView.setUser(user);
+                containerWidget.setWidget(userView.asWidget());
+            }
+        });
+    }
+
+    @Override
+    public void removeUser(UserProxy user) {
+        UserRequest request = Clan.REQUESTFACTORY.userRequest();
+
+        request.remove().using(request.edit(user)).fire(new AppReceiver<Void>() {
+            @Override
+            public void onSuccess(Void response) {
+                ConfirmPopupPanel.get().hide();
+                History.fireCurrentHistoryState();
+            }
+            @Override
+            public void onFailure(ServerFailure error) {
+                // TODO: do something...
+            }
+        });
     }
 
 }

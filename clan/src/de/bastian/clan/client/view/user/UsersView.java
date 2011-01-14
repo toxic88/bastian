@@ -23,15 +23,15 @@ import de.bastian.clan.shared.UserProxy;
 
 public class UsersView extends Composite {
 
-    private static UsersViewUiBinder uiBinder = GWT.create(UsersViewUiBinder.class);
-
-    interface UsersViewUiBinder extends UiBinder<Widget, UsersView> {}
-
-    public static interface UsersViewConstants extends Constants {
+    public interface UsersViewConstants extends Constants {
         String firstname();
         String lastname();
         String lastlogin();
     }
+
+    private static UsersViewUiBinder uiBinder = GWT.create(UsersViewUiBinder.class);
+
+    interface UsersViewUiBinder extends UiBinder<Widget, UsersView> {}
 
     public UsersView() {
         initWidget(uiBinder.createAndBindUi(this));

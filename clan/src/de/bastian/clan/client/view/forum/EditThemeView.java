@@ -25,6 +25,10 @@ public class EditThemeView extends Composite {
         void updateTheme(TopicProxy topic, PostProxy theme, String title, String text);
     }
 
+    public interface EditThemeViewConstants extends Constants {
+        String newTheme();
+    }
+
     private static EditThemeViewUiBinder uiBinder = GWT.create(EditThemeViewUiBinder.class);
 
     interface EditThemeViewUiBinder extends UiBinder<Widget, EditThemeView> {}
@@ -33,10 +37,6 @@ public class EditThemeView extends Composite {
 
     private TopicProxy topic = null;
     private PostProxy theme = null;
-
-    public static interface EditThemeViewConstants extends Constants {
-        String newTheme();
-    }
 
     public EditThemeView() {
         initWidget(uiBinder.createAndBindUi(this));

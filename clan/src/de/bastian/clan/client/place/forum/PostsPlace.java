@@ -20,13 +20,9 @@ public class PostsPlace extends Place {
             themeId = null;
         }
 
-        if (themePost.length == 2) {
-            try {
-                page = Integer.parseInt(themePost[1]);
-            } catch (Exception e) {
-                page = 0;
-            }
-        } else {
+        try {
+            page = Integer.parseInt(themePost[1]);
+        } catch (Exception e) {
             page = 0;
         }
     }

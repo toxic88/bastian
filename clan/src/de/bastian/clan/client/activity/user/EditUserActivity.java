@@ -36,12 +36,13 @@ public class EditUserActivity extends AppActivity implements EditUserView.Presen
             request.findUser(userId).fire(new AppReceiver<UserProxy>() {
                 @Override
                 public void onSuccess(UserProxy user) {
-                    if (Clan.CURRENTUSER != null && (user.getId() == Clan.CURRENTUSER.getId() || Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
-                        editUserView.setUser(user);
-                        containerWidget.setWidget(editUserView.asWidget());
-                    } else {
+                    if (Clan.CURRENTUSER == null || (user != null && (user.getId() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
                         History.back();
+                        return;
                     }
+
+                    editUserView.setUser(user);
+                    containerWidget.setWidget(editUserView.asWidget());
                 }
             });
         } else if (Clan.CURRENTUSER != null && Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)) {

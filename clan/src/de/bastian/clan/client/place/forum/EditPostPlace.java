@@ -21,21 +21,15 @@ public class EditPostPlace extends Place {
             topicId = null;
         }
 
-        if (topicThemePost.length >= 2) {
-            try {
-                themeId = new Long(topicThemePost[1]);
-            } catch (Exception e) {
-                themeId = null;
-            }
+        try {
+            themeId = new Long(topicThemePost[1]);
+        } catch (Exception e) {
+            themeId = null;
         }
 
-        if (topicThemePost.length == 3) {
-            try {
-                postId = new Long(topicThemePost[2]);
-            } catch (Exception e) {
-                postId = null;
-            }
-        } else {
+        try {
+            postId = new Long(topicThemePost[2]);
+        } catch (Exception e) {
             postId = null;
         }
     }

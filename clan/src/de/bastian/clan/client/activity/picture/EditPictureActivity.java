@@ -40,10 +40,11 @@ public class EditPictureActivity extends AppActivity implements EditPictureView.
                 public void onSuccess(PictureProxy picture) {
                     if (Clan.CURRENTUSER == null || (picture != null && (picture.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
                         History.back();
-                    } else {
-                        editPictureView.setPicture(picture);
-                        containerWidget.setWidget(editPictureView.asWidget());
+                        return;
                     }
+
+                    editPictureView.setPicture(picture);
+                    containerWidget.setWidget(editPictureView.asWidget());
                 }
             });
         } else if (Clan.CURRENTUSER != null && FileReader.isSupported()) {

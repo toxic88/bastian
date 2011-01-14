@@ -20,13 +20,13 @@ import de.bastian.clan.shared.TopicProxy;
 
 public class ThemesView extends Composite {
 
+    public interface ThemesViewConstants extends Constants {
+        String forum();
+    }
+
     private static ThemesViewUiBinder uiBinder = GWT.create(ThemesViewUiBinder.class);
 
     interface ThemesViewUiBinder extends UiBinder<Widget, ThemesView> {}
-
-    public static interface ThemesViewConstants extends Constants {
-        String forum();
-    }
 
     public ThemesView() {
         initWidget(uiBinder.createAndBindUi(this));

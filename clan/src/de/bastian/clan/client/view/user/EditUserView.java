@@ -106,6 +106,7 @@ public class EditUserView extends Composite {
         password.setText("");
         email.setText("");
         steamid.setText("");
+        typerow.removeClassName(style.hidden());
     }
 
     @Override

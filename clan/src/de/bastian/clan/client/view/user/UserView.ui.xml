@@ -3,9 +3,17 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
-    <ui:style>
+    <ui:style type="de.bastian.clan.client.view.user.UserView.Style">
+        .actions {
+            float: right;
+        }
+        
+        .hidden {
+            display: none;
+        }
     </ui:style>
     <g:HTMLPanel>
+        <g:FlowPanel styleName="{style.actions}" ui:field="actions"></g:FlowPanel>
         <h1 ui:field="header"></h1>
         <table class="grid">
             <tr>

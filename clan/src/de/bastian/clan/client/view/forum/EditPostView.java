@@ -25,13 +25,13 @@ public class EditPostView extends Composite {
         void updatePost(TopicProxy topic, PostProxy theme, PostProxy post, String title, String text);
     }
 
+    public interface EditPostViewConstants extends Constants {
+        String newPost();
+    }
+
     private static EditPostViewUiBinder uiBinder = GWT.create(EditPostViewUiBinder.class);
 
     interface EditPostViewUiBinder extends UiBinder<Widget, EditPostView> {}
-
-    public static interface EditPostViewConstants extends Constants {
-        String newPost();
-    }
 
     private EditPostActivity activity;
 
