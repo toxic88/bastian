@@ -45,6 +45,7 @@ public class Clan implements EntryPoint {
     @Override
     public void onModuleLoad(){
         RESOURCES.style().ensureInjected();
+        RESOURCES.shadowbox().ensureInjected();
 
         ActivityMapper activityMapper = new AppActivityMapper(CLIENTFACTORY);
         ActivityManager activityManager = new ActivityManager(activityMapper, EVENTBUS);
@@ -90,6 +91,19 @@ public class Clan implements EntryPoint {
         });
 
         historyHandler.handleCurrentHistory();
+
+        /**
+         * Init the shadowbox
+         */
+        initShadowbox();
     }
+
+    private final native void initShadowbox() /*-{
+        $wnd.Shadowbox.init({
+            continuous     : true,
+            counterType    : "skip",
+            skipSetup      : true
+        });
+    }-*/;
 
 }

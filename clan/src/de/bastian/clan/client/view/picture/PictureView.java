@@ -47,6 +47,7 @@ public class PictureView extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
 
         link.setHref(picture.getImage());
+        link.setTitle(SafeHtmlUtils.fromString(picture.getDescription()).asString());
         image.setSrc(picture.getImage());
         description.setInnerHTML(SafeHtmlUtils.fromString(picture.getDescription()).asString());
 

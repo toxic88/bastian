@@ -5,7 +5,5 @@
     </ui:style>
     <g:HTMLPanel>
     	<h1>Willkommen bei C-LAN - Der Clan ohne Plan</h1>
-        <p>Zurzeit ist die Seite im Aufbau.</p>
-        <p>Haben sie ein bisschen Gedult.</p>
 	</g:HTMLPanel>
 </ui:UiBinder>

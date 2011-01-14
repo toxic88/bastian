@@ -11,6 +11,10 @@ public interface Resources extends ClientBundle {
     @NotStrict
     CssResource style();
 
+    @Source("shadowbox.css")
+    @NotStrict
+    CssResource shadowbox();
+
     @Source("delete.png")
     ImageResource delete();
 
@@ -19,8 +23,5 @@ public interface Resources extends ClientBundle {
 
     @Source("pencil.png")
     ImageResource pencil();
-
-    @Source("transparent.gif")
-    ImageResource transparent();
 
 }

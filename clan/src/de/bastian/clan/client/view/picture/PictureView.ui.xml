@@ -32,7 +32,7 @@
         }
     </ui:style>
     <g:HTMLPanel styleName="{style.images}">
-        <a ui:field="link" target="_blank"><img ui:field="image" class="{style.image}" /></a>
+        <a ui:field="link" target="_blank" rel="shadowbox[pictures]"><img ui:field="image" class="{style.image}" /></a>
         <div ui:field="description"></div>
         <div><span><ui:msg key="by">By</ui:msg></span>: <g:InlineHyperlink ui:field="username"></g:InlineHyperlink></div>
         <g:FlowPanel styleName="{style.actions}" ui:field="actions"></g:FlowPanel>
