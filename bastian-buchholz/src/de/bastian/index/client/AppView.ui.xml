@@ -75,6 +75,10 @@
     .right ul {
       color: #3764A0;
     }
+    
+    .right ul li {
+        margin-bottom: 5px;
+    }
 
     .footer {
       text-align: center;
