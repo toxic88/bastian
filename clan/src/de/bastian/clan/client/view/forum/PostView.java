@@ -40,7 +40,7 @@ public class PostView extends Composite {
 
     interface PostViewUiBinder extends UiBinder<Widget, PostView> {}
 
-    private static final RegExp links = RegExp.compile("((?:https?|ftps?)\\:\\/\\/.+?)(?:$|\\s)", "gi");
+    private static final RegExp linkRegex = RegExp.compile("((?:https?|ftps?)\\:\\/\\/.+?)(?:$|\\s)", "gi");
 
     interface Style extends CssResource {
         String hidden();
@@ -57,7 +57,7 @@ public class PostView extends Composite {
         }
 
         String message = SafeHtmlUtils.fromString(post.getText()).asString();
-        message = links.replace(message, " <a href='$1'>$1</a> "); // <a href="...">...</a>
+        message = linkRegex.replace(message, " <a href='$1' target='_blank'>$1</a> "); // <a href="...">...</a>
         message = message.replace("\n", "<br />"); // <br />
         text.setInnerHTML(message);
 

@@ -35,7 +35,7 @@ public class Clan implements EntryPoint {
     public static final EventBus EVENTBUS = CLIENTFACTORY.getEventBus();
     public static final PlaceController PLACECONTROLLER = CLIENTFACTORY.getPlaceController();
 
-    public static final DateTimeFormat DATERENDERER = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss");
+    public static final DateTimeFormat DATERENDERER = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss");
 
     public static UserProxy CURRENTUSER = null;
 

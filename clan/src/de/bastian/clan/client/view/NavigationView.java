@@ -12,6 +12,7 @@ import com.google.gwt.user.client.Window.Location;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.bastian.clan.client.Clan;
@@ -38,12 +39,15 @@ public class NavigationView extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
 
         logout.getElement().getParentElement().addClassName(style.hidden());
+        profile.getElement().getParentElement().addClassName(style.hidden());
 
         Clan.EVENTBUS.addHandler(LoginEvent.TYPE, new LoginEvent.Handler() {
             @Override
             public void onLogin(LoginEvent e) {
                 login.getElement().getParentElement().addClassName(style.hidden());
                 logout.getElement().getParentElement().removeClassName(style.hidden());
+                profile.getElement().getParentElement().removeClassName(style.hidden());
+                profile.setTargetHistoryToken("user:" + e.getUser().getId());
             }
         });
 
@@ -52,10 +56,12 @@ public class NavigationView extends Composite {
             public void onLogout(LogoutEvent e) {
                 login.getElement().getParentElement().removeClassName(style.hidden());
                 logout.getElement().getParentElement().addClassName(style.hidden());
+                profile.getElement().getParentElement().addClassName(style.hidden());
             }
         });
 
 
+        /* Locale changing */
         String locale = LocaleInfo.getCurrentLocale().getLocaleName();
 
         if (locale.equals("en")) {
@@ -93,6 +99,9 @@ public class NavigationView extends Composite {
 
     @UiField
     Anchor members;
+
+    @UiField
+    Hyperlink profile;
 
     @UiField
     Anchor login;

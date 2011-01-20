@@ -50,6 +50,7 @@
             <li><g:Anchor ui:field="forum"><ui:msg key="forum">Forum</ui:msg></g:Anchor></li>
             <li><g:Anchor ui:field="pictures"><ui:msg key="pictures">Pictures</ui:msg></g:Anchor></li>
             <li><g:Anchor ui:field="members"><ui:msg key="members">Members</ui:msg></g:Anchor></li>
+            <li><g:Hyperlink ui:field="profile"><ui:msg key="profile">Profile</ui:msg></g:Hyperlink></li>
             <li><g:Anchor ui:field="login"><ui:msg key="login">Login</ui:msg></g:Anchor></li>
             <li><g:Anchor ui:field="logout"><ui:msg key="logout">Logout</ui:msg></g:Anchor></li>
         </ul>
