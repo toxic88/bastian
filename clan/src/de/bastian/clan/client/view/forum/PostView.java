@@ -6,6 +6,7 @@ import com.google.gwt.dom.client.TableCellElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.Constants;
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
@@ -39,6 +40,8 @@ public class PostView extends Composite {
 
     interface PostViewUiBinder extends UiBinder<Widget, PostView> {}
 
+    private static final RegExp links = RegExp.compile("((?:https?|ftps?)\\:\\/\\/.+?)(?:$|\\s)", "gi");
+
     interface Style extends CssResource {
         String hidden();
     }
@@ -53,7 +56,10 @@ public class PostView extends Composite {
             changed.setInnerHTML(Clan.DATERENDERER.format(post.getChanged()));
         }
 
-        text.setInnerHTML(SafeHtmlUtils.fromString(post.getText()).asString().replace("\n", "<br />"));
+        String message = SafeHtmlUtils.fromString(post.getText()).asString();
+        message = links.replace(message, " <a href='$1'>$1</a> "); // <a href="...">...</a>
+        message = message.replace("\n", "<br />"); // <br />
+        text.setInnerHTML(message);
 
         if (Clan.CURRENTUSER == null || (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
             actions.addStyleName(style.hidden());

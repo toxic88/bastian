@@ -4,10 +4,13 @@
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
     <ui:style>
+        .table {
+           width: 100%;
+        }
     </ui:style>
     <g:HTMLPanel>
         <h1><ui:msg key="login">Login</ui:msg></h1>
-        <table>
+        <table class="{style.table}">
             <tr>
                 <td><ui:msg key="email">Email</ui:msg>:</td>
                 <td><g:TextBox ui:field="email"></g:TextBox></td>

@@ -4,18 +4,25 @@
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
     <ui:style>
+        .table {
+            width: 100%;
+        }
+    
+        .textarea {
+            height: 200px;
+        }
     </ui:style>
     <g:HTMLPanel>
         <h1>C-LAN <ui:msg key="forum">Forum</ui:msg></h1>
         <h2 ui:field="header"></h2>
-        <table>
+        <table class="{style.table}">
             <tr>
                 <th><ui:msg key="title">Title</ui:msg>:</th>
                 <td><g:TextBox ui:field="title"></g:TextBox></td>
             </tr>
             <tr>
                 <th><ui:msg key="text">Text</ui:msg>:</th>
-                <td><g:TextArea ui:field="text"></g:TextArea></td>
+                <td><g:TextArea ui:field="text" styleName="{style.textarea}"></g:TextArea></td>
             </tr>
             <tr>
                 <td></td>
