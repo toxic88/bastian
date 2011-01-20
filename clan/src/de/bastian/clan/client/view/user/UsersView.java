@@ -1,5 +1,6 @@
 package de.bastian.clan.client.view.user;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,16 +46,22 @@ public class UsersView extends Composite {
     }
 
     @UiField
-    CellTable<UserProxy> table;
+    CellTable<UserProxy> adminTable;
+
+    @UiField
+    CellTable<UserProxy> memberTable;
+
+    @UiField
+    CellTable<UserProxy> userTable;
 
     private void initTable() {
+        /* Creating columns */
         Column<UserProxy, String> firstnameColumn = new Column<UserProxy, String>(new HtmlCell()) {
             @Override
             public String getValue(UserProxy user) {
                 return "<a href='#user:" + user.getId() + "'>" + user.getFirstname() + "</a>";
             }
         };
-        table.addColumn(firstnameColumn, Clan.MESSAGES.firstname());
 
         TextColumn<UserProxy> lastnameColumn = new TextColumn<UserProxy>() {
             @Override
@@ -62,7 +69,6 @@ public class UsersView extends Composite {
                 return user.getLastname();
             }
         };
-        table.addColumn(lastnameColumn, Clan.MESSAGES.lastname());
 
         Column<UserProxy, Date> lastlogindateColumn = new Column<UserProxy, Date>(new DateCell(Clan.DATERENDERER)) {
             @Override
@@ -70,15 +76,56 @@ public class UsersView extends Composite {
                 return user.getLastLogin();
             }
         };
-        table.addColumn(lastlogindateColumn, Clan.MESSAGES.lastlogin());
 
-        table.addStyleName("grid");
-        table.setSelectionModel(new NoSelectionModel<UserProxy>());
+        /* Init the admin table */
+        adminTable.addColumn(firstnameColumn, Clan.MESSAGES.firstname());
+        adminTable.addColumn(lastnameColumn, Clan.MESSAGES.lastname());
+        adminTable.addColumn(lastlogindateColumn, Clan.MESSAGES.lastlogin());
+        adminTable.addStyleName("grid");
+        adminTable.setSelectionModel(new NoSelectionModel<UserProxy>());
+
+        /* Init the member table */
+        memberTable.addColumn(firstnameColumn, Clan.MESSAGES.firstname());
+        memberTable.addColumn(lastnameColumn, Clan.MESSAGES.lastname());
+        memberTable.addColumn(lastlogindateColumn, Clan.MESSAGES.lastlogin());
+        memberTable.addStyleName("grid");
+        memberTable.setSelectionModel(new NoSelectionModel<UserProxy>());
+
+        /* Init the user table */
+        userTable.addColumn(firstnameColumn, Clan.MESSAGES.firstname());
+        userTable.addColumn(lastnameColumn, Clan.MESSAGES.lastname());
+        userTable.addColumn(lastlogindateColumn, Clan.MESSAGES.lastlogin());
+        userTable.addStyleName("grid");
+        userTable.setSelectionModel(new NoSelectionModel<UserProxy>());
     }
 
     public void setUsers(List<UserProxy> users) {
-        table.setRowCount(users.size(), true);
-        table.setRowData(0, users);
+        List<UserProxy> adminUsers = new ArrayList<UserProxy>();
+        List<UserProxy> memberUsers = new ArrayList<UserProxy>();
+        List<UserProxy> userUsers = new ArrayList<UserProxy>();
+
+        for (UserProxy user : users) {
+            switch (user.getType()) {
+                case Admin:
+                    adminUsers.add(user);
+                    break;
+                case Member:
+                    memberUsers.add(user);
+                    break;
+                case User:
+                    userUsers.add(user);
+                    break;
+            }
+        }
+
+        adminTable.setRowCount(adminUsers.size(), true);
+        adminTable.setRowData(0, adminUsers);
+
+        memberTable.setRowCount(memberUsers.size(), true);
+        memberTable.setRowData(0, memberUsers);
+
+        userTable.setRowCount(userUsers.size(), true);
+        userTable.setRowData(0, userUsers);
     }
 
 }

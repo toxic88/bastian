@@ -53,20 +53,18 @@ public class PostView extends Composite {
             changed.setInnerHTML(Clan.DATERENDERER.format(post.getChanged()));
         }
 
+        text.setInnerHTML(SafeHtmlUtils.fromString(post.getText()).asString().replace("\n", "<br />"));
+
         if (Clan.CURRENTUSER == null || (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
             actions.addStyleName(style.hidden());
         } else {
-            InlineHyperlink edit = new InlineHyperlink();
+            InlineHyperlink edit = new InlineHyperlink("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />", true, "editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId());
             if (post.getTheme() == null) {
                 edit.setTargetHistoryToken("editTheme:" + post.getTopic() + ":" + post.getId());
-            } else {
-                edit.setTargetHistoryToken("editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId());
             }
-            edit.setHTML("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />");
             actions.add(edit);
 
-            Anchor delete = new Anchor("javascript:;");
-            delete.setHTML("<img src='" + Clan.RESOURCES.delete().getURL() + "' />");
+            Anchor delete = new Anchor("<img src='" + Clan.RESOURCES.delete().getURL() + "' />", true);
             delete.addClickHandler(new ClickHandler() {
                 @Override
                 public void onClick(ClickEvent event) {
@@ -87,8 +85,6 @@ public class PostView extends Composite {
             });
             actions.add(delete);
         }
-
-        text.setInnerHTML(SafeHtmlUtils.fromString(post.getText()).asString().replace("\n", "<br />"));
 
         UserRequest request = Clan.REQUESTFACTORY.userRequest();
         request.findUser(post.getUser()).fire(new Receiver<UserProxy>() {

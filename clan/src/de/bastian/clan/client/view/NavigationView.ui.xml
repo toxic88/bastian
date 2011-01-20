@@ -36,6 +36,10 @@
             padding: 10px;
         }
         
+        .locales {
+            padding: 15px;
+        }
+        
         .hidden {
             display: none;
         }
@@ -49,6 +53,7 @@
             <li><g:Anchor ui:field="login"><ui:msg key="login">Login</ui:msg></g:Anchor></li>
             <li><g:Anchor ui:field="logout"><ui:msg key="logout">Logout</ui:msg></g:Anchor></li>
         </ul>
+        <g:FlowPanel styleName="{style.locales}" ui:field="locales"></g:FlowPanel>
     </g:HTMLPanel>
 
 </ui:UiBinder> 

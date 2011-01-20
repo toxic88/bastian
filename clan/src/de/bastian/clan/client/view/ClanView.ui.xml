@@ -29,15 +29,22 @@
         }
         
         .content {
-            padding: 0px 20px 20px 20px;
+            padding: 0 20px 20px 20px;
         }
         
         .footer {
-            color: #DFE8F6;
-            text-align: center;
             font-size: 9px;
             display: block;
-            margin-bottom: 10px;
+            width: 700px;
+            margin: 0 auto;
+        }
+        
+        .footer a {
+            color: #8BB9E0;
+        }
+        
+        .right {
+            float: right;
         }
     </ui:style>
     <g:HTMLPanel>
@@ -51,7 +58,10 @@
 
         </g:HTMLPanel>
 
-        <g:Anchor styleName="{style.footer}" href="http://bastian-buchholz.appspot.com/">Bastian Buchholz</g:Anchor>
+        <div class="{style.footer}">
+            <g:Anchor href="http://steamcommunity.com/groups/c-lan-eu" target="_blank">C-LAN @ Steam</g:Anchor>
+            <div class="{style.right}">Design by <g:Anchor href="http://bastian-buchholz.appspot.com/" target="_blank">Bastian Buchholz</g:Anchor></div>
+        </div>
 
     </g:HTMLPanel>
 

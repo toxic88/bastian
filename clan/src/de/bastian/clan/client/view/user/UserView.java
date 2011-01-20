@@ -21,7 +21,6 @@ import de.bastian.clan.client.activity.user.UserActivity;
 import de.bastian.clan.client.view.widgets.ConfirmPopupPanel;
 import de.bastian.clan.shared.UserProxy;
 
-
 public class UserView extends Composite {
 
     public interface Presenter {
@@ -81,13 +80,10 @@ public class UserView extends Composite {
         if (Clan.CURRENTUSER == null || (Clan.CURRENTUSER.getId() != user.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
             actions.addStyleName(style.hidden());
         } else {
-            InlineHyperlink edit = new InlineHyperlink();
-            edit.setTargetHistoryToken("editUser:" + user.getId());
-            edit.setHTML("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />");
+            InlineHyperlink edit = new InlineHyperlink("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />", true, "editUser:" + user.getId());
             actions.add(edit);
 
-            Anchor delete = new Anchor("javascript:;");
-            delete.setHTML("<img src='" + Clan.RESOURCES.delete().getURL() + "' />");
+            Anchor delete = new Anchor("<img src='" + Clan.RESOURCES.delete().getURL() + "' />", true);
             delete.addClickHandler(new ClickHandler() {
                 @Override
                 public void onClick(ClickEvent event) {

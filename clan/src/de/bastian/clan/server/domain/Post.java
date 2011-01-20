@@ -168,7 +168,7 @@ public class Post {
     public void persist() throws ValidationException {
         if (getTitle() == null || getTitle().trim().isEmpty() ||
                 getText() == null || getText().trim().isEmpty() ||
-                getUser() == null || User.isLoggedIn() == null) {
+                getUser() == null || User.getCurrentUser() == null) {
             throw new ValidationException();
         }
 
@@ -178,7 +178,7 @@ public class Post {
             if (getId() == null) { // only on create...
                 setCreated(new Date());
                 setVersion(1);
-            } else if (getUser() == User.isLoggedIn().getId() || User.isLoggedIn().getType().equals(UserProxy.Type.Admin)) {
+            } else if (getUser() == User.getCurrentUser().getId() || User.getCurrentUser().getType().equals(UserProxy.Type.Admin)) {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);
             } else {
@@ -192,7 +192,7 @@ public class Post {
     }
 
     public void remove() throws ValidationException {
-        if (User.isLoggedIn() == null || (getUser() != User.isLoggedIn().getId() && !User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+        if (User.getCurrentUser() == null || (getUser() != User.getCurrentUser().getId() && !User.getCurrentUser().getType().equals(UserProxy.Type.Admin))) {
             throw new ValidationException();
         }
 

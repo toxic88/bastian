@@ -2,12 +2,16 @@ package de.bastian.clan.client.view;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window.Location;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import de.bastian.clan.client.Clan;
@@ -50,6 +54,29 @@ public class NavigationView extends Composite {
                 logout.getElement().getParentElement().addClassName(style.hidden());
             }
         });
+
+
+        String locale = LocaleInfo.getCurrentLocale().getLocaleName();
+
+        if (locale.equals("en")) {
+            Anchor de = new Anchor("<img src='" + Clan.RESOURCES.flagDe().getURL() + "' />", true);
+            de.addClickHandler(new ClickHandler() {
+                @Override
+                public void onClick(ClickEvent event) {
+                    Location.replace("/?locale=de" + Location.getHash());
+                }
+            });
+            locales.add(de);
+        } else {
+            Anchor en = new Anchor("<img src='" + Clan.RESOURCES.flagEn().getURL() + "' />", true);
+            en.addClickHandler(new ClickHandler() {
+                @Override
+                public void onClick(ClickEvent event) {
+                    Location.replace("/?locale=en" + Location.getHash());
+                }
+            });
+            locales.add(en);
+        }
     }
 
     @UiField
@@ -72,6 +99,9 @@ public class NavigationView extends Composite {
 
     @UiField
     Anchor logout;
+
+    @UiField
+    FlowPanel locales;
 
     @UiHandler("start")
     void onClickStart(ClickEvent e) {

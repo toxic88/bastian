@@ -1,18 +1,4 @@
-<!-- Indices written at Fri, 14 Jan 2011 17:32:26 UTC -->
+<!-- Indices written at Thu, 20 Jan 2011 13:35:36 UTC -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 4 times in query history -->
-    <datastore-index kind="Post" ancestor="false" source="auto">
-        <property name="theme" direction="asc"/>
-        <property name="topic" direction="asc"/>
-        <property name="created" direction="desc"/>
-    </datastore-index>
-
-    <!-- Used 3 times in query history -->
-    <datastore-index kind="Post" ancestor="false" source="auto">
-        <property name="theme" direction="asc"/>
-        <property name="created" direction="asc"/>
-    </datastore-index>
-
-</datastore-indexes>

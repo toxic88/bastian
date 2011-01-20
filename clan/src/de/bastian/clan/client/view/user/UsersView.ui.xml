@@ -7,9 +7,14 @@
     <ui:style>
     </ui:style>
     <g:HTMLPanel>
-        <h1><ui:msg key="users">Users</ui:msg></h1>
+        <h1><ui:msg key="admins">Admins</ui:msg></h1>
+        <cv:CellTable ui:field="adminTable"></cv:CellTable>
+        
+        <h1><ui:msg key="members">Members</ui:msg></h1>
+        <cv:CellTable ui:field="memberTable"></cv:CellTable>
 
-        <cv:CellTable ui:field="table"></cv:CellTable>
+        <h1><ui:msg key="users">Users</ui:msg></h1>
+        <cv:CellTable ui:field="userTable"></cv:CellTable>
 
     </g:HTMLPanel>
 </ui:UiBinder> 

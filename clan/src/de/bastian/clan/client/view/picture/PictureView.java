@@ -54,13 +54,10 @@ public class PictureView extends Composite {
         if (Clan.CURRENTUSER == null || (Clan.CURRENTUSER.getId() != picture.getUser() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
             actions.addStyleName(style.hidden());
         } else {
-            InlineHyperlink edit = new InlineHyperlink();
-            edit.setTargetHistoryToken("editPicture:" + picture.getId());
-            edit.setHTML("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />");
+            InlineHyperlink edit = new InlineHyperlink("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />", true, "editPicture:" + picture.getId());
             actions.add(edit);
 
-            Anchor delete = new Anchor("javascript:;");
-            delete.setHTML("<img src='" + Clan.RESOURCES.delete().getURL() + "' />");
+            Anchor delete = new Anchor("<img src='" + Clan.RESOURCES.delete().getURL() + "' />", true);
             delete.addClickHandler(new ClickHandler() {
                 @Override
                 public void onClick(ClickEvent event) {

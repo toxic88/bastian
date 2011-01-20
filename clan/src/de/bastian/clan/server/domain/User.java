@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.google.gwt.requestfactory.server.RequestFactoryServlet;
 
-import de.bastian.clan.server.ClanAuthFilter;
 import de.bastian.clan.server.Util;
 import de.bastian.clan.server.ValidationException;
 import de.bastian.clan.shared.UserProxy;
@@ -143,7 +142,7 @@ public class User implements Serializable {
                 user.setLastLogin(new Date());
                 user.persist();
 
-                getServletRequest().getSession(true).setAttribute(ClanAuthFilter.APPSESSIONID, user);
+                getServletRequest().getSession(true).setAttribute(Util.APPSESSIONID, user);
 
                 return user;
             }
@@ -161,11 +160,11 @@ public class User implements Serializable {
     }
 
     public static void logout() {
-        getServletRequest().getSession().removeAttribute(ClanAuthFilter.APPSESSIONID);
+        getServletRequest().getSession().removeAttribute(Util.APPSESSIONID);
     }
 
-    public static User isLoggedIn() {
-        return (User) getServletRequest().getSession().getAttribute(ClanAuthFilter.APPSESSIONID);
+    public static User getCurrentUser() {
+        return (User) getServletRequest().getSession().getAttribute(Util.APPSESSIONID);
     }
 
     public void persist() throws UserAllreadyExistsException, ValidationException {
@@ -207,7 +206,7 @@ public class User implements Serializable {
     }
 
     public void remove() throws ValidationException {
-        if (User.isLoggedIn() == null || (getId() != User.isLoggedIn().getId() && !User.isLoggedIn().getType().equals(UserProxy.Type.Admin))) {
+        if (User.getCurrentUser() == null || (getId() != User.getCurrentUser().getId() && !User.getCurrentUser().getType().equals(UserProxy.Type.Admin))) {
             throw new ValidationException();
         }
 

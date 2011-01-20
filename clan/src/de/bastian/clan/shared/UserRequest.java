@@ -15,7 +15,7 @@ public interface UserRequest extends RequestContext {
     Request<List<UserProxy>> findAll();
     Request<UserProxy> login(String email, String password);
     Request<Void> logout();
-    Request<UserProxy> isLoggedIn();
+    Request<UserProxy> getCurrentUser();
 
     InstanceRequest<UserProxy, Void> persist();
     InstanceRequest<UserProxy, Void> remove();

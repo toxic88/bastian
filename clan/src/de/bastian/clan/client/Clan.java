@@ -78,7 +78,7 @@ public class Clan implements EntryPoint {
         /**
          * Check if user is allready logged in
          */
-        REQUESTFACTORY.userRequest().isLoggedIn().fire(new Receiver<UserProxy>() {
+        REQUESTFACTORY.userRequest().getCurrentUser().fire(new Receiver<UserProxy>() {
             @Override
             public void onSuccess(UserProxy user) {
                 if (user != null){
@@ -100,9 +100,9 @@ public class Clan implements EntryPoint {
 
     private final native void initShadowbox() /*-{
         $wnd.Shadowbox.init({
-            continuous     : true,
-            counterType    : "skip",
-            skipSetup      : true
+            continuous  : true,
+            counterType : "skip",
+            skipSetup   : true
         });
     }-*/;
 

@@ -12,19 +12,9 @@
     <servlet-name>requestFactoryServlet</servlet-name>
     <servlet-class>com.google.gwt.requestfactory.server.RequestFactoryServlet</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>requestFactoryServlet</servlet-name>
     <url-pattern>/gwtRequest</url-pattern>
   </servlet-mapping>
-
-  <filter>
-    <filter-name>ClanAuthFilter</filter-name>
-    <filter-class>de.bastian.clan.server.ClanAuthFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>ClanAuthFilter</filter-name>
-    <url-pattern>/gwtRequest/*</url-pattern>
-  </filter-mapping>
 
 </web-app>

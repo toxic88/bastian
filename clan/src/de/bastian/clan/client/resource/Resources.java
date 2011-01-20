@@ -24,4 +24,10 @@ public interface Resources extends ClientBundle {
     @Source("pencil.png")
     ImageResource pencil();
 
+    @Source("de.png")
+    ImageResource flagDe();
+
+    @Source("us.png")
+    ImageResource flagEn();
+
 }
