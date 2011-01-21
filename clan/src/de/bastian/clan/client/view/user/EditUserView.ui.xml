@@ -4,35 +4,47 @@
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
     <ui:style type="de.bastian.clan.client.view.user.EditUserView.Style">
+        .table {
+            width: 100%;
+        }
+    
+        .td {
+            padding-right: 6px;
+        }
+    
+        .tdlabel {
+            width: 0px;
+        }
+    
         .hidden {
             display: none;
         }
     </ui:style>
     <g:HTMLPanel>
         <h1><ui:msg key="editUser">Edit user</ui:msg></h1>
-        <table>
+        <table class="{style.table}">
             <tr>
-                <th><ui:msg key="firstname">Firstname</ui:msg>:</th>
-                <td><g:TextBox ui:field="firstname"></g:TextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="firstname">Firstname</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="firstname"></g:TextBox></td>
             </tr>
             <tr>
-                <th><ui:msg key="lastname">Lastname</ui:msg>:</th>
-                <td><g:TextBox ui:field="lastname"></g:TextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="lastname">Lastname</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="lastname"></g:TextBox></td>
             </tr>
             <tr>
-                <th><ui:msg key="password">Password</ui:msg>:</th>
-                <td><g:PasswordTextBox ui:field="password"></g:PasswordTextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="password">Password</ui:msg>:</td>
+                <td class="{style.td}"><g:PasswordTextBox ui:field="password"></g:PasswordTextBox></td>
             </tr>
             <tr>
-                <th><ui:msg key="email">Email</ui:msg>:</th>
-                <td><g:TextBox ui:field="email"></g:TextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="email">Email</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="email"></g:TextBox></td>
             </tr>
             <tr>
-                <th><ui:msg key="steamid">Steamid</ui:msg>:</th>
-                <td><g:TextBox ui:field="steamid"></g:TextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="steamid">Steamid</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="steamid"></g:TextBox></td>
             </tr>
             <tr ui:field="typerow">
-                <th><ui:msg key="type">Type</ui:msg>:</th>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="type">Type</ui:msg>:</td>
                 <td><g:ListBox ui:field="type"></g:ListBox></td>
             </tr>
             <tr>

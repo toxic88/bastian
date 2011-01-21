@@ -5,20 +5,31 @@
              ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
              ui:generateLocales="en">
     <ui:style>
+        .table {
+            width: 100%;
+        }
+    
+        .td {
+            padding-right: 6px;
+        }
+    
+        .tdlabel {
+            width: 0px;
+        }
     </ui:style>
     <g:HTMLPanel>
         <h1><ui:msg key="editPicture">Edit picture</ui:msg></h1>
-        <table>
+        <table class="{style.table}">
             <tr>
-                <th colspan="2"><img ui:field="image" style="max-width: 650px" /></th>
+                <td colspan="2"><img ui:field="image" style="max-width: 650px" /></td>
             </tr>
             <tr>
-                <th><ui:msg key="picture">Picture</ui:msg>:</th>
-                <td><file:FileUpload ui:field="upload"></file:FileUpload></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="picture">Picture</ui:msg>:</td>
+                <td class="{style.td}"><file:FileUpload ui:field="upload"></file:FileUpload></td>
             </tr>
             <tr>
-                <th><ui:msg key="description">Description</ui:msg>:</th>
-                <td><g:TextBox ui:field="description"></g:TextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="description">Description</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="description"></g:TextBox></td>
             </tr>
             <tr>
                 <td></td>

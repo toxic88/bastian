@@ -5,19 +5,27 @@
              ui:generateLocales="en">
     <ui:style>
         .table {
-           width: 100%;
+            width: 100%;
+        }
+        
+        .td {
+            padding-right: 6px;
+        }
+        
+        .tdlabel {
+            width: 0px;
         }
     </ui:style>
     <g:HTMLPanel>
         <h1><ui:msg key="login">Login</ui:msg></h1>
         <table class="{style.table}">
             <tr>
-                <td><ui:msg key="email">Email</ui:msg>:</td>
-                <td><g:TextBox ui:field="email"></g:TextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="email">Email</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="email"></g:TextBox></td>
             </tr>
             <tr>
-                <td><ui:msg key="password">Password</ui:msg>:</td>
-                <td><g:PasswordTextBox ui:field="password"></g:PasswordTextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="password">Password</ui:msg>:</td>
+                <td class="{style.td}"><g:PasswordTextBox ui:field="password"></g:PasswordTextBox></td>
             </tr>
             <tr>
                 <td></td>

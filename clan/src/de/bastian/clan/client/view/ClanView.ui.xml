@@ -14,7 +14,7 @@
             border-radius: 10px;
             
             min-height: 700px;
-            margin: 20px auto;
+            margin: 20px auto 10px auto;
             width: 713px;
             background-color: #262626;
         }

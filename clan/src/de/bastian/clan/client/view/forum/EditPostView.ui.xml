@@ -11,18 +11,26 @@
         .textarea {
             height: 200px;
         }
+        
+        .td {
+            padding-right: 6px;
+        }
+        
+        .tdlabel {
+            width: 0px;
+        }
     </ui:style>
     <g:HTMLPanel>
         <h1>C-LAN <ui:msg key="forum">Forum</ui:msg></h1>
         <h2 ui:field="header"></h2>
         <table class="{style.table}">
             <tr>
-                <th><ui:msg key="title">Title</ui:msg>:</th>
-                <td><g:TextBox ui:field="title"></g:TextBox></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="title">Title</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="title"></g:TextBox></td>
             </tr>
             <tr>
-                <th><ui:msg key="text">Text</ui:msg>:</th>
-                <td><g:TextArea ui:field="text" styleName="{style.textarea}"></g:TextArea></td>
+                <td class="{style.tdlabel} {style.td}"><ui:msg key="text">Text</ui:msg>:</td>
+                <td class="{style.td}"><g:TextArea ui:field="text" styleName="{style.textarea}"></g:TextArea></td>
             </tr>
             <tr>
                 <td></td>
