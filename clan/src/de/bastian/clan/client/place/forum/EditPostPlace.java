@@ -66,4 +66,3 @@ public class EditPostPlace extends Place {
     }
 
 }
-

@@ -5,9 +5,9 @@ import java.util.List;
 import com.google.gwt.requestfactory.shared.InstanceRequest;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestContext;
-import com.google.gwt.requestfactory.shared.Service;
+import com.google.gwt.requestfactory.shared.ServiceName;
 
-@Service(de.bastian.clan.server.domain.Topic.class)
+@ServiceName("de.bastian.clan.server.domain.Topic")
 public interface TopicRequest extends RequestContext {
 
     Request<TopicProxy> findTopic(Long id);

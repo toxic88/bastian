@@ -5,9 +5,9 @@ import java.util.List;
 import com.google.gwt.requestfactory.shared.InstanceRequest;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestContext;
-import com.google.gwt.requestfactory.shared.Service;
+import com.google.gwt.requestfactory.shared.ServiceName;
 
-@Service(de.bastian.clan.server.domain.User.class)
+@ServiceName("de.bastian.clan.server.domain.User")
 public interface UserRequest extends RequestContext {
 
     Request<UserProxy> findUser(Long id);

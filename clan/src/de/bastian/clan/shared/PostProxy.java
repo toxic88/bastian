@@ -4,9 +4,9 @@ import java.util.Date;
 
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.EntityProxyId;
-import com.google.gwt.requestfactory.shared.ProxyFor;
+import com.google.gwt.requestfactory.shared.ProxyForName;
 
-@ProxyFor(de.bastian.clan.server.domain.Post.class)
+@ProxyForName("de.bastian.clan.server.domain.Post")
 public interface PostProxy extends EntityProxy {
 
     Long getId();

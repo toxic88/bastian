@@ -43,7 +43,7 @@ public class Clan implements EntryPoint {
     private final ClanView appWidget = new ClanView();
 
     @Override
-    public void onModuleLoad(){
+    public void onModuleLoad() {
         RESOURCES.style().ensureInjected();
         RESOURCES.shadowbox().ensureInjected();
 
@@ -51,7 +51,7 @@ public class Clan implements EntryPoint {
         ActivityManager activityManager = new ActivityManager(activityMapper, EVENTBUS);
         activityManager.setDisplay(appWidget.getContent());
 
-        AppPlaceHistoryMapper historyMapper= GWT.create(AppPlaceHistoryMapper.class);
+        AppPlaceHistoryMapper historyMapper = GWT.create(AppPlaceHistoryMapper.class);
         final PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
         historyHandler.register(PLACECONTROLLER, EVENTBUS, defaultPlace);
 
@@ -59,6 +59,9 @@ public class Clan implements EntryPoint {
 
         REQUESTFACTORY.initialize(EVENTBUS);
 
+        /**
+         * Stores the user which has been logged in currently
+         */
         EVENTBUS.addHandler(LoginEvent.TYPE, new LoginEvent.Handler() {
             @Override
             public void onLogin(LoginEvent e) {
@@ -68,6 +71,9 @@ public class Clan implements EntryPoint {
             }
         });
 
+        /**
+         * Set the current user to null if he logs out
+         */
         EVENTBUS.addHandler(LogoutEvent.TYPE, new LogoutEvent.Handler() {
             @Override
             public void onLogout(LogoutEvent e) {

@@ -4,9 +4,9 @@ import java.util.Date;
 
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.EntityProxyId;
-import com.google.gwt.requestfactory.shared.ProxyFor;
+import com.google.gwt.requestfactory.shared.ProxyForName;
 
-@ProxyFor(de.bastian.clan.server.domain.User.class)
+@ProxyForName("de.bastian.clan.server.domain.User")
 public interface UserProxy extends EntityProxy {
 
     public static enum Type {
