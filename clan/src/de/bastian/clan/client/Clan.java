@@ -60,7 +60,7 @@ public class Clan implements EntryPoint {
         REQUESTFACTORY.initialize(EVENTBUS);
 
         /**
-         * Stores the user which has been logged in currently
+         * Stores the user who has been logged in currently
          */
         EVENTBUS.addHandler(LoginEvent.TYPE, new LoginEvent.Handler() {
             @Override
