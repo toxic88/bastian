@@ -8,8 +8,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.bastian.gwt.fileapi.client.file.FileReader;
-import de.bastian.gwt.fileapi.client.file.event.LoadEndEvent;
-import de.bastian.gwt.fileapi.client.file.exception.BrowserNotSupportedException;
+import de.bastian.gwt.fileapi.client.file.FileReaderListener;
 import de.bastian.gwt.fileapi.client.ui.FileUpload;
 
 /**
@@ -28,18 +27,16 @@ public class FileApi implements EntryPoint {
         upload.addChangeHandler(new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
-                try {
-                    final FileReader fileReader = new FileReader();
-
-                    fileReader.addLoadEndHandler(new LoadEndEvent.Handler() {
+                if (FileReader.isSupported()) {
+                    final FileReader fileReader = new FileReader(new FileReaderListener() {
                         @Override
-                        public void onLoadEnd(LoadEndEvent e) {
-                            image.setUrl((String) fileReader.getResult());
+                        public void onLoadEnd(boolean lengthComputable, int loaded, int total) {
+                            image.setUrl((String) getFileReader().getResult());
                         }
-                    });
 
+                    });
                     fileReader.readAsDataURL(upload.getFiles().get(0));
-                } catch(BrowserNotSupportedException e) {
+                } else {
                    RootPanel.get().add(error);
                 }
             }
