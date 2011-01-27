@@ -45,8 +45,8 @@ public class FileReader implements IsSupported {
      * http://www.w3.org/TR/FileAPI/#filereaderConstrctr
      */
     public FileReader(FileReaderListener listener) {
-        init(listener);
         listener.setFileReader(this);
+        init(listener);
     }
 
     /**
