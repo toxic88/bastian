@@ -1,0 +1,41 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateLocales="en">
+    <ui:style>
+        .table {
+            width: 100%;
+        }
+    
+        .textarea {
+            height: 200px;
+        }
+        
+        .td {
+            padding-right: 6px;
+        }
+        
+        .tdlabel {
+            width: 0px;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+        <h1>C-LAN <ui:msg key="forum">Forum</ui:msg></h1>
+        <h2 ui:field="header"></h2>
+        <table class="{style.table}">
+            <tr>
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="title">Title</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="title"></g:TextBox></td>
+            </tr>
+            <tr>
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="text">Text</ui:msg>:</td>
+                <td class="{style.td}"><g:TextArea ui:field="text" styleName="{style.textarea}"></g:TextArea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><g:Button ui:field="button"><ui:msg key="save">Save</ui:msg></g:Button></td>
+            </tr>
+        </table>
+    </g:HTMLPanel>
+</ui:UiBinder> 
