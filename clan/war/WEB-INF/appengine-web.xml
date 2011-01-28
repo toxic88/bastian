@@ -23,8 +23,4 @@
     <handler file="overquota.html" error-code="over_quota" />
   </static-error-handlers>
 
-  <inbound-services>
-    <service>channel</service>
-  </inbound-services>
-
 </appengine-web-app>

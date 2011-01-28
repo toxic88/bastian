@@ -15,7 +15,6 @@ public interface PushClientProxy extends EntityProxy {
     String getChannel();
     Date getCreated();
     Date getChanged();
-    Long getUser();
     Integer getVersion();
 
     @Override
