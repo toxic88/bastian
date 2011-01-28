@@ -1,0 +1,56 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateLocales="en">
+    <ui:style type="de.bastian.clan.client.user.view.EditUserView.Style">
+        .table {
+            width: 100%;
+        }
+    
+        .td {
+            padding-right: 6px;
+        }
+    
+        .tdlabel {
+            width: 0px;
+        }
+    
+        .hidden {
+            display: none;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+        <h1><ui:msg key="editUser">Edit user</ui:msg></h1>
+        <table class="{style.table}">
+            <tr>
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="firstname">Firstname</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="firstname"></g:TextBox></td>
+            </tr>
+            <tr>
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="lastname">Lastname</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="lastname"></g:TextBox></td>
+            </tr>
+            <tr>
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="password">Password</ui:msg>:</td>
+                <td class="{style.td}"><g:PasswordTextBox ui:field="password"></g:PasswordTextBox></td>
+            </tr>
+            <tr>
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="email">Email</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="email"></g:TextBox></td>
+            </tr>
+            <tr>
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="steamid">Steamid</ui:msg>:</td>
+                <td class="{style.td}"><g:TextBox ui:field="steamid"></g:TextBox></td>
+            </tr>
+            <tr ui:field="typerow">
+                <td class="{style.td} {style.tdlabel}"><ui:msg key="type">Type</ui:msg>:</td>
+                <td><g:ListBox ui:field="type"></g:ListBox></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><g:Button ui:field="button"><ui:msg key="save">Save</ui:msg></g:Button></td>
+            </tr>
+        </table>
+    </g:HTMLPanel>
+</ui:UiBinder> 
