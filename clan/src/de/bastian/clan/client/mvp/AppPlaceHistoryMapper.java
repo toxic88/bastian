@@ -3,18 +3,19 @@ package de.bastian.clan.client.mvp;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 
+import de.bastian.clan.client.forum.place.EditPostPlace;
+import de.bastian.clan.client.forum.place.EditThemePlace;
+import de.bastian.clan.client.forum.place.PostsPlace;
+import de.bastian.clan.client.forum.place.ThemesPlace;
+import de.bastian.clan.client.forum.place.TopicPlace;
+import de.bastian.clan.client.guestbook.place.GuestBookPlace;
+import de.bastian.clan.client.picture.place.EditPicturePlace;
+import de.bastian.clan.client.picture.place.PicturesPlace;
 import de.bastian.clan.client.place.HelloPlace;
 import de.bastian.clan.client.place.LoginPlace;
-import de.bastian.clan.client.place.forum.EditPostPlace;
-import de.bastian.clan.client.place.forum.EditThemePlace;
-import de.bastian.clan.client.place.forum.PostsPlace;
-import de.bastian.clan.client.place.forum.ThemesPlace;
-import de.bastian.clan.client.place.forum.TopicPlace;
-import de.bastian.clan.client.place.picture.EditPicturePlace;
-import de.bastian.clan.client.place.picture.PicturesPlace;
-import de.bastian.clan.client.place.user.EditUserPlace;
-import de.bastian.clan.client.place.user.UserPlace;
-import de.bastian.clan.client.place.user.UsersPlace;
+import de.bastian.clan.client.user.place.EditUserPlace;
+import de.bastian.clan.client.user.place.UserPlace;
+import de.bastian.clan.client.user.place.UsersPlace;
 
 @WithTokenizers({
     HelloPlace.Tokenizer.class,
@@ -31,6 +32,8 @@ import de.bastian.clan.client.place.user.UsersPlace;
     EditPostPlace.Tokenizer.class,
 
     PicturesPlace.Tokenizer.class,
-    EditPicturePlace.Tokenizer.class
+    EditPicturePlace.Tokenizer.class,
+
+    GuestBookPlace.Tokenizer.class
 })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {}

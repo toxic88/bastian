@@ -1,0 +1,25 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+        .entry {
+            background-color: #262626;
+            border: 1px solid #666666;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            padding: 10px;
+            cursor: auto;
+            
+            box-shadow: #666 0 0 5px;
+            -webkit-box-shadow: #666 0 0 5px;
+            -moz-box-shadow: #666 0 0 5px;
+        }
+        
+        .b {
+            font-weight: bold;
+        }
+    </ui:style>
+    <g:HTMLPanel styleName="{style.entry}">
+        <span class="{style.b}" ui:field="name"></span>: <span ui:field="text"></span>
+    </g:HTMLPanel>
+</ui:UiBinder> 
