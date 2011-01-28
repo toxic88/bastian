@@ -18,11 +18,12 @@ import com.google.gwt.user.client.ui.Widget;
 import de.bastian.clan.client.Clan;
 import de.bastian.clan.client.events.LoginEvent;
 import de.bastian.clan.client.events.LogoutEvent;
+import de.bastian.clan.client.forum.place.TopicPlace;
+import de.bastian.clan.client.guestbook.place.GuestBookPlace;
+import de.bastian.clan.client.picture.place.PicturesPlace;
 import de.bastian.clan.client.place.HelloPlace;
 import de.bastian.clan.client.place.LoginPlace;
-import de.bastian.clan.client.place.forum.TopicPlace;
-import de.bastian.clan.client.place.picture.PicturesPlace;
-import de.bastian.clan.client.place.user.UsersPlace;
+import de.bastian.clan.client.user.place.UsersPlace;
 import de.bastian.clan.shared.UserRequest;
 
 public class NavigationView extends Composite {
@@ -98,6 +99,9 @@ public class NavigationView extends Composite {
     Anchor pictures;
 
     @UiField
+    Anchor guestbook;
+
+    @UiField
     Anchor members;
 
     @UiField
@@ -113,33 +117,38 @@ public class NavigationView extends Composite {
     FlowPanel locales;
 
     @UiHandler("start")
-    void onClickStart(ClickEvent e) {
+    void onStartClick(ClickEvent e) {
         Clan.PLACECONTROLLER.goTo(new HelloPlace());
     }
 
     @UiHandler("forum")
-    void onClickForum(ClickEvent e) {
+    void onForumClick(ClickEvent e) {
         Clan.PLACECONTROLLER.goTo(new TopicPlace());
     }
 
     @UiHandler("pictures")
-    void onClickPictures(ClickEvent e) {
+    void onPicturesClick(ClickEvent e) {
         Clan.PLACECONTROLLER.goTo(new PicturesPlace());
     }
 
+    @UiHandler("guestbook")
+    void onGuestBookClick(ClickEvent e) {
+        Clan.PLACECONTROLLER.goTo(new GuestBookPlace());
+    }
+
     @UiHandler("members")
-    void onClickMembers(ClickEvent e) {
+    void onMembersClick(ClickEvent e) {
         Clan.PLACECONTROLLER.goTo(new UsersPlace());
     }
 
 
     @UiHandler("login")
-    void onClickLogin(ClickEvent e) {
+    void onLoginClick(ClickEvent e) {
         Clan.PLACECONTROLLER.goTo(new LoginPlace());
     }
 
     @UiHandler("logout")
-    void onClickLogout(ClickEvent e) {
+    void onLogoutClick(ClickEvent e) {
         UserRequest request = Clan.REQUESTFACTORY.userRequest();
         request.logout().fire();
         Clan.EVENTBUS.fireEvent(new LogoutEvent());
