@@ -2,8 +2,11 @@ package de.bastian.clan.client;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.appengine.channel.client.Socket;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
@@ -11,6 +14,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.bastian.clan.client.events.LoginEvent;
@@ -38,6 +42,7 @@ public class Clan implements EntryPoint {
     public static final DateTimeFormat DATERENDERER = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss");
 
     public static UserProxy CURRENTUSER = null;
+    public static Socket SOCKET = null;
 
     private final Place defaultPlace = new HelloPlace();
     private final ClanView appWidget = new ClanView();
@@ -78,6 +83,18 @@ public class Clan implements EntryPoint {
             @Override
             public void onLogout(LogoutEvent e) {
                 CURRENTUSER = null;
+                if (SOCKET != null) {
+                    SOCKET.close();
+                }
+            }
+        });
+
+        Window.addCloseHandler(new CloseHandler<Window>() {
+            @Override
+            public void onClose(CloseEvent<Window> event) {
+                if (SOCKET != null) {
+                    SOCKET.close();
+                }
             }
         });
 
