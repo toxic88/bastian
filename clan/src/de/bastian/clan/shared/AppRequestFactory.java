@@ -8,5 +8,7 @@ public interface AppRequestFactory extends RequestFactory {
     TopicRequest topicRequest();
     PostRequest postRequest();
     PictureRequest pictureRequest();
+    PushClientRequest pushClientRequest();
+    GuestBookEntryRequest guestBookEntryRequest();
 
 }

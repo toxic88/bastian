@@ -43,11 +43,21 @@ public class Picture {
     @Version
     private Integer version;
 
+    // REQUEST METHODS //
 
+    /**
+     * Returns the PersistenceManager
+     * @return PersistenceManager
+     */
     public static final PersistenceManager persistenceManager() {
         return PMF.get().getPersistenceManager();
     }
 
+    /**
+     * Returns the Picture with the corresponding id
+     * @param id
+     * @return Picture
+     */
     public static Picture findPicture(Long id) {
         if (id == null) {
             return null;
@@ -94,6 +104,10 @@ public class Picture {
         }
     }
 
+    /**
+     * Creates or updates the Picture
+     * @throws ValidationException
+     */
     public void persist() throws ValidationException {
         if (getDescription() == null || getDescription().trim().isEmpty() ||
                 getImage() == null || getImage().trim().isEmpty() ||
@@ -120,6 +134,10 @@ public class Picture {
         }
     }
 
+    /**
+     * Removes the Picture
+     * @throws ValidationException
+     */
     public void remove() throws ValidationException {
         if (User.getCurrentUser() == null || (getUser() != User.getCurrentUser().getId() && !User.getCurrentUser().getType().equals(UserProxy.Type.Admin))) {
             throw new ValidationException();
@@ -135,8 +153,14 @@ public class Picture {
         }
     }
 
+    // CONSTRUCTOR //
 
+    /**
+     * Default constructor is required by the RequestFactory
+     */
     public Picture() {}
+
+    // GETTER and SETTER //
 
     public Long getId() {
         return id;
@@ -151,7 +175,7 @@ public class Picture {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.trim();
     }
 
     public String getImage() {

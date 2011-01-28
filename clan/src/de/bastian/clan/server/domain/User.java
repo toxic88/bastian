@@ -1,6 +1,5 @@
 package de.bastian.clan.server.domain;
 
-import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -25,9 +24,8 @@ import de.bastian.clan.server.ValidationException;
 import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.UserProxy.Type;
 
-@SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class User implements Serializable {
+public class User {
 
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -61,7 +59,12 @@ public class User implements Serializable {
     @Version
     private Integer version;
 
+    // REQUEST METHODS //
 
+    /**
+     * Returns the PersistenceManager
+     * @return PersistenceManager
+     */
     private static final PersistenceManager persistenceManager() {
         return PMF.get().getPersistenceManager();
     }
@@ -70,6 +73,11 @@ public class User implements Serializable {
         return RequestFactoryServlet.getThreadLocalRequest();
     }
 
+    /**
+     * Returns the User with the corresponding id
+     * @param id
+     * @return User
+     */
     public static User findUser(Long id) {
         if (id == null) {
             return null;
@@ -88,7 +96,7 @@ public class User implements Serializable {
 
     @SuppressWarnings("unchecked")
     public static User findByEmail(String email) {
-        if (email == null || email.equals("")) {
+        if (email == null || email.trim().isEmpty()) {
             return null;
         }
 
@@ -167,6 +175,10 @@ public class User implements Serializable {
         return (User) getServletRequest().getSession().getAttribute(Util.APPSESSIONID);
     }
 
+    /**
+     * Creates or updates the User
+     * @throws ValidationException
+     */
     public void persist() throws UserAllreadyExistsException, ValidationException {
         if (getFirstname() == null || getFirstname().trim().isEmpty() ||
                 getLastname() == null || getLastname().trim().isEmpty() ||
@@ -205,6 +217,10 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Removes the User
+     * @throws ValidationException
+     */
     public void remove() throws ValidationException {
         if (User.getCurrentUser() == null || (getId() != User.getCurrentUser().getId() && !User.getCurrentUser().getType().equals(UserProxy.Type.Admin))) {
             throw new ValidationException();
@@ -220,12 +236,20 @@ public class User implements Serializable {
         }
     }
 
+    @SuppressWarnings("serial")
     public class UserAllreadyExistsException extends Exception {}
 
+    @SuppressWarnings("serial")
     public class UserDoesNotExistException extends Exception {}
 
+    // CONSTRUCTOR //
 
+    /**
+     * Default constructor is required by the RequestFactory
+     */
     public User() {}
+
+    // GETTER and SETTER //
 
     public Long getId() {
         return id;
@@ -240,7 +264,7 @@ public class User implements Serializable {
     }
 
     public void setFirstname(String firstname) {
-        this.firstname = firstname;
+        this.firstname = firstname.trim();
     }
 
     public String getLastname() {
@@ -248,7 +272,7 @@ public class User implements Serializable {
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastname = lastname.trim();
     }
 
     public String getEmail() {
@@ -256,7 +280,7 @@ public class User implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.trim();
     }
 
     public String getPassword() {
@@ -280,7 +304,7 @@ public class User implements Serializable {
     }
 
     public void setSteamid(String steamid) {
-        this.steamid = steamid;
+        this.steamid = steamid.trim();
     }
 
     public Date getCreated() {

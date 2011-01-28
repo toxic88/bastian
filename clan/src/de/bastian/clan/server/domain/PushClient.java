@@ -1,22 +1,21 @@
 package de.bastian.clan.server.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import de.bastian.clan.server.PushServer;
 import de.bastian.clan.server.ValidationException;
-import de.bastian.clan.shared.UserProxy;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Topic {
+public class PushClient {
 
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -26,13 +25,16 @@ public class Topic {
     private String name;
 
     @Persistent
+    private String clientId;
+
+    @Persistent
+    private String channel;
+
+    @Persistent
     private Date created;
 
     @Persistent
     private Date changed;
-
-    @Persistent
-    private Long user;
 
     @Persistent
     private Integer version;
@@ -43,16 +45,16 @@ public class Topic {
      * Returns the PersistenceManager
      * @return PersistenceManager
      */
-    private static final PersistenceManager persistenceManager() {
+    public static final PersistenceManager persistenceManager() {
         return PMF.get().getPersistenceManager();
     }
 
     /**
-     * Returns the Topic with the corresponding id
+     * Returns the PushClient with the corresponding id
      * @param id
-     * @return Topic
+     * @return PushClient
      */
-    public static Topic findTopic(Long id) {
+    public static PushClient findPushClient(Long id) {
         if (id == null) {
             return null;
         }
@@ -60,7 +62,7 @@ public class Topic {
         PersistenceManager pm = persistenceManager();
 
         try {
-            return pm.getObjectById(Topic.class, id);
+            return pm.getObjectById(PushClient.class, id);
         } catch(RuntimeException e) {
             return null;
         } finally {
@@ -68,30 +70,72 @@ public class Topic {
         }
     }
 
-    public static List<Topic> findAll() {
+    @SuppressWarnings("unchecked")
+    public static PushClient findByClientId(String clientId) {
+        if (clientId == null || clientId.trim().isEmpty()) {
+            return null;
+        }
+
         PersistenceManager pm = persistenceManager();
 
-        List<Topic> list = new ArrayList<Topic>();
-
         try {
-            Extent<Topic> extent = pm.getExtent(Topic.class, false);
-            for (Topic t : extent) {
-                list.add(t);
+            Query query = pm.newQuery(PushClient.class, "clientId == :clientId");
+
+            List<PushClient> results = (List<PushClient>) query.execute(clientId);
+
+            if (results.size() == 1) {
+                return results.get(0);
             }
         } finally {
             pm.close();
         }
 
-        return list;
+        return null;
     }
 
     /**
-     * Creates or updates the Topic
+     * Returns all PushClients
+     * @return List<PushClient>
+     */
+    @SuppressWarnings("unchecked")
+    public static List<PushClient> findAll() {
+        PersistenceManager pm = persistenceManager();
+
+        try {
+            Query query = pm.newQuery(PushClient.class);
+            query.setOrdering("name ASC");
+
+            List<PushClient> results = (List<PushClient>) query.execute();
+            results.size(); // stupid check to receive all posts
+
+            return results;
+        } finally {
+            pm.close();
+        }
+    }
+
+    public static PushClient create(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+
+        try {
+            PushClient client = new PushClient(name, PushServer.createChannel(name));
+            client.persist();
+
+            return client;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Creates or updates a PushClient
      * @throws ValidationException
      */
     public void persist() throws ValidationException {
         if (getName() == null || getName().trim().isEmpty() ||
-                getUser() == null || User.getCurrentUser() == null) {
+                getClientId() == null || getClientId().trim().isEmpty()) {
             throw new ValidationException();
         }
 
@@ -101,11 +145,9 @@ public class Topic {
             if (getId() == null) { // only on create...
                 setCreated(new Date());
                 setVersion(1);
-            } else if (getUser() == User.getCurrentUser().getId() || User.getCurrentUser().getType().equals(UserProxy.Type.Admin)) {
+            } else {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);
-            } else {
-                throw new ValidationException();
             }
 
             pm.makePersistent(this);
@@ -115,19 +157,14 @@ public class Topic {
     }
 
     /**
-     * Removes the Topic
-     * @throws ValidationException
+     * Removes the PushClient
      */
-    public void remove() throws ValidationException {
-        if (User.getCurrentUser() == null || (getUser() != User.getCurrentUser().getId() && !User.getCurrentUser().getType().equals(UserProxy.Type.Admin))) {
-            throw new ValidationException();
-        }
-
+    public void remove() {
         PersistenceManager pm = persistenceManager();
 
         try {
-            Topic topic = pm.getObjectById(Topic.class, getId());
-            pm.deletePersistent(topic);
+            PushClient client = pm.getObjectById(PushClient.class, getId());
+            pm.deletePersistent(client);
         } finally {
             pm.close();
         }
@@ -138,7 +175,15 @@ public class Topic {
     /**
      * Default constructor is required by the RequestFactory
      */
-    public Topic() {}
+    public PushClient() {}
+
+    public PushClient(String name, String channel) {
+        setName(name);
+        setChannel(channel);
+
+        String[] clientId = channel.split("-");
+        setClientId(clientId[clientId.length-1]);
+    }
 
     // GETTER and SETTER //
 
@@ -158,6 +203,22 @@ public class Topic {
         this.name = name.trim();
     }
 
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
     public Date getCreated() {
         return created;
     }
@@ -172,14 +233,6 @@ public class Topic {
 
     public void setChanged(Date changed) {
         this.changed = changed;
-    }
-
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
     }
 
     public Integer getVersion() {

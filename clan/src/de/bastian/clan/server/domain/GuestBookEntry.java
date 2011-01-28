@@ -6,17 +6,22 @@ import java.util.List;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.persistence.Version;
 
+import com.google.appengine.api.datastore.Text;
+import com.google.appengine.repackaged.org.json.JSONObject;
+
+import de.bastian.clan.server.PushServer;
 import de.bastian.clan.server.ValidationException;
-import de.bastian.clan.shared.UserProxy;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Topic {
+public class GuestBookEntry {
 
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -26,15 +31,16 @@ public class Topic {
     private String name;
 
     @Persistent
+    private Text text;
+
+    @Persistent
     private Date created;
 
     @Persistent
     private Date changed;
 
     @Persistent
-    private Long user;
-
-    @Persistent
+    @Version
     private Integer version;
 
     // REQUEST METHODS //
@@ -43,16 +49,16 @@ public class Topic {
      * Returns the PersistenceManager
      * @return PersistenceManager
      */
-    private static final PersistenceManager persistenceManager() {
+    public static final PersistenceManager persistenceManager() {
         return PMF.get().getPersistenceManager();
     }
 
     /**
-     * Returns the Topic with the corresponding id
+     * Returns the Post with the corresponding id
      * @param id
-     * @return Topic
+     * @return Post
      */
-    public static Topic findTopic(Long id) {
+    public static GuestBookEntry findGuestBookEntry(Long id) {
         if (id == null) {
             return null;
         }
@@ -60,7 +66,7 @@ public class Topic {
         PersistenceManager pm = persistenceManager();
 
         try {
-            return pm.getObjectById(Topic.class, id);
+            return pm.getObjectById(GuestBookEntry.class, id);
         } catch(RuntimeException e) {
             return null;
         } finally {
@@ -68,14 +74,14 @@ public class Topic {
         }
     }
 
-    public static List<Topic> findAll() {
+    public static List<GuestBookEntry> findAll() {
         PersistenceManager pm = persistenceManager();
 
-        List<Topic> list = new ArrayList<Topic>();
+        List<GuestBookEntry> list = new ArrayList<GuestBookEntry>();
 
         try {
-            Extent<Topic> extent = pm.getExtent(Topic.class, false);
-            for (Topic t : extent) {
+            Extent<GuestBookEntry> extent = pm.getExtent(GuestBookEntry.class, false);
+            for (GuestBookEntry t : extent) {
                 list.add(t);
             }
         } finally {
@@ -85,13 +91,31 @@ public class Topic {
         return list;
     }
 
+    @SuppressWarnings("unchecked")
+    public static List<GuestBookEntry> findGuestBookEntrys(int start, int end) {
+        PersistenceManager pm = persistenceManager();
+
+        try {
+            Query query = pm.newQuery(GuestBookEntry.class);
+            query.setRange(start, end);
+            query.setOrdering("created DESC");
+
+            List<GuestBookEntry> results = (List<GuestBookEntry>) query.execute();
+            results.size(); // stupid check to receive all posts
+
+            return results;
+        } finally {
+            pm.close();
+        }
+    }
+
     /**
-     * Creates or updates the Topic
+     * Creates or updates the Post
      * @throws ValidationException
      */
     public void persist() throws ValidationException {
         if (getName() == null || getName().trim().isEmpty() ||
-                getUser() == null || User.getCurrentUser() == null) {
+                getText() == null || getText().trim().isEmpty()) {
             throw new ValidationException();
         }
 
@@ -101,33 +125,31 @@ public class Topic {
             if (getId() == null) { // only on create...
                 setCreated(new Date());
                 setVersion(1);
-            } else if (getUser() == User.getCurrentUser().getId() || User.getCurrentUser().getType().equals(UserProxy.Type.Admin)) {
+            } else {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);
-            } else {
-                throw new ValidationException();
             }
 
             pm.makePersistent(this);
+
+            PushServer.sendMessageToAll(new JSONObject(this).toString());
         } finally {
             pm.close();
         }
     }
 
     /**
-     * Removes the Topic
+     * Removes the PushClient
      * @throws ValidationException
      */
-    public void remove() throws ValidationException {
-        if (User.getCurrentUser() == null || (getUser() != User.getCurrentUser().getId() && !User.getCurrentUser().getType().equals(UserProxy.Type.Admin))) {
-            throw new ValidationException();
-        }
+    public void remove() {
 
         PersistenceManager pm = persistenceManager();
 
         try {
-            Topic topic = pm.getObjectById(Topic.class, getId());
-            pm.deletePersistent(topic);
+            GuestBookEntry guestBookEntry = pm.getObjectById(GuestBookEntry.class, getId());
+
+            pm.deletePersistent(guestBookEntry);
         } finally {
             pm.close();
         }
@@ -138,7 +160,7 @@ public class Topic {
     /**
      * Default constructor is required by the RequestFactory
      */
-    public Topic() {}
+    public GuestBookEntry() {}
 
     // GETTER and SETTER //
 
@@ -158,6 +180,21 @@ public class Topic {
         this.name = name.trim();
     }
 
+    public String getText() {
+        if (text == null) {
+            return null;
+        }
+        return text.getValue();
+    }
+
+    public void setText(String text) {
+        if (text == null) {
+            this.text = null;
+        } else {
+            this.text = new Text(text.trim());
+        }
+    }
+
     public Date getCreated() {
         return created;
     }
@@ -172,14 +209,6 @@ public class Topic {
 
     public void setChanged(Date changed) {
         this.changed = changed;
-    }
-
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
     }
 
     public Integer getVersion() {

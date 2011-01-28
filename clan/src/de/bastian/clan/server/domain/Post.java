@@ -51,11 +51,21 @@ public class Post {
     @Version
     private Integer version;
 
+    // REQUEST METHODS //
 
+    /**
+     * Returns the PersistenceManager
+     * @return PersistenceManager
+     */
     public static final PersistenceManager persistenceManager() {
         return PMF.get().getPersistenceManager();
     }
 
+    /**
+     * Returns the Post with the corresponding id
+     * @param id
+     * @return Post
+     */
     public static Post findPost(Long id) {
         if (id == null) {
             return null;
@@ -165,6 +175,10 @@ public class Post {
         }
     }
 
+    /**
+     * Creates or updates the Post
+     * @throws ValidationException
+     */
     public void persist() throws ValidationException {
         if (getTitle() == null || getTitle().trim().isEmpty() ||
                 getText() == null || getText().trim().isEmpty() ||
@@ -191,6 +205,10 @@ public class Post {
         }
     }
 
+    /**
+     * Removes the PushClient
+     * @throws ValidationException
+     */
     public void remove() throws ValidationException {
         if (User.getCurrentUser() == null || (getUser() != User.getCurrentUser().getId() && !User.getCurrentUser().getType().equals(UserProxy.Type.Admin))) {
             throw new ValidationException();
@@ -213,8 +231,14 @@ public class Post {
         }
     }
 
+    // CONSTRUCTOR //
 
+    /**
+     * Default constructor is required by the RequestFactory
+     */
     public Post() {}
+
+    // GETTER and SETTER //
 
     public Long getId() {
         return id;
@@ -229,7 +253,7 @@ public class Post {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.trim();
     }
 
     public String getText() {
@@ -243,7 +267,7 @@ public class Post {
         if (text == null) {
             this.text = null;
         } else {
-            this.text = new Text(text);
+            this.text = new Text(text.trim());
         }
     }
 
