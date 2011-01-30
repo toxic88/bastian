@@ -13,7 +13,7 @@
         }
     
         .tdlabel {
-            width: 0px;
+            width: 1px;
         }
     
         .hidden {

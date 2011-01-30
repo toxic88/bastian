@@ -11,7 +11,6 @@ import com.google.gwt.requestfactory.shared.ServiceName;
 public interface PushClientRequest extends RequestContext {
 
     Request<PushClientProxy> findPushClient(Long id);
-    Request<PushClientProxy> findByClientId(String clientId);
     Request<List<PushClientProxy>> findAll();
     Request<PushClientProxy> create(String name);
 

@@ -70,29 +70,6 @@ public class PushClient {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public static PushClient findByClientId(String clientId) {
-        if (clientId == null || clientId.trim().isEmpty()) {
-            return null;
-        }
-
-        PersistenceManager pm = persistenceManager();
-
-        try {
-            Query query = pm.newQuery(PushClient.class, "clientId == :clientId");
-
-            List<PushClient> results = (List<PushClient>) query.execute(clientId);
-
-            if (results.size() == 1) {
-                return results.get(0);
-            }
-        } finally {
-            pm.close();
-        }
-
-        return null;
-    }
-
     /**
      * Returns all PushClients
      * @return List<PushClient>
@@ -120,7 +97,10 @@ public class PushClient {
         }
 
         try {
-            PushClient client = new PushClient(name, PushServer.createChannel(name));
+            PushClient client = new PushClient(name);
+            client.persist(); // just for creating an id
+
+            client.setChannel(PushServer.createChannel(client));
             client.persist();
 
             return client;
@@ -134,8 +114,7 @@ public class PushClient {
      * @throws ValidationException
      */
     public void persist() throws ValidationException {
-        if (getName() == null || getName().trim().isEmpty() ||
-                getClientId() == null || getClientId().trim().isEmpty()) {
+        if (getName() == null || getName().trim().isEmpty()) {
             throw new ValidationException();
         }
 
@@ -177,12 +156,8 @@ public class PushClient {
      */
     public PushClient() {}
 
-    public PushClient(String name, String channel) {
+    public PushClient(String name) {
         setName(name);
-        setChannel(channel);
-
-        String[] clientId = channel.split("-");
-        setClientId(clientId[clientId.length-1]);
     }
 
     // GETTER and SETTER //
@@ -201,14 +176,6 @@ public class PushClient {
 
     public void setName(String name) {
         this.name = name.trim();
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
     }
 
     public String getChannel() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Google Inc.
+ * Copyright (C) 2011 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,65 +18,41 @@ package com.google.gwt.appengine.channel.client;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.ScriptElement;
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.http.client.RequestCallback;
-import com.google.gwt.http.client.RequestException;
-import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Timer;
 
 /** Manages creating {@link Channel}s to receive messages from the server. */
 public class ChannelFactory {
 
-    private static final String CHANNEL_SRC  = "/_ah/channel/jsapi";
-    private static boolean scriptLoaded = false;
-
-    // Channel ID being created the first time a channel is created, stored here
-    // while the jsapi script is being retrieved and executed
-    private static String channelId;
+    private static String CHANNEL_SRC = "/_ah/channel/jsapi";
 
     private static Channel channel = null;
 
     public static void createChannel(final String channelId, final CreateChannelCallback cb) {
-        ChannelFactory.channelId = channelId;
+        if (channel == null) {
+            ScriptElement script = Document.get().createScriptElement();
+            script.setSrc(CHANNEL_SRC);
+            Document.get().getElementsByTagName("head").getItem(0).appendChild(script);
 
-        if (!scriptLoaded) {
-            addJsniCallback(cb);
-            RequestBuilder rb = new RequestBuilder(RequestBuilder.GET, CHANNEL_SRC);
-            try {
-                rb.sendRequest(null, new RequestCallback() {
-
-                    @Override
-                    public void onResponseReceived(Request request, Response response) {
-                        String text = response.getText() + ";__gwt_ChannelFactory_callback();";
-                        ScriptElement script = Document.get().createScriptElement();
-                        script.setText(text);
-                        Document.get().getElementsByTagName("head").getItem(0).appendChild(script);
+            new Timer() {
+                @Override
+                public void run() {
+                    if (scriptLoaded()) {
+                        cb.onCreateChannel(channel = createChannelImpl(channelId));
+                        cancel();
                     }
-
-                    @Override
-                    public void onError(Request request, Throwable exception) {
-                        throw new RuntimeException(exception);
-                    }
-                });
-            } catch (RequestException e) {
-                throw new RuntimeException(e);
-            }
+                }
+            }.scheduleRepeating(100);
         } else {
-            cb.onCreateChannel(createChannelImpl());
+            cb.onCreateChannel(channel);
         }
     }
 
-    private static final native void addJsniCallback(final CreateChannelCallback cb) /*-{
-        $wnd.__gwt_ChannelFactory_callback = $entry(function() {
-            @com.google.gwt.appengine.channel.client.ChannelFactory::scriptLoaded = true;
-            @com.google.gwt.appengine.channel.client.ChannelFactory::channel = @com.google.gwt.appengine.channel.client.ChannelFactory::createChannelImpl()();
-
-            cb.@com.google.gwt.appengine.channel.client.CreateChannelCallback::onCreateChannel(Lcom/google/gwt/appengine/channel/client/Channel;)(@com.google.gwt.appengine.channel.client.ChannelFactory::channel);
-        });
+    private static native boolean scriptLoaded() /*-{
+        return !!$wnd.goog && !!$wnd.goog.appengine && !!$wnd.goog.appengine.Channel;
     }-*/;
 
-    private static final native Channel createChannelImpl() /*-{
-        return new $wnd.goog.appengine.Channel(@com.google.gwt.appengine.channel.client.ChannelFactory::channelId);
+    private static final native Channel createChannelImpl(String channelId) /*-{
+        return new $wnd.goog.appengine.Channel(channelId);
     }-*/;
 
 }
