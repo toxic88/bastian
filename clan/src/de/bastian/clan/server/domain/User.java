@@ -186,7 +186,6 @@ public class User {
                 getEmail() == null || getEmail().trim().isEmpty()) {
             throw new ValidationException();
         }
-
         PersistenceManager pm = persistenceManager();
 
         try {
@@ -304,7 +303,10 @@ public class User {
     }
 
     public void setSteamid(String steamid) {
-        this.steamid = steamid.trim();
+        if (steamid != null) {
+            steamid = steamid.trim();
+        }
+        this.steamid = steamid;
     }
 
     public Date getCreated() {

@@ -25,9 +25,6 @@ public class PushClient {
     private String name;
 
     @Persistent
-    private String clientId;
-
-    @Persistent
     private String channel;
 
     @Persistent

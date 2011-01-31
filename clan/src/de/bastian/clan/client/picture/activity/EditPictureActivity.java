@@ -24,7 +24,7 @@ public class EditPictureActivity extends AppActivity implements EditPictureView.
 
     public EditPictureActivity(EditPicturePlace place, ClientFactory clientFactory) {
         super(place, clientFactory);
-        this.pictureId = place.getPictureId();
+        pictureId = place.getPictureId();
     }
 
     @Override

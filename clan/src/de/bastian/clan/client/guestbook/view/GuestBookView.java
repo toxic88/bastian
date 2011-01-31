@@ -55,7 +55,6 @@ public class GuestBookView extends Composite {
                 Clan.EVENTBUS.addHandler(LoginEvent.TYPE, new LoginEvent.Handler() {
                     @Override
                     public void onLogin(LoginEvent e) {
-                        initChannel(e.getUser().getFirstname());
                         name.setText(e.getUser().getFirstname());
                     }
                 });

@@ -182,7 +182,7 @@ public class Post {
     public void persist() throws ValidationException {
         if (getTitle() == null || getTitle().trim().isEmpty() ||
                 getText() == null || getText().trim().isEmpty() ||
-                getUser() == null || User.getCurrentUser() == null) {
+                getUser() == null && User.getCurrentUser() == null) {
             throw new ValidationException();
         }
 
@@ -192,6 +192,7 @@ public class Post {
             if (getId() == null) { // only on create...
                 setCreated(new Date());
                 setVersion(1);
+                setUser(User.getCurrentUser().getId());
             } else if (getUser() == User.getCurrentUser().getId() || User.getCurrentUser().getType().equals(UserProxy.Type.Admin)) {
                 setChanged(new Date());
                 setVersion(getVersion() + 1);

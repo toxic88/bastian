@@ -1,7 +1,6 @@
 package de.bastian.clan.client.forum.activity;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.requestfactory.shared.ServerFailure;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -17,7 +16,7 @@ import de.bastian.clan.shared.TopicProxy;
 import de.bastian.clan.shared.TopicRequest;
 import de.bastian.clan.shared.UserProxy;
 
-public class EditThemeActivity extends AppActivity implements EditThemeView.Presenter {
+public class EditThemeActivity extends AppActivity {
 
     private Long topicId;
     private Long themeId;
@@ -31,7 +30,6 @@ public class EditThemeActivity extends AppActivity implements EditThemeView.Pres
     @Override
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
         final EditThemeView editThemeView = clientFactory.getEditThemeView();
-        editThemeView.setActivity(this);
 
         TopicRequest request = Clan.REQUESTFACTORY.topicRequest();
 
@@ -44,7 +42,7 @@ public class EditThemeActivity extends AppActivity implements EditThemeView.Pres
                 }
 
                 if (themeId == null) {
-                    editThemeView.setTheme(topic, null);
+                    editThemeView.edit(topic, null);
                     containerWidget.setWidget(editThemeView.asWidget());
                     return;
                 }
@@ -64,46 +62,10 @@ public class EditThemeActivity extends AppActivity implements EditThemeView.Pres
                             return;
                         }
 
-                        editThemeView.setTheme(topic, theme);
+                        editThemeView.edit(topic, theme);
                         containerWidget.setWidget(editThemeView.asWidget());
                     }
                 });
-            }
-        });
-    }
-
-    @Override
-    public void updateTheme(TopicProxy topic, PostProxy theme, String title, String text) {
-        if (Clan.CURRENTUSER == null || (theme != null && (theme.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)))) {
-            History.back();
-            return;
-        }
-
-        if (topic == null || title.isEmpty() || text.isEmpty()) {
-            // TODO: show input errors
-            return;
-        }
-
-        PostRequest request = Clan.REQUESTFACTORY.postRequest();
-
-        if (theme == null) {
-            theme = request.create(PostProxy.class);
-            theme.setTopic(topic.getId());
-            theme.setUser(Clan.CURRENTUSER.getId());
-        } else {
-            theme = request.edit(theme);
-        }
-        theme.setTitle(title);
-        theme.setText(text);
-
-        request.persist().using(theme).fire(new AppReceiver<Void>() {
-            @Override
-            public void onSuccess(Void response) {
-                History.back();
-            }
-            @Override
-            public void onFailure(ServerFailure error) {
-                // TODO: do something....
             }
         });
     }

@@ -10,6 +10,7 @@
     <inherits name="com.google.gwt.place.Place"/>
 
     <inherits name="com.google.gwt.requestfactory.RequestFactory"/>
+    <inherits name="com.google.gwt.editor.Editor"/>
 
     <!-- Third party dependencies -->
     <inherits name="com.google.gwt.appengine.channel.Channel"/>

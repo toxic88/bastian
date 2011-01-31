@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><g:Button ui:field="button"><ui:msg key="save">Save</ui:msg></g:Button></td>
+                <td><g:Button ui:field="save"><ui:msg key="save">Save</ui:msg></g:Button></td>
             </tr>
         </table>
     </g:HTMLPanel>

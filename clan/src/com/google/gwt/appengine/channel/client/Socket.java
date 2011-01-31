@@ -46,6 +46,7 @@ public class Socket extends JavaScriptObject {
             case 3:
                 return @com.google.gwt.appengine.channel.client.Socket.ReadyState::CLOSED;
         }
+        return null;
     }-*/;
 
 }

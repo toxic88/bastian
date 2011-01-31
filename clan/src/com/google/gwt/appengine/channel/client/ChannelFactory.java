@@ -23,7 +23,7 @@ import com.google.gwt.user.client.Timer;
 /** Manages creating {@link Channel}s to receive messages from the server. */
 public class ChannelFactory {
 
-    private static String CHANNEL_SRC = "/_ah/channel/jsapi";
+    private static final String CHANNEL_SRC = "/_ah/channel/jsapi";
 
     private static Channel channel = null;
 
@@ -47,7 +47,7 @@ public class ChannelFactory {
         }
     }
 
-    private static native boolean scriptLoaded() /*-{
+    private static final native boolean scriptLoaded() /*-{
         return !!$wnd.goog && !!$wnd.goog.appengine && !!$wnd.goog.appengine.Channel;
     }-*/;
 
