@@ -1,5 +1,6 @@
 package de.bastian.clan.server.domain;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ import de.bastian.clan.server.ValidationException;
 import de.bastian.clan.shared.UserProxy;
 import de.bastian.clan.shared.UserProxy.Type;
 
+@SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class User {
+public class User implements Serializable {
 
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -155,11 +157,11 @@ public class User {
                 return user;
             }
         } catch (NoSuchAlgorithmException e) {
-
+            // what should
         } catch (UserAllreadyExistsException e) {
-
+            // i do
         } catch (ValidationException e) {
-
+            // here?
         } finally {
             pm.close();
         }

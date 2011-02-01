@@ -36,10 +36,10 @@ public class LoginView extends Composite {
     PasswordTextBox password;
 
     @UiField
-    Button button;
+    Button login;
 
-    @UiHandler("button")
-    void onClickButton(ClickEvent e) {
+    @UiHandler("login")
+    void onLoginClick(ClickEvent e) {
         activity.login(email.getText(), password.getText());
         password.setText("");
     }

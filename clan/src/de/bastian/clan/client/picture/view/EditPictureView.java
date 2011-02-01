@@ -46,7 +46,7 @@ public class EditPictureView extends Composite {
     FileUpload upload;
 
     @UiField
-    Button button;
+    Button save;
 
     @UiHandler("upload")
     void onChangeUpload(ChangeEvent e) {
@@ -71,8 +71,8 @@ public class EditPictureView extends Composite {
         fr.readAsDataURL(upload.getFiles().get(0));
     }
 
-    @UiHandler("button")
-    void onClickButton(ClickEvent e) {
+    @UiHandler("save")
+    void onSaveClick(ClickEvent e) {
         activity.updatePicture(picture, image.getSrc(), description.getText());
     }
 

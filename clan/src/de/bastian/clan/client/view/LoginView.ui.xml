@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><g:Button ui:field="button"><ui:msg key="login">Login</ui:msg></g:Button></td>
+                <td><g:Button ui:field="login"><ui:msg key="login">Login</ui:msg></g:Button></td>
             </tr>
         </table>
     </g:HTMLPanel>
