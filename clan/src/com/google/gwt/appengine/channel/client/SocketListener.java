@@ -31,7 +31,7 @@ public abstract class SocketListener {
     public abstract void onMessage(String message);
 
     /** Called when the socket receives an error message from the server. */
-    public void onError(int code, String message) {}
+    public void onError(SocketError error) {}
 
     public final Socket getSocket() {
         return socket;

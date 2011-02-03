@@ -21,9 +21,10 @@ import com.google.gwt.core.client.JavaScriptObject;
 /** Returned by calls to {@link Channel#open(SocketListener)}. */
 public class Socket extends JavaScriptObject {
 
-    public static enum ReadyState {
-        CONNECTING, OPEN, CLOSING, CLOSED
-    }
+    public static final int CONNECTING = 0;
+    public static final int OPEN = 1;
+    public static final int CLOSING = 2;
+    public static final int CLOSED = 3;
 
     protected Socket() {}
 
@@ -35,18 +36,8 @@ public class Socket extends JavaScriptObject {
         this.close();
     }-*/;
 
-    public final native ReadyState getReadyState() /*-{
-        switch (this.readyState) {
-            case 0:
-                return @com.google.gwt.appengine.channel.client.Socket.ReadyState::CONNECTING;
-            case 1:
-                return @com.google.gwt.appengine.channel.client.Socket.ReadyState::OPEN;
-            case 2:
-                return @com.google.gwt.appengine.channel.client.Socket.ReadyState::CLOSING;
-            case 3:
-                return @com.google.gwt.appengine.channel.client.Socket.ReadyState::CLOSED;
-        }
-        return null;
+    public final native int getReadyState() /*-{
+        return this.readyState;
     }-*/;
 
 }

@@ -39,7 +39,7 @@ public class Channel extends JavaScriptObject {
       listener.@com.google.gwt.appengine.channel.client.SocketListener::onMessage(Ljava/lang/String;)(event.data);
     };
     socket.onerror = function(event) {
-      listener.@com.google.gwt.appengine.channel.client.SocketListener::onError(ILjava/lang/String;)(event.code, event.description);
+      listener.@com.google.gwt.appengine.channel.client.SocketListener::onError(Lcom/google/gwt/appengine/channel/client/SocketError;)(event);
     };
     return socket;
   }-*/;
