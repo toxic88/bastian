@@ -2,8 +2,6 @@ package de.bastian.gwt.fileapi.client.file;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import de.bastian.gwt.fileapi.client.file.FileReader.ReadyState;
-
 /**
  * http://www.w3.org/TR/FileAPI/#FileReader-interface
  * @author Bastian Buchholz
@@ -64,16 +62,8 @@ public class FileReaderImpl extends JavaScriptObject {
      * http://www.w3.org/TR/FileAPI/#dfn-readystate
      * @return int
      */
-    public final native ReadyState getReadyState() /*-{
-        switch (this.readyState) {
-            case 0:
-                return @de.bastian.gwt.fileapi.client.file.FileReader.ReadyState::EMPTY;
-            case 1:
-                return @de.bastian.gwt.fileapi.client.file.FileReader.ReadyState::LOADING;
-            case 2:
-                return @de.bastian.gwt.fileapi.client.file.FileReader.ReadyState::DONE;
-        }
-
+    public final native int getReadyState() /*-{
+        return this.readyState;
     }-*/;
 
     /**

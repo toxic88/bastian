@@ -9,24 +9,19 @@ import com.google.gwt.user.client.IsSupported;
 public class FileReader implements IsSupported {
 
     /**
-     * http://www.w3.org/TR/FileAPI/#blobreader-state
+     * http://www.w3.org/TR/FileAPI/#dfn-empty
      */
-    public static enum ReadyState {
-        /**
-         * http://www.w3.org/TR/FileAPI/#dfn-empty
-         */
-        EMPTY,
+    public static final int EMPTY = 0;
 
-        /**
-         * http://www.w3.org/TR/FileAPI/#dfn-loading
-         */
-        LOADING,
+    /**
+     * http://www.w3.org/TR/FileAPI/#dfn-loading
+     */
+    public static final int LOADING = 1;
 
-        /**
-         * http://www.w3.org/TR/FileAPI/#dfn-done
-         */
-        DONE
-    }
+    /**
+     * http://www.w3.org/TR/FileAPI/#dfn-done
+     */
+    public static final int DONE = 2;
 
     /**
      * http://www.w3.org/TR/FileAPI/#FileReader-interface
@@ -57,27 +52,28 @@ public class FileReader implements IsSupported {
         this.@de.bastian.gwt.fileapi.client.file.FileReader::impl = new $wnd.FileReader();
 
         this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onloadstart = function(e) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoadStart(ZII)(e.lengthComputable, e.loaded, e.total);
+            $wnd.console.log(e);
+            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoadStart(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(e);
         };
 
         this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onprogress = function(e) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onProgress(ZII)(e.lengthComputable, e.loaded, e.total);
+            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onProgress(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(e);
         };
 
         this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onload = function(e) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoad(ZII)(e.lengthComputable, e.loaded, e.total);
+            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoad(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(e);
         };
 
         this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onabort = function(e) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onAbort(ZII)(e.lengthComputable, e.loaded, e.total);
+            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onAbort(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(e);
         };
 
         this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onerror = function(e) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onError(ZII)(e.lengthComputable, e.loaded, e.total);
+            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onError(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(e);
         };
 
         this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onloadend = function(e) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoadEnd(ZII)(e.lengthComputable, e.loaded, e.total);
+            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoadEnd(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(e);
         };
     }-*/;
 
@@ -133,13 +129,13 @@ public class FileReader implements IsSupported {
      * http://www.w3.org/TR/FileAPI/#dfn-readystate
      * @return int
      */
-    public final ReadyState getReadyState() {
+    public final int getReadyState() {
         return impl.getReadyState();
     }
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-result
-     * @return String / Binary
+     * @return Object
      */
     public final Object getResult() {
         return impl.getResult();

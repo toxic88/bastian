@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import de.bastian.gwt.fileapi.client.file.FileReader;
 import de.bastian.gwt.fileapi.client.file.FileReaderListener;
+import de.bastian.gwt.fileapi.client.file.ProgressEvent;
 import de.bastian.gwt.fileapi.client.ui.FileUpload;
 
 /**
@@ -30,10 +31,9 @@ public class FileApi implements EntryPoint {
                 if (FileReader.isSupported()) {
                     final FileReader fileReader = new FileReader(new FileReaderListener() {
                         @Override
-                        public void onLoadEnd(boolean lengthComputable, int loaded, int total) {
+                        public void onLoadEnd(ProgressEvent e) {
                             image.setUrl((String) getFileReader().getResult());
                         }
-
                     });
                     fileReader.readAsDataURL(upload.getFiles().get(0));
                 } else {

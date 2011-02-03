@@ -10,51 +10,39 @@ public abstract class FileReaderListener {
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onloadstart
-     * @param lengthComputable
-     * @param loaded
-     * @param total
+     * @param ProgressEvent
      */
-    public void onLoadStart(boolean lengthComputable, int loaded, int total) {}
+    public void onLoadStart(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onprogress
-     * @param lengthComputable
-     * @param loaded
-     * @param total
+     * @param ProgressEvent
      */
-    public void onProgress(boolean lengthComputable, int loaded, int total) {}
+    public void onProgress(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onabort
-     * @param lengthComputable
-     * @param loaded
-     * @param total
+     * @param ProgressEvent
      */
-    public void onAbort(boolean lengthComputable, int loaded, int total) {}
+    public void onAbort(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onerror
-     * @param lengthComputable
-     * @param loaded
-     * @param total
+     * @param ProgressEvent
      */
-    public void onError(boolean lengthComputable, int loaded, int total) {}
+    public void onError(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onload
-     * @param lengthComputable
-     * @param loaded
-     * @param total
+     * @param ProgressEvent
      */
-    public void onLoad(boolean lengthComputable, int loaded, int total) {}
+    public void onLoad(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onloadend
-     * @param lengthComputable
-     * @param loaded
-     * @param total
+     * @param ProgressEvent
      */
-    abstract public void onLoadEnd(boolean lengthComputable, int loaded, int total);
+    abstract public void onLoadEnd(ProgressEvent event);
 
     public final FileReader getFileReader() {
         return fileReader;
