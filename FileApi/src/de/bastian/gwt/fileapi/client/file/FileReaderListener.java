@@ -2,10 +2,14 @@ package de.bastian.gwt.fileapi.client.file;
 
 /**
  * http://www.w3.org/TR/FileAPI/#event-handler-attributes-section
- * @author Bastian
+ * @author Bastian Buchholz
  */
 public abstract class FileReaderListener {
 
+    /**
+     * So you can reference the FileReader object..
+     * Don't know if this is the right way to do it but it works
+     */
     private FileReader fileReader;
 
     /**

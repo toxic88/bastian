@@ -4,7 +4,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * http://www.w3.org/TR/2010/WD-progress-events-20101019/#the-progressevent-interface
- * @author Bastian
+ * @author Bastian Buchholz
  */
 public class ProgressEvent extends JavaScriptObject {
 
