@@ -1,12 +1,11 @@
 package de.bastian.gwt.fileapi.client.file;
 
-import com.google.gwt.user.client.IsSupported;
 
 /**
  * http://www.w3.org/TR/FileAPI/#FileReader-interface
  * @author Bastian Buchholz
  */
-public class FileReader implements IsSupported {
+public class FileReader {
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-empty
