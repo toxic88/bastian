@@ -3,7 +3,7 @@
     window.Line = ColorElem.extend({
 
         /**
-         * A Line wich can be drawn on a coordinate system
+         * A Line which can be drawn on a coordinate system
          * 
          * @param x1
          * @param y1

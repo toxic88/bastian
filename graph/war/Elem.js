@@ -1,6 +1,6 @@
 (function() {
     /**
-     * An abstract class for all elements wich can be drawn by the CoordinateSystem
+     * An abstract class for all elements which can be drawn by the CoordinateSystem
      */
     window.Elem = Observable.extend({
 
@@ -12,14 +12,14 @@
         },
 
         /**
-         * The coordinate system to wich this function is bounded
+         * The coordinate system to which this function is bounded
          * 
          * @type CoordinateSystem
          */
         coordinateSystem : null,
 
         /**
-         * Returns the coordinate system to wich this point is bound
+         * Returns the coordinate system to which this point is bound
          * 
          * @return CordinateSystem
          */

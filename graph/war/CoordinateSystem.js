@@ -72,28 +72,28 @@
         stepSizeSpacing : 50,
 
         /**
-         * The maximum x-value wich can be displayed
+         * The maximum x-value which can be displayed
          * 
          * @type Number
          */
         maxX : undefined,
 
         /**
-         * The minimum x-value wich can be displayed
+         * The minimum x-value which can be displayed
          * 
          * @type Number
          */
         minX : undefined,
 
         /**
-         * The maximum y-value wich can be displayed
+         * The maximum y-value which can be displayed
          * 
          * @type Number
          */
         maxY : undefined,
 
         /**
-         * The minimum y-value wich can be displayed
+         * The minimum y-value which can be displayed
          * 
          * @type Number
          */
@@ -166,7 +166,7 @@
         },
 
         /**
-         * Adds an element to the stack wich will be drawn automatically
+         * Adds an element to the stack which will be drawn automatically
          * 
          * @param e
          */
@@ -189,7 +189,7 @@
         },
 
         /**
-         * Adds an array of elements to the stack wich will be drawn automatically
+         * Adds an array of elements to the stack which will be drawn automatically
          * 
          * @param es
          */
@@ -313,7 +313,7 @@
         },
 
         /**
-         * Returns the highest x value wich is currently visible
+         * Returns the highest x value which is currently visible
          * 
          * @type Number
          */
@@ -322,7 +322,7 @@
         },
 
         /**
-         * Returns the lowest x value wich is currently visible
+         * Returns the lowest x value which is currently visible
          * 
          * @type Number
          */
@@ -331,7 +331,7 @@
         },
 
         /**
-         * Returns the highest y value wich is currently visible
+         * Returns the highest y value which is currently visible
          * 
          * @type Number
          */
@@ -340,7 +340,7 @@
         },
 
         /**
-         * Returns the lowest y value wich is currently visible
+         * Returns the lowest y value which is currently visible
          * 
          * @type Number
          */
@@ -613,7 +613,7 @@
         initEvents : function() {
             var self = this;
 
-            if (!self.el.dataset) { // for browser wich are not supporting dataset (firefox)
+            if (!self.el.dataset) { // for browser which are not supporting dataset (firefox)
                 self.el.dataset = {};
             }
 
@@ -754,7 +754,7 @@
     };
 
     /**
-     * Constants in wich direction the coordinatesystem should be moved
+     * Constants in which direction the coordinatesystem should be moved
      * 
      * @see CoordinateSystem.move()
      */

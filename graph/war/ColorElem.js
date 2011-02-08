@@ -1,6 +1,6 @@
 (function() {
     /**
-     * An abstract class for all color elements wich can be drawn by the CoordinateSystem
+     * An abstract class for all color elements which can be drawn by the CoordinateSystem
      */
     window.ColorElem = Elem.extend({
 

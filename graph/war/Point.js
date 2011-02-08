@@ -13,7 +13,7 @@
     window.Point = ColorElem.extend({
 
         /**
-         * A point wich can be drawn on a coordinate system with different types
+         * A point which can be drawn on a coordinate system with different types
          * 
          * @param x
          * @param y
