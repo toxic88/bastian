@@ -6,7 +6,6 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
-import com.google.gwt.event.dom.client.MouseMoveEvent;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -75,7 +74,6 @@ public class FileApi implements EntryPoint {
                                 @Override
                                 public void onAbort(ProgressEvent event) {
                                     GWT.log("onAbort");
-                                    MouseMoveEvent
                                 }
                                 @Override
                                 public void onError(ProgressEvent event) {
