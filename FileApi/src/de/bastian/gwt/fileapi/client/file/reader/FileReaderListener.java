@@ -1,4 +1,6 @@
-package de.bastian.gwt.fileapi.client.file;
+package de.bastian.gwt.fileapi.client.file.reader;
+
+import de.bastian.gwt.fileapi.client.file.events.ProgressEvent;
 
 /**
  * http://www.w3.org/TR/FileAPI/#event-handler-attributes-section
@@ -14,39 +16,39 @@ public abstract class FileReaderListener {
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onloadstart
-     * @param ProgressEvent
+     * @param event
      */
     public void onLoadStart(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onprogress
-     * @param ProgressEvent
+     * @param event
      */
     public void onProgress(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onabort
-     * @param ProgressEvent
+     * @param event
      */
     public void onAbort(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onerror
-     * @param ProgressEvent
+     * @param event
      */
     public void onError(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onload
-     * @param ProgressEvent
+     * @param event
      */
     public void onLoad(ProgressEvent event) {}
 
     /**
      * http://www.w3.org/TR/FileAPI/#dfn-onloadend
-     * @param ProgressEvent
+     * @param event
      */
-    abstract public void onLoadEnd(ProgressEvent event);
+    public abstract void onLoadEnd(ProgressEvent event);
 
     public final FileReader getFileReader() {
         return fileReader;

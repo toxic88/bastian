@@ -1,5 +1,7 @@
-package de.bastian.gwt.fileapi.client.file;
+package de.bastian.gwt.fileapi.client.file.reader;
 
+import de.bastian.gwt.fileapi.client.file.Blob;
+import de.bastian.gwt.fileapi.client.file.exceptions.FileError;
 
 /**
  * http://www.w3.org/TR/FileAPI/#FileReader-interface
@@ -48,30 +50,30 @@ public class FileReader {
      * Initialize event callbacks
      */
     private final native void init(FileReaderListener listener) /*-{
-        this.@de.bastian.gwt.fileapi.client.file.FileReader::impl = new $wnd.FileReader();
+        this.@de.bastian.gwt.fileapi.client.file.reader.FileReader::impl = new $wnd.FileReader();
 
-        this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onloadstart = function(event) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoadStart(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(event);
+        this.@de.bastian.gwt.fileapi.client.file.reader.FileReader::impl.onloadstart = function(event) {
+            listener.@de.bastian.gwt.fileapi.client.file.reader.FileReaderListener::onLoadStart(Lde/bastian/gwt/fileapi/client/file/events/ProgressEvent;)(event);
         };
 
-        this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onprogress = function(event) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onProgress(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(event);
+        this.@de.bastian.gwt.fileapi.client.file.reader.FileReader::impl.onprogress = function(event) {
+            listener.@de.bastian.gwt.fileapi.client.file.reader.FileReaderListener::onProgress(Lde/bastian/gwt/fileapi/client/file/events/ProgressEvent;)(event);
         };
 
-        this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onload = function(event) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoad(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(event);
+        this.@de.bastian.gwt.fileapi.client.file.reader.FileReader::impl.onload = function(event) {
+            listener.@de.bastian.gwt.fileapi.client.file.reader.FileReaderListener::onLoad(Lde/bastian/gwt/fileapi/client/file/events/ProgressEvent;)(event);
         };
 
-        this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onabort = function(event) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onAbort(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(event);
+        this.@de.bastian.gwt.fileapi.client.file.reader.FileReader::impl.onabort = function(event) {
+            listener.@de.bastian.gwt.fileapi.client.file.reader.FileReaderListener::onAbort(Lde/bastian/gwt/fileapi/client/file/events/ProgressEvent;)(event);
         };
 
-        this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onerror = function(event) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onError(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(event);
+        this.@de.bastian.gwt.fileapi.client.file.reader.FileReader::impl.onerror = function(event) {
+            listener.@de.bastian.gwt.fileapi.client.file.reader.FileReaderListener::onError(Lde/bastian/gwt/fileapi/client/file/events/ProgressEvent;)(event);
         };
 
-        this.@de.bastian.gwt.fileapi.client.file.FileReader::impl.onloadend = function(event) {
-            listener.@de.bastian.gwt.fileapi.client.file.FileReaderListener::onLoadEnd(Lde/bastian/gwt/fileapi/client/file/ProgressEvent;)(event);
+        this.@de.bastian.gwt.fileapi.client.file.reader.FileReader::impl.onloadend = function(event) {
+            listener.@de.bastian.gwt.fileapi.client.file.reader.FileReaderListener::onLoadEnd(Lde/bastian/gwt/fileapi/client/file/events/ProgressEvent;)(event);
         };
     }-*/;
 

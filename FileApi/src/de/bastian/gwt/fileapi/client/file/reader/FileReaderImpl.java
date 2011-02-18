@@ -1,6 +1,9 @@
-package de.bastian.gwt.fileapi.client.file;
+package de.bastian.gwt.fileapi.client.file.reader;
 
 import com.google.gwt.core.client.JavaScriptObject;
+
+import de.bastian.gwt.fileapi.client.file.Blob;
+import de.bastian.gwt.fileapi.client.file.exceptions.FileError;
 
 /**
  * http://www.w3.org/TR/FileAPI/#FileReader-interface

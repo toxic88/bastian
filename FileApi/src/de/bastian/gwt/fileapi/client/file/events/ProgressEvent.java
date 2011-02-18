@@ -1,9 +1,9 @@
-package de.bastian.gwt.fileapi.client.file;
+package de.bastian.gwt.fileapi.client.file.events;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
 /**
- * http://www.w3.org/TR/2010/WD-progress-events-20101019/#the-progressevent-interface
+ * http://www.w3.org/TR/progress-events/#the-progressevent-interface
  * @author Bastian Buchholz
  */
 public class ProgressEvent extends JavaScriptObject {
@@ -11,7 +11,7 @@ public class ProgressEvent extends JavaScriptObject {
     protected ProgressEvent() {}
 
     /**
-     * http://www.w3.org/TR/2010/WD-progress-events-20101019/#dom-progressevent-lengthcomputable
+     * http://www.w3.org/TR/progress-events/#dom-progressevent-lengthcomputable
      * @return boolean
      */
     public final native boolean getLengthComputable() /*-{
@@ -19,7 +19,7 @@ public class ProgressEvent extends JavaScriptObject {
     }-*/;
 
     /**
-     * http://www.w3.org/TR/2010/WD-progress-events-20101019/#dom-progressevent-loaded
+     * http://www.w3.org/TR/progress-events/#dom-progressevent-loaded
      * @return int
      */
     public final native int getLoaded() /*-{
@@ -27,7 +27,7 @@ public class ProgressEvent extends JavaScriptObject {
     }-*/;
 
     /**
-     * http://www.w3.org/TR/2010/WD-progress-events-20101019/#dom-progressevent-total
+     * http://www.w3.org/TR/progress-events/#dom-progressevent-total
      * @return int
      */
     public final native int getTotal() /*-{

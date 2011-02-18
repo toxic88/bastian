@@ -6,16 +6,17 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
+import com.google.gwt.event.dom.client.MouseMoveEvent;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.bastian.gwt.fileapi.client.file.File;
-import de.bastian.gwt.fileapi.client.file.FileReader;
-import de.bastian.gwt.fileapi.client.file.FileReaderListener;
-import de.bastian.gwt.fileapi.client.file.ProgressEvent;
-import de.bastian.gwt.fileapi.client.file.URL;
+import de.bastian.gwt.fileapi.client.file.events.ProgressEvent;
+import de.bastian.gwt.fileapi.client.file.reader.FileReader;
+import de.bastian.gwt.fileapi.client.file.reader.FileReaderListener;
+import de.bastian.gwt.fileapi.client.file.url.URL;
 import de.bastian.gwt.fileapi.client.ui.FileUpload;
 
 /**
@@ -74,6 +75,7 @@ public class FileApi implements EntryPoint {
                                 @Override
                                 public void onAbort(ProgressEvent event) {
                                     GWT.log("onAbort");
+                                    MouseMoveEvent
                                 }
                                 @Override
                                 public void onError(ProgressEvent event) {

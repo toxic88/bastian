@@ -1,4 +1,6 @@
-package de.bastian.gwt.fileapi.client.file;
+package de.bastian.gwt.fileapi.client.file.url;
+
+import de.bastian.gwt.fileapi.client.file.Blob;
 
 /**
  * http://www.w3.org/TR/FileAPI/#creating-revoking
@@ -7,7 +9,7 @@ package de.bastian.gwt.fileapi.client.file;
 public class URL {
 
     /**
-     * Checks if the browser supports the URL File API
+     * Checks if the browser supports the URL API
      * @return boolean
      */
     public final static native boolean isSupported() /*-{
