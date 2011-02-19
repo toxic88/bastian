@@ -39,12 +39,12 @@ public class EditUserActivity extends AppActivity {
                     }
 
                     editUserView.edit(user);
-                    containerWidget.setWidget(editUserView.asWidget());
+                    containerWidget.setWidget(editUserView);
                 }
             });
         } else if (Clan.CURRENTUSER != null && Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin)) {
             editUserView.edit(null);
-            containerWidget.setWidget(editUserView.asWidget());
+            containerWidget.setWidget(editUserView);
         } else {
             Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                 @Override

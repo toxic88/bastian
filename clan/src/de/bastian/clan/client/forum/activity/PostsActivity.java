@@ -69,7 +69,7 @@ public class PostsActivity extends AppActivity implements PostView.Presenter {
                                     @Override
                                     public void onSuccess(Integer count) {
                                         postsView.setPosts(topic, parent, posts, page, ++count);
-                                        containerWidget.setWidget(postsView.asWidget());
+                                        containerWidget.setWidget(postsView);
                                     }
                                 });
                             }

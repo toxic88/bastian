@@ -20,6 +20,11 @@
     <replace-with class="de.bastian.clan.client.ClientFactoryImpl">
         <when-type-is class="de.bastian.clan.client.ClientFactory"/>
     </replace-with>
+    
+    <!-- https://groups.google.com/forum/?hl=en#!topic/google-web-toolkit/dVxlpnk_v3g -->
+    <set-property name="ClientBundle.enableInlining" value="false">
+        <when-property-is name="user.agent" value="ie8" />
+    </set-property>
 
     <!-- Paths with GWT sourcecode -->
     <source path="client"/>

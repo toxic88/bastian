@@ -55,7 +55,7 @@ public class EditPostActivity extends AppActivity {
 
                         if (postId == null) {
                             editPostView.edit(topic, theme, null);
-                            containerWidget.setWidget(editPostView.asWidget());
+                            containerWidget.setWidget(editPostView);
                             return;
                         }
 
@@ -75,7 +75,7 @@ public class EditPostActivity extends AppActivity {
                                 }
 
                                 editPostView.edit(topic, theme, post);
-                                containerWidget.setWidget(editPostView.asWidget());
+                                containerWidget.setWidget(editPostView);
                             }
                         });
                     }

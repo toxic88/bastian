@@ -27,7 +27,7 @@ public class EditPicturePlace extends Place {
         return pictureId;
     }
 
-    @Prefix("editPicture")
+    @Prefix("!editPicture")
     public static class Tokenizer implements PlaceTokenizer<EditPicturePlace> {
 
         @Override

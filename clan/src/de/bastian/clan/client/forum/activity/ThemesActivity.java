@@ -60,7 +60,7 @@ public class ThemesActivity extends AppActivity {
                             @Override
                             public void onSuccess(Integer count) {
                                 themesView.setThemes(topic, themes, page, count);
-                                containerWidget.setWidget(themesView.asWidget());
+                                containerWidget.setWidget(themesView);
                             }
                         });
                     }

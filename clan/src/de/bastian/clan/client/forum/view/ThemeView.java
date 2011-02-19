@@ -27,7 +27,7 @@ public class ThemeView extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
 
         title.setHTML(SafeHtmlUtils.fromString(theme.getTitle()));
-        title.setTargetHistoryToken("posts:" + theme.getId());
+        title.setTargetHistoryToken("!posts:" + theme.getId());
 
         PostRequest themeRequest = Clan.REQUESTFACTORY.postRequest();
         themeRequest.countPosts(theme.getId()).fire(new Receiver<Integer>() {
@@ -42,7 +42,7 @@ public class ThemeView extends Composite {
             @Override
             public void onSuccess(UserProxy user) {
                 username.setHTML(SafeHtmlUtils.fromString(user.getFirstname()));
-                username.setTargetHistoryToken("user:" + user.getId());
+                username.setTargetHistoryToken("!user:" + user.getId());
             }
         });
     }

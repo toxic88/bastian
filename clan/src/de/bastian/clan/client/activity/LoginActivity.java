@@ -28,7 +28,7 @@ public class LoginActivity extends AppActivity implements LoginView.Presenter {
         if (Clan.CURRENTUSER == null) {
             LoginView loginView = clientFactory.getLoginView();
             loginView.setActivity(this);
-            containerWidget.setWidget(loginView.asWidget());
+            containerWidget.setWidget(loginView);
         } else {
             Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                 @Override

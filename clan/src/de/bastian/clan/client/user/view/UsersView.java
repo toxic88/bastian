@@ -5,10 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.gwt.cell.client.DateCell;
+import com.google.gwt.cell.client.SafeHtmlCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.i18n.client.Constants;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellTable;
@@ -19,7 +22,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.NoSelectionModel;
 
 import de.bastian.clan.client.Clan;
-import de.bastian.clan.client.view.widgets.HtmlCell;
 import de.bastian.clan.shared.UserProxy;
 
 public class UsersView extends Composite {
@@ -56,10 +58,10 @@ public class UsersView extends Composite {
 
     private void initTable() {
         /* Creating columns */
-        Column<UserProxy, String> firstnameColumn = new Column<UserProxy, String>(new HtmlCell()) {
+        Column<UserProxy, SafeHtml> firstnameColumn = new Column<UserProxy, SafeHtml>(new SafeHtmlCell()) {
             @Override
-            public String getValue(UserProxy user) {
-                return "<a href='#user:" + user.getId() + "'>" + user.getFirstname() + "</a>";
+            public SafeHtml getValue(UserProxy user) {
+                return SafeHtmlUtils.fromSafeConstant("<a href='#!user:" + user.getId() + "'>" + user.getFirstname() + "</a>");
             }
         };
 

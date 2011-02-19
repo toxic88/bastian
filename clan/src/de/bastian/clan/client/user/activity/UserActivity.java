@@ -39,7 +39,7 @@ public class UserActivity extends AppActivity implements UserView.Presenter {
                 }
 
                 userView.setUser(user);
-                containerWidget.setWidget(userView.asWidget());
+                containerWidget.setWidget(userView);
             }
         });
     }

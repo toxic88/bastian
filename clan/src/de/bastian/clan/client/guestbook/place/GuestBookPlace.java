@@ -31,7 +31,7 @@ public class GuestBookPlace extends Place {
         return page;
     }
 
-    @Prefix("guestbook")
+    @Prefix("!guestbook")
     public static class Tokenizer implements PlaceTokenizer<GuestBookPlace> {
 
         @Override

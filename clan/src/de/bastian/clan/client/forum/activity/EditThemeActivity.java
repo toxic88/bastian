@@ -43,7 +43,7 @@ public class EditThemeActivity extends AppActivity {
 
                 if (themeId == null) {
                     editThemeView.edit(topic, null);
-                    containerWidget.setWidget(editThemeView.asWidget());
+                    containerWidget.setWidget(editThemeView);
                     return;
                 }
 
@@ -63,7 +63,7 @@ public class EditThemeActivity extends AppActivity {
                         }
 
                         editThemeView.edit(topic, theme);
-                        containerWidget.setWidget(editThemeView.asWidget());
+                        containerWidget.setWidget(editThemeView);
                     }
                 });
             }

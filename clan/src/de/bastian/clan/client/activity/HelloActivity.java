@@ -17,7 +17,7 @@ public class HelloActivity extends AppActivity {
     @Override
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
         HelloView helloView = clientFactory.getHelloView();
-        containerWidget.setWidget(helloView.asWidget());
+        containerWidget.setWidget(helloView);
     }
 
 }

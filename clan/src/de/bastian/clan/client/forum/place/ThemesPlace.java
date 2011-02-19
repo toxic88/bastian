@@ -39,7 +39,7 @@ public class ThemesPlace extends Place {
         return page;
     }
 
-    @Prefix("themes")
+    @Prefix("!themes")
     public static class Tokenizer implements PlaceTokenizer<ThemesPlace> {
 
         @Override

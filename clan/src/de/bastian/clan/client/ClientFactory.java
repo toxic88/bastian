@@ -25,19 +25,31 @@ public interface ClientFactory {
     HelloView getHelloView();
     LoginView getLoginView();
 
+    /**
+     * User related stuff
+     */
     UsersView getUsersView();
     UserView getUserView();
     EditUserView getEditUserView();
 
+    /**
+     * Forum related stuff
+     */
     TopicView getTopicView();
     ThemesView getThemesView();
     EditThemeView getEditThemeView();
     PostsView getPostsView();
     EditPostView getEditPostView();
 
+    /**
+     * Picture related stuff
+     */
     PicturesView getPicturesView();
     EditPictureView getEditPictureView();
 
+    /**
+     * GuestBook related stuff
+     */
     GuestBookView getGuestBookView();
 
 }

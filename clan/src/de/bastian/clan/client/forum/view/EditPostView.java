@@ -73,9 +73,9 @@ public class EditPostView extends Composite implements Editor<PostProxy> {
         driver.initialize(Clan.EVENTBUS, Clan.REQUESTFACTORY, this);
 
         if (post == null) {
-            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + Clan.MESSAGES.newPost());
+            header.setInnerHTML("<a href='#!forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#!themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#!posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + Clan.MESSAGES.newPost());
         } else {
-            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + post.getTitle());
+            header.setInnerHTML("<a href='#!forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#!themes:" + topic.getId() + "'>" + topic.getName() + "</a> > <a href='#!posts:" + theme.getId() + "'>" + theme.getTitle() + "</a> > " + post.getTitle());
         }
 
         PostRequest request = Clan.REQUESTFACTORY.postRequest();

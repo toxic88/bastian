@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gwt.appengine.channel.client.Channel;
 import com.google.gwt.appengine.channel.client.ChannelFactory;
-import com.google.gwt.appengine.channel.client.CreateChannelCallback;
+import com.google.gwt.appengine.channel.client.ChannelFactory.ChannelCreatedCallback;
 import com.google.gwt.appengine.channel.client.SocketListener;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsonUtils;
@@ -84,9 +84,15 @@ public class GuestBookView extends Composite {
     FlowPanel content;
 
     @UiHandler("text")
-    void onTextKeyDown(KeyDownEvent e) {
-        if (e.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-            send.click();
+    void onTextKeyDown(KeyDownEvent event) {
+        if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+            if (event.isControlKeyDown() || event.isShiftKeyDown()) {
+                int p = text.getCursorPos();
+                text.setText(text.getText().substring(0, p) + "\n" + text.getText().substring(p));
+                text.setCursorPos(p + 1);
+            } else {
+                send.click();
+            }
         }
     }
 
@@ -115,7 +121,7 @@ public class GuestBookView extends Composite {
 
             request.persist().using(guestBookEntry).fire();
 
-            text.setText(null);
+            text.setText("");
         }
     }
 
@@ -132,9 +138,9 @@ public class GuestBookView extends Composite {
                     // TODO: do something
                     return;
                 }
-                ChannelFactory.createChannel(pushClient.getChannel(), new CreateChannelCallback() {
+                ChannelFactory.createChannel(pushClient.getChannel(), new ChannelCreatedCallback() {
                     @Override
-                    public void onCreateChannel(Channel ch) {
+                    public void onChannelCreated(Channel ch) {
                         ch.open(new SocketListener() {
                             @Override
                             public void onOpen() {

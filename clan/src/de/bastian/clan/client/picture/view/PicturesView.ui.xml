@@ -19,7 +19,7 @@
     <g:HTMLPanel>
         <h1><ui:msg key="pictures">Pictures</ui:msg></h1>
         
-        <g:InlineHyperlink targetHistoryToken="editPicture:" styleName="{style.newPicture}"><ui:msg key="newPicture">New picture</ui:msg></g:InlineHyperlink>
+        <g:InlineHyperlink targetHistoryToken="!editPicture:" styleName="{style.newPicture}"><ui:msg key="newPicture">New picture</ui:msg></g:InlineHyperlink>
         
         <my:HyperlinkPager ui:field="pagerTop" styleName="{style.pager}"></my:HyperlinkPager>
         

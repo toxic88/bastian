@@ -6,7 +6,7 @@ import com.google.gwt.place.shared.Prefix;
 
 public class TopicPlace extends Place {
 
-    @Prefix("forum")
+    @Prefix("!forum")
     public static class Tokenizer implements PlaceTokenizer<TopicPlace> {
 
         @Override

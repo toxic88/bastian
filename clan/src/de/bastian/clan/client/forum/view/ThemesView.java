@@ -51,20 +51,20 @@ public class ThemesView extends Composite {
     InlineHyperlink newThemeBottom;
 
     public void setThemes(TopicProxy topic, List<PostProxy> themes, int page, int count) {
-        header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > " + topic.getName());
+        header.setInnerHTML("<a href='#!forum:'>" + Clan.MESSAGES.forum() + "</a> > " + topic.getName());
 
         for (PostProxy theme : themes) {
             content.add(new ThemeView(theme));
         }
 
-        pagerTop.setPrefix("themes:" + topic.getId() + ":");
+        pagerTop.setPrefix("!themes:" + topic.getId() + ":");
         pagerTop.setPageSizeCount(page, ThemesActivity.pageSize, count);
 
-        pagerBottom.setPrefix("themes:" + topic.getId() + ":");
+        pagerBottom.setPrefix("!themes:" + topic.getId() + ":");
         pagerBottom.setPageSizeCount(page, ThemesActivity.pageSize, count);
 
-        newThemeTop.setTargetHistoryToken("editTheme:" + topic.getId());
-        newThemeBottom.setTargetHistoryToken("editTheme:" + topic.getId());
+        newThemeTop.setTargetHistoryToken("!editTheme:" + topic.getId());
+        newThemeBottom.setTargetHistoryToken("!editTheme:" + topic.getId());
     }
 
     private void reset() {

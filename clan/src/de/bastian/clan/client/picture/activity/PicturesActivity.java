@@ -50,7 +50,7 @@ public class PicturesActivity extends AppActivity implements PictureView.Present
                     @Override
                     public void onSuccess(Integer count) {
                         picturesView.setPictures(pictures, page, count);
-                        containerWidget.setWidget(picturesView.asWidget());
+                        containerWidget.setWidget(picturesView);
                     }
                 });
             }

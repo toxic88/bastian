@@ -31,7 +31,7 @@ public class PicturesPlace extends Place {
         return page;
     }
 
-    @Prefix("pictures")
+    @Prefix("!pictures")
     public static class Tokenizer implements PlaceTokenizer<PicturesPlace> {
 
         @Override

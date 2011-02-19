@@ -28,7 +28,7 @@ public class GuestBookActivity extends AppActivity {
     @Override
     public void start(final AcceptsOneWidget containerWidget, EventBus eventBus) {
         final GuestBookView guestBookView = clientFactory.getGuestBookView();
-        containerWidget.setWidget(guestBookView.asWidget());
+        containerWidget.setWidget(guestBookView);
 
         GuestBookEntryRequest request = Clan.REQUESTFACTORY.guestBookEntryRequest();
 

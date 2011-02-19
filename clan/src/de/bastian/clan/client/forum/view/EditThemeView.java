@@ -73,9 +73,9 @@ public class EditThemeView extends Composite implements Editor<PostProxy> {
         driver.initialize(Clan.EVENTBUS, Clan.REQUESTFACTORY, this);
 
         if (theme == null) {
-            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + Clan.MESSAGES.newTheme());
+            header.setInnerHTML("<a href='#!forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#!themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + Clan.MESSAGES.newTheme());
         } else {
-            header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + theme.getTitle());
+            header.setInnerHTML("<a href='#!forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#!themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + theme.getTitle());
         }
 
         PostRequest request = Clan.REQUESTFACTORY.postRequest();

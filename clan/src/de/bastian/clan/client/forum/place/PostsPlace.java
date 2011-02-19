@@ -39,7 +39,7 @@ public class PostsPlace extends Place {
         return page;
     }
 
-    @Prefix("posts")
+    @Prefix("!posts")
     public static class Tokenizer implements PlaceTokenizer<PostsPlace> {
 
         @Override

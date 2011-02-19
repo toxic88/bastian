@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
+import de.bastian.clan.client.Clan;
 import de.bastian.clan.shared.GuestBookEntry;
 import de.bastian.clan.shared.GuestBookEntryProxy;
 
@@ -21,7 +22,11 @@ public class GuestBookEntryView extends Composite {
         initWidget(uiBinder.createAndBindUi(this));
 
         this.name.setInnerHTML(SafeHtmlUtils.fromString(name).asString());
-        this.text.setInnerHTML(SafeHtmlUtils.fromString(text).asString());
+
+        text = SafeHtmlUtils.fromString(text).asString();
+        text = Clan.REGEXP.LINEBREAK.getRegExp().replace(text, Clan.REGEXP.LINEBREAK.getReplace());
+        text = Clan.REGEXP.HYPERLINK.getRegExp().replace(text, Clan.REGEXP.HYPERLINK.getReplace());
+        this.text.setInnerHTML(text);
     }
 
     public GuestBookEntryView(GuestBookEntry guestBookEntry) {

@@ -16,6 +16,7 @@ import de.bastian.clan.client.picture.activity.EditPictureActivity;
 import de.bastian.clan.shared.PictureProxy;
 import de.bastian.gwt.fileapi.client.file.FileReader;
 import de.bastian.gwt.fileapi.client.file.FileReaderListener;
+import de.bastian.gwt.fileapi.client.file.ProgressEvent;
 import de.bastian.gwt.fileapi.client.ui.FileUpload;
 
 public class EditPictureView extends Composite {
@@ -56,7 +57,7 @@ public class EditPictureView extends Composite {
 
         final FileReader fr = new FileReader(new FileReaderListener() {
             @Override
-            public void onLoadEnd(boolean lengthComputable, int loaded, int total) {
+            public void onLoadEnd(ProgressEvent event) {
                 if (getFileReader().getError() == null) {
                     String res = (String) getFileReader().getResult();
                     if (res.startsWith("data:image")) {

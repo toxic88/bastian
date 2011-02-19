@@ -12,6 +12,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
@@ -31,27 +32,70 @@ import de.bastian.clan.shared.UserProxy;
 
 public class Clan implements EntryPoint {
 
+    /**
+     * Static images, css files, other ressources and translations
+     */
     public static final Resources RESOURCES = GWT.create(Resources.class);
     public static final AppMessages MESSAGES = GWT.create(AppMessages.class);
 
+    /**
+     * Create the RequestFactory and the MVA framework
+     */
     public static final AppRequestFactory REQUESTFACTORY = GWT.create(AppRequestFactory.class);
     public static final ClientFactory CLIENTFACTORY = GWT.create(ClientFactory.class);
     public static final EventBus EVENTBUS = CLIENTFACTORY.getEventBus();
     public static final PlaceController PLACECONTROLLER = CLIENTFACTORY.getPlaceController();
 
+    /**
+     * The global DateTimeFormatter
+     */
     public static final DateTimeFormat DATERENDERER = DateTimeFormat.getFormat("dd.MM.yyyy HH:mm:ss");
 
+    /**
+     * Stores the current logged in user
+     */
     public static UserProxy CURRENTUSER = null;
+    /**
+     * Stores the socket connection for push notifications
+     */
     public static Socket SOCKET = null;
+
+    /**
+     * Regulare expressions
+     */
+    public static enum REGEXP {
+        LINEBREAK(RegExp.compile("\n", "gi"), " <br /> "),
+        HYPERLINK(RegExp.compile("((?:https?|ftps?)\\:\\/\\/.+?)(?:$|\\s)", "gi"), " <a href='$1' target='_blank'>$1</a> ");
+
+        private RegExp regexp;
+        private String replace;
+
+        REGEXP(RegExp regexp, String replace) {
+            this.regexp = regexp;
+            this.replace = replace;
+        }
+        public RegExp getRegExp() {
+            return regexp;
+        }
+        public String getReplace() {
+            return replace;
+        }
+    }
 
     private final Place defaultPlace = new HelloPlace();
     private final ClanView appWidget = new ClanView();
 
     @Override
     public void onModuleLoad() {
+        /**
+         * inject css files
+         */
         RESOURCES.style().ensureInjected();
         RESOURCES.shadowbox().ensureInjected();
 
+        /**
+         * Initialize the mva framework
+         */
         ActivityMapper activityMapper = new AppActivityMapper(CLIENTFACTORY);
         ActivityManager activityManager = new ActivityManager(activityMapper, EVENTBUS);
         activityManager.setDisplay(appWidget.getContent());
@@ -89,6 +133,9 @@ public class Clan implements EntryPoint {
             }
         });
 
+        /**
+         * Try to close the socket connection on window close
+         */
         Window.addCloseHandler(new CloseHandler<Window>() {
             @Override
             public void onClose(CloseEvent<Window> event) {
@@ -99,7 +146,7 @@ public class Clan implements EntryPoint {
         });
 
         /**
-         * Check if user is allready logged in
+         * Check if user is allready logged in on startup
          */
         REQUESTFACTORY.userRequest().getCurrentUser().fire(new Receiver<UserProxy>() {
             @Override
@@ -107,7 +154,7 @@ public class Clan implements EntryPoint {
                 if (user != null){
                     EVENTBUS.fireEvent(new LoginEvent(user));
                     if (PLACECONTROLLER.getWhere() instanceof LoginPlace) {
-                        History.back();
+                        History.back(); // go back where you came from before you hit the login place
                     }
                 }
             }
@@ -121,6 +168,10 @@ public class Clan implements EntryPoint {
         initShadowbox();
     }
 
+    /**
+     * Initialize the shadowbox with some default options
+     * @return void
+     */
     private final native void initShadowbox() /*-{
         $wnd.Shadowbox.init({
             continuous  : true,

@@ -50,7 +50,7 @@ public class EditPostPlace extends Place {
         return postId;
     }
 
-    @Prefix("editPost")
+    @Prefix("!editPost")
     public static class Tokenizer implements PlaceTokenizer<EditPostPlace> {
 
         @Override

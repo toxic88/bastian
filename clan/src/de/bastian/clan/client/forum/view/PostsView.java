@@ -48,7 +48,7 @@ public class PostsView extends Composite {
     InlineHyperlink newPostBottom;
 
     public void setPosts(TopicProxy topic, PostProxy theme, List<PostProxy> posts, int page, int count) {
-        header.setInnerHTML("<a href='#forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + theme.getTitle());
+        header.setInnerHTML("<a href='#!forum:'>" + Clan.MESSAGES.forum() + "</a> > <a href='#!themes:" + topic.getId() + "'>" + topic.getName() + "</a> > " + theme.getTitle());
 
         if (page == 0) { // add the theme as first post
             posts.add(0, theme);
@@ -58,14 +58,14 @@ public class PostsView extends Composite {
             content.add(new PostView(post, activity));
         }
 
-        pagerTop.setPrefix("posts:" + theme.getId() + ":");
+        pagerTop.setPrefix("!posts:" + theme.getId() + ":");
         pagerTop.setPageSizeCount(page, PostsActivity.pageSize, count - 1);
 
-        pagerBottom.setPrefix("posts:" + theme.getId() + ":");
+        pagerBottom.setPrefix("!posts:" + theme.getId() + ":");
         pagerBottom.setPageSizeCount(page, PostsActivity.pageSize, count - 1);
 
-        newPostTop.setTargetHistoryToken("editPost:" + topic.getId() + ":" + theme.getId());
-        newPostBottom.setTargetHistoryToken("editPost:" + topic.getId() + ":" + theme.getId());
+        newPostTop.setTargetHistoryToken("!editPost:" + topic.getId() + ":" + theme.getId());
+        newPostBottom.setTargetHistoryToken("!editPost:" + topic.getId() + ":" + theme.getId());
     }
 
     private void reset() {

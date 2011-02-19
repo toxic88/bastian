@@ -41,10 +41,10 @@ public class PicturesView extends Composite {
             content.add(new PictureView(picture, activity));
         }
 
-        pagerTop.setPrefix("pictures:");
+        pagerTop.setPrefix("!pictures:");
         pagerTop.setPageSizeCount(page, PicturesActivity.pageSize, count);
 
-        pagerBottom.setPrefix("pictures:");
+        pagerBottom.setPrefix("!pictures:");
         pagerBottom.setPageSizeCount(page, PicturesActivity.pageSize, count);
 
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {

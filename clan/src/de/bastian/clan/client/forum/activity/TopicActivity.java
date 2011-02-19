@@ -29,7 +29,7 @@ public class TopicActivity extends AppActivity {
             @Override
             public void onSuccess(List<TopicProxy> topics) {
                 topicView.setTopics(topics);
-                containerWidget.setWidget(topicView.asWidget());
+                containerWidget.setWidget(topicView);
             }
         });
     }

@@ -43,7 +43,7 @@ public class TopicView extends Composite {
             }
 
             sb.appendHtmlConstant("<div class='" + style + "'>");
-                sb.appendHtmlConstant("<a href='#themes:" + topic.getId() + "'>");
+                sb.appendHtmlConstant("<a href='#!themes:" + topic.getId() + "'>");
                     sb.appendEscaped(topic.getName());
                 sb.appendHtmlConstant("</a>");
             sb.appendHtmlConstant("</div>");

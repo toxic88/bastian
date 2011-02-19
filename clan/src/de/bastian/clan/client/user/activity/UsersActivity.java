@@ -29,7 +29,7 @@ public class UsersActivity extends AppActivity {
             @Override
             public void onSuccess(List<UserProxy> users) {
                 usersView.setUsers(users);
-                containerWidget.setWidget(usersView.asWidget());
+                containerWidget.setWidget(usersView);
             }
         });
     }

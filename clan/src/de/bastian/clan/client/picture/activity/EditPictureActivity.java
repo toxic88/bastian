@@ -44,12 +44,12 @@ public class EditPictureActivity extends AppActivity implements EditPictureView.
                     }
 
                     editPictureView.setPicture(picture);
-                    containerWidget.setWidget(editPictureView.asWidget());
+                    containerWidget.setWidget(editPictureView);
                 }
             });
         } else if (Clan.CURRENTUSER != null && FileReader.isSupported()) {
             editPictureView.setPicture(null);
-            containerWidget.setWidget(editPictureView.asWidget());
+            containerWidget.setWidget(editPictureView);
         } else {
             Scheduler.get().scheduleDeferred(new ScheduledCommand() {
                 @Override

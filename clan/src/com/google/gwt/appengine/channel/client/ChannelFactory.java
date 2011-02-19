@@ -27,7 +27,7 @@ public class ChannelFactory {
 
     private static Channel channel = null;
 
-    public static void createChannel(final String channelId, final CreateChannelCallback cb) {
+    public static void createChannel(final String channelId, final ChannelCreatedCallback cb) {
         if (channel == null) {
             ScriptElement script = Document.get().createScriptElement();
             script.setSrc(CHANNEL_SRC);
@@ -37,13 +37,13 @@ public class ChannelFactory {
                 @Override
                 public void run() {
                     if (scriptLoaded()) {
-                        cb.onCreateChannel(channel = createChannelImpl(channelId));
+                        cb.onChannelCreated(channel = createChannelImpl(channelId));
                         cancel();
                     }
                 }
             }.scheduleRepeating(100);
         } else {
-            cb.onCreateChannel(channel);
+            cb.onChannelCreated(channel);
         }
     }
 
@@ -54,5 +54,9 @@ public class ChannelFactory {
     private static final native Channel createChannelImpl(String channelId) /*-{
         return new $wnd.goog.appengine.Channel(channelId);
     }-*/;
+
+    public interface ChannelCreatedCallback {
+        public void onChannelCreated(Channel channel);
+    }
 
 }

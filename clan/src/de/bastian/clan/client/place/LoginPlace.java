@@ -6,7 +6,7 @@ import com.google.gwt.place.shared.Prefix;
 
 public class LoginPlace extends Place {
 
-    @Prefix("login")
+    @Prefix("!login")
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
         @Override

@@ -54,7 +54,7 @@ public class PictureView extends Composite {
         if (Clan.CURRENTUSER == null || (Clan.CURRENTUSER.getId() != picture.getUser() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
             actions.addStyleName(style.hidden());
         } else {
-            InlineHyperlink edit = new InlineHyperlink("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />", true, "editPicture:" + picture.getId());
+            InlineHyperlink edit = new InlineHyperlink("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />", true, "!editPicture:" + picture.getId());
             actions.add(edit);
 
             Anchor delete = new Anchor("<img src='" + Clan.RESOURCES.delete().getURL() + "' />", true);
@@ -84,7 +84,7 @@ public class PictureView extends Composite {
             @Override
             public void onSuccess(UserProxy user) {
                 username.setHTML(SafeHtmlUtils.fromString(user.getFirstname()).asString());
-                username.setTargetHistoryToken("user:" + user.getId());
+                username.setTargetHistoryToken("!user:" + user.getId());
             }
         });
 

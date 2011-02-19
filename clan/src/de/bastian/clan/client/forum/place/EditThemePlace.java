@@ -39,7 +39,7 @@ public class EditThemePlace extends Place {
         return themeId;
     }
 
-    @Prefix("editTheme")
+    @Prefix("!editTheme")
     public static class Tokenizer implements PlaceTokenizer<EditThemePlace> {
 
         @Override

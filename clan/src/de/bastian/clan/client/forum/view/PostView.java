@@ -6,7 +6,6 @@ import com.google.gwt.dom.client.TableCellElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.i18n.client.Constants;
-import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
@@ -40,8 +39,6 @@ public class PostView extends Composite {
 
     interface PostViewUiBinder extends UiBinder<Widget, PostView> {}
 
-    private static final RegExp linkRegex = RegExp.compile("((?:https?|ftps?)\\:\\/\\/.+?)(?:$|\\s)", "gi");
-
     interface Style extends CssResource {
         String hidden();
     }
@@ -57,16 +54,16 @@ public class PostView extends Composite {
         }
 
         String message = SafeHtmlUtils.fromString(post.getText()).asString();
-        message = linkRegex.replace(message, " <a href='$1' target='_blank'>$1</a> "); // <a href="...">...</a>
-        message = message.replace("\n", "<br />"); // <br />
+        message = Clan.REGEXP.LINEBREAK.getRegExp().replace(message, Clan.REGEXP.LINEBREAK.getReplace());
+        message = Clan.REGEXP.HYPERLINK.getRegExp().replace(message, Clan.REGEXP.HYPERLINK.getReplace());
         text.setInnerHTML(message);
 
         if (Clan.CURRENTUSER == null || (post.getUser() != Clan.CURRENTUSER.getId() && !Clan.CURRENTUSER.getType().equals(UserProxy.Type.Admin))) {
             actions.addStyleName(style.hidden());
         } else {
-            InlineHyperlink edit = new InlineHyperlink("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />", true, "editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId());
+            InlineHyperlink edit = new InlineHyperlink("<img src='" + Clan.RESOURCES.pencil().getURL() + "' />", true, "!editPost:" + post.getTopic() + ":" + post.getTheme() + ":" + post.getId());
             if (post.getTheme() == null) {
-                edit.setTargetHistoryToken("editTheme:" + post.getTopic() + ":" + post.getId());
+                edit.setTargetHistoryToken("!editTheme:" + post.getTopic() + ":" + post.getId());
             }
             actions.add(edit);
 
@@ -97,7 +94,7 @@ public class PostView extends Composite {
            @Override
             public void onSuccess(UserProxy user) {
                username.setHTML(SafeHtmlUtils.fromString(user.getFirstname()));
-               username.setTargetHistoryToken("user:" + user.getId());
+               username.setTargetHistoryToken("!user:" + user.getId());
             }
         });
     }
