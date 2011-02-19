@@ -70,7 +70,7 @@ public class NavigationView extends Composite {
             de.addClickHandler(new ClickHandler() {
                 @Override
                 public void onClick(ClickEvent event) {
-                    Location.replace("/?locale=de" + Location.getHash());
+                    Location.assign(Location.createUrlBuilder().setParameter("locale", "de").buildString());
                 }
             });
             locales.add(de);
@@ -79,7 +79,7 @@ public class NavigationView extends Composite {
             en.addClickHandler(new ClickHandler() {
                 @Override
                 public void onClick(ClickEvent event) {
-                    Location.replace("/?locale=en" + Location.getHash());
+                    Location.assign(Location.createUrlBuilder().setParameter("locale", "en").buildString());
                 }
             });
             locales.add(en);
