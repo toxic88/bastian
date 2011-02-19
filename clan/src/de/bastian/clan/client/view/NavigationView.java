@@ -48,7 +48,7 @@ public class NavigationView extends Composite {
                 login.getElement().getParentElement().addClassName(style.hidden());
                 logout.getElement().getParentElement().removeClassName(style.hidden());
                 profile.getElement().getParentElement().removeClassName(style.hidden());
-                profile.setTargetHistoryToken("user:" + e.getUser().getId());
+                profile.setTargetHistoryToken("!user:" + e.getUser().getId());
             }
         });
 
