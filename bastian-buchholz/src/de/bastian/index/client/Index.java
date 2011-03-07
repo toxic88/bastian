@@ -23,7 +23,6 @@ public class Index implements EntryPoint {
         AppView view = new AppView();
         RootPanel.get().add(view);
 
-
         final Element el = view.getContent();
 
         JsonpRequestBuilder jsonp = new JsonpRequestBuilder();
